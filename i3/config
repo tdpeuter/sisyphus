@@ -18,7 +18,7 @@ exec --no-startup-id dex --autostart --environment i3
 
 # Set background
 exec --no-startup-id xsetroot -solid "#333333"
-exec --no-startup-id feh --bg-scale '/usr/share/backgrounds/yvonne_dark.jpg'
+exec --no-startup-id feh --bg-scale '/usr/share/backgrounds/spirit.png'
 
 # =================
 # General variables
