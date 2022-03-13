@@ -6,15 +6,15 @@
 # Autostart
 # =========
 
-# Start f.lux
-exec --no-startup-id xflux -l 51.018613 -g 3.752184 -k 3000 -r 1
-
 # Increase font size for everything except applications
 exec xrandr --dpi 125
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
+
+# Start f.lux
+exec --no-startup-id xflux -l 51.018613 -g 3.752184 -k 3000 -r 1
 
 # Set background
 exec --no-startup-id xsetroot -solid "#333333"
@@ -186,6 +186,9 @@ bindsym $winkey+Control+Shift+Left move container to workspace prev; workspace p
 # ==============
 # System Control
 # ==============
+
+# Reload statusbar if there are changes to i.e. volume
+exec --no-startup-id i3-msg -t command reload
 
 # Reload the configuration file
 bindsym $alt+Shift+c reload
