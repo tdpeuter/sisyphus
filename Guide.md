@@ -1,5 +1,7 @@
 # Guide
 
+Complete (but currently incomplete) guide to installing my systems.
+
 ## Base system: Manjaro
 
 ## Connections
@@ -14,6 +16,7 @@ pacman -S network-manager-applet nm-connection-editor blueman
 pacman -S i3-wm i3lock i3status
 ```
 
-Neem volgende config files over: 
+Take the following config files
 
-- [config](./i3/config)
+- [i3 config folder](./.config/i3/)
+- 
