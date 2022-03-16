@@ -284,7 +284,8 @@ bar {
 }
 
 title_align center
-default_border normal 1
+default_border none
+hide_edge_borders smart
  
 # Class			border	backgr	text	indic.	child_border
 client.focused          #000000 #00897b #ffffff #00897b   #000000
