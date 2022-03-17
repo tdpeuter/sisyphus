@@ -17,8 +17,7 @@ exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xflux -l 51.018613 -g 3.752184 -k 3000 -r 1
 
 # Set background
-exec --no-startup-id xsetroot -solid "#333333"
-exec --no-startup-id feh --bg-scale '/usr/share/backgrounds/spirit.png'
+exec --no-startup-id sh ~/.config/i3/scripts/background.sh
 
 # =================
 # General variables
@@ -46,7 +45,9 @@ set $refresh_i3status killall -SIGUSR1 i3status
 font pango:DejaVu Sans Mono 8
 
 # Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+floating_modifier $winkey
+
+focus_follows_mouse no
 
 # Change focus
 bindsym $winkey+Left focus left
@@ -85,13 +86,6 @@ bindsym $winkey+f floating toggle
 bindsym $winkey+Next move scratchpad
 bindsym $winkey+Prior scratchpad show
 
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="task_dialog"] floating enable
-for_window [class="Qalculate-gtk"] floating enable
-for_window [class="Caprine"] floating enable
-# Pattern matching for software ran by IntelliJ
-for_window [class="be.ugent"] floating enable
-
 bindsym $winkey+Control_L+Shift+space focus mode_toggle
 
 # Split in horizontal orientation
@@ -103,10 +97,16 @@ bindsym Shift+Prior fullscreen toggle
 
 # Resize window menu
 mode "resize" {
-        bindsym j resize shrink width 10 px or 10 ppt
+
+        bindsym j resize grow width 10 px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym m resize grow width 10 px or 10 ppt
+        bindsym l resize shrink width 10 px or 10 ppt
+        bindsym i resize shrink height 10 px or 10 ppt
+
+	bindsym Shift+j resize grow width 50 px or 50 ppt
+	bindsym Shift+k resize grow height 50 px or 50 ppt
+	bindsym Shift+l resize shrink width 50 px or 50 ppt
+	bindsym Shift+i resize shrink height 50 px or 50 ppt
 
         # Alternative keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -119,10 +119,23 @@ mode "resize" {
 	bindsym Shift+Up resize shrink height 50 px or 50 ppt
 	bindsym Shift+Right resize grow width 50 px or 50 ppt
 
+	# Window movement
+	bindsym $winkey+j move left
+	bindsym $winkey+k move down
+	bindsym $winkey+l move right
+	bindsym $winkey+i move up
+
+	# Alternative keys
+	bindsym $winkey+Left move left
+	bindsym $winkey+Down move down
+	bindsym $winkey+Right move right
+	bindsym $winkey+Up move up
+
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $winkey+r mode "default"
+
 }
 
 bindsym $winkey+r mode "resize"
@@ -284,7 +297,7 @@ bar {
 }
 
 title_align center
-default_border none
+default_border normal
 hide_edge_borders smart
  
 # Class			border	backgr	text	indic.	child_border
@@ -292,4 +305,15 @@ client.focused          #000000 #00897b #ffffff #00897b   #000000
 client.focused_inactive #000000 #222222 #888888 #484e50   #000000
 client.unfocused        #000000 #222222 #888888 #292d2e   #000000
 
-focus_follows_mouse no
+# =====================
+# Window configurations 
+# =====================
+
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+
+for_window [class="Qalculate-gtk"] floating enable
+for_window [class="Caprine"] floating enable
+# Homewritten software testing in IntelliJ
+for_window [class="be.ugent"] floating enable
+
