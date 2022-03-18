@@ -24,7 +24,6 @@ Take the following config files
 ## Install additional software
 
 ```
-yay autotiling
 yay onedrive-abraunegg onedrive_tray-git
 ``` 
 

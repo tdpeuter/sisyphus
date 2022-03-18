@@ -20,7 +20,7 @@ exec --no-startup-id xflux -l 51.018613 -g 3.752184 -k 3000 -r 1
 exec --no-startup-id sh ~/.config/i3/scripts/background.sh
 
 # Automatically switch horizontal/vertical
-exec_always --no-startup-id autotiling
+# exec_always --no-startup-id autotiling
 
 # =================
 # General variables
@@ -42,9 +42,6 @@ set $refresh_i3status killall -SIGUSR1 i3status
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:DejaVu Sans Mono 8
-
-# Drag floating windows to their wanted position
-floating_modifier $winkey
 
 focus_follows_mouse no
 
