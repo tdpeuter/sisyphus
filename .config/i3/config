@@ -7,7 +7,7 @@
 # =========
 
 # Increase font size for everything except applications
-exec xrandr --dpi 125
+exec xrandr --dpi 125 -vsync
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -92,8 +92,6 @@ bindsym $winkey+Control_L+Shift+space focus mode_toggle
 bindsym $winkey+h split h
 # Split in vertical orientation
 bindsym $winkey+v split v
-# Toggle fullscreen
-bindsym Shift+Prior fullscreen toggle
 
 # Resize window menu
 mode "resize" {
@@ -242,8 +240,8 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # Lockscreen
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-set $i3lockwall sh ~/.config/i3/scripts/lock.sh
-bindsym $winkey+Delete exec --no-startup-id $i3lockwall
+bindsym $winkey+Delete exec --no-startup-id "sh ~/.config/i3/scripts/lock.sh"
+
 # exec --no-startup-id xss-lock --transfer-sleep-lock -- exec $i3lockwall --nofork
 exec --no-startup-id ~/.config/i3/scripts/dimming.sh
 exec --no-startup-id ~/.config/i3/scripts/locking.sh
@@ -271,14 +269,12 @@ mode "$mode_system" {
 
 # TODO Change cursor style
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
 bar {
 	status_command i3status --config ~/.config/i3/i3status.conf
 
 	mode hide
 	position bottom
-	tray_padding 1 px
+	tray_padding 0 px
 	workspace_min_width 40
 	
 	separator_symbol "~" 
@@ -297,9 +293,13 @@ bar {
 }
 
 title_align center
-default_border normal
-hide_edge_borders smart
- 
+default_border normal 1
+hide_edge_borders both
+
+# Toggle Show title
+bindsym $alt+Next border pixel 1
+bindsym $alt+Prior border normal 1
+
 # Class			border	backgr	text	indic.	child_border
 client.focused          #000000 #00897b #ffffff #00897b   #000000
 client.focused_inactive #000000 #222222 #888888 #484e50   #000000
