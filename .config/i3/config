@@ -19,16 +19,15 @@ exec --no-startup-id xflux -l 51.018613 -g 3.752184 -k 3000 -r 1
 # Set background
 exec --no-startup-id sh ~/.config/i3/scripts/background.sh
 
+# Automatically switch horizontal/vertical
+exec_always --no-startup-id autotiling
+
 # =================
 # General variables
 # =================
 
-set $mod Mod1
-set $mod2 Mod2
-
 set $alt Mod1
 set $winkey Mod4
-set $ctrl Control
 
 set $refresh_i3status killall -SIGUSR1 i3status
 
@@ -44,7 +43,7 @@ set $refresh_i3status killall -SIGUSR1 i3status
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:DejaVu Sans Mono 8
 
-# Use Mouse+$mod to drag floating windows to their wanted position
+# Drag floating windows to their wanted position
 floating_modifier $winkey
 
 focus_follows_mouse no
@@ -129,7 +128,7 @@ mode "resize" {
 	bindsym $winkey+Right move right
 	bindsym $winkey+Up move up
 
-        # back to normal: Enter or Escape or $mod+r
+        # Go back
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $winkey+r mode "default"
@@ -199,7 +198,7 @@ bindsym $winkey+Control+Shift+Left move container to workspace prev; workspace p
 # ==============
 
 # Reload statusbar if there are changes to i.e. volume
-exec --no-startup-id i3-msg -t command reload
+# exec --no-startup-id i3-msg -t command reload
 
 # Reload the configuration file
 bindsym $alt+Shift+c reload
@@ -236,24 +235,20 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle \
 	&& $refresh_i3status
 
-# TODO
 # Lockscreen
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-bindsym $winkey+Delete exec --no-startup-id "sh ~/.config/i3/scripts/lock.sh"
+set $lock sh ~/.config/i3/scripts/lock.sh && sleep 1
+bindsym $winkey+Delete exec --no-startup-id $lock
 
 # exec --no-startup-id xss-lock --transfer-sleep-lock -- exec $i3lockwall --nofork
 exec --no-startup-id ~/.config/i3/scripts/dimming.sh
 exec --no-startup-id ~/.config/i3/scripts/locking.sh
 
-set $Locker sh ~/.config/i3/scripts/lock .sh && sleep 1
-
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
-	bindsym l exec --no-startup-id $Locker; mode "default"
-	bindsym e exec --no-startup-id i3-msg-exit; mode "default"
-	bindsym s exec --no-startup-id $Locker && systemctl suspend; mode "default"
-	bindsym h exec --no-startup-id $Locker && systemctl hibernate; mode "default"
+	bindsym l exec --no-startup-id $lock; mode "default"
+	bindsym e exec --no-startup-id i3-msg exit; mode "default"
+	bindsym s exec --no-startup-id $lock && systemctl suspend; mode "default"
+	bindsym h exec --no-startup-id $lock && systemctl hibernate; mode "default"
 	bindsym r exec --no-startup-id systemctl reboot; mode "default"
 	bindsym Shift+s exec --no-startup-id systemctl poweroff -i; mode "default"
 
@@ -261,7 +256,7 @@ mode "$mode_system" {
 	bindsym Escape mode "default"
 }
 
-# bindsym $winkey+Delete mode "$mode_system"
+bindsym Control+$alt+Delete mode "$mode_system"
 
 # =======
 # Styling

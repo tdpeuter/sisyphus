@@ -19,4 +19,10 @@ pacman -S i3-wm i3lock i3status
 Take the following config files
 
 - [i3 config folder](./.config/i3/)
-- 
+-
+
+## Install additional software
+
+```
+yay autotiling
+``` 
