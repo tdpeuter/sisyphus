@@ -25,4 +25,10 @@ Take the following config files
 
 ```
 yay autotiling
+yay onedrive-abraunegg onedrive_tray-git
 ``` 
+
+Take the folowwing config files
+
+- [OneDrivePersonal config](./.config/OneDrivePersonal/config)
+- [OneDriveUGent config](./.config/OneDriveUGent/config
