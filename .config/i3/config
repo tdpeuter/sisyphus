@@ -213,9 +213,12 @@ bindsym $winkey+Return exec i3-sensible-terminal
 # Start rofi (a program launcher)
 bindsym $alt+space exec --no-startup-id rofi -show
 
+# Set notification script
+set $notify sh ~/.config/i3/scripts/notify.sh
+
 # Brightness
-bindsym XF86MonBrightnessDown exec brightnessctl -e s 5%-
-bindsym XF86MonBrightnessUp exec brightnessctl -e s +5%
+bindsym XF86MonBrightnessDown exec brightnessctl -e s 5%- && $notify -b
+bindsym XF86MonBrightnessUp exec brightnessctl -e s +5% && $notify -b
 
 # Media control
 bindsym F7 exec --no-startup-id playerctl play-pause
@@ -223,17 +226,17 @@ bindsym Shift+F8 exec --no-startup-id playerctl previous
 bindsym Shift+F9 exec --no-startup-id playerctl next
 
 # Volume control
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% \
-	&& $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% \
-	&& $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2% \
+	&& $refresh_i3status && $notify -v
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2% \
+	&& $refresh_i3status && $notify -v
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle \
-	&& $refresh_i3status
+	&& $refresh_i3status && $notify -v
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle \
 	&& $refresh_i3status
 
 # Lockscreen
-set $lock sh ~/.config/i3/scripts/lock.sh && sleep 1
+set $lock sh ~/.config/i3/scripts/lock.sh && brightnessctl set 25% && sleep 1
 bindsym $winkey+Delete exec --no-startup-id $lock
 
 # exec --no-startup-id xss-lock --transfer-sleep-lock -- exec $i3lockwall --nofork
