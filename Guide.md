@@ -4,12 +4,6 @@ Complete (but currently incomplete) guide to installing my systems.
 
 ## Base system: Manjaro
 
-## Connections
-
-```
-pacman -S network-manager-applet nm-connection-editor blueman
-```
-
 ## Window manager: i3
 
 ```
@@ -21,8 +15,26 @@ Take the following config files
 - [i3 config folder](./.config/i3/)
 -
 
+## Connections
+
+```
+pacman -S network-manager-applet nm-connection-editor blueman
+```
+
+## Notifications
+
+```
+pacman -S dunst
+```
+
 ## Install additional software
 
 ```
-yay autotiling
+yay onedrive-abraunegg onedrive_tray-git
+yay typora-free
 ``` 
+
+Take the folowwing config files
+
+- [OneDrivePersonal config](./.config/OneDrivePersonal/config)
+- [OneDriveUGent config](./.config/OneDriveUGent/config
