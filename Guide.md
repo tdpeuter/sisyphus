@@ -31,7 +31,10 @@ pacman -S dunst
 
 ```
 yay onedrive-abraunegg onedrive_tray-git
+<<<<<<< HEAD
 yay typora-free
+=======
+>>>>>>> 8590bb0c29c558fb73c4132762a346ded7b986ce
 ``` 
 
 Take the folowwing config files
