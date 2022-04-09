@@ -20,7 +20,7 @@ exec --no-startup-id xflux -l 51.018613 -g 3.752184 -k 3000 -r 1
 exec --no-startup-id sh ~/.config/i3/scripts/background.sh
 
 # Automatically switch horizontal/vertical
-exec_always --no-startup-id autotiling
+# exec_always --no-startup-id autotiling
 
 # =================
 # General variables
@@ -42,9 +42,6 @@ set $refresh_i3status killall -SIGUSR1 i3status
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:DejaVu Sans Mono 8
-
-# Drag floating windows to their wanted position
-floating_modifier $winkey
 
 focus_follows_mouse no
 
@@ -152,6 +149,7 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
+set $ws11 "¯\_(ツ)_/¯"
 
 # switch to workspace
 bindsym $winkey+ampersand workspace number $ws1
@@ -164,6 +162,7 @@ bindsym $winkey+egrave workspace number $ws7
 bindsym $winkey+exclam workspace number $ws8
 bindsym $winkey+ccedilla workspace number $ws9
 bindsym $winkey+agrave workspace number $ws10
+bindsym $winkey+parenright workspace $ws11
 
 bindsym $winkey+Control+Right workspace next
 bindsym $winkey+Control+Left workspace prev
@@ -189,6 +188,8 @@ bindsym $winkey+Shift+ccedilla move container to workspace number $ws9; \
 	workspace number $ws9
 bindsym $winkey+Shift+agrave move container to workspace number $ws10; \
 	workspace number $ws10
+bindsym $winkey+Shift+parenright move container to workspace $ws11; \
+	workspace $ws11
 
 bindsym $winkey+Control+Shift+Right move container to workspace next; workspace next
 bindsym $winkey+Control+Shift+Left move container to workspace prev; workspace prev
@@ -216,27 +217,30 @@ bindsym $winkey+Return exec i3-sensible-terminal
 # Start rofi (a program launcher)
 bindsym $alt+space exec --no-startup-id rofi -show
 
+# Set notification script
+set $notify sh ~/.config/i3/scripts/notify.sh
+
 # Brightness
-bindsym XF86MonBrightnessDown exec brightnessctl -e s 5%-
-bindsym XF86MonBrightnessUp exec brightnessctl -e s +5%
+bindsym XF86MonBrightnessDown exec brightnessctl -e s 5%- && $notify -b
+bindsym XF86MonBrightnessUp exec brightnessctl -e s +5% && $notify -b
 
 # Media control
 bindsym F7 exec --no-startup-id playerctl play-pause
-bindsym Shift+F8 exec --no-startup-id playerctl previous
-bindsym Shift+F9 exec --no-startup-id playerctl next
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id playerctl previous
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id playerctl next
 
 # Volume control
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% \
-	&& $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% \
-	&& $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2% \
+	&& $refresh_i3status && $notify -v
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2% \
+	&& $refresh_i3status && $notify -v
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle \
-	&& $refresh_i3status
+	&& $refresh_i3status && $notify -v
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle \
 	&& $refresh_i3status
 
 # Lockscreen
-set $lock sh ~/.config/i3/scripts/lock.sh && sleep 1
+set $lock sh ~/.config/i3/scripts/lock.sh && brightnessctl set 25% && sleep 1
 bindsym $winkey+Delete exec --no-startup-id $lock
 
 # exec --no-startup-id xss-lock --transfer-sleep-lock -- exec $i3lockwall --nofork

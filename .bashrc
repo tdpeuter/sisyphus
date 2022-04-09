@@ -105,6 +105,44 @@ alias sysconfdr='cd ~/Documents/OneDrivePersonal/_PERSOONLIJK/_OTHER/Code/syscon
 
 xhost +local:root > /dev/null 2>&1
 
+# Personal cpdir function, that creates a directory if necessary
+cpdir () {
+
+	# Check arguments
+	if [[ $# == 2 ]] ; then 
+		from=$(dirname $1)
+		fromfile=$(basename $1)
+		to=$(dirname $2)
+		tofile=$(basename $2)
+	else 
+		echo "cpdir: Not enough arguments"
+		echo "cpdir: Syntaxis: cpdir <source> <destination>"
+		return
+	fi
+
+	# Check file
+	if [[ ! -f $1 ]] ; then 
+		echo "cpdir: Source does not exist: $1"
+		return
+	fi
+
+	echo "Move ${fromfile} from ${from} to ${to} as ${tofile}?"
+	echo -n "y/n > "
+	read answer
+	
+	if [[ ${answer} == "y" ]] ; then 
+		mkdir -pv $to
+		cp $1 $2
+		echo "Done"
+	elif [[ ${answer} == "n" ]] ; then 
+		echo "Not copying..."
+	else
+		echo "Invalid option"
+		return
+	fi
+
+}
+
 # Bash won't get SIGWINCH if another process is in the foreground.
 # Enable checkwinsize so that bash will check the terminal size when
 # it regains control.  #65623
