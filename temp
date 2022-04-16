@@ -2,11 +2,9 @@
 
 # iwctl
 [iwd]# station wlan0 connect <network>
+^D
 
-# ls /sys/firmware/efi/efivars
 # timedatectl set-ntp true
-: t, 2, 19
-: n, 3, _, _
 
 # fdisk -l 
 # fdisk /dev/sda
@@ -14,6 +12,8 @@
 : n, 1, _, +1G
 : t, 1, 1
 : n, 2, _, +4G
+: t, 2, 19
+: n, 3, _, _
 : w
 
 # pvcreate /dev/sda3
@@ -41,7 +41,7 @@
 # locale-gen
 # echo "LANG=en_GB.UTF-8" >> /etc/locale.conf
 # echo "KEYMAP=be-latin1" >> /etc/vconsole.conf
-# echo "Larchie" >> /etc/hostname
+# echo "Laptop-Tibo" >> /etc/hostname
 
 # pacman -S vim lvm2
 # vim /etc/mkinitcpio.conf
@@ -53,11 +53,18 @@ HOOKS=(base udev autodetect modconf block lvm2 filesystems keyboard fsck)
 # pacman -S grub efibootmgr
 # grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 # vim /etc/default/grub
-GRUB_PRELOAD_MODULES="... lvm"
+GRUB_PRELOAD_MODULES="part_gpt part_msdos lvm"
 # grub-mkconfig -o /boot/grub/grub.cfg
 
-# pacman -S nmtui wpa-supplicant
+# useradd -m -G wheel tdpeuter
+# passwd tdpeuter
+
+# pacman -S sudo
+# visudo
+%wheel ALL=(ALL:ALL) ALL [uncomment this]
+
+# pacman -S networkmanager
+
+^D
 
 # reboot
-
-# useradd -m -G wheel tdpeuter
