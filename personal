@@ -1,0 +1,9 @@
+$ sudo systemctl enable NetworkManager
+
+$ sudo vim /etc/pacman.conf
+ParallelDownloads = 5 [uncomment this]
+
+$ sudo pacman -S network-manager-applet blueman
+$ sudo pacman -S sway swaylock swayidle i3status alacritty
+$ sudo pacman -S pulseaudio pulseaudio-alsa pulseaudio-bluetooth
+
