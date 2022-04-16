@@ -53,11 +53,18 @@ HOOKS=(base udev autodetect modconf block lvm2 filesystems keyboard fsck)
 # pacman -S grub efibootmgr
 # grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 # vim /etc/default/grub
+GRUB_TIMEOUT=0
 GRUB_PRELOAD_MODULES="part_gpt part_msdos lvm"
 # grub-mkconfig -o /boot/grub/grub.cfg
 
 # useradd -m -G wheel tdpeuter
 # passwd tdpeuter
+
+# sudo mkdir -p /etc/systemd/system/getty@tty1.service.d
+# sudo vim /etc/systemd/system/getty@tty1.service.d/autologin.conf
+[Service]
+ExecStart=
+ExecStart=-/sbin/agetty -o '-p -f -- \\u' --noclear --autologin tdpeuter - $TERM
 
 # pacman -S sudo
 # visudo
