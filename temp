@@ -5,6 +5,8 @@
 
 # ls /sys/firmware/efi/efivars
 # timedatectl set-ntp true
+: t, 2, 19
+: n, 3, _, _
 
 # fdisk -l 
 # fdisk /dev/sda
@@ -12,8 +14,6 @@
 : n, 1, _, +1G
 : t, 1, 1
 : n, 2, _, +4G
-: t, 2, 19
-: n, 3, _, _
 : w
 
 # pvcreate /dev/sda3
@@ -56,4 +56,8 @@ HOOKS=(base udev autodetect modconf block lvm2 filesystems keyboard fsck)
 GRUB_PRELOAD_MODULES="... lvm"
 # grub-mkconfig -o /boot/grub/grub.cfg
 
+# pacman -S nmtui wpa-supplicant
+
 # reboot
+
+# useradd -m -G wheel tdpeuter
