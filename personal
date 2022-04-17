@@ -7,3 +7,9 @@ $ sudo pacman -S network-manager-applet blueman
 $ sudo pacman -S sway swaylock swayidle i3status alacritty
 $ sudo pacman -S pulseaudio pulseaudio-alsa pulseaudio-bluetooth
 
+$ sudo pacman -S base-devel git
+$ cd /opt
+$ sudo git clone https://aur.archlinux.org/yay.git
+$ sudo chown -R username:users .yay
+$ cd yay
+$ makepkg -si
