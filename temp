@@ -42,10 +42,11 @@
 # echo "LANG=en_GB.UTF-8" >> /etc/locale.conf
 # echo "KEYMAP=be-latin1" >> /etc/vconsole.conf
 # echo "Laptop-Tibo" >> /etc/hostname
+# echo "8:2" > /sys/power/resume
 
 # pacman -S vim lvm2
 # vim /etc/mkinitcpio.conf
-HOOKS=(base udev autodetect modconf block lvm2 filesystems keyboard fsck)
+HOOKS=(base udev autodetect modconf block lvm2 filesystems resume keyboard fsck)
 # mkinitcpio -P
 
 # passwd
@@ -54,10 +55,11 @@ HOOKS=(base udev autodetect modconf block lvm2 filesystems keyboard fsck)
 # grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 # vim /etc/default/grub
 GRUB_TIMEOUT=0
+GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet resume=/dev/sda2"
 GRUB_PRELOAD_MODULES="part_gpt part_msdos lvm"
 # grub-mkconfig -o /boot/grub/grub.cfg
 
-# useradd -m -G wheel tdpeuter
+# useradd -m -G wheel,users tdpeuter
 # passwd tdpeuter
 
 # sudo mkdir -p /etc/systemd/system/getty@tty1.service.d
