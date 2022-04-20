@@ -2,7 +2,7 @@
 
 Complete guide and configuration of my machine. May be outdated, may be not...
 
-## Details
+## (Current) details
 
 - **Kernel:** Linux Arch
 - **Visual parts:** Sway on Wayland and XWayland (because we can't without)
