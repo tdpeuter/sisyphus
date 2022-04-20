@@ -90,7 +90,9 @@ Create initial ramdisk environment.
 # pacman -S vim lvm2
 # vim /etc/mkinitcpio.conf
 ```
+
 Change the file to match the following line: 
+
 `HOOKS=(base udev autodetect modconf block lvm2 filesystems resume keyboard fsck)`
 
 ```
@@ -114,7 +116,9 @@ Configure boot manager. Also enable hibernation.
 Change the file to match the following lines: 
 
 `GRUB_TIMEOUT=0`
+
 `GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet resume=/dev/sda2"`
+
 `GRUB_PRELOAD_MODULES="part_gpt part_msdos lvm"`
 
 ```
@@ -149,8 +153,7 @@ Install sudo.
 # visudo
 ```
 
-In the file that comes up, uncomment the following line: 
-`%wheel ALL=(ALL:ALL) ALL`
+In the file that comes up, uncomment the following line: `%wheel ALL=(ALL:ALL) ALL`
 
 Install a networkmanager so you have bloody internet when you reboot (otherwise rendering your device utterly useless).
 
