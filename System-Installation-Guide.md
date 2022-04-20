@@ -1,6 +1,6 @@
 # System Installation Guide
 
-Attach ArchLinux boot key.
+Attach ArchLinux boot key. Boot.
 
 Set the keyboard layout.
 
