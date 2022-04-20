@@ -128,7 +128,7 @@ Change the file to match the following lines:
 Add the default user (me). 
 
 ```
-# useradd -m -G wheel,users tdpeuter
+# useradd -m -G wheel,users,input,video tdpeuter
 # passwd tdpeuter
 ```
 
