@@ -4,8 +4,7 @@ Complete (but currently incomplete) guide to installing my systems.
 
 ## Installation guides
 
-- [System installation](./System-Installation-Guide.md)
-- [User setup](./User-Specific-Guide.md)
+
 
 ---
 
