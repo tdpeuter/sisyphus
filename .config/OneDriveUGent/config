@@ -1,4 +1,4 @@
-# Directory where the files will be synced
 sync_dir = "~/Documents/OneDriveUGent"
-# Skip files and directories that match this pattern 
-skip_file = ".~*|*~"
+skip_file = ".~*|~*"
+log_dir = "/var/log/OneDriveUGent/"
+enable_logging = "true"

@@ -1,0 +1,3 @@
+sync_dir = "~/Documents/OneDrivePersonal"
+skip_file = ".~*|*~"
+log_dir = "/var/log/OneDrivePersonal/"

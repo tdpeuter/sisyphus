@@ -1,0 +1,4 @@
+sync_dir = "~/Documents/OneDriveUGent"
+skip_file = ".~*|~*"
+log_dir = "/var/log/OneDriveUGent/"
+enable_logging = "true"
