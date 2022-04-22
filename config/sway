@@ -1,0 +1,304 @@
+# 
+# .config/sway/config
+#
+# Personal config for sway
+
+# =========
+# Autostart
+# =========
+
+input * {
+	xkb_layout "be"
+	natural_scroll enabled
+	middle_emulation enabled
+	tap enabled
+}
+
+# Set background to whatever file is named bg at the moment
+output * bg "~/Images/wallpapers/bg.*" fill
+
+set $lock swaylock -f --screenshots --clock --indicator --grace 10 --fade-in 0.2 --effect-blur 5x5
+
+exec swayidle -w \
+	timeout 300 'brightnessctl -s set 15%' \
+		resume 'brightnessctl -r' \
+	timeout 300 'swaymsg ""output * dpms off"' \
+		resume 'swaymsg "output * dpms on"' \
+	timeout 300 "exec $lock" \
+		resume '' \
+	before-sleep 'swaylock -f -c 000000'
+
+# Set warm colours at night
+exec ~/.scripts/wlsunset.sh
+
+exec nm-applet --indicator
+exec blueman-applet
+
+focus_follows_mouse no
+
+# =========
+# Variables
+# =========
+
+set $alt Mod1
+set $winkey Mod4
+set $term alacritty
+set $menu swaymsg exec "fuzzel -T 'alacritty -e' -w 50 -l 10 -f monospace:size=9 -b 262626dd -t ffffffff -i Win11-black"
+
+# ================
+# Window shortcuts
+# ================
+
+# Change focus
+bindsym $alt+Tab focus next
+bindsym $alt+Shift+Tab focus prev
+
+bindsym $winkey+Left focus left
+bindsym $winkey+Down focus down
+bindsym $winkey+Up focus up
+bindsym $winkey+Right focus right
+
+# Alternative keys
+bindsym $winkey+q focus left
+bindsym $winkey+s focus down
+bindsym $winkey+z focus up
+bindsym $winkey+d focus right
+
+# Move focused window
+bindsym $winkey+Shift+Left move left
+bindsym $winkey+Shift+Down move down
+bindsym $winkey+Shift+Up move up
+bindsym $winkey+Shift+Right move right
+
+# Alternative keys
+bindsym $winkey+j move left
+bindsym $winkey+k move down
+bindsym $winkey+i move up
+bindsym $winkey+l move right
+
+# Layouts
+bindsym $winkey+w layout toggle split
+bindsym $winkey+x layout tabbed
+bindsym $winkey+h split h
+bindsym $winkey+v split v
+
+bindsym $winkey+a focus parent
+bindsym $winkey+b focus mode_toggle
+
+bindsym $winkey+f floating enable, border normal 2
+bindsym $winkey+Shift+f floating disable, border pixel 2
+bindsym $winkey+Next move scratchpad
+bindsym $winkey+Prior scratchpad show
+
+# Resize window menu
+mode "resize" {
+
+        bindsym l resize grow width 10 px or 10 ppt
+        bindsym i resize grow height 10 px or 10 ppt
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+
+	bindsym Shift+l resize grow width 50 px or 50 ppt
+	bindsym Shift+i resize grow height 50 px or 50 ppt
+	bindsym Shift+j resize shrink width 50 px or 50 ppt
+	bindsym Shift+k resize shrink height 50 px or 50 ppt
+
+        # Alternative keys
+        bindsym Up resize grow height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize shrink height 10 px or 10 ppt
+
+	bindsym Shift+Up resize grow height 50 px or 50 ppt
+	bindsym Shift+Right resize grow width 50 px or 50 ppt
+	bindsym Shift+Left resize shrink width 50 px or 50 ppt
+	bindsym Shift+Down resize shrink height 50 px or 50 ppt
+
+	# Window movement
+	bindsym $winkey+j move left
+	bindsym $winkey+k move down
+	bindsym $winkey+l move right
+	bindsym $winkey+i move up
+
+	# Alternative keys
+	bindsym $winkey+Left move left
+	bindsym $winkey+Down move down
+	bindsym $winkey+Right move right
+	bindsym $winkey+Up move up
+
+        # Go back
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $winkey+r mode "default"
+
+}
+
+bindsym $winkey+r mode "resize"
+
+# ==========
+# Workspaces
+# ==========
+
+# Define names for default workspaces for which we configure key bindings later on.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+set $ws11 "¯\_(ツ)_/¯"
+
+# switch to workspace
+bindsym $winkey+ampersand workspace number $ws1
+bindsym $winkey+eacute workspace number $ws2
+bindsym $winkey+quotedbl workspace number $ws3
+bindsym $winkey+apostrophe workspace number $ws4
+bindsym $winkey+parenleft workspace number $ws5
+bindsym $winkey+section workspace number $ws6
+bindsym $winkey+egrave workspace number $ws7
+bindsym $winkey+exclam workspace number $ws8
+bindsym $winkey+ccedilla workspace number $ws9
+bindsym $winkey+agrave workspace number $ws10
+bindsym $winkey+parenright workspace $ws11
+
+bindsym $winkey+Control+Right workspace next
+bindsym $winkey+Control+Left workspace prev
+
+# move focused container to workspace
+bindsym $winkey+Shift+ampersand move container to workspace number $ws1; \
+	workspace number $ws1
+bindsym $winkey+Shift+eacute move container to workspace number $ws2; \
+	workspace number $ws2
+bindsym $winkey+Shift+quotedbl move container to workspace number $ws3; \
+	workspace number $ws3
+bindsym $winkey+Shift+apostrophe move container to workspace number $ws4; \
+	workspace number $ws4
+bindsym $winkey+Shift+5 move container to workspace number $ws5; \
+	workspace number $ws5
+bindsym $winkey+Shift+section move container to workspace number $ws6; \
+	workspace number $ws6
+bindsym $winkey+Shift+egrave move container to workspace number $ws7; \
+	workspace number $ws7
+bindsym $winkey+Shift+exclam move container to workspace number $ws8; \
+	workspace number $ws8
+bindsym $winkey+Shift+ccedilla move container to workspace number $ws9; \
+	workspace number $ws9
+bindsym $winkey+Shift+agrave move container to workspace number $ws10; \
+	workspace number $ws10
+bindsym $winkey+Shift+parenright move container to workspace $ws11; \
+	workspace $ws11
+
+bindsym $winkey+Control+Shift+Right move container to workspace next; workspace next
+bindsym $winkey+Control+Shift+Left move container to workspace prev; workspace prev
+
+# ==============
+# System Control
+# ==============
+
+bindsym $alt+Shift+r reload
+bindsym $alt+Shift+e exec swaynag -t warning -m 'Do you really want to exit sway?' -B 'Yes, exit sway' 'swaymsg exit'  
+
+# Kill focused window
+bindsym Control+q kill
+
+# Start a terminal
+bindsym $winkey+Return exec alacritty
+
+# Start application launcher
+bindsym $alt+space exec $menu 
+
+# Brightness
+bindsym --locked XF86MonBrightnessDown exec brightnessctl -e s 5%- && $notify -b
+bindsym --locked XF86MonBrightnessUp exec brightnessctl -e s +5% && $notify -b
+
+# Toggle sunset
+bindsym $alt+end exec ~/.scripts/wlsunset.sh
+
+# Media control
+bindsym F7 exec --no-startup-id playerctl play-pause
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id playerctl previous
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id playerctl next
+
+# Volume control
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2% \
+	&& $refresh_i3status && $notify -v
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2% \
+	&& $refresh_i3status && $notify -v
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle \
+	&& $refresh_i3status && $notify -v
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle \
+	&& $refresh_i3status
+
+# Lockscreen
+bindsym $winkey+Delete exec --no-startup-id $lock
+
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+	bindsym l exec --no-startup-id $lock; mode "default"
+	bindsym e exec --no-startup-id i3-msg exit; mode "default"
+	bindsym s exec --no-startup-id systemctl suspend; mode "default"
+	bindsym h exec --no-startup-id systemctl hibernate; mode "default"
+	bindsym r exec --no-startup-id systemctl reboot; mode "default"
+	bindsym Shift+s exec --no-startup-id systemctl poweroff -i; mode "default"
+
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+
+bindsym Control+$alt+Delete mode "$mode_system"
+
+# =======
+# Styling
+# =======
+
+bar {
+	swaybar_command /usr/bin/waybar	
+	mode hide
+	position bottom
+}
+
+# Notifications manager
+exec mako
+
+title_align center
+default_border pixel 2
+# default_floating_border normal 2
+hide_edge_borders both
+
+# Toggle Show title
+bindsym $alt+Next border pixel 2
+bindsym $alt+Prior border normal 2
+
+# Class			border	backgr	text	indic.	child_border
+client.focused          #000000 #00897b #ffffff #00897b   #000000
+client.focused_inactive #000000 #222222 #888888 #484e50   #000000
+client.unfocused        #000000 #222222 #888888 #292d2e   #000000
+
+exec gsettings set org.gnome.desktop.interface icon-theme 'Win11-black-dark'
+exec gsettings set org.gnome.desktop.interface gtk-theme 'Dracula'
+
+# =====================
+# Window configurations 
+# =====================
+
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+
+for_window [class="Qalculate-gtk"] floating enable
+for_window [class="Caprine"] floating enable
+# Homewritten software testing in IntelliJ
+for_window [class="be.ugent"] floating enable
+
+# FIXES
+
+# [Slow launch for some GTK apps](https://github.com/swaywm/sway/issues/5732)
+
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
+# Fix JetBrain IDE's showing properly
+exec wmname LG3D
+
