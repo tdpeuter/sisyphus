@@ -4,11 +4,11 @@
 
 [{
 	"position": "bottom", // Waybar position (top|bottom|left|right)
-	"height": 30, // Waybar height (to be removed for auto height)
-	"spacing": 4, // Gaps between modules (4px)
+	"height": 30,
+	"spacing": 4, 
 	
 	"modules-left": ["sway/workspaces", "custom/media"],
-	"modules-right": ["idle_inhibitor", "cpu", "memory", "temperature", "pulseaudio", "battery", "clock", "tray"],
+	"modules-right": ["idle_inhibitor", "cpu", "memory", "disk", "temperature", "pulseaudio", "battery", "clock", "tray"],
 	
 	"ipc": true,
     
@@ -19,56 +19,46 @@
 		"format-icons": {
 			"urgent": " ",
 			"default": "" // Prevent showing workspace name literal. 
-		}
+		},
 	},
+	"custom/media": {
+        	"format": "{icon} {}",
+	        "return-type": "json",
+	        "max-length": 40,
+	        "format-icons": {
+	            "spotify": "",
+	            "default": "🎜"
+	        },
+	        "escape": true,
+	        "exec": "~/.config/waybar/mediaplayer.py 2> /dev/null", // Script in resources folder
+	},
+
+
 	"idle_inhibitor": {
         	"format": "Prohibit idle {icon}",
 	        "format-icons": {
         		"activated": "",
 			"deactivated": ""
 		}, 
-		"tooltip": false
-	},
-	"tray": {
-        	// "icon-size": 21,
-	        "spacing": 10
-	},
-	"clock": {
-        	"timezone": "Europe/Brussels",
-		"format": "<big>{:%H:%M %d/%m%Y}</big>", //"<big>{:%H:%M}</big>\n21-03-2022", //\n{:%d/%m/%Y}",
-	        "format-alt": "{:%H:%M}",
-	        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+		"tooltip": false,
 	},
 	"cpu": {
         	"format": "{usage}% ",
-	        "tooltip": true
+	        "tooltip": true,
 	},
 	"memory": {
         	"format": "{}% ",
-		"on-click": "alacritty | htop"
 	},
+	"disk": {
+                "interval": 30, 
+                "format": "{percentage_free}% ({free}) 💾", 
+                "path": "/",
+        },
 	"temperature": {
 	        "critical-threshold": 70,
 	        // "format-critical": "{temperatureC}°C {icon}",
 	        "format": "{temperatureC}°C {icon}",
-	        "format-icons": ["", "", ""]
-	},
-	"backlight": {
-	        "format": "{percent}% {icon}",
-		"format-icons": ["", ""]
-	},
-	"battery": {
-        	"states": {
-			"warning": 30,
-			"critical": 15
-		},
-	        "format": "{capacity}% {icon}",
-	        "format-charging": "{capacity}% ",
-	        "format-plugged": "{capacity}% ",
-	        "format-alt": "{time} {icon}",
-	        // "format-good": "", // An empty format will hide the module
-	        // "format-full": "",
-	        "format-icons": ["", "", "", "", ""]
+	        "format-icons": ["", "", ""],
 	},
 	"pulseaudio": {
 	        "scroll-step": 2,
@@ -87,21 +77,33 @@
 			"car": "",
 			"default": ["", "", ""]
 		},
-		"on-click": "playerctl play-pause"
+		"on-click": "playerctl play-pause",
 	},
-	"custom/media": {
-        	"format": "{icon} {}",
-	        "return-type": "json",
-	        "max-length": 40,
-	        "format-icons": {
-	            "spotify": "",
-	            "default": "🎜"
-	        },
-	        "escape": true,
-	        "exec": "~/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-	// "exec": "~/.config/waybar/mediaplayer.py --player spotify //2> /dev/null" // Filter player based on name
-	}
+	"battery": {
+        	"states": {
+			"warning": 30,
+			"critical": 15
+		},
+	        "format": "{capacity}% {icon}",
+	        "format-charging": "{capacity}% ",
+	        "format-plugged": "{capacity}% ",
+	        "format-alt": "{time} {icon}",
+	        // "format-good": "", // An empty format will hide the module
+	        // "format-full": "",
+	        "format-icons": ["", "", "", "", ""],
+	},
+        "clock": {
+        	"timezone": "Europe/Brussels",
+		"format": "<big>{:%H:%M %d/%m%Y}</big>", //"<big>{:%H:%M}</big>\n21-03-2022", //\n{:%d/%m/%Y}",
+	        "format-alt": "{:%H:%M}",
+	        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+	},
+	"tray": {
+        //	"icon-size": 21,
+	        "spacing": 10,
+	},
 }, 
+
 {
         "position": "top",
         "height": 20,
