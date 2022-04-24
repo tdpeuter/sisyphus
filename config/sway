@@ -13,6 +13,8 @@ input 1:1:AT_Translated_Set_2_keyboard {
 
 input 2:7:SynPS/2_Synaptics_TouchPad {
         natural_scroll enabled
+        scroll_factor 0.5
+
         middle_emulation enabled
         tap enabled
 }
@@ -296,10 +298,11 @@ for_window [class="Caprine"] floating enable
 # Homewritten software testing in IntelliJ
 for_window [class="be.ugent"] floating enable
 
+# =====
 # FIXES
+# =====
 
 # [Slow launch for some GTK apps](https://github.com/swaywm/sway/issues/5732)
-
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
 # Fix JetBrain IDE's showing properly
