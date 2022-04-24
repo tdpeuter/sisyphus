@@ -1,5 +1,0 @@
-
-[Default Applications]
-text/markdown=marktext.desktop
-x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
-x-scheme-handler/mailspring=Mailspring.desktop
