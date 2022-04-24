@@ -7,11 +7,14 @@
 # Autostart
 # =========
 
-input * {
+input 1:1:AT_Translated_Set_2_keyboard {
 	xkb_layout "be"
-	natural_scroll enabled
-	middle_emulation enabled
-	tap enabled
+}
+
+input 2:7:SynPS/2_Synaptics_TouchPad {
+        natural_scroll enabled
+        middle_emulation enabled
+        tap enabled
 }
 
 # Set background to whatever file is named bg at the moment
@@ -92,7 +95,6 @@ bindsym $winkey+Prior scratchpad show
 
 # Resize window menu
 mode "resize" {
-
         bindsym l resize grow width 10 px or 10 ppt
         bindsym i resize grow height 10 px or 10 ppt
         bindsym j resize shrink width 10 px or 10 ppt
@@ -130,7 +132,6 @@ mode "resize" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $winkey+r mode "default"
-
 }
 
 bindsym $winkey+r mode "resize"
@@ -164,6 +165,8 @@ bindsym $winkey+exclam workspace number $ws8
 bindsym $winkey+ccedilla workspace number $ws9
 bindsym $winkey+agrave workspace number $ws10
 bindsym $winkey+parenright workspace $ws11
+
+assign [class='spotify'] workspace "¯\_(ツ)_/¯"
 
 bindsym $winkey+Control+Right workspace next
 bindsym $winkey+Control+Left workspace prev
