@@ -7,7 +7,7 @@
 # Autostart
 # =========
 
-input 1:1:AT_Translated_Set_2_keyboard {
+input * {
 	xkb_layout "be"
 }
 
