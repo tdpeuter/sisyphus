@@ -5,6 +5,8 @@
 filetype on
 filetype plugin on
 filetype indent on
+set tabstop=4
+set shiftwidth=0
 set expandtab
 set incsearch
 set number
