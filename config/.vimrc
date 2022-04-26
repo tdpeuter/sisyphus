@@ -8,12 +8,23 @@ filetype indent on
 set tabstop=4
 set shiftwidth=0
 set expandtab
+set smarttab
+set autoindent
+set smartindent
 set incsearch
 set number
 set showmatch
 set title
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 syntax on
+
+" Automatically add closing parts
+inoremap { {}<Left>
+inoremap ( ()<Left>
+inoremap [ []<Left>
+inoremap < <><Left>
+inoremap ' ''<Left>
+inoremap " ""<Left>
 
 " PLUGINS --------------------------------------------------------------- {{{
 
