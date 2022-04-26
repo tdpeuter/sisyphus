@@ -22,22 +22,13 @@ input 2:7:SynPS/2_Synaptics_TouchPad {
 # Set background to whatever file is named bg at the moment
 output * bg "~/Images/wallpapers/bg.*" fill
 
-set $lock swaylock -f --screenshots --clock --indicator --grace 10 --fade-in 0.2 --effect-blur 5x5
-
-exec swayidle -w \
-	timeout 300 'brightnessctl -s set 15%' \
-		resume 'brightnessctl -r' \
-	timeout 300 'swaymsg ""output * dpms off"' \
-		resume 'swaymsg "output * dpms on"' \
-	timeout 300 "exec $lock" \
-		resume '' \
-	before-sleep 'swaylock -f -c 000000'
+exec ~/.scripts/idle.sh
 
 # Set warm colours at night
 exec ~/.scripts/wlsunset.sh
 
-# exec nm-applet --indicator
-# exec blueman-applet
+exec nm-applet --indicator
+exec blueman-applet
 
 focus_follows_mouse no
 
@@ -242,7 +233,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 	&& $refresh_i3status
 
 # Lockscreen
-bindsym $winkey+Delete exec --no-startup-id $lock
+bindsym $winkey+Delete exec --no-startup-id swaylock -f --screenshots --clock --indicator --fade-in 0.2 --effect-blur 5x5
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
