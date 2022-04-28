@@ -14,7 +14,6 @@ input * {
 input 2:7:SynPS/2_Synaptics_TouchPad {
         natural_scroll enabled
         scroll_factor 0.6
-
         middle_emulation enabled
         tap enabled
 }
@@ -22,7 +21,7 @@ input 2:7:SynPS/2_Synaptics_TouchPad {
 # Set background to whatever file is named bg at the moment
 output * bg "~/Images/wallpapers/bg.*" fill
 
-exec ~/.scripts/idle.sh
+exec_always ~/.scripts/idle.sh
 
 # Set warm colours at night
 exec ~/.scripts/wlsunset.sh
@@ -40,6 +39,7 @@ set $alt Mod1
 set $winkey Mod4
 set $term alacritty
 set $menu swaymsg exec "fuzzel -T 'alacritty -e' -w 50 -l 10 -f monospace:size=9 -b 262626dd -t ffffffff -i Win11-black"
+set $notify exec "/home/tdpeuter/.scripts/notify.sh"
 
 # ================
 # Window shortcuts
@@ -88,21 +88,21 @@ bindsym $winkey+Prior scratchpad show
 
 # Resize window menu
 mode "resize" {
-        bindsym l resize grow width 10 px or 10 ppt
-        bindsym i resize grow height 10 px or 10 ppt
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+    bindsym i resize grow height 10 px or 10 ppt
+    bindsym j resize shrink width 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
 
 	bindsym Shift+l resize grow width 50 px or 50 ppt
 	bindsym Shift+i resize grow height 50 px or 50 ppt
 	bindsym Shift+j resize shrink width 50 px or 50 ppt
 	bindsym Shift+k resize shrink height 50 px or 50 ppt
 
-        # Alternative keys
-        bindsym Up resize grow height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize shrink height 10 px or 10 ppt
+    # Alternative keys
+    bindsym Up resize grow height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize shrink height 10 px or 10 ppt
 
 	bindsym Shift+Up resize grow height 50 px or 50 ppt
 	bindsym Shift+Right resize grow width 50 px or 50 ppt
@@ -121,10 +121,10 @@ mode "resize" {
 	bindsym $winkey+Right move right
 	bindsym $winkey+Up move up
 
-        # Go back
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $winkey+r mode "default"
+    # Go back
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $winkey+r mode "default"
 }
 
 bindsym $winkey+r mode "resize"
@@ -158,8 +158,6 @@ bindsym $winkey+exclam workspace number $ws8
 bindsym $winkey+ccedilla workspace number $ws9
 bindsym $winkey+agrave workspace number $ws10
 bindsym $winkey+parenright workspace $ws11
-
-assign [class='spotify'] workspace "¯\_(ツ)_/¯"
 
 bindsym $winkey+Control+Right workspace next
 bindsym $winkey+Control+Left workspace prev
@@ -223,22 +221,18 @@ bindsym Shift+XF86AudioLowerVolume exec --no-startup-id playerctl previous
 bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id playerctl next
 
 # Volume control
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2% \
-	&& $refresh_i3status && $notify -v
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2% \
-	&& $refresh_i3status && $notify -v
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle \
-	&& $refresh_i3status && $notify -v
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle \
-	&& $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2% && $notify -v
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2% && $notify -v
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $notify -v
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # Lockscreen
-bindsym $winkey+Delete exec --no-startup-id swaylock -f --screenshots --clock --indicator --fade-in 0.2 --effect-blur 5x5
+set $lock "swaylock -f --screenshots --clock --indicator --fade-in 0.2 --effect-blur 5x5"
+bindsym $winkey+Delete exec --no-startup-id $lock
 
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+set $mode_system System (l) lock, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
 	bindsym l exec --no-startup-id $lock; mode "default"
-	bindsym e exec --no-startup-id i3-msg exit; mode "default"
 	bindsym s exec --no-startup-id systemctl suspend; mode "default"
 	bindsym h exec --no-startup-id systemctl hibernate; mode "default"
 	bindsym r exec --no-startup-id systemctl reboot; mode "default"
@@ -247,7 +241,6 @@ mode "$mode_system" {
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
 }
-
 bindsym Control+$alt+Delete mode "$mode_system"
 
 # =======
