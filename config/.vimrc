@@ -18,14 +18,6 @@ set title
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 syntax on
 
-" Automatically add closing parts
-inoremap { {}<Left>
-inoremap ( ()<Left>
-inoremap [ []<Left>
-inoremap < <><Left>
-inoremap ' ''<Left>
-inoremap " ""<Left>
-
 " PLUGINS --------------------------------------------------------------- {{{
 
 call plug#begin('~/.vim/plugged')
