@@ -13,10 +13,10 @@ while getopts ":bvm:" options; do
 			title="Brightness: ${value}"
 			;;
 		v)
-			status=$(amixer get Master | grep "^  Front Left" | cut -d ' ' -f 8)
-			if [[ $status == "[on]" ]] ; then 
-				value=$(amixer get Master | grep -o "[0-9]*%" | head -n 1)
-			fi
+			value=$(pactl get-sink-volume 0 | cut -d '/' -f2 | grep -o '[0-9]*%')
+			# if [[ $status == "[on]" ]] ; then 
+			# 	value=$(amixer get Master | grep -o "[0-9]*%" | head -n 1)
+			# fi
 			title="Volume: ${value:-'0%'}"
 			;;
 		m) 
@@ -31,7 +31,8 @@ done
 shift $((OPTIND - 1))
 
 notify-send "${title:-${message}}" "${message}" \
+    -t 2000 \
+    -c byMe \
  	-h int:value:"$(grep -o "[0-9]*" <<< "${value}")" \
 	-h string:x-canonical-private-synchronous:byMe # Replace if not yet gone
-	#-h geometry = "400x200-40-40" \
 
