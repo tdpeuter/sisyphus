@@ -54,10 +54,10 @@ bindsym $winkey+Up focus up
 bindsym $winkey+Right focus right
 
 # Alternative keys
-bindsym $winkey+q focus left
-bindsym $winkey+s focus down
-bindsym $winkey+z focus up
-bindsym $winkey+d focus right
+bindsym $winkey+h focus left
+bindsym $winkey+j focus down
+bindsym $winkey+k focus up
+bindsym $winkey+l focus right
 
 # Move focused window
 bindsym $winkey+Shift+Left move left
@@ -66,15 +66,15 @@ bindsym $winkey+Shift+Up move up
 bindsym $winkey+Shift+Right move right
 
 # Alternative keys
-bindsym $winkey+j move left
-bindsym $winkey+k move down
-bindsym $winkey+i move up
-bindsym $winkey+l move right
+bindsym $winkey+Shift+h move left
+bindsym $winkey+Shift+j move down
+bindsym $winkey+Shift+k move up
+bindsym $winkey+Shift+l move right
 
 # Layouts
 bindsym $winkey+w layout toggle split
 bindsym $winkey+x layout tabbed
-bindsym $winkey+h split h
+bindsym $winkey+c split h
 bindsym $winkey+v split v
 
 bindsym $winkey+a focus parent
@@ -89,14 +89,14 @@ bindsym $winkey+Prior scratchpad show
 # Resize window menu
 mode "resize" {
     bindsym l resize grow width 10 px or 10 ppt
-    bindsym i resize grow height 10 px or 10 ppt
-    bindsym j resize shrink width 10 px or 10 ppt
-    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym k resize grow height 10 px or 10 ppt
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize shrink height 10 px or 10 ppt
 
 	bindsym Shift+l resize grow width 50 px or 50 ppt
-	bindsym Shift+i resize grow height 50 px or 50 ppt
-	bindsym Shift+j resize shrink width 50 px or 50 ppt
-	bindsym Shift+k resize shrink height 50 px or 50 ppt
+	bindsym Shift+k resize grow height 50 px or 50 ppt
+	bindsym Shift+h resize shrink width 50 px or 50 ppt
+	bindsym Shift+j resize shrink height 50 px or 50 ppt
 
     # Alternative keys
     bindsym Up resize grow height 10 px or 10 ppt
@@ -110,10 +110,10 @@ mode "resize" {
 	bindsym Shift+Down resize shrink height 50 px or 50 ppt
 
 	# Window movement
-	bindsym $winkey+j move left
-	bindsym $winkey+k move down
+	bindsym $winkey+h move left
+	bindsym $winkey+j move down
 	bindsym $winkey+l move right
-	bindsym $winkey+i move up
+	bindsym $winkey+k move up
 
 	# Alternative keys
 	bindsym $winkey+Left move left
