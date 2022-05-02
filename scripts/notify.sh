@@ -13,7 +13,7 @@ while getopts ":bvm:" options; do
 			title="Brightness: ${value}"
 			;;
 		v)
-			value=$(pactl get-sink-volume 0 | cut -d '/' -f2 | grep -o '[0-9]*%')
+			value=$(pactl get-sink-volume @DEFAULT_SINK@ | cut -d '/' -f2 | grep -o '[0-9]*%')
 			# if [[ $status == "[on]" ]] ; then 
 			# 	value=$(amixer get Master | grep -o "[0-9]*%" | head -n 1)
 			# fi
