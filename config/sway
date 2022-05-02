@@ -38,7 +38,6 @@ focus_follows_mouse no
 set $alt Mod1
 set $winkey Mod4
 set $term alacritty
-set $menu swaymsg exec "fuzzel -T 'alacritty -e' -w 50 -l 10 -f monospace:size=9 -b 262626dd -t ffffffff -i Win11-black"
 set $notify exec "/home/tdpeuter/.scripts/notify.sh"
 
 # ================
@@ -83,6 +82,7 @@ bindsym $winkey+b focus mode_toggle
 
 bindsym $winkey+f floating enable, border normal 2
 bindsym $winkey+Shift+f floating disable, border pixel 2
+
 bindsym $winkey+Next move scratchpad
 bindsym $winkey+Prior scratchpad show
 
@@ -203,10 +203,10 @@ bindsym Control+q kill
 bindsym $winkey+Return exec alacritty
 
 # Start application launcher
-bindsym $alt+space exec $menu
+bindsym $alt+space exec "fuzzel -T 'alacritty -e' -w 50 -l 10 -f monospace:size=9 -b 262626dd -t ffffffff -i Win11-black"
 # Start window selector based on fuzzel
 # https://github.com/speersj/wuzzel 
-bindsym $alt+Shift+space exec /usr/bin/wuzzel/wuzzel -w 50 -l 10 -f monospace:size=9 -b 262626dd -t ffffffff -i Win11-black
+bindsym $alt+Shift+space exec /usr/bin/wuzzel/wuzzel "-w 50 -l 10 -f monospace:size=9 -b 262626dd -t ffffffff -i Win11-black"
 
 # Brightness
 bindsym --locked XF86MonBrightnessDown exec brightnessctl -e s 5%- && $notify -b
