@@ -7,7 +7,7 @@
 # Autostart
 # =========
 
-input * {
+input type:keyboard {
 	xkb_layout "be"
 }
 
@@ -19,7 +19,14 @@ input 2:7:SynPS/2_Synaptics_TouchPad {
 }
 
 # Set background to whatever file is named bg at the moment
-output * bg "~/Images/wallpapers/bg.*" fill
+output * {
+    bg "~/Images/wallpapers/bg.*" fill
+}
+
+# Hide the cursor when typing
+seat seat0 {
+    hide_cursor when-typing enable
+}
 
 exec_always ~/.scripts/idle.sh
 
@@ -38,6 +45,12 @@ focus_follows_mouse no
 set $alt Mod1
 set $winkey Mod4
 set $term alacritty
+
+# for_window [title="dropdownterminal"] floating enable, border none, resize set 80 ppt 40 ppt, move up 338
+# exec alacritty -t dropdownterminal
+# bindsym F12 [title="dropdownterminal"] focus; move down 1000
+# bindsym Shift+F12 [title="dropdownterminal"] move up 1000
+
 set $notify exec "/home/tdpeuter/.scripts/notify.sh"
 
 # ================
@@ -162,6 +175,10 @@ bindsym $winkey+parenright workspace $ws11
 bindsym $winkey+Control+Right workspace next
 bindsym $winkey+Control+Left workspace prev
 
+# Alternative keys
+bindsym $winkey+Control+h workspace prev
+bindsym $winkey+Control+l workspace next
+
 # move focused container to workspace
 bindsym $winkey+Shift+ampersand move container to workspace number $ws1; \
 	workspace number $ws1
@@ -188,6 +205,10 @@ bindsym $winkey+Shift+parenright move container to workspace $ws11; \
 
 bindsym $winkey+Control+Shift+Right move container to workspace next; workspace next
 bindsym $winkey+Control+Shift+Left move container to workspace prev; workspace prev
+
+# Alternative keys
+bindsym $winkey+Control+Shift+l move container to workspace next; workspace next
+bindsym $winkey+Control+Shift+h move container to workspace prev; workspace prev
 
 # ==============
 # System Control
