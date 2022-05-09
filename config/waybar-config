@@ -94,7 +94,7 @@
 	},
         "clock": {
         	"timezone": "Europe/Brussels",
-		"format": "<big>{:%H:%M %d/%m%Y}</big>", //"<big>{:%H:%M}</big>\n21-03-2022", //\n{:%d/%m/%Y}",
+		"format": "<big>{:%H:%M %d/%m/%Y}</big>", //"<big>{:%H:%M}</big>\n21-03-2022", //\n{:%d/%m/%Y}",
 	        "format-alt": "{:%H:%M}",
 	        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
 	},
