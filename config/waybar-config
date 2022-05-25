@@ -3,111 +3,113 @@
 //
 
 [{
-	"position": "bottom", // Waybar position (top|bottom|left|right)
+    "position": "bottom",
 	"height": 30,
 	"spacing": 4, 
 	
 	"modules-left": ["sway/workspaces", "custom/media"],
-	"modules-right": ["idle_inhibitor", "cpu", "memory", "disk", "temperature", "pulseaudio", "battery", "clock", "tray"],
+	"modules-right": ["idle_inhibitor", "cpu", "memory", "disk", "temperature", "pulseaudio", "battery", "tray"],
 	
 	"ipc": true,
     
 	"sway/workspaces": {
-		"disable-scroll": true,
+	    "disable-scroll": true,
 		"all-outputs": true,
 		"format": "{icon}{name}",
 		"format-icons": {
-			"urgent": " ",
+		    "urgent": " ",
 			"default": "" // Prevent showing workspace name literal. 
 		},
 	},
 	"custom/media": {
-        	"format": "{icon} {}",
-	        "return-type": "json",
-	        "max-length": 40,
-	        "format-icons": {
-	            "spotify": "",
-	            "default": "🎜"
-	        },
-	        "escape": true,
-	        "exec": "~/.config/waybar/mediaplayer.py 2> /dev/null", // Script in resources folder
+        "format": "{icon} {}",
+	    "return-type": "json",
+	    "max-length": 40,
+	    "format-icons": {
+	        "spotify": "",
+	        "default": "🎜"
+	    },
+	    "escape": true,
+	    "exec": "~/.config/waybar/mediaplayer.py 2> /dev/null", // Script in resources folder
 	},
 
 
 	"idle_inhibitor": {
-        	"format": "Prohibit idle {icon}",
-	        "format-icons": {
-        		"activated": "",
-			"deactivated": ""
+        "format": "Prohibit idle {icon}",
+	    "format-icons": {
+            "activated": "",
+		    "deactivated": ""
 		}, 
 		"tooltip": false,
 	},
 	"cpu": {
-        	"format": "{usage}% ",
-	        "tooltip": true,
+        "format": "{usage}% ",
+	    "tooltip": true,
 	},
 	"memory": {
-        	"format": "{}% ",
+        "format": "{}% ",
 	},
 	"disk": {
-                "interval": 30, 
-                "format": "{percentage_free}% ({free}) 💾", 
-                "path": "/",
-        },
+        "interval": 30, 
+        "format": "{percentage_free}% ({free}) 💾", 
+        "path": "/",
+    },
 	"temperature": {
-	        "critical-threshold": 70,
-	        // "format-critical": "{temperatureC}°C {icon}",
-	        "format": "{temperatureC}°C {icon}",
-	        "format-icons": ["", "", ""],
+	    "critical-threshold": 70,
+	    // "format-critical": "{temperatureC}°C {icon}",
+	    "format": "{temperatureC}°C {icon}",
+	    "format-icons": ["", "", ""],
 	},
 	"pulseaudio": {
-	        "scroll-step": 2,
-	        "format": "{volume}% {icon} {format_source}",
-	        "format-bluetooth": "{volume}% {icon} {format_source}",
-	        "format-bluetooth-muted": " {icon} {format_source}",
-	        "format-muted": " {format_source}",
-	        "format-source": "{volume}% ",
-	        "format-source-muted": "",
-	        "format-icons": {
-			"headphone": " ",
-			"hands-free": "",
-			"headset": "",
-			"phone": "",
-			"portable": "",
-			"car": "",
+        "scroll-step": 2,
+	    "format": "{volume}% {icon} {format_source}",
+	    "format-bluetooth": "{volume}% {icon} {format_source}",
+	    "format-bluetooth-muted": " {icon} {format_source}",
+	    "format-muted": " {format_source}",
+	    "format-source": "{volume}% ",
+	    "format-source-muted": "",
+	    "format-icons": {
+		    "headphone": " ",
+    		"hands-free": "",
+    		"headset": "",
+    		"phone": "",
+    		"portable": "",
+    		"car": "",
 			"default": ["", "", ""]
 		},
 		"on-click": "playerctl play-pause",
 	},
 	"battery": {
-        	"states": {
-			"warning": 30,
-			"critical": 15
-		},
-	        "format": "{capacity}% {icon}",
-	        "format-charging": "{capacity}% ",
-	        "format-plugged": "{capacity}% ",
-	        "format-alt": "{time} {icon}",
-	        // "format-good": "", // An empty format will hide the module
-	        // "format-full": "",
-	        "format-icons": ["", "", "", "", ""],
-	},
-        "clock": {
-        	"timezone": "Europe/Brussels",
-		"format": "<big>{:%H:%M %d/%m/%Y}</big>", //"<big>{:%H:%M}</big>\n21-03-2022", //\n{:%d/%m/%Y}",
-	        "format-alt": "{:%H:%M}",
-	        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+       	"states": {
+	    	"warning": 30,
+		    "critical": 15
+    	},
+	    "format": "{capacity}% {icon}",
+	    "format-charging": "{capacity}% ",
+	    "format-plugged": "{capacity}% ",
+	    "format-alt": "{time} {icon}",
+	    // "format-good": "", // An empty format will hide the module
+	    // "format-full": "",
+	    "format-icons": ["", "", "", "", ""],
 	},
 	"tray": {
         //	"icon-size": 21,
-	        "spacing": 10,
+	    "spacing": 10,
 	},
 }, 
 
 {
-        "position": "top",
-        "height": 20,
+    "position": "top",
+    "height": 20,
 	"modules-left": ["sway/mode"],
-        "modules-center": ["sway/window"]
+    "modules-center": ["sway/window"],
+    "modules-right": ["clock"],
+    
+    "clock": {
+        "timezone": "Europe/Brussels",
+	    "format": "{:%H:%M}",
+		"format-alt": "{:%H:%M %d/%m/%Y}", //"<big>{:%H:%M}</big>\n21-03-2022", //\n{:%d/%m/%Y}",
+	    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+	},
 }]
 
