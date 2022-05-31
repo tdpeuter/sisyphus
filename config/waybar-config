@@ -77,7 +77,8 @@
     		"car": "",
 			"default": ["", "", ""]
 		},
-		"on-click": "playerctl play-pause",
+		// "on-click": "playerctl play-pause",
+        "on-click": "pavucontrol",
 	},
 	"battery": {
        	"states": {
