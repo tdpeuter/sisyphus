@@ -224,10 +224,10 @@ bindsym Control+q kill
 bindsym $winkey+Return exec alacritty
 
 # Start application launcher
-bindsym $alt+space exec "fuzzel -T 'alacritty -e' -w 50 -l 10 -f hack:size=9 -b 262626dd -t ffffffff -i Win11-black"
+bindsym $alt+space exec fuzzel
 # Start window selector based on fuzzel
 # https://github.com/speersj/wuzzel 
-bindsym $alt+Shift+space exec /usr/bin/wuzzel/wuzzel "-w 50 -l 10 -f monospace:size=9 -b 262626dd -t ffffffff -i Win11-black"
+bindsym $alt+Shift+space exec /usr/bin/wuzzel/wuzzel "-w 50 -f monospace:size=9"
 
 # Brightness
 bindsym --locked XF86MonBrightnessDown exec brightnessctl -e s 5%- && $notify -b
