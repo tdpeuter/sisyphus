@@ -3,21 +3,24 @@
 //
 
 [{
-    "position": "bottom",
-	"height": 30,
+    "position": "top",
+	"height": 25,
 	"spacing": 4, 
-	
+    "margin": "-25px 0 0 0",
+
 	"modules-left": ["sway/workspaces", "custom/media"],
-	"modules-right": ["idle_inhibitor", "cpu", "memory", "disk", "temperature", "pulseaudio", "battery", "tray"],
-	
-	"ipc": true,
+	"modules-right": ["idle_inhibitor", "disk", "memory", "cpu", "temperature", "pulseaudio", "battery", "tray"],
     
+
+    "mode": "hide",
+	"ipc": true,
+
 	"sway/workspaces": {
 	    "disable-scroll": true,
 		"all-outputs": true,
 		"format": "{icon}{name}",
 		"format-icons": {
-		    "urgent": " ",
+		    "urgent": "\uf071 ",
 			"default": "" // Prevent showing workspace name literal. 
 		},
 	},
@@ -26,58 +29,61 @@
 	    "return-type": "json",
 	    "max-length": 40,
 	    "format-icons": {
-	        "spotify": "",
-	        "default": "🎜"
+	        "spotify": "\uf1bc",
+	        "default": "\uf51f"
 	    },
 	    "escape": true,
 	    "exec": "~/.config/waybar/mediaplayer.py 2> /dev/null", // Script in resources folder
+        "on-click": "playerctl play-pause",
 	},
 
 
 	"idle_inhibitor": {
-        "format": "Prohibit idle {icon}",
+        "format": "{icon}",
 	    "format-icons": {
-            "activated": "",
-		    "deactivated": ""
+            "activated": "\uf06e",
+		    "deactivated": "\uf070"
 		}, 
 		"tooltip": false,
 	},
-	"cpu": {
-        "format": "{usage}% ",
-	    "tooltip": true,
-	},
-	"memory": {
-        "format": "{}% ",
-	},
 	"disk": {
         "interval": 30, 
-        "format": "{percentage_free}% ({free}) 💾", 
+        "format": "{percentage_free}% ({free}) \uf0a0", 
         "path": "/",
+        "on-click": "alacritty -e ncdu /",
     },
+	"memory": {
+        "format": "{}% \uf1c0",
+        "on-click": "alacritty -e htop",
+	},
+	"cpu": {
+        "format": "{usage}% \uf2db",
+	    "tooltip": true,
+        "on-click": "alacritty -e htop",
+	},
 	"temperature": {
 	    "critical-threshold": 70,
 	    // "format-critical": "{temperatureC}°C {icon}",
 	    "format": "{temperatureC}°C {icon}",
-	    "format-icons": ["", "", ""],
+	    "format-icons": ["\uf2cb", "\uf2c9", "\uf2c7"],
 	},
 	"pulseaudio": {
         "scroll-step": 2,
 	    "format": "{volume}% {icon} {format_source}",
-	    "format-bluetooth": "{volume}% {icon} {format_source}",
-	    "format-bluetooth-muted": " {icon} {format_source}",
-	    "format-muted": " {format_source}",
-	    "format-source": "{volume}% ",
-	    "format-source-muted": "",
+	    "format-bluetooth": "{volume}% {icon}\uf294 {format_source}",
+	    "format-bluetooth-muted": "\uf6a9 {icon}\uf294 {format_source}",
+	    "format-muted": "\uf6a9 {format_source}",
+	    "format-source": "{volume}% \uf130",
+	    "format-source-muted": "\uf131",
 	    "format-icons": {
-		    "headphone": " ",
-    		"hands-free": "",
-    		"headset": "",
-    		"phone": "",
-    		"portable": "",
-    		"car": "",
-			"default": ["", "", ""]
+		    "headphone": "\uf58f",
+    		"hands-free": "\uf590",
+    		"headset": "\uf590",
+    		"phone": "\uf3ce",
+    		"portable": "\uf3ce",
+    		"car": "\uf1b9",
+			"default": ["\uf026", "\uf027", "\uf028 "]
 		},
-		// "on-click": "playerctl play-pause",
         "on-click": "pavucontrol",
 	},
 	"battery": {
@@ -86,12 +92,12 @@
 		    "critical": 15
     	},
 	    "format": "{capacity}% {icon}",
-	    "format-charging": "{capacity}% ",
-	    "format-plugged": "{capacity}% ",
 	    "format-alt": "{time} {icon}",
+	    "format-charging": "{capacity}% \uf0e7 {icon}",
+	    "format-plugged": "{capacity}% \ue55c",
 	    // "format-good": "", // An empty format will hide the module
 	    // "format-full": "",
-	    "format-icons": ["", "", "", "", ""],
+	    "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"],
 	},
 	"tray": {
         //	"icon-size": 21,
@@ -101,15 +107,19 @@
 
 {
     "position": "top",
-    "height": 20,
+    "height": 25,
 	"modules-left": ["sway/mode"],
     "modules-center": ["sway/window"],
     "modules-right": ["clock"],
-    
+
+    "sway/window": {
+        "max-length": 85,
+    },
+
     "clock": {
         "timezone": "Europe/Brussels",
 	    "format": "{:%H:%M}",
-		"format-alt": "{:%H:%M %d/%m/%Y}", //"<big>{:%H:%M}</big>\n21-03-2022", //\n{:%d/%m/%Y}",
+		"format-alt": "{:%d/%m/%Y %H:%M}", //"<big>{:%H:%M}</big>\n21-03-2022", //\n{:%d/%m/%Y}",
 	    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
 	},
 }]

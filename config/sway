@@ -33,8 +33,8 @@ exec_always ~/.scripts/idle.sh
 # Set warm colours at night
 exec ~/.scripts/wlsunset.sh
 
-exec nm-applet --indicator
-exec blueman-applet
+# exec nm-applet --indicator
+# exec blueman-applet
 
 focus_follows_mouse no
 
@@ -248,12 +248,11 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # Lockscreen
-set $lock "swaylock -f --screenshots --clock --indicator --fade-in 0.2 --effect-blur 5x5"
-bindsym $winkey+Delete exec --no-startup-id $lock
+bindsym $winkey+Delete exec --no-startup-id swaylock
 
 set $mode_system System (l) lock, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
-	bindsym l exec --no-startup-id $lock; mode "default"
+	bindsym l exec --no-startup-id swaylock; mode "default"
 	bindsym s exec --no-startup-id systemctl suspend; mode "default"
 	bindsym h exec --no-startup-id systemctl hibernate; mode "default"
 	bindsym r exec --no-startup-id systemctl reboot; mode "default"
@@ -285,10 +284,11 @@ bindsym Print mode "$mode_screenshot"
 # Styling
 # =======
 
+font pango:monospace 2
+
 bar {
 	swaybar_command /usr/bin/waybar	
 	mode hide
-	position bottom
 }
 
 # Notifications manager
@@ -296,17 +296,18 @@ exec mako
 
 title_align center
 default_border pixel 2
-# default_floating_border normal 2
+default_floating_border normal 2
 hide_edge_borders both
 
 # Toggle Show title
 bindsym $alt+Next border pixel 2
 bindsym $alt+Prior border normal 2
 
-# Class			border	backgr	text	indic.	child_border
-client.focused          #000000 #00897b #ffffff #00897b   #000000
-client.focused_inactive #000000 #222222 #888888 #484e50   #000000
-client.unfocused        #000000 #222222 #888888 #292d2e   #000000
+# Mimic no titles
+# Classi    			border	backgr	text	indic.	child_border
+client.focused          #000000 #00897b #00897b #00897b   #000000
+client.focused_inactive #000000 #222222 #484e50 #484e50   #000000
+client.unfocused        #000000 #222222 #292d2e #292d2e   #000000
 
 exec gsettings set org.gnome.desktop.interface icon-theme 'Win11-black-dark'
 exec gsettings set org.gnome.desktop.interface gtk-theme 'Nordic'
