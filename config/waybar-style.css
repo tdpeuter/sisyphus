@@ -5,9 +5,8 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
     /* font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif; */
-    font-family: Hack;
+    font-family: Iosevka Custom;
     font-size: 13px;
-    letter-spacing: -1px;
 }
 
 window#waybar {
