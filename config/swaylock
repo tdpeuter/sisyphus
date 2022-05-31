@@ -1,0 +1,27 @@
+# 
+# .config/swaylock/config
+# 
+# Personal config for swaylock
+
+indicator
+clock
+daemonize
+
+datestr=%d/%m/%Y
+
+font=letter extended
+text-color=ffffff
+text-clear-color=ffffff
+text-ver-color=ffffff
+
+ring-color=00000000
+line-color=00000000
+inside-color=00000000
+inside-clear-color=00000000
+inside-ver-color=00000000
+
+indicator-radius=200
+
+screenshots
+effect-blur=5x5
+fade-in=0.2
