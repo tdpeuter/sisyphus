@@ -319,7 +319,7 @@ for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
 for_window [class="Qalculate-gtk"] floating enable
-for_window [class="Caprine"] floating enable
+for_window [class="Caprine"] floating enable; border normal 2
 # Homewritten software testing in IntelliJ
 for_window [class="be.ugent"] floating enable
 
