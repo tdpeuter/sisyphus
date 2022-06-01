@@ -3,16 +3,15 @@
 # 
 
 anchor=bottom-right
-background-color=#0E423C
-border-color=#FFFFFF
+background-color=#171717c3
 default-timeout=4000
 font=Letter
 
 [urgency=low]
-border-color=#cccccc
+border-color=#e3e3e3
 
 [urgency=normal]
-border-color=#d08770
+border-color=#cccccc
 
 [urgency=high]
 border-color=#bf616a
