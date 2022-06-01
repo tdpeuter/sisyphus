@@ -518,3 +518,5 @@ nnoremap <c-u> <c-w>x
 "     vifm --server-name "$VIFM_SERVER_NAME" --remote +"cd '$PWD'"
 "
 " let $VIFM_SERVER_NAME = v:servername
+
+source /home/tdpeuter/.config/vifm/scripts/favicons.vifm
