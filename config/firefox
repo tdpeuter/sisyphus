@@ -1,0 +1,11 @@
+/* 
+ * ~/.mozilla/firefox/<profile>/chrome/userChrome.css
+ */
+
+:root, body {
+    font-family: Letter;
+}
+
+.tabbrowser-tab {
+/*    font-size: 13px; */
+}

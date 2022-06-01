@@ -218,16 +218,15 @@ bindsym $alt+Shift+r reload
 bindsym $alt+Shift+e exec swaynag -t warning -m 'Do you really want to exit sway?' -B 'Yes, exit sway' 'swaymsg exit'  
 
 # Kill focused window
-bindsym Control+q kill
+bindsym $winkey+q kill
 
 # Start a terminal
 bindsym $winkey+Return exec alacritty
 
 # Start application launcher
 bindsym $alt+space exec fuzzel
-# Start window selector based on fuzzel
-# https://github.com/speersj/wuzzel 
-bindsym $alt+Shift+space exec /usr/bin/wuzzel/wuzzel "-w 50 -f monospace:size=9"
+# Start window selector based on [fuzzel](https://github.com/speersj/wuzzel)
+bindsym $alt+Shift+space exec /usr/bin/wuzzel/wuzzel
 
 # Brightness
 bindsym --locked XF86MonBrightnessDown exec brightnessctl -e s 5%- && $notify -b
