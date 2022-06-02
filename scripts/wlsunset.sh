@@ -10,6 +10,6 @@ if [[ -z ${pid} ]] ; then
 else
         # Currently stop wlsunset but restart in an hour. 
         kill ${pid}
-        notify-send 'Stopping sunset, restarting in an hour'
+        ~/.scripts/notify.sh 'Stopping sunset' 'Restarting in an hour'
         at now +1 hours -f ~/.scripts/wlsunset.sh
 fi
