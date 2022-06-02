@@ -7,8 +7,8 @@ pkill swayidle
 
 swayidle -w \
     timeout 300 \
-    'brightnessctl -s set 15%' \
-        resume 'brightnessctl -r' \
+        "~/.scripts/wander.sh" \
+        resume "~/.scripts/wander.sh" \
     timeout 600 \
         'swaymsg "output * dpms off"' \
         resume 'swaymsg "output * dpms on"' \
