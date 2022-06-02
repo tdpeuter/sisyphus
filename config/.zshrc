@@ -11,11 +11,11 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="mrfortem"
 
 # Case-sensitive completion.
-CASE_SENSITIVE="true"
+CASE_SENSITIVE="false"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Auto-update behavior
 zstyle ':omz:update' mode reminder  # just remind me to update when it's time
@@ -41,7 +41,7 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # History timestamp format
-# HIST_STAMPS="dd/mm/yyyy"
+HIST_STAMPS="dd/mm/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -72,6 +72,14 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+use_color=true
+if ${use_color} ; then 
+    alias ls='ls --color=auto'
+    alias grep='grep --colour=auto'
+    alias egrep='egrep --colour=auto'
+    alias fgrep='fgrep --colour=auto'
+fi
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -83,7 +91,7 @@ alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 alias np='nano -w PKGBUILD'
 alias more=less
-alias hg='history | grep'
+alias hgrep='history | grep'
 alias psql='psql -U postgres'
 alias rmou='rclone mount OneDriveUGent: ~/Documents/OneDriveUGent/'
 alias rmop='rclone mount OneDrivePersonal: ~/Documents/OneDrivePersonal'
@@ -91,3 +99,65 @@ alias helios='ssh tdpeuter@helios.ugent.be'
 alias resblue='systemctl restart bluetooth'
 alias Personal='cd ~/Documents/synchronisatie/Personal/_PERSOONLIJK/'
 alias UGent='cd ~/Documents/synchronisatie/UGent/Informatica\ J1\ 2021-2022/'
+
+cpdir () {
+
+    # Check arguments
+    if [[ $# == 2 ]] ; then
+        from=$(dirname $1)
+        fromfile=$(basename $1)
+        to=$(dirname $2)
+        tofile=$(basename $2)
+    else
+        echo "cpdir: Not enough arguments"
+        echo "cpdir: Syntaxis: cpdir <source> <destination>"
+        return
+    fi
+    
+    # Check file
+    if [[ ! -f $1 ]] ; then
+        echo "cpdir: Source does not exist: $1"
+        return
+    fi
+    
+    echo "Move ${fromfile} from ${from} to ${to} as ${tofile}?"
+    echo -n "y/n > "
+    read answer
+
+    if [[ ${answer} == "y" ]] ; then
+        mkdir -pv $to
+        cp $1 $2
+        echo "Done"
+    elif [[ ${answer} == "n" ]] ; then
+        echo "Not copying..."
+    else
+        echo "Invalid option"
+        return
+    fi
+}
+
+# 
+# ex - arrchive extractor
+# usage: ex <file>
+ex () {
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2)  tar xjf $1      ;;
+            *.tar.gz)   tar xzf $1      ;;
+            *.bz2)      bunzip2 $1      ;;
+            *.rar)      unrar x $1      ;;
+            *.gz)       gunzip $1       ;;
+            *.tar)      tar xf $1       ;;
+            *.tbz2)     tar xjf $1      ;;
+            *.tgz)      tar xzf $1      ;;
+            *.zip)      unzip $1        ;;
+            *.Z)        uncompress $1   ;;
+            *.7z)       7z x $1         ;;
+            *)
+                echo "'$1' cannot be extracted via ex()"
+                ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
