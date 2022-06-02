@@ -23,6 +23,11 @@ output * {
     bg "~/Pictures/wallpapers/bg.*" fill
 }
 
+output 'Dell Inc. DELL P2214H 29C2937M4YTL' {
+    # Vertical monitor
+    transform 270 
+}
+
 # Hide the cursor when typing
 seat seat0 {
     hide_cursor when-typing enable
