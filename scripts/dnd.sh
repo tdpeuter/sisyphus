@@ -16,5 +16,5 @@ fi
 
 # Update status in file
 new_state=$( bc "(${saved_state} + 1) % 2" )
-sed -i "s/saved_state=[0|1]/saved_state=${new_state}/" ~/.scripts/dnd.sh
+sed -i "s/saved_state=[0|1]/saved_state=${new_state}/" "${0}"
 
