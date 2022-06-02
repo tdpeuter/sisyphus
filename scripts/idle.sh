@@ -7,7 +7,7 @@ pkill swayidle
 
 swayidle -w \
     timeout 300 \
-        'brightnessctl -s -set 15%' \
+    'brightnessctl -s set 15%' \
         resume 'brightnessctl -r' \
     timeout 600 \
         'swaymsg "output * dpms off"' \
