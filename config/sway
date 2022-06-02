@@ -28,10 +28,10 @@ seat seat0 {
     hide_cursor when-typing enable
 }
 
-exec_always ~/.scripts/idle.sh
+exec_always "~/.scripts/idle.sh"
 
 # Set warm colours at night
-exec ~/.scripts/wlsunset.sh
+exec "~/.scripts/wlsunset.sh"
 
 exec nm-applet --indicator
 exec blueman-applet
@@ -51,7 +51,7 @@ set $term alacritty
 # bindsym F12 [title="dropdownterminal"] focus; move down 1000
 # bindsym Shift+F12 [title="dropdownterminal"] move up 1000
 
-set $notify exec "/home/tdpeuter/.scripts/notify.sh"
+set $notify exec "~/.scripts/notify.sh"
 
 # ================
 # Window shortcuts
@@ -232,23 +232,25 @@ bindsym $alt+Shift+space exec /usr/bin/wuzzel/wuzzel
 bindsym --locked XF86MonBrightnessDown exec brightnessctl -e s 5%- && $notify -b
 bindsym --locked XF86MonBrightnessUp exec brightnessctl -e s +5% && $notify -b
 
-# Toggle sunset
-bindsym $alt+end exec ~/.scripts/wlsunset.sh
-
 # Media control
 bindsym F7 exec --no-startup-id playerctl play-pause
 bindsym Shift+XF86AudioLowerVolume exec --no-startup-id playerctl previous
 bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id playerctl next
 
 # Volume control
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2% && $notify -v
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2% && $notify -v
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $notify -v
+bindsym XF86AudioRaiseVolume exec --no-startup-id pulsemixer --change-volume +2 --max-volume 100 && $notify -v
+bindsym XF86AudioLowerVolume exec --no-startup-id pulsemixer --change-volume -2 && $notify -v
+bindsym XF86AudioMute exec --no-startup-id pulsemixer --toggle-mute && $notify -v
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # Lockscreen
 bindsym $winkey+Delete exec --no-startup-id swaylock
 
+# =====
+# Modes
+# =====
+
+# System actions
 set $mode_system System (l) lock, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
 	bindsym l exec --no-startup-id swaylock; mode "default"
@@ -278,6 +280,18 @@ mode "$mode_screenshot" {
 	bindsym Escape mode "default"
 }
 bindsym Print mode "$mode_screenshot"
+
+# Some preferences
+set $mode_preferences Toggle (s)unset, (n)otifications, (f)ocus
+mode "$mode_preferences" {
+    bindsym s exec "~/.scripts/wlsunset.sh"; mode "default"
+    bindsym n exec "~/.scripts/dnd.sh"; mode "default"
+    bindsym f exec "~/.scripts/focus.sh"; mode "default"
+
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+bindsym $alt+end mode "$mode_preferences"
 
 # =======
 # Styling
