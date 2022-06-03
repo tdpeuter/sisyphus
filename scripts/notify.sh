@@ -18,7 +18,7 @@ while getopts ":bv" options; do
 			value=$( brightnessctl | grep -o "[0-9]*%" )
 			title="Brightness: ${value}"
             timeout=2000
-            class='top-center'
+            category='sysinfo'
 			;;
 		v)
             # Get volume
@@ -32,7 +32,7 @@ while getopts ":bv" options; do
 
 			title="Volume: ${value:-'0%'}"
             timeout=2000
-            class='top-center'
+            category='sysinfo'
 			;;
 		*)	
             panic
@@ -60,7 +60,7 @@ fi
 # Send message
 notify-send "${title}" "${message}" \
     -t "${timeout:=5000}" \
-    -c "${class:=''}" \
+    -c "${category:=''}" \
  	-h int:value:"${width:=0}" \
 	-h string:x-canonical-private-synchronous:byMe # Replace if previous still exists
 
