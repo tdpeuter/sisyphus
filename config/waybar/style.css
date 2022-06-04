@@ -1,68 +1,54 @@
 /*
  * ~/.config/waybar/style.css
- * */
+ *
+ * `otf-font-awesome` is required to be installed for icons.
+ *
+ * Pick your stylesheet: 
+ * - sharp.css
+ * - transparent.css
+ * - round.css
+ */
 
-* {
-    /* `otf-font-awesome` is required to be installed for icons */
-    font-family: Letter;
-    font-size: 13px;
-}
+@define-color transparent-black rgba(23, 23, 23, 0.9); 
+@define-color white #ecf0f1;
+@define-color warning-red #eb4d4b;
+@define-color accent #00897b;
 
 window#waybar {
-    color: #ffffff;
-	background-color: transparent; 
+    font-family: Letter; /* This is my personal font. */
+    font-size: 13px;
     transition-property: background-color;
     transition-duration: .5s;
 }
 
-window#waybar.hidden {
-    opacity: 0.2;
+#window, #workspaces {
+    margin: 0 4px;
 }
 
 #workspaces button {
-    padding: 0 5px;
     border: none;
     border-radius: 0;
     min-width: 30px; 
+    padding: 0 5px;
 }
 
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-#workspaces button:hover, #workspaces button.focused, #mode {
-    box-shadow: inset 0 2px #ffffff;
-
-    /* Keep this to prevent white overlay on hover */
+#workspaces button:hover, 
+#workspaces button.focused {
     background-color: transparent;
-    color: #ffffff;
+    color: @white;
 }
 
 #workspaces button.urgent {
-    background-color: #eb4d4b;
+    color: @white; 
+    background-color: @warning-red;
 }
 
-#clock,
-#battery,
-#cpu,
-#memory,
-#disk,
-#temperature,
-#backlight,
-#network,
-#pulseaudio,
-#custom-media,
-#tray,
-#mode,
-#idle_inhibitor,
-#mpd {
-    padding: 0 10px;
-}
-
+/* All modules individually. */
+#backlight, #battery, #bluetooth, #clock, #cpu, 
+#custom-media, #disk, #idle_inhibitor, #memory, 
+#mode, #mpd, #network, #pulseaudio, #temperature, 
 #tray {
-    background-color: rgba(43, 48, 59, 0.95); 
-}
-
-#window,
-#workspaces {
-    margin: 0 4px;
+    padding: 0 10px;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
@@ -75,16 +61,22 @@ window#waybar.hidden {
     margin-right: 0;
 }
 
-#battery.charging, #battery.plugged {
-    color: #ffffff;
-    background-color: #26A65B;
-}
-
 @keyframes blink {
     to {
         background-color: #ffffff;
         color: #000000;
     }
+}
+
+label:focus {
+    background-color: #000000;
+}
+
+/* Module specific colours */
+
+#battery.charging, #battery.plugged {
+    color: #ffffff;
+    background-color: #26A65B;
 }
 
 #battery.critical:not(.charging) {
@@ -97,17 +89,9 @@ window#waybar.hidden {
     animation-direction: alternate;
 }
 
-label:focus {
-    background-color: #000000;
-}
-
-#pulseaudio.muted {
-    color: #171717; /* REPLACE */
-}
-
 #custom-media {
-    background-color: #66cc99;
     color: #2a5c45;
+    background-color: #66cc99;
     min-width: 100px;
 }
 
@@ -123,6 +107,11 @@ label:focus {
     background-color: #eb4d4b;
 }
 
+#idle_inhibitor.activated {
+    background-color: #ecf0f1;
+    color: #2d3436;
+}
+
 #tray > .passive {
     -gtk-icon-effect: dim;
 }
@@ -132,8 +121,5 @@ label:focus {
     background-color: #eb4d4b;
 }
 
-#idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
-}
+@import "transparent.css";
 

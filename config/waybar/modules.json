@@ -1,0 +1,137 @@
+{
+
+	"battery": {
+	    "format": "{capacity}% {icon}",
+	    "format-alt": "{time} {icon}",
+	    "format-charging": "{capacity}% \uf0e7 {icon}",
+	    "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"],
+	    "format-plugged": "{capacity}% \ue55c",
+       	"states": {
+	    	"warning": 30,
+		    "critical": 15
+    	}
+	},
+
+
+	"disk": {
+        "interval": 30, 
+        "format": "{percentage_used}% \uf0a0", 
+        "on-click": "alacritty -e ncdu /",
+        "path": "/",
+        "tooltip-format": "{used} used out of {total} on {path} ({percentage_free}% or {free} free)"
+    },
+
+
+    "bluetooth": {
+        "format": "\uf294 {status}",
+        "format-disabled": "\uf294",
+        "on-click": "~/.scripts/bluetoggle.sh",
+        "on-click-right": "blueman-manager"
+    },
+    
+
+    "clock": {
+	    "format": "{:%H:%M}",
+		"format-alt": "{:%d/%m/%Y %H:%M}",
+        "timezone": "Europe/Brussels",
+	    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+	},
+
+
+    "custom/media": {
+        "escape": true,
+        "exec": "~/.config/waybar/mediaplayer.py 2> /dev/null",
+        "format": "{icon} {}", 
+        "format-icons": {
+            "default": "\uf51f",
+            "spotify": "\uf1bc"
+        },
+        "max-length": 40,
+        "on-click": "playerctl play-pause",
+        "return-type": "json"
+    },
+   
+
+    "cpu": {
+        "format": "{usage}% \uf2db",
+        "on-click": "alacritty -e htop",
+	    "tooltip": true
+	},
+
+
+	"idle_inhibitor": {
+        "format": "{icon}",
+	    "format-icons": {
+            "activated": "\uf06e",
+		    "deactivated": "\uf070"
+		}, 
+		"tooltip": false
+	},
+
+
+	"memory": {
+        "format": "{}% \uf1c0",
+        "on-click": "alacritty -e htop"
+	},
+
+
+    "network": {
+        "format-disconnected": "\uf127", 
+        "format-ethernet": "\uf6ff {ifname}: {ipadds}/{cidr}",
+        "format-wifi": "\uf1eb {essid} ({signalStrength}%)",
+        "interval": 5,
+        "on-click-right": "alacritty -e nmtui",
+        "tooltip-format": "{ifname}: {ipaddr}"
+    },
+
+
+    "sway/window": {
+        "max-length": 85
+    },
+
+
+    "sway/workspaces": {
+        "all-outputs": true,
+        "disable-scroll": true,
+        "format": "{icon}{name}", 
+        "format-icons": {
+            "default": "", // Prevent showing workspace name literal.
+            "urgent": "\uf071 "
+        }
+    }, 
+	
+
+    "pulseaudio": {
+	    "format": "{volume}% {icon} {format_source}",
+	    "format-bluetooth": "{volume}% {icon}\uf294 {format_source}",
+	    "format-bluetooth-muted": "\uf6a9 {icon}\uf294 {format_source}",
+	    "format-muted": "\uf6a9 {format_source}",
+	    "format-source": "{volume}% \uf130",
+	    "format-source-muted": "\uf131",
+	    "format-icons": {
+		    "headphone": "\uf58f",
+    		"hands-free": "\uf590",
+    		"headset": "\uf590",
+    		"phone": "\uf3ce",
+    		"portable": "\uf3ce",
+    		"car": "\uf1b9",
+			"default": ["\uf026", "\uf027", "\uf028 "]
+		},
+        "on-click": "pulsemixer --toggle-mute",
+        "on-click-right": "pavucontrol",
+        "scroll-step": 2
+	},
+
+
+	"temperature": {
+	    "critical-threshold": 70,
+	    "format": "{temperatureC}°C {icon}",
+	    "format-icons": ["\uf2cb", "\uf2c9", "\uf2c7"]
+	}, 
+
+
+	"tray": {
+	    "spacing": 10
+	}
+
+}

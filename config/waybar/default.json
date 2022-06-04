@@ -1,0 +1,24 @@
+
+{
+	"modules-left": [
+        "idle_inhibitor",
+        "custom/media"
+    ],
+    "modules-center": [
+        "sway/workspaces"
+    ],
+	"modules-right": [
+        "disk", 
+        "memory", 
+        "cpu", 
+        "temperature", 
+        "custom/sep",
+        "bluetooth", 
+        "network", 
+        "pulseaudio", 
+        "battery", 
+        "custom/sep",
+        "tray"
+    ]
+}
+
