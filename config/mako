@@ -24,29 +24,12 @@ default-timeout=0
 [mode=do-not-disturb]
 invisible=1
 
+# Overwrite invisibilty if it is sysinfo
+[category=sysinfo]
+invisible=0
+
 # Positional
 
-[category=top-right]
-anchor=top-right
-
-[category=top-center]
+[category=sysinfo]
 anchor=top-center
-
-[category=top-left]
-anchor=top-left
-
-[category=bottom-right]
-anchor=bottom-right
-
-[category=bottom-center]
-anchor=bottom-center
-
-[category=bottom-left]
-anchor=bottom-left
-
-[category=center-right]
-anchor=center-right
-
-[category=center]
-anchor=center
 
