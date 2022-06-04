@@ -4,7 +4,7 @@
  * This stylesheet is a minimalistic, transparent style.
  */
 
-@define-color transparent-black-light rgba(23, 23, 23, 0.5);
+@define-color transparent-black-light rgba(23, 23, 23, 0.7);
 
 window#waybar {
     color: @white; 
