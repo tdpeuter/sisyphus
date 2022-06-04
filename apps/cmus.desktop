@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+
+Name=cmus
+GenericName=cmus ncurses music player
+Comment=Small, fast and powerful console music player for Unix-like operating systems.
+Icon=/usr/share/icons/Win11-black/apps/scalable/beatbox.svg
+
+Exec=cmus
+Terminal=true
+Categories=Utility
+Keywords=music;player
