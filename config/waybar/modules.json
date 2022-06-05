@@ -97,6 +97,9 @@
         "format-icons": {
             "default": "", // Prevent showing workspace name literal.
             "urgent": "\uf071 "
+        },
+        "persistent_workspaces": {
+            "0:¯\\_(ツ)_/¯": []
         }
     }, 
 	
