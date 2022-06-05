@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Show system status in notification, or your own message
-# Syntaxis: notify [-vb] [<title> <message>]
+# Syntaxis: notify [-vb] [-t <timeout>] [<title> <message>]
 
 # Requirements: 
 # - brightnessctl
@@ -12,7 +12,7 @@ panic () {
 }
 
 # Get options
-while getopts ":bv" options; do
+while getopts ":bvt:" options; do
 	case "${options}" in 
 		b) 	
 			value=$( brightnessctl | grep -o "[0-9]*%" )
@@ -34,6 +34,9 @@ while getopts ":bv" options; do
             timeout=2000
             category='sysinfo'
 			;;
+        t)  
+            timeout="${OPTARG}"
+            ;;
 		*)	
             panic
 			;;
