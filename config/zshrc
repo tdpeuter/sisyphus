@@ -100,6 +100,26 @@ alias resblue='systemctl restart bluetooth'
 alias Personal='cd ~/Documents/synchronisatie/Personal/_PERSOONLIJK/'
 alias UGent='cd ~/Documents/synchronisatie/UGent/Informatica\ J1\ 2021-2022/'
 
+vol () {
+
+    if [[ $# == 0 ]] ; then
+        echo "Volume: $(pamixer --get-volume-human)"
+    elif [[ "$1" =~ ^[0-9]*$ ]] ; then
+        pamixer --set-volume "${1}" 
+        vol
+    elif [[ "$1" =~ ^[+] ]] ; then
+        pamixer -i "${1#\+}"
+        vol
+    elif [[ "$1" =~ ^- ]] ; then
+        pamixer -d "${1#-}"
+        vol
+    elif [[ "$1" =~ m ]] ; then
+        pamixer --toggle
+        vol
+    fi
+
+}
+
 cpdir () {
 
     # Check arguments
