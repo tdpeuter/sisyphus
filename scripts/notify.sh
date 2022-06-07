@@ -65,5 +65,6 @@ notify-send "${title}" "${message}" \
     -t "${timeout:=5000}" \
     -c "${category:=''}" \
  	-h int:value:"${width:=0}" \
+    -h string:wired-tag:byMe \
 	-h string:x-canonical-private-synchronous:byMe # Replace if previous still exists
 
