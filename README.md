@@ -8,6 +8,12 @@ Complete guide and configuration of my machine.
 - **WM/Compositor:** Sway + Xwayland (because without... I can't - ATM)
 - **Storage:** LVM, but probably switching to ZFS soon
 
+- Alacritty: Terminal ([GitHub](https://github.com/alacritty/alacritty))
+- Swaylock-effects: Lockscreen ([GitHub](https://github.com/mortie/swaylock-effects))
+- Waybar: (Menu) bar ([GitHub](https://github.com/Alexays/Waybar))
+- Wired: Notifications ([GitHub](https://github.com/Toqozz/wired-notify))
+- Zshell: Shell
+
 ## Links
 
 Read [the wiki](https://github.com/tdpeuter/sisyphus/wiki) for guides and related things. 
