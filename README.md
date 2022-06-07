@@ -9,6 +9,7 @@ Complete guide and configuration of my machine.
 - **Storage:** LVM, but probably switching to ZFS soon
 
 - Alacritty: Terminal ([GitHub](https://github.com/alacritty/alacritty))
+- FZF-Jump: Apps launcher and more ([GitHub](https://github.com/tdpeuter/fzf-jump))
 - Swaylock-effects: Lockscreen ([GitHub](https://github.com/mortie/swaylock-effects))
 - Waybar: (Menu) bar ([GitHub](https://github.com/Alexays/Waybar))
 - Wired: Notifications ([GitHub](https://github.com/Toqozz/wired-notify))
