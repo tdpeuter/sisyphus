@@ -2,6 +2,7 @@
 # .config/sway/config
 #
 # Personal config for sway
+# Requires noto-fonts-cjk
 
 # =========
 # Autostart
@@ -12,10 +13,10 @@ input type:keyboard {
 }
 
 input 2:7:SynPS/2_Synaptics_TouchPad {
-        natural_scroll enabled
-        scroll_factor 0.6
-        middle_emulation enabled
-        tap enabled
+    natural_scroll enabled
+    scroll_factor 0.6
+    middle_emulation enabled
+    tap enabled
 }
 
 # Set background to whatever file is named bg at the moment
@@ -35,11 +36,18 @@ seat seat0 {
 
 exec_always "~/.scripts/idle.sh"
 
+# Notification manager
+exec wired
+
 # Set warm colours at night
 exec "~/.scripts/wlsunset.sh"
 
-exec nm-applet --indicator
-exec blueman-applet
+# exec blueman-applet
+
+# xwayland disable
+# I will keep using xwayland because it allows far better backwards compatibilty for a ton of apps
+# that I use on a daily basis. Also, it only seemed to take 50MB of RAM on 'idle', which I am willing
+# to offer. 
 
 focus_follows_mouse no
 
@@ -51,11 +59,6 @@ set $alt Mod1
 set $winkey Mod4
 set $term alacritty
 
-# for_window [title="dropdownterminal"] floating enable, border none, resize set 80 ppt 40 ppt, move up 338
-# exec alacritty -t dropdownterminal
-# bindsym F12 [title="dropdownterminal"] focus; move down 1000
-# bindsym Shift+F12 [title="dropdownterminal"] move up 1000
-
 set $notify exec "~/.scripts/notify.sh"
 
 # ================
@@ -63,9 +66,6 @@ set $notify exec "~/.scripts/notify.sh"
 # ================
 
 # Change focus
-bindsym $alt+Tab focus next
-bindsym $alt+Shift+Tab focus prev
-
 bindsym $winkey+Left focus left
 bindsym $winkey+Down focus down
 bindsym $winkey+Up focus up
@@ -100,6 +100,7 @@ bindsym $winkey+b focus mode_toggle
 
 bindsym $winkey+f floating enable, border normal 2
 bindsym $winkey+Shift+f floating disable, border pixel 2
+bindsym $winkey+p sticky toggle
 
 bindsym $winkey+Next move scratchpad
 bindsym $winkey+Prior scratchpad show
@@ -151,6 +152,15 @@ bindsym $winkey+r mode "resize"
 # Workspaces
 # ==========
 
+# TODO Switch workspace to output
+# TODO Switch window to workspace
+# TODO Rename workspace
+
+set $ws0 0:¯\_(ツ)_/¯
+
+# Move to this workspace on startup
+workspace $ws0 
+
 # Define names for default workspaces for which we configure key bindings later on.
 set $ws1 "1"
 set $ws2 "2"
@@ -162,7 +172,6 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
-set $ws11 "¯\_(ツ)_/¯"
 
 # switch to workspace
 bindsym $winkey+ampersand workspace number $ws1
@@ -175,45 +184,57 @@ bindsym $winkey+egrave workspace number $ws7
 bindsym $winkey+exclam workspace number $ws8
 bindsym $winkey+ccedilla workspace number $ws9
 bindsym $winkey+agrave workspace number $ws10
-bindsym $winkey+parenright workspace $ws11
+bindsym $winkey+parenright workspace $ws0
 
-bindsym $winkey+Control+Right workspace next
-bindsym $winkey+Control+Left workspace prev
+bindsym $winkey+Control+Right workspace next_on_output
+bindsym $winkey+Control+Left workspace prev_on_output
+bindsym $winkey+Control+Up focus output 'HDMI-A-1'
+bindsym $winkey+Control+Down focus output 'eDP-1'
 
 # Alternative keys
-bindsym $winkey+Control+h workspace prev
-bindsym $winkey+Control+l workspace next
+bindsym $winkey+Control+j workspace next_on_output
+bindsym $winkey+Control+k workspace prev_on_output
+bindsym $winkey+Control+l focus output 'HDMI-A-1'
+bindsym $winkey+Control+h focus output 'eDP-1'
 
 # move focused container to workspace
 bindsym $winkey+Shift+ampersand move container to workspace number $ws1; \
-	workspace number $ws1
+       workspace number $ws1
 bindsym $winkey+Shift+eacute move container to workspace number $ws2; \
-	workspace number $ws2
+       workspace number $ws2
 bindsym $winkey+Shift+quotedbl move container to workspace number $ws3; \
-	workspace number $ws3
+       workspace number $ws3
 bindsym $winkey+Shift+apostrophe move container to workspace number $ws4; \
-	workspace number $ws4
+       workspace number $ws4
 bindsym $winkey+Shift+5 move container to workspace number $ws5; \
-	workspace number $ws5
+       workspace number $ws5
 bindsym $winkey+Shift+section move container to workspace number $ws6; \
-	workspace number $ws6
+       workspace number $ws6
 bindsym $winkey+Shift+egrave move container to workspace number $ws7; \
-	workspace number $ws7
+       workspace number $ws7
 bindsym $winkey+Shift+exclam move container to workspace number $ws8; \
-	workspace number $ws8
+       workspace number $ws8
 bindsym $winkey+Shift+ccedilla move container to workspace number $ws9; \
-	workspace number $ws9
+       workspace number $ws9
 bindsym $winkey+Shift+agrave move container to workspace number $ws10; \
-	workspace number $ws10
-bindsym $winkey+Shift+parenright move container to workspace $ws11; \
-	workspace $ws11
+       workspace number $ws10
+bindsym $winkey+Shift+parenright move container to workspace $ws0; \
+       workspace $ws0
 
 bindsym $winkey+Control+Shift+Right move container to workspace next; workspace next
 bindsym $winkey+Control+Shift+Left move container to workspace prev; workspace prev
+bindsym $winkey+Control+Shift+Up move container to output 'HDMI-A-1'; focus output 'HDMI-A-1'
+bindsym $winkey+Control+Shift+Down move container to output 'eDP-1'; focus output 'eDP-1'
 
 # Alternative keys
-bindsym $winkey+Control+Shift+l move container to workspace next; workspace next
-bindsym $winkey+Control+Shift+h move container to workspace prev; workspace prev
+bindsym $winkey+Control+Shift+j move container to workspace next_on_output; \
+    workspace next_on_output
+bindsym $winkey+Control+Shift+k move container to workspace prev_on_output; \
+    workspace prev_on_output
+bindsym $winkey+Control+Shift+l move container to output 'HDMI-A-1'; \
+    focus output 'HDMI-A-1'
+bindsym $winkey+Control+Shift+h move container to output 'eDP-1'; \
+    focus output 'eDP-1'
 
 # ==============
 # System Control
@@ -229,9 +250,7 @@ bindsym $winkey+q kill
 bindsym $winkey+Return exec alacritty
 
 # Start application launcher
-bindsym $alt+space exec fuzzel
-# Start window selector based on [fuzzel](https://github.com/speersj/wuzzel)
-bindsym $alt+Shift+space exec /usr/bin/wuzzel/wuzzel
+bindsym $alt+space exec alacritty --title 'FZF-Jump' -e ~/.scripts/fzf-jump/fzf-jump-launch.sh
 
 # Brightness
 bindsym --locked XF86MonBrightnessDown exec brightnessctl -e s 5%- && $notify -b
@@ -256,16 +275,16 @@ bindsym $winkey+Delete exec --no-startup-id swaylock
 # =====
 
 # System actions
-set $mode_system System (l) lock, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+set $mode_system System (l)ock, (s)leep, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
-	bindsym l exec --no-startup-id swaylock; mode "default"
-	bindsym s exec --no-startup-id systemctl suspend; mode "default"
-	bindsym h exec --no-startup-id systemctl hibernate; mode "default"
-	bindsym r exec --no-startup-id systemctl reboot; mode "default"
-	bindsym Shift+s exec --no-startup-id systemctl poweroff -i; mode "default"
+    bindsym l exec --no-startup-id swaylock; mode "default"
+    bindsym s exec --no-startup-id systemctl suspend; mode "default"
+    bindsym h exec --no-startup-id systemctl hibernate; mode "default"
+    bindsym r exec --no-startup-id systemctl reboot; mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i; mode "default"
 
-	bindsym Return mode "default"
-	bindsym Escape mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 bindsym Control+$alt+Delete mode "$mode_system"
 
@@ -281,8 +300,8 @@ mode "$mode_screenshot" {
     bindsym Shift+w exec grimshot --notify save active $save_format; mode "default"
     bindsym Shift+s exec grimshot --notify save screen $save_format; mode "default"
 
-	bindsym Return mode "default"
-	bindsym Escape mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 bindsym Print mode "$mode_screenshot"
 
@@ -293,8 +312,8 @@ mode "$mode_preferences" {
     bindsym n exec "~/.scripts/dnd.sh"; mode "default"
     bindsym f exec "~/.scripts/focus.sh"; mode "default"
 
-	bindsym Return mode "default"
-	bindsym Escape mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 bindsym $alt+end mode "$mode_preferences"
 
@@ -305,17 +324,14 @@ bindsym $alt+end mode "$mode_preferences"
 font pango:monospace 2
 
 bar {
-	swaybar_command /usr/bin/waybar	
-	mode hide
+    swaybar_command /usr/bin/waybar
+    mode hide
 }
 
-# Notifications manager
-exec mako
-
-title_align center
 default_border pixel 2
 default_floating_border normal 2
 hide_edge_borders both
+smart_borders on
 
 # Toggle Show title
 bindsym $alt+Next border pixel 2
@@ -327,7 +343,7 @@ client.focused          #000000 #00897b #00897b #00897b   #000000
 client.focused_inactive #000000 #222222 #484e50 #484e50   #000000
 client.unfocused        #000000 #222222 #292d2e #292d2e   #000000
 
-exec gsettings set org.gnome.desktop.interface icon-theme 'Win11-black-dark'
+exec gsettings set org.gnome.desktop.interface icon-theme 'Win11-black'
 exec gsettings set org.gnome.desktop.interface gtk-theme 'Nordic'
 
 # =====================
@@ -341,6 +357,7 @@ for_window [class="Qalculate-gtk"] floating enable
 for_window [class="Caprine"] floating enable; border normal 2
 # Homewritten software testing in IntelliJ
 for_window [class="be.ugent"] floating enable
+for_window [title="^FZF-Jump$"] floating enable
 
 # =====
 # FIXES
