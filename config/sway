@@ -357,7 +357,7 @@ for_window [class="Qalculate-gtk"] floating enable
 for_window [class="Caprine"] floating enable; border normal 2
 # Homewritten software testing in IntelliJ
 for_window [class="be.ugent"] floating enable
-for_window [title="^FZF-Jump$"] floating enable
+for_window [title="^FZF-Jump$"] floating enable; border pixel 0; resize set 600 350
 
 # =====
 # FIXES
