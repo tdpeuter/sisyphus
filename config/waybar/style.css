@@ -48,7 +48,7 @@ window#waybar {
 #custom-media, #disk, #idle_inhibitor, #memory, 
 #mode, #mpd, #network, #pulseaudio, #temperature, 
 #tray {
-    padding: 0 10px;
+    padding: 0 5px;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
@@ -87,6 +87,11 @@ label:focus {
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
+}
+
+#bluetooth.disabled,
+#bluetooth.off {
+    opacity: 0.6;
 }
 
 #custom-media {

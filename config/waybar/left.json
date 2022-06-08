@@ -2,7 +2,8 @@
 	"modules-left": [
         "sway/workspaces",
         "idle_inhibitor",
-        "custom/media"
+        "custom/media",
+        "custom/browser"
     ],
 	"modules-right": [
         "disk", 

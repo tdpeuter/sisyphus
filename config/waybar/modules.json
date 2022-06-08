@@ -23,10 +23,15 @@
 
 
     "bluetooth": {
-        "format": "\uf294 {status}",
-        "format-disabled": "\uf294",
-        "on-click": "~/.scripts/bluetoggle.sh",
-        "on-click-right": "blueman-manager"
+        "format-disabled": "<big>\uf294</big>",
+        "format-off": "\uf294",
+        "format-on": "<big>\uf294</big>",
+        "format-connected": "<big>\uf294</big>c",
+        "max-length": 10.3,
+        "on-click": "alacritty --title 'FZF-Jump' -e ~/.scripts/fzf-jump/standalone.sh ~/.scripts/fzf-jump/modules/bluetooth.sh",
+        "tooltip-format": "{status} ({num_connections}):\n{device_enumerate}", 
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}"
     },
     
 
@@ -36,6 +41,13 @@
         "timezone": "Europe/Brussels",
 	    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
 	},
+
+
+    "custom/browser": {
+        "format": "\uf120",
+        "on-click": "alacritty -t 'FZF-Jump' -e ~/.scripts/fzf-jump/launcher.sh",
+        "tooltip-format": "Launch an application"
+    },
 
 
     "custom/media": {
@@ -78,10 +90,11 @@
     "network": {
         "format-disconnected": "\uf127", 
         "format-ethernet": "\uf6ff {ifname}: {ipadds}/{cidr}",
-        "format-wifi": "\uf1eb {essid} ({signalStrength}%)",
+        "format-wifi": "\uf1eb",
         "interval": 5,
         "on-click-right": "alacritty -e nmtui",
-        "tooltip-format": "{ifname}: {ipaddr}"
+        "tooltip-format": "{ifname}: {ipaddr}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%) - {ifname}: {ipaddr}"
     },
 
 
