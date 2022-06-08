@@ -21,11 +21,11 @@ while getopts ":bvt:" options; do
             category='sysinfo'
 			;;
 		v)
-            # Get volume
-            value="$( pulsemixer --get-volume | cut -f1 -d' ' )%"
+            # Get volume (don't use pamixer because that is way slower)
+            value=$(pactl get-sink-volume @DEFAULT_SINK@ | cut -d '/' -f2 | grep -o '[0-9]*%')
 
             # If audio disabled
-            if [ ! "$( pulsemixer --get-mute )" -eq 0 ] ; then 
+            if [ ! "$( pactl get-sink-mute @DEFAULT_SINK@ )" -eq "Mute: yes" ] ; then 
                 width=0
                 value="${value} (Disabled)"
             fi
