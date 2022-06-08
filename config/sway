@@ -249,10 +249,10 @@ bindsym $winkey+q kill
 # Start a terminal
 bindsym $winkey+Return exec alacritty
 
+set $fzfj-source ~/.scripts/fzf-jump
 # Start application launcher
-bindsym $alt+space exec alacritty --title 'FZF-Jump' -e ~/.scripts/fzf-jump/launcher.sh
-
-bindsym $alt+Tab exec alacritty --title 'FZF-Jump' -e ~/.scripts/fzf-jump/winselect.sh
+bindsym $alt+space exec alacritty --title 'FZF-Jump' -e $fzfj-source/launcher.sh
+bindsym $alt+Tab exec alacritty --title 'FZF-Jump' -e $fzfj-source/standalone.sh $fzfj-source/modules/windows.sh $fzfj-source/modules/workspaces.sh
 
 # Brightness
 bindsym --locked XF86MonBrightnessDown exec brightnessctl -e s 5%- && $notify -b
