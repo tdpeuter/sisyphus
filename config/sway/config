@@ -37,17 +37,14 @@ seat seat0 {
 exec_always "~/.scripts/idle.sh"
 
 # Notification manager
-exec wired
+exec dunst -verbosity crit
 
 # Set warm colours at night
 exec "~/.scripts/wlsunset.sh"
 
-# exec blueman-applet
-
 # xwayland disable
-# I will keep using xwayland because it allows far better backwards compatibilty for a ton of apps
-# that I use on a daily basis. Also, it only seemed to take 50MB of RAM on 'idle', which I am willing
-# to offer. 
+# I will keep using xwayland because it allows backwards compatibilty for a ton of apps that I use
+# on a daily basis. It can be expensive on the memory sometimes but argh. 
 
 focus_follows_mouse no
 
@@ -151,10 +148,6 @@ bindsym $winkey+r mode "resize"
 # ==========
 # Workspaces
 # ==========
-
-# TODO Switch workspace to output
-# TODO Switch window to workspace
-# TODO Rename workspace
 
 set $ws0 0:¯\_(ツ)_/¯
 
@@ -312,7 +305,7 @@ set $mode_preferences Toggle (s)unset, (n)otifications, (f)ocus
 mode "$mode_preferences" {
     bindsym s exec "~/.scripts/wlsunset.sh"; mode "default"
     bindsym n exec "~/.scripts/dnd.sh"; mode "default"
-    bindsym f exec "~/.scripts/focus.sh"; mode "default"
+    bindsym f exec "dunstctl set-paused toggle"; mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -322,8 +315,6 @@ bindsym $alt+end mode "$mode_preferences"
 # =======
 # Styling
 # =======
-
-font pango:monospace 2
 
 bar {
     swaybar_command /usr/bin/waybar
@@ -340,10 +331,11 @@ bindsym $alt+Next border pixel 2
 bindsym $alt+Prior border normal 2
 
 # Mimic no titles
-# Classi    			border	backgr	text	indic.	child_border
-client.focused          #000000 #00897b #00897b #00897b   #000000
-client.focused_inactive #000000 #222222 #484e50 #484e50   #000000
-client.unfocused        #000000 #222222 #292d2e #292d2e   #000000
+# Classi    			border	backgr	text	indic.  hild_border
+client.focused          #000000 #00897b #00897b #00897b #000000
+client.focused_inactive #000000 #222222 #484e50 #484e50 #000000
+client.unfocused        #000000 #222222 #292d2e #292d2e #000000
+client.urgent           #ff0000 #ff0000 #ff0000 #ff0000 #ff0000
 
 exec gsettings set org.gnome.desktop.interface icon-theme 'Win11-black'
 exec gsettings set org.gnome.desktop.interface gtk-theme 'Nordic'

@@ -95,6 +95,7 @@
 
 [experimental]
     per_monitor_dpi = false
+    enable_recursive_icon_lookup = true
 
 ### Filters ###
 # and you can override the
@@ -145,7 +146,7 @@
     highlight = "#ffffff"
     urgency = low
     timeout = 1
-    set_stack_tag = 'sysinfo'
+    set_stack_tag = 'sysinfo' # Replace the previous notification if it still exists.
 
 [Spotify]
     appname = "Spotify"
