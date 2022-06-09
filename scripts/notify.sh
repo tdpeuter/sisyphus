@@ -4,7 +4,6 @@
 
 # Requirements: 
 # - brightnessctl
-# - pulsemixer
 
 panic () {
     >&2 echo "Syntaxis: notify [-vb] [<title> [<message>]]"
@@ -15,24 +14,24 @@ panic () {
 while getopts ":bvt:" options; do
 	case "${options}" in 
 		b) 	
-			value=$( brightnessctl | grep -o "[0-9]*%" )
-			title="Brightness: ${value}"
-            timeout=2000
+			value=$( brightnessctl | grep -o "[0-9]*%" | tr -d '%' )
+			title="Brightness: ${value}%"
             category='sysinfo'
 			;;
 		v)
             # Get volume (don't use pamixer because that is way slower)
-            value=$(pactl get-sink-volume @DEFAULT_SINK@ | cut -d '/' -f2 | grep -o '[0-9]*%')
-
-            # If audio disabled
-            if [ ! "$( pactl get-sink-mute @DEFAULT_SINK@ )" -eq "Mute: yes" ] ; then 
-                width=0
-                value="${value} (Disabled)"
-            fi
-
-			title="Volume: ${value:-'0%'}"
-            timeout=2000
+            value=$( pactl get-sink-volume @DEFAULT_SINK@ \
+                | cut -d '/' -f2 \
+                | grep -o '[0-9]*%' \
+                | tr -d '%' )
+            title="Volume: ${value}%"
             category='sysinfo'
+
+            # If audio disabled, set value to zero.
+            if [ "$( pactl get-sink-mute @DEFAULT_SINK@ )" == "Mute: yes" ] ; then 
+                title="Volume: ${value}% (Disabled)"
+                value=0
+            fi
 			;;
         t)  
             timeout="${OPTARG}"
@@ -48,23 +47,22 @@ shift $((OPTIND - 1))
 # Check arguments
 if [ $# -gt 2 ] ; then 
     panic
-elif [ $# -eq 2 ] ; then
-    title=$1
-    message=$2
-elif [ $# -eq 1 ] ; then 
-    title=$1
+elif [ $# -gt 0 ] ; then
+    title="${1}"
+    message="${2:-}"
 fi
 
-# Calculate length of coloured bar.
-if [[ "${value}" =~ ^[0-9]+%$ && "${width:--1}" -ne 0 ]] ; then 
-    width=$(grep -o "[0-9]*" <<< "${value}")
+# Build command string
+arguments=""
+if [[ ! -z "${category}" ]] ; then 
+    arguments+=" -c ${category}"
+fi
+if [[ ! -z "${timeout}" ]] ; then 
+    arguments+=" -t ${timeout}"
+fi
+if [[ ! -z "${value}" ]] ; then 
+    arguments+=" -h int:value:${value}"
 fi
 
-# Send message
-notify-send "${title}" "${message}" \
-    -t "${timeout:=5000}" \
-    -c "${category:=''}" \
- 	-h int:value:"${width:=0}" \
-    -h string:wired-tag:byMe \
-	-h string:x-canonical-private-synchronous:byMe # Replace if previous still exists
+notify-send "${title}" "${message}" ${arguments}
 
