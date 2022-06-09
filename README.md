@@ -8,11 +8,13 @@ Complete guide and configuration of my machine.
 - **WM/Compositor:** Sway + Xwayland (because without... I can't - ATM)
 - **Storage:** LVM, but probably switching to ZFS soon
 
+---
+
 - Alacritty: Terminal ([GitHub](https://github.com/alacritty/alacritty))
 - FZF-Jump: Apps launcher and more ([GitHub](https://github.com/tdpeuter/fzf-jump))
 - Swaylock-effects: Lockscreen ([GitHub](https://github.com/mortie/swaylock-effects))
 - Waybar: (Menu) bar ([GitHub](https://github.com/Alexays/Waybar))
-- Wired: Notifications ([GitHub](https://github.com/Toqozz/wired-notify))
+- Dunst: Notifications ([GitHub](https://github.com/dunst-project/dunst))
 - Zshell: Shell
 
 ## Links
