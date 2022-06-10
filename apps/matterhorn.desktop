@@ -5,7 +5,7 @@ Version=1.0
 Name=Zeus Matterhorn
 GenericName=Mattermost Terminal Client
 Comment=Zeus WPI Matterhorn server
-Icon=/usr/share/icons/Win11-black/apps/scalable/matterhorn.svg
+Icon=matterhorn
 
 Exec=matterhorn
 Terminal=true
