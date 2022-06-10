@@ -40,9 +40,9 @@ exec_always "~/.scripts/idle.sh"
 exec dunst -verbosity crit
 
 # Set warm colours at night
-exec "~/.scripts/wlsunset.sh"
+exec clight
 
-# xwayland disable
+xwayland disable
 # I will keep using xwayland because it allows backwards compatibilty for a ton of apps that I use
 # on a daily basis. It can be expensive on the memory sometimes but argh. 
 
@@ -316,6 +316,9 @@ bindsym $alt+end mode "$mode_preferences"
 # Styling
 # =======
 
+# Decrease the height of the window bar thing. 
+font pango:monospace 1
+
 bar {
     swaybar_command /usr/bin/waybar
     mode hide
@@ -333,8 +336,8 @@ bindsym $alt+Prior border normal 2
 # Mimic no titles
 # Classi    			border	backgr	text	indic.  hild_border
 client.focused          #000000 #00897b #00897b #00897b #000000
-client.focused_inactive #000000 #222222 #484e50 #484e50 #000000
-client.unfocused        #000000 #222222 #292d2e #292d2e #000000
+client.focused_inactive #000000 #222222 #222222 #222222 #000000
+client.unfocused        #000000 #222222 #222222 #222222 #000000
 client.urgent           #ff0000 #ff0000 #ff0000 #ff0000 #ff0000
 
 exec gsettings set org.gnome.desktop.interface icon-theme 'Win11-black'

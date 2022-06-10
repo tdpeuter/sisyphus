@@ -11,11 +11,14 @@ Complete guide and configuration of my machine.
 ---
 
 - Alacritty: Terminal ([GitHub](https://github.com/alacritty/alacritty))
+- Clight: Anything screen related ([GitHub](https://github.com/FedeDP/Clight))
 - FZF-Jump: Apps launcher and more ([GitHub](https://github.com/tdpeuter/fzf-jump))
 - Swaylock-effects: Lockscreen ([GitHub](https://github.com/mortie/swaylock-effects))
 - Waybar: (Menu) bar ([GitHub](https://github.com/Alexays/Waybar))
 - Dunst: Notifications ([GitHub](https://github.com/dunst-project/dunst))
 - Zshell: Shell
+
+I also try to keep my [list of repos that I use on a daily basis](https://github.com/stars/tdpeuter/lists/fire-iu) up to date.
 
 ## Links
 
