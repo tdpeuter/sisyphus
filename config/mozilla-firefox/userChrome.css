@@ -1,0 +1,82 @@
+/*
+ * ~/.mozilla/firefox/<profile>/chrome/userChrome.css
+ *
+ * Excerpt (with additions) from
+ * https://github.com/SAGAtheme/Firefox
+ *
+ * To enable firefox styling, see:
+ * https://www.reddit.com/r/FirefoxCSS/comments/73dvty/tutorial_how_to_create_and_livedebug_userchromecss
+ */
+
+:root {
+	--space-above-tabbar: 0 !important;
+    font-family: Letter;
+}
+
+#TabsToolbar:not([inFullscreen]) > .toolbar-items {
+	margin-bottom: -1px !important;
+    margin-top: -1px;
+}
+
+/* Tabs bar height */
+#tabbrowser-tabs,
+#tabbrowser-tabs arrowscrollbox {
+	height: auto !important;
+	min-height: auto !important;
+}
+
+tab > stack {
+	height: 36px !important;
+	min-height: 36px !important;
+}
+
+/* Space between tabs */
+.tabbrowser-tab:not([pinned=true]) {
+	margin: 1 !important;
+}
+.tabbrowser-tab {
+	border: 0 !important;
+	padding-inline: 0 !important;
+}
+#TabsToolbar {
+	padding: 0 !important;
+}
+#TabsToolbar .toolbarbutton-1:last-child {
+	margin-right: 4px !important;
+}
+
+/* Tab labels */
+tab {
+    font-weight: bold;
+    font-size: 1em;
+}
+
+/* Hide close and newtab buttons */
+/* Hide tab-bar if there is only one tab */
+#tabbrowser-tabs tab:only-of-type,
+#tabs-newtab-button, 
+.tab-close-button {
+    display: none !important; 
+}
+
+/* Center all inside tab */
+.tab-content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: -1px;
+	min-width: 100% !important;
+	padding: 0 10px !important;
+}
+
+/* Full width tabs */
+.tabbrowser-tab:not([style^="max-width"]):not([pinned]),
+.tabbrowser-tab[style^="max-width: 100px !important;"]:not([pinned]) {
+	max-width: 100% !important;
+}
+
+.tabbrowser-tab:not([style^="max-width"]):not([pinned]):not([fadein]),
+.tabbrowser-tab[style^="max-width: 100px !important;"]:not([pinned]):not([fadein]) {
+	max-width: .1px !important;
+}
+
