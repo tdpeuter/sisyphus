@@ -40,7 +40,7 @@ exec_always "~/.scripts/idle.sh"
 exec dunst -verbosity crit
 
 # Set warm colours at night
-exec clight
+exec clight &> /dev/null
 
 xwayland disable
 # I will keep using xwayland because it allows backwards compatibilty for a ton of apps that I use
