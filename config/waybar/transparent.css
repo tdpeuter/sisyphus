@@ -11,7 +11,8 @@ window#waybar {
     background-color: transparent;
 }
 
-.toggle .modules-right {
+.toggle .modules-right,
+.toggle .modules-left {
     background-color: @transparent-black-light;
 }
 

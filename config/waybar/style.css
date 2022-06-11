@@ -22,7 +22,7 @@ window#waybar {
 }
 
 #window, #workspaces {
-    margin: 0 4px;
+    margin: 0 5px;
 }
 
 #workspaces button {
@@ -45,9 +45,9 @@ window#waybar {
 
 /* All modules individually. */
 #backlight, #battery, #bluetooth, #clock, #cpu, 
-#custom-media, #disk, #idle_inhibitor, #memory, 
-#mode, #mpd, #network, #pulseaudio, #temperature, 
-#tray {
+#custom-browser, #custom-media, #disk, #idle_inhibitor, 
+#memory, #mode, #mpd, #network, #pulseaudio, 
+#temperature, #tray {
     padding: 0 5px;
 }
 

@@ -2,11 +2,9 @@
 	"modules-left": [
         "sway/workspaces",
         "idle_inhibitor",
-        "custom/media",
-        "custom/browser"
+        "custom/media"
     ],
 	"modules-right": [
-        "disk", 
         "memory", 
         "cpu", 
         "temperature", 

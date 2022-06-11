@@ -21,22 +21,25 @@
     "include": [
         // Import modules (!)
         "~/.config/waybar/modules.json", 
-//        "~/.config/waybar/default.json"
+//      "~/.config/waybar/default.json"
         "~/.config/waybar/left.json"
     ],
+
 }, 
 
 {
     
-    // Import modules (!)
-    "include": "~/.config/waybar/modules.json",
-
     "name": "keep",
     "position": "top",
     "height": 25,
-	"modules-left": ["sway/mode"],
+	"modules-left": ["sway/mode", "custom/browser"],
     "modules-center": ["sway/window"],
     "modules-right": ["clock"],
+
+    "include": [
+        // Import modules (!)
+        "~/.config/waybar/modules.json"
+    ],
 
 }]
 
