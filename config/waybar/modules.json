@@ -118,12 +118,12 @@
 	
 
     "pulseaudio": {
-	    "format": "{volume}% {icon} {format_source}",
-	    "format-bluetooth": "{volume}% {icon}\uf294 {format_source}",
-	    "format-bluetooth-muted": "\uf6a9 {icon}\uf294 {format_source}",
-	    "format-muted": "\uf6a9 {format_source}",
-	    "format-source": "{volume}% \uf130",
-	    "format-source-muted": "\uf131",
+	    "format": "{volume}% {icon}{format_source}",
+	    "format-bluetooth": "{volume}% {icon}\uf294{format_source}",
+	    "format-bluetooth-muted": "\uf6a9 {icon}\uf294{format_source}",
+	    "format-muted": "\uf6a9{format_source}",
+	    "format-source": " {volume}% \uf130",
+	    "format-source-muted": "",
 	    "format-icons": {
 		    "headphone": "\uf58f",
     		"hands-free": "\uf590",
