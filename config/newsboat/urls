@@ -1,0 +1,54 @@
+#
+# ~/.config/newsboat/urls
+#
+
+---News---
+https://feeds.bbci.co.uk/news/rss.xml
+
+---Blogs---
+https://マリウス.com/index.xml "tech" "programming"
+
+---Podcasts---
+https://highdrag.wordpress.com/category/podcast/feed/ "gaming" "high drag" "eve online"
+
+0/0--
+
+---Music_(YouTube)---
+https://www.youtube.com/feeds/videos.xml?channel_id=UClU-JRXNukej7RdQGSGzALw "yt" "music" "lofi offon"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC-7RDShJHg-QfxLkcNXG-nQ "yt" "music" "smooth sounds"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC4X7J9D6VbTIwnFDFNkfQ1A "yt" "music" "ambition"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCOZdVirxtKdtDDywL0DINGw "yt" "music" "nightmareowl music"
+https://www.youtube.com/feeds/videos.xml?channel_id=UChuVypW5xGRq8GfLqZJhMFw "yt" "music" "fourat xu"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCoZmOvi8C-XL4PyLyd9daqw "yt" "music" "broken kid club"
+
+0/0--
+
+---Science_(YouTube)---
+https://www.youtube.com/feeds/videos.xml?channel_id=UCUK0HBIBWgM2c4vsPhkYY4w "yt" "science" "the slow mo guys"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC6nSFpj9HTCZ5t-N3Rm3-HA "yt" "science" "vsauce"
+
+---Essays_(YouTube)---
+https://www.youtube.com/feeds/videos.xml?channel_id=UCFrIWascjv4rUUzJyAcB4EQ "yt" "essays" "pinkas" "music"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCjksxmAxJUlGuXUO1ndt5GA "yt" "essays" "avaragepixel" "gaming"
+
+0/0--
+
+---Comedy_(YouTube)---
+https://www.youtube.com/feeds/videos.xml?channel_id=UCpIafFPGutTAKOBHMtGen7g "yt" "comedy" "gus johnson" "sketches"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCakAg8hC_RFJm4RI3DlD7SA "yt" "comedy" "brian david gilbert" "sketches" 
+
+0/0--
+
+---Tech_(YouTube)---
+https://www.youtube.com/feeds/videos.xml?channel_id=UCsnGwSIHyoYN0kiINAGUKxg "yt" "tech" "wolfgang's channel"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCXuqSBlHAE6Xw-yeJA0Tunw "yt" "tech" "linus tech tips"
+
+---Gaming_(YouTube)---
+https://www.youtube.com/feeds/videos.xml?channel_id=UCQMjMW-9PhWoH6TWwmnVWvA "yt" "gaming" "callmecarson" "comedy"
+https://www.youtube.com/feeds/videos.xml?channel_id=UClzRWsHWFjb6vGG_dPP3VJg "yt" "gaming" "callmecarsonplus" "comedy"
+
+---Minecraft_(YouTube)---
+https://www.youtube.com/feeds/videos.xml?channel_id=UCHSI8erNrN6hs3sUK6oONLA "yt" "gaming" "minecraft" "ilmango"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCwSX6JULi7q_Y3NV0sxpvtA "yt" "gaming" "minecraft" "vesko"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC32w6uX5qtmUtF4QQQ2PKaQ "yt" "gaming" "minecraft" "hermitcraft recap"
+
