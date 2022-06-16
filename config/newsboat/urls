@@ -8,9 +8,6 @@ https://feeds.bbci.co.uk/news/rss.xml
 ---Blogs---
 https://マリウス.com/index.xml "tech" "programming"
 
----Podcasts---
-https://highdrag.wordpress.com/category/podcast/feed/ "gaming" "high drag" "eve online"
-
 0/0--
 
 ---Music_(YouTube)---
@@ -21,6 +18,8 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UC4X7J9D6VbTIwnFDFNkfQ1A "yt
 https://www.youtube.com/feeds/videos.xml?channel_id=UCOZdVirxtKdtDDywL0DINGw "yt" "music" "nightmareowl music"
 https://www.youtube.com/feeds/videos.xml?channel_id=UChuVypW5xGRq8GfLqZJhMFw "yt" "music" "fourat xu"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCoZmOvi8C-XL4PyLyd9daqw "yt" "music" "broken kid club"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC5c8xw-NuFFfwjAtGKCjMuQ "yt" "music" "macroblank"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCA9Um7XFYxqQK8r726Yc3xQ "yt" "music" "haircuts for men"
 
 0/0--
 
@@ -35,6 +34,7 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UCtHaxi4GTYDpJgMSGy7AeSw "yt
 https://www.youtube.com/feeds/videos.xml?channel_id=UCUmLRMERmJrmUtgnbFfknAg "yt" "coding" "randy"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCUzQJ3JBuQ9w-po4TXRJHiA "yt" "coding" "jdh"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCG2IoSJBUhrGL8fb5stMCWw "yt" "coding" "gonkee"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCsBjURrPoezykLs9EqgamOA "yt" "coding" "fireship"
 
 ---Essays_(YouTube)---
 https://www.youtube.com/feeds/videos.xml?channel_id=UCFrIWascjv4rUUzJyAcB4EQ "yt" "essays" "pinkas" "music"
@@ -68,12 +68,13 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UC39KF9j7hucS2xncTO8d5CQ "yt
 
 ---Tech_(YouTube)---
 https://www.youtube.com/feeds/videos.xml?channel_id=UCsnGwSIHyoYN0kiINAGUKxg "yt" "tech" "wolfgang's channel"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC5UAwBUum7CPN5buc-_N1Fw "yt" "tech" "the linux experiment"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCxrqVfm7FUHSkboVbp1dr7w "yt" "tech" "reluctant anarchist"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCXuqSBlHAE6Xw-yeJA0Tunw "yt" "tech" "linus tech tips"
 
 ---Gaming_(YouTube)---
 https://www.youtube.com/feeds/videos.xml?channel_id=UCQMjMW-9PhWoH6TWwmnVWvA "yt" "gaming" "callmecarson" "comedy"
-https://www.youtube.com/feeds/videos.xml?channel_id=UCmbP0Q_L9NzAQDz8voa4ZTw "yt" "gaming" callmecarsonlive" "comedy"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCmbP0Q_L9NzAQDz8voa4ZTw "yt" "gaming" "callmecarsonlive" "comedy"
 https://www.youtube.com/feeds/videos.xml?channel_id=UClzRWsHWFjb6vGG_dPP3VJg "yt" "gaming" "callmecarsonplus" "comedy"
 
 ---Minecraft_(YouTube)---
@@ -86,6 +87,9 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UCwSX6JULi7q_Y3NV0sxpvtA "yt
 https://www.youtube.com/feeds/videos.xml?channel_id=UC32w6uX5qtmUtF4QQQ2PKaQ "yt" "gaming" "minecraft" "hermitcraft recap"
 
 0/0--
+
+---Podcasts---
+https://highdrag.wordpress.com/category/podcast/feed/ "gaming" "high drag" "eve online"
 
 ---Friends_(YouTube)---
 https://www.youtube.com/feeds/videos.xml?channel_id=UCNAd935S3kzAD6_kQLTCDrQ "yt" "gaming" "aloaargh"
