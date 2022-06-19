@@ -1,368 +1,49 @@
-# 
-# .config/sway/config
 #
+# .config/sway/config
 # Personal config for sway
 # Requires noto-fonts-cjk
+#
 
-# =========
-# Autostart
-# =========
+# Import other config files
+include {
+    autostart
+    commands
+    modes
+    style
+}
 
+# Input
 input type:keyboard {
-	xkb_layout "be"
+    xkb_layout  "be"
 }
 
 input 2:7:SynPS/2_Synaptics_TouchPad {
-    natural_scroll enabled
-    scroll_factor 0.6
-    middle_emulation enabled
-    tap enabled
+    natural_scroll      enabled
+    scroll_factor       0.6
+    middle_emulation    enabled
+    tap                 enabled
 }
 
-# Set background to whatever file is named bg at the moment
+seat seat0 hide_cursor when-typing enable
+
+# Output
 output * {
     bg "~/Pictures/wallpapers/bg.*" fill
 }
 
 output 'Dell Inc. DELL P2214H 29C2937M4YTL' {
     # Vertical monitor
-    transform 270 
+    transform   270 
 }
 
-# Hide the cursor when typing
-seat seat0 {
-    hide_cursor when-typing enable
-}
-
-exec_always "~/.scripts/idle.sh"
-
-# Notification manager
-exec dunst -verbosity crit
-
-# Set warm colours at night
-exec clight &> /dev/null
-
-xwayland disable
-# I will keep using xwayland because it allows backwards compatibilty for a ton of apps that I use
-# on a daily basis. It can be expensive on the memory sometimes but argh. 
-
+# Focus
 focus_follows_mouse no
 
-# =========
-# Variables
-# =========
-
-set $alt Mod1
-set $winkey Mod4
-set $term alacritty
-
-set $notify exec "~/.scripts/notify.sh"
-
-# ================
-# Window shortcuts
-# ================
-
-# Change focus
-bindsym $winkey+Left focus left
-bindsym $winkey+Down focus down
-bindsym $winkey+Up focus up
-bindsym $winkey+Right focus right
-
-# Alternative keys
-bindsym $winkey+h focus left
-bindsym $winkey+j focus down
-bindsym $winkey+k focus up
-bindsym $winkey+l focus right
-
-# Move focused window
-bindsym $winkey+Shift+Left move left
-bindsym $winkey+Shift+Down move down
-bindsym $winkey+Shift+Up move up
-bindsym $winkey+Shift+Right move right
-
-# Alternative keys
-bindsym $winkey+Shift+h move left
-bindsym $winkey+Shift+j move down
-bindsym $winkey+Shift+k move up
-bindsym $winkey+Shift+l move right
-
-# Layouts
-bindsym $winkey+w layout toggle split
-bindsym $winkey+x layout tabbed
-bindsym $winkey+c split h
-bindsym $winkey+v split v
-
-bindsym $winkey+a focus parent
-bindsym $winkey+b focus mode_toggle
-
-bindsym $winkey+f floating enable, border normal 2
-bindsym $winkey+Shift+f floating disable, border pixel 2
-bindsym $winkey+p sticky toggle
-
-bindsym $winkey+Next move scratchpad
-bindsym $winkey+Prior scratchpad show
-
-# Resize window menu
-mode "resize" {
-    bindsym l resize grow width 10 px or 10 ppt
-    bindsym k resize grow height 10 px or 10 ppt
-    bindsym h resize shrink width 10 px or 10 ppt
-    bindsym j resize shrink height 10 px or 10 ppt
-
-	bindsym Shift+l resize grow width 50 px or 50 ppt
-	bindsym Shift+k resize grow height 50 px or 50 ppt
-	bindsym Shift+h resize shrink width 50 px or 50 ppt
-	bindsym Shift+j resize shrink height 50 px or 50 ppt
-
-    # Alternative keys
-    bindsym Up resize grow height 10 px or 10 ppt
-    bindsym Right resize grow width 10 px or 10 ppt
-    bindsym Left resize shrink width 10 px or 10 ppt
-    bindsym Down resize shrink height 10 px or 10 ppt
-
-	bindsym Shift+Up resize grow height 50 px or 50 ppt
-	bindsym Shift+Right resize grow width 50 px or 50 ppt
-	bindsym Shift+Left resize shrink width 50 px or 50 ppt
-	bindsym Shift+Down resize shrink height 50 px or 50 ppt
-
-	# Window movement
-	bindsym $winkey+h move left
-	bindsym $winkey+j move down
-	bindsym $winkey+l move right
-	bindsym $winkey+k move up
-
-	# Alternative keys
-	bindsym $winkey+Left move left
-	bindsym $winkey+Down move down
-	bindsym $winkey+Right move right
-	bindsym $winkey+Up move up
-
-    # Go back
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-    bindsym $winkey+r mode "default"
-}
-
-bindsym $winkey+r mode "resize"
-
-# ==========
-# Workspaces
-# ==========
-
-set $ws0 0:¯\_(ツ)_/¯
-
-# Move to this workspace on startup
-workspace $ws0 
-
-# Define names for default workspaces for which we configure key bindings later on.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
-
-# switch to workspace
-bindsym $winkey+ampersand workspace number $ws1
-bindsym $winkey+eacute workspace number $ws2
-bindsym $winkey+quotedbl workspace number $ws3
-bindsym $winkey+apostrophe workspace number $ws4
-bindsym $winkey+parenleft workspace number $ws5
-bindsym $winkey+section workspace number $ws6
-bindsym $winkey+egrave workspace number $ws7
-bindsym $winkey+exclam workspace number $ws8
-bindsym $winkey+ccedilla workspace number $ws9
-bindsym $winkey+agrave workspace number $ws10
-bindsym $winkey+parenright workspace $ws0
-
-bindsym $winkey+Control+Right workspace next_on_output
-bindsym $winkey+Control+Left workspace prev_on_output
-bindsym $winkey+Control+Up focus output 'HDMI-A-1'
-bindsym $winkey+Control+Down focus output 'eDP-1'
-
-# Alternative keys
-bindsym $winkey+Control+j workspace next_on_output
-bindsym $winkey+Control+k workspace prev_on_output
-bindsym $winkey+Control+l focus output 'HDMI-A-1'
-bindsym $winkey+Control+h focus output 'eDP-1'
-
-# move focused container to workspace
-bindsym $winkey+Shift+ampersand move container to workspace number $ws1; \
-       workspace number $ws1
-bindsym $winkey+Shift+eacute move container to workspace number $ws2; \
-       workspace number $ws2
-bindsym $winkey+Shift+quotedbl move container to workspace number $ws3; \
-       workspace number $ws3
-bindsym $winkey+Shift+apostrophe move container to workspace number $ws4; \
-       workspace number $ws4
-bindsym $winkey+Shift+5 move container to workspace number $ws5; \
-       workspace number $ws5
-bindsym $winkey+Shift+section move container to workspace number $ws6; \
-       workspace number $ws6
-bindsym $winkey+Shift+egrave move container to workspace number $ws7; \
-       workspace number $ws7
-bindsym $winkey+Shift+exclam move container to workspace number $ws8; \
-       workspace number $ws8
-bindsym $winkey+Shift+ccedilla move container to workspace number $ws9; \
-       workspace number $ws9
-bindsym $winkey+Shift+agrave move container to workspace number $ws10; \
-       workspace number $ws10
-bindsym $winkey+Shift+parenright move container to workspace $ws0; \
-       workspace $ws0
-
-bindsym $winkey+Control+Shift+Right move container to workspace next; workspace next
-bindsym $winkey+Control+Shift+Left move container to workspace prev; workspace prev
-bindsym $winkey+Control+Shift+Up move container to output 'HDMI-A-1'; focus output 'HDMI-A-1'
-bindsym $winkey+Control+Shift+Down move container to output 'eDP-1'; focus output 'eDP-1'
-
-# Alternative keys
-bindsym $winkey+Control+Shift+j move container to workspace next_on_output; \
-    workspace next_on_output
-bindsym $winkey+Control+Shift+k move container to workspace prev_on_output; \
-    workspace prev_on_output
-bindsym $winkey+Control+Shift+l move container to output 'HDMI-A-1'; \
-    focus output 'HDMI-A-1'
-bindsym $winkey+Control+Shift+h move container to output 'eDP-1'; \
-    focus output 'eDP-1'
-
-# ==============
-# System Control
-# ==============
-
-bindsym $alt+Shift+r reload
-bindsym $alt+Shift+e exec swaynag -t warning -m 'Do you really want to exit sway?' -B 'Yes, exit sway' 'swaymsg exit'  
-
-# Kill focused window
-bindsym $winkey+q kill
-
-# Start a terminal
-bindsym $winkey+Return exec alacritty
-
-set $fzfj-source ~/.scripts/fzf-jump
-# Start application launcher
-bindsym $alt+space exec alacritty --title 'FZF-Jump' -e $fzfj-source/launcher.sh
-bindsym $alt+Tab exec alacritty --title 'FZF-Jump' -e $fzfj-source/standalone.sh $fzfj-source/modules/windows.sh $fzfj-source/modules/workspaces.sh
-
-# Brightness
-bindsym --locked XF86MonBrightnessDown exec brightnessctl -e s 5%- && $notify -b
-bindsym --locked XF86MonBrightnessUp exec brightnessctl -e s +5% && $notify -b
-
-# Media control
-bindsym F7 exec --no-startup-id playerctl play-pause
-bindsym Shift+XF86AudioLowerVolume exec --no-startup-id playerctl previous
-bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id playerctl next
-
-# Volume control
-bindsym XF86AudioRaiseVolume exec --no-startup-id pulsemixer --change-volume +2 --max-volume 100 && $notify -v
-bindsym XF86AudioLowerVolume exec --no-startup-id pulsemixer --change-volume -2 && $notify -v
-bindsym XF86AudioMute exec --no-startup-id pulsemixer --toggle-mute && $notify -v
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
-
-# Lockscreen
-bindsym $winkey+Delete exec --no-startup-id swaylock
-
-# =====
-# Modes
-# =====
-
-# System actions
-set $mode_system System (l)ock, (s)leep, (h)ibernate, (r)eboot, (Shift+s)hutdown
-mode "$mode_system" {
-    bindsym l exec --no-startup-id swaylock; mode "default"
-    bindsym s exec --no-startup-id systemctl suspend; mode "default"
-    bindsym h exec --no-startup-id systemctl hibernate; mode "default"
-    bindsym r exec --no-startup-id systemctl reboot; mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff -i; mode "default"
-
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym Control+$alt+Delete mode "$mode_system"
-
-# Screenshots
-set $mode_screenshot Screenshot of (a)rea, current (w)indow, (s)creen - Shift to save
-set $save_format Pictures/Screenshots/$(date +%F)-$(date +%T).png
-mode "$mode_screenshot" {
-    bindsym a exec grimshot copy area; mode "default"
-    bindsym w exec grimshot --notify copy active; mode "default"
-    bindsym s exec grimshot --notify copy screen; mode "default"
-
-    bindsym Shift+a exec grimshot --notify save area $save_format; mode "default"
-    bindsym Shift+w exec grimshot --notify save active $save_format; mode "default"
-    bindsym Shift+s exec grimshot --notify save screen $save_format; mode "default"
-
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym Print mode "$mode_screenshot"
-
-# Some preferences
-set $mode_preferences Toggle (s)unset, (n)otifications, (f)ocus
-mode "$mode_preferences" {
-    bindsym s exec "~/.scripts/wlsunset.sh"; mode "default"
-    bindsym n exec "~/.scripts/dnd.sh"; mode "default"
-    bindsym f exec "dunstctl set-paused toggle"; mode "default"
-
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $alt+end mode "$mode_preferences"
-
-# =======
-# Styling
-# =======
-
-# Decrease the height of the window bar thing. 
-font pango:monospace 1
-
-bar {
-    swaybar_command /usr/bin/waybar
-    mode hide
-}
-
-default_border pixel 2
-default_floating_border normal 2
-hide_edge_borders both
-smart_borders on
-
-# Toggle Show title
-bindsym $alt+Next border pixel 2
-bindsym $alt+Prior border normal 2
-
-# Mimic no titles
-# Classi    			border	backgr	text	indic.  hild_border
-client.focused          #000000 #00897b #00897b #00897b #000000
-client.focused_inactive #000000 #222222 #222222 #222222 #000000
-client.unfocused        #000000 #222222 #222222 #222222 #000000
-client.urgent           #ff0000 #ff0000 #ff0000 #ff0000 #ff0000
-
-exec gsettings set org.gnome.desktop.interface icon-theme 'Win11-black'
-exec gsettings set org.gnome.desktop.interface gtk-theme 'Nordic'
-
-# =====================
-# Window configurations 
-# =====================
-
+# Window rules
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
-for_window [class="Qalculate-gtk"] floating enable
-for_window [class="Caprine"] floating enable; border normal 2
-# Homewritten software testing in IntelliJ
-for_window [class="be.ugent"] floating enable
-for_window [title="^FZF-Jump$"] floating enable; border pixel 0; resize set 600 350
-
-# =====
-# FIXES
-# =====
-
-# [Slow launch for some GTK apps](https://github.com/swaywm/sway/issues/5732)
-exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-
-# Fix JetBrain IDE's showing properly
-exec wmname LG3D
-
+for_window [class="Qalculate"] floating enable
+for_window [class="Caprine"] floating enable, border normal 2
+for_window [class="be.ugent"] floating enable               # IntelliJ Java programs
+for_window [title="^FZF-Jump$"] floating enable, border pixel 0, resize set 600 350

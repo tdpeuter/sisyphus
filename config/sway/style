@@ -1,0 +1,27 @@
+#
+# ~/.config/sway/style 
+# Styling for sway
+#
+
+# Decrease the height of the window bar thing. 
+font pango:monospace 1
+
+bar {
+    swaybar_command /usr/bin/waybar
+    mode hide
+}
+
+default_border pixel 1
+default_floating_border normal 1
+hide_edge_borders both
+smart_borders on
+
+# Mimic no titles
+#                       border  backgr. text    indic.  child_border
+client.focused          #000000 #00897b #00897b #00897b #000000
+client.focused_inactive #000000 #222222 #222222 #222222 #000000
+client.unfocused        #000000 #222222 #222222 #222222 #000000
+client.urgent           #ff0000 #ff0000 #ff0000 #ff0000 #ff0000
+
+exec gsettings set org.gnome.desktop.interface icon-theme 'IcoSystem'
+exec gsettings set org.gnome.desktop.interface gtk-theme 'Nordic'
