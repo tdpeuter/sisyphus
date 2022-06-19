@@ -8,6 +8,7 @@ set {
     $alt    Mod1
     $flag   Mod4
     $term   alacritty
+    $notify ~/.scripts/notify.sh
 }
 
 # Focus
@@ -123,9 +124,9 @@ bindsym {
         move container to output 'eDP-1', focus output 'eDP-1'
     $flag+Control+Shift+Left    \
         move container to workspace prev_on_output, workspace prev_on_output
-    $flag+Control+Shift+Right      \
+    $flag+Control+Shift+Right   \
         move container to workspace next_on_output, workspace next_on_output
-    $flag+Control+Shift+Up   \
+    $flag+Control+Shift+Up      \
         move container to output 'HDMI-A-1', focus output 'HDMI-A-1'
 }
 
@@ -135,10 +136,10 @@ bindsym --locked {
     XF86MonBrightnessDown       exec brightnessctl -e s 5%- && $notify -b
     XF86MonBrightnessUp         exec brightnessctl -e s +5% && $notify -b
 
-    # Volume control
-    XF86AudioRaiseVolume        exec pulsemixer --change-volume +2 --max-volume 100 && $notify -v
-    XF86AudioLowerVolume        exec pulsemixer --change-volume -2 && $notify -v
-    XF86AudioMute               exec pulsemixer --toggle-mute && $notify -v
+    # Volume control (Pulsemixer is slow!)
+    XF86AudioRaiseVolume        exec pamixer -i 2 --set-limit 100 && $notify -v
+    XF86AudioLowerVolume        exec pamixer -d 2 && $notify -v
+    XF86AudioMute               exec pamixer -t && $notify -v
     XF86AudioMicMute            exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
     # Media control
@@ -152,7 +153,6 @@ set $fzf ~/.scripts/fzf-jump
 bindsym {
     # Reload sway
     $alt+Shift+r    reload
-
     # Dialog to exit sway
     $alt+Shift+e    exec swaynag -t warning -m 'Do you really want to exit sway?' \
         -B 'Yes, exit sway' 'swaymsg exit'  
