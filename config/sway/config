@@ -38,6 +38,7 @@ output 'Dell Inc. DELL P2214H 29C2937M4YTL' {
 
 # Focus
 focus_follows_mouse no
+floating_modifier    Mod4 normal
 
 # Window rules
 for_window [window_role="pop-up"] floating enable
