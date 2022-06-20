@@ -3,6 +3,9 @@
 # List of applications to autostart
 #
 
+# Move to this workspace on startup
+workspace 0:¯\_(ツ)_/¯
+
 # Idle script
 exec_always "~/.scripts/idle.sh"
 

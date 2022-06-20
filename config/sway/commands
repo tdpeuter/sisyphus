@@ -74,8 +74,6 @@ set {
     $ws0 "0:¯\_(ツ)_/¯"
 }
 
-workspace $ws0 # Move to this workspace on startup
-
 bindsym {
     $flag+ampersand     workspace $ws1
     $flag+eacute        workspace $ws2
@@ -107,8 +105,8 @@ bindsym {
     $flag+Control+l focus output 'HDMI-A-1'
 
     $flag+Control+Down  focus output 'eDP-1'
-    $flag+Control+Right workspace prev_on_output
-    $flag+Control+Left  workspace next_on_output
+    $flag+Control+Left  workspace prev_on_output
+    $flag+Control+Right workspace next_on_output
     $flag+Control+Up    focus output 'HDMI-A-1'
    
     $flag+Control+Shift+h   \
