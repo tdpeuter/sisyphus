@@ -36,6 +36,11 @@ output 'Dell Inc. DELL P2214H 29C2937M4YTL' {
     transform   270 
 }
 
+output 'Samsung Electric Company SAMSUNG 0x00000001' {
+    # Zoom in because long distance
+    scale 2
+}
+
 # Focus
 focus_follows_mouse no
 floating_modifier    Mod4 normal
