@@ -117,6 +117,10 @@ label:focus {
     color: #2d3436;
 }
 
+#pulseaudio.muted {
+    opacity: 0.6; 
+}
+
 #tray > .passive {
     -gtk-icon-effect: dim;
 }
