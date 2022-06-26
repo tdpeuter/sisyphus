@@ -163,4 +163,9 @@ bindsym {
     $alt+space  exec $term --title 'FZF-Jump' -e $fzf/launcher.sh
     # Window switcher
     $alt+Tab    exec $term --title 'FZF-Jump' -e $fzf/standalone.sh $fzf/modules/windows.sh $fzf/modules/workspaces.sh
+
+    # File explorer
+    $flag+e     exec $term -e vifm
+    # Internet explorer
+    $flag+i     exec firefox
 }
