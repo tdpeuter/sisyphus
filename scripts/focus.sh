@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Script to toggle black background to focus
+# Script to toggle black background to focus on sway
 
 # Get instances of swaybg, except for the 'standard' one.
 list=$( pgrep swaybg | head -n -1 )
