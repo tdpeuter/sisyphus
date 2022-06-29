@@ -50,11 +50,11 @@ mode "resize" bindsym {
 set $mode_system System (l)ock, (s)leep, (h)ibernate, (r)eboot, (Shift+s)hutdown
 bindsym Control+$alt+Delete mode "$mode_system"
 mode "$mode_system" bindsym {
-    l       exec swaylock && mode "default"
-    s       exec systemctl suspend && mode "default"
-    h       exec systemctl hibernate && mode "default"
-    r       exec systemctl reboot && mode "default"
-    Shift+s exec systemctl poweroff -i && mode "default"
+    l       exec swaylock, mode "default"
+    s       exec systemctl suspend, mode "default"
+    h       exec systemctl hibernate, mode "default"
+    r       exec systemctl reboot, mode "default"
+    Shift+s exec systemctl poweroff -i, mode "default"
 
     Return              mode "default"
     Escape              mode "default"
@@ -66,14 +66,14 @@ set $mode_screenshot Screenshot of (a)rea, current (w)indow, (s)creen - Shift to
 set $save_format Pictures/Screenshots/$(date +%F)-$(date +%T).png
 bindsym Print mode "$mode_screenshot"
 mode "$mode_screenshot" bindsym {
-    a exec grimshot copy area && mode "default"
-    w exec grimshot --notify copy active && mode "default"
-    s exec grimshot --notify copy screen && mode "default"
+    a exec grimshot copy area, mode "default"
+    w exec grimshot --notify copy active, mode "default"
+    s exec grimshot --notify copy screen, mode "default"
 
-    Print   exec grimshot --notify save screen $save_format && mode "default" # Super fast screens!
-    Shift+a exec grimshot --notify save area $save_format && mode "default"
-    Shift+w exec grimshot --notify save active $save_format && mode "default"
-    Shift+s exec grimshot --notify save screen $save_format && mode "default"
+    Print   exec grimshot --notify save screen $save_format mode "default" # Super fast screens!
+    Shift+a exec grimshot --notify save area $save_format, mode "default"
+    Shift+w exec grimshot --notify save active $save_format, mode "default"
+    Shift+s exec grimshot --notify save screen $save_format, mode "default"
 
     Return mode "default"
     Escape mode "default"
@@ -83,9 +83,9 @@ mode "$mode_screenshot" bindsym {
 set $mode_preferences Toggle (s)unset, (n)otifications, (f)ocus
 bindsym $alt+end mode "$mode_preferences"
 mode "$mode_preferences" bindsym {
-    s exec "~/.scripts/wlsunset.sh" && mode "default"
-    n exec "~/.scripts/dnd.sh" && mode "default"
-    f exec "dunstctl set-paused toggle" && mode "default"
+    s exec "~/.scripts/wlsunset.sh", mode "default"
+    n exec "~/.scripts/dnd.sh", mode "default"
+    f exec "dunstctl set-paused toggle", mode "default"
 
     Return      mode "default"
     Escape      mode "default"
