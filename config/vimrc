@@ -5,22 +5,36 @@
 filetype on
 filetype plugin on
 filetype indent on
-set tabstop=4
-set shiftwidth=0
 set expandtab
 set smarttab
-set autoindent
 set smartindent
 set incsearch
-set nocompatible
-set number
-set showcmd
 set showmatch
 set title
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 syntax enable
 
+" --
+
+set scrolloff=3
+set showcmd
+
+set autoindent
+set linebreak
+set shiftwidth=4
+set tabstop=4
+
+set number
+set relativenumber
+
 colorscheme nord-light
+set conceallevel=2
+
+" Add mouse support
+set mouse=a
+if $TERM == 'alacritty'
+    set ttymouse=sgr " Alacritty specific
+endif
 
 " PLUGINS --------------------------------------------------------------- {{{
 
@@ -33,6 +47,8 @@ call plug#end()
 
 " }}}
 
+" AUTOMATIC STUFF ------------------------------------------------------- {{{
+
 if has("autocmd")
           
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -40,13 +56,18 @@ if has("autocmd")
     " https://stackoverflow.com/a/37558470/19044747
     augroup remember_folds
         autocmd!
-        autocmd BufWinLeave * mkview
+        autocmd BufWinLeave * silent! mkview
         autocmd BufWinEnter * silent! loadview
     augroup END
-  endif
+
+endif
+
+" }}}
 
 " TALK ------------------------------------------------------------------ {{{
 " https://youtu.be/XA2WjJbmmoM ----------------------------------------------
+
+set nocompatible
 
 " Finding files using :find <name>
 set path+=**
@@ -73,3 +94,4 @@ let g:netrw_liststyle=3     " treeview
 " ^p previous
 " ^x^f filename completion
 
+" }}}
