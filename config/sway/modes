@@ -85,7 +85,7 @@ bindsym $alt+end mode "$mode_preferences"
 mode "$mode_preferences" bindsym {
     s exec "~/.scripts/wlsunset.sh", mode "default"
     n exec "~/.scripts/dnd.sh", mode "default"
-    f exec "dunstctl set-paused toggle", mode "default"
+    f exec "~/.scripts/focus.sh", mode "default"
 
     Return      mode "default"
     Escape      mode "default"
