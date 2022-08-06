@@ -63,7 +63,7 @@ mode "$mode_system" bindsym {
 
 # Screenshots
 set $mode_screenshot Screenshot of (a)rea, current (w)indow, (s)creen - Shift to save
-set $save_format Pictures/Screenshots/$(date +%F)-$(date +%T).png
+set $save_format ~/Pictures/Screenshots/$(date +%F-%H-%M-%S).png
 bindsym Print mode "$mode_screenshot"
 mode "$mode_screenshot" bindsym {
     a exec grimshot copy area, mode "default"
