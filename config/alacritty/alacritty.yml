@@ -484,7 +484,7 @@ shell:
   args:
     - --login
     - -c
-    - "tmux"
+    - "zellij attach || zellij"
 
 # Startup directory
 #
