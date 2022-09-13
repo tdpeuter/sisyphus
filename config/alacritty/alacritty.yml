@@ -484,7 +484,7 @@ shell:
   args:
     - --login
     - -c
-    - "zellij attach || zellij"
+    - "zellij --layout=compact attach || zellij --layout=compact"
 
 # Startup directory
 #
