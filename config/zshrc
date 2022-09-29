@@ -41,7 +41,7 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # History timestamp format
-HIST_STAMPS="dd/mm/yyyy"
+HIST_STAMPS="yyyy-mm-dd"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -85,4 +85,3 @@ fi
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 source ~/.config/aliases.sh
-
