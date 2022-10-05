@@ -90,7 +90,9 @@ label:focus {
 }
 
 #bluetooth.disabled,
-#bluetooth.off {
+#bluetooth.off,
+#network.disconnected,
+#pulseaudio.muted {
     opacity: 0.6;
 }
 
@@ -115,10 +117,6 @@ label:focus {
 #idle_inhibitor.activated {
     background-color: #ecf0f1;
     color: #2d3436;
-}
-
-#pulseaudio.muted {
-    opacity: 0.6; 
 }
 
 #tray > .passive {
