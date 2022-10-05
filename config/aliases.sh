@@ -16,9 +16,11 @@ alias np='nano -w PKGBUILD'
 alias more=less
 alias hgrep='history | grep'                # Search in history
 # Move to directory with personal files.
-alias Personal='cd ~/Documents/synchronisatie/Personal/_PERSOONLIJK/'
+alias Personal='cd ~/Documents/Persoonlijk/'
 # Move to directory with uni files.
-alias UGent='cd ~/Documents/synchronisatie/UGent/Informatica\ J1\ 2021-2022/'
+alias UGent='cd ~/Documents/UGent/Informatica\ J2\ 2022-2023/'
+# Move to directory with notes, both uni and personal
+alias notes='cd ~/Documents/Persoonlijk/Obsinotes/'
 alias vol='~/.scripts/vol.sh'               # Shortcut to volume setter script
 
 # =========
