@@ -6,7 +6,6 @@
 
 # Import other config files
 include {
-    autostart
     commands
     modes
     style
@@ -43,7 +42,7 @@ output 'Samsung Electric Company SAMSUNG 0x00000001' {
 
 # Focus
 focus_follows_mouse no
-floating_modifier    Mod4 normal
+floating_modifier   Mod4 normal
 
 # Window rules
 for_window [window_role="pop-up"] floating enable
@@ -51,5 +50,9 @@ for_window [window_role="task_dialog"] floating enable
 
 for_window [class="Qalculate"] floating enable
 for_window [class="Caprine"] floating enable, border normal 2
-for_window [class="be.ugent"] floating enable               # IntelliJ Java programs
 for_window [title="^FZF-Jump$"] floating enable, border pixel 0, resize set 600 350
+
+for_window [class="^Betterbird$"] move container to workspace "11:Soc"
+
+exec "~/.config/sway/autostart.sh"
+
