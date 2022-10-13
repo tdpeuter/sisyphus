@@ -71,7 +71,8 @@ set {
     $ws8 "8:8"
     $ws9 "9:9"
     $ws10 "10:10"
-    $ws0 "0:¯\_(ツ)_/¯"
+    $ws11 "11:Soc"
+    $ws12 "12:Ent"
 }
 
 bindsym {
@@ -85,7 +86,8 @@ bindsym {
     $flag+exclam        workspace $ws8
     $flag+ccedilla      workspace $ws9
     $flag+agrave        workspace $ws10
-    $flag+parenright    workspace $ws0
+    $flag+parenright    workspace $ws11
+    $flag+minus         workspace $ws12
 
     $flag+Shift+ampersand   move container to workspace $ws1, workspace $ws1
     $flag+Shift+eacute      move container to workspace $ws2, workspace $ws2
@@ -97,25 +99,26 @@ bindsym {
     $flag+Shift+exclam      move container to workspace $ws8, workspace $ws8
     $flag+Shift+ccedilla    move container to workspace $ws9, workspace $ws9
     $flag+Shift+agrave      move container to workspace $ws10, workspace $ws10
-    $flag+Shift+parenright  move container to workspace $ws0, workspace $ws0
+    $flag+Shift+parenright  move container to workspace $ws11, workspace $ws11
+    $flag+Shift+minus       move container to workspace $ws0, workspace $ws12
 
-    $flag+Control+h focus output 'eDP-1'
-    $flag+Control+j workspace prev_on_output
-    $flag+Control+k workspace next_on_output
-    $flag+Control+l focus output 'HDMI-A-1'
+    $flag+Control+j focus output 'eDP-1'
+    $flag+Control+h workspace prev_on_output
+    $flag+Control+l workspace next_on_output
+    $flag+Control+k focus output 'HDMI-A-1'
 
     $flag+Control+Down  focus output 'eDP-1'
     $flag+Control+Left  workspace prev_on_output
     $flag+Control+Right workspace next_on_output
     $flag+Control+Up    focus output 'HDMI-A-1'
    
-    $flag+Control+Shift+h   \
-        move container to output 'eDP-1', focus output 'eDP-1'
     $flag+Control+Shift+j   \
+        move container to output 'eDP-1', focus output 'eDP-1'
+    $flag+Control+Shift+h   \
         move container to workspace prev_on_output, workspace prev_on_output
-    $flag+Control+Shift+k   \
-        move container to workspace next_on_output, workspace next_on_output
     $flag+Control+Shift+l   \
+        move container to workspace next_on_output, workspace next_on_output
+    $flag+Control+Shift+k   \
         move container to output 'HDMI-A-1', focus output 'HDMI-A-1'
     
     $flag+Control+Shift+Down    \
@@ -156,7 +159,7 @@ bindsym {
         -B 'Yes, exit sway' 'swaymsg exit'  
 
     $flag+q kill                    # Kill focused window
-    $flag+Return exec $term         # Start a terminal
+    $flag+Return exec $term -e bash -c "zellij --layout=compact attach || zellij --layout=compact"         # Start a terminal
     $flag+Delete exec swaylock      # Lockscreen
 
     # Start application launcher
