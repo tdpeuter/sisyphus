@@ -90,7 +90,7 @@ window:
   #
   # Override the variant of the GTK theme. Commonly supported values are `dark`
   # and `light`. Set this to `None` to use the default theme variant.
-  gtk_theme_variant: dark
+  decorations_theme_variant: dark
 
 #scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -184,7 +184,8 @@ font:
 colors:
   primary:
     background: '#171717'
-    foreground: '#f8f8f2'
+    # foreground: '#f8f8f2'
+    foreground: '#ffffff'
     bright_foreground: '#ffffff'
   cursor:
     text: CellBackground
@@ -199,7 +200,7 @@ colors:
     focused_match:
       foreground: '#44475a'
       background: '#ffb86c'
-    bar:
+    footer_bar:
       background: '#282a36'
       foreground: '#f8f8f2'
     hints:
@@ -223,7 +224,8 @@ colors:
       blue: '#bd93f9'
       magenta: '#ff79c6'
       cyan: '#8be9fd'
-      white: '#f8f8f2'
+      # white: '#f8f8f8'
+      white: '#ffffff'
     bright:
       black: '#6272a4'
       red: '#ff6e6e'
@@ -479,12 +481,12 @@ bell:
 #   - (macOS) /bin/bash --login
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
-shell:
-  program: /bin/bash
-  args:
-    - --login
-    - -c
-    - "zellij --layout=compact attach || zellij --layout=compact"
+#shell:
+#  program: /bin/bash
+#  args:
+#    - --login
+#      # - -c
+#      #    - "zellij --layout=compact attach || zellij --layout=compact"
 
 # Startup directory
 #
