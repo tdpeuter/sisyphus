@@ -10,5 +10,7 @@ license=(GPL)
 groups=(tdpeuter)
 
 package_tdpeuter-base() {
+    provides=(tdpeuter-devel)
+
     depends=(base linux linux-firmware)
 }
