@@ -1,0 +1,14 @@
+# Maintainer: Tibo De Peuter <tibo.depeuter@gmail.com>
+pkgbase=tdpeuter
+pkgname=(tdpeuter-base)
+pkgver=0.0.1
+pkgrel=1
+pkgdesc="Sysconfig for my systems"
+arch=(any)
+url="https://github.com/tdpeuter/sisyphus"
+license=(GPL)
+groups=(tdpeuter)
+
+package_tdpeuter-base() {
+    depends=(base linux linux-firmware)
+}
