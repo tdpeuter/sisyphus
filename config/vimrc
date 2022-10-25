@@ -27,7 +27,7 @@ set tabstop=4
 set number
 set relativenumber
 
-colorscheme nord-light
+" colorscheme nord-light
 set conceallevel=2
 
 " Add mouse support
