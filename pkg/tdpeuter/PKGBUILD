@@ -13,4 +13,6 @@ package_tdpeuter-base() {
     provides=(tdpeuter-devel)
 
     depends=(base linux linux-firmware)
+
+    depends+=(traceroute)
 }
