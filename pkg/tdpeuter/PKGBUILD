@@ -14,5 +14,5 @@ package_tdpeuter-base() {
 
     depends=(base linux linux-firmware)
 
-    depends+=(traceroute)
+    depends+=(traceroute vscodium vscode thunderbird)
 }
