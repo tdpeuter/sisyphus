@@ -1,18 +1,46 @@
 # Maintainer: Tibo De Peuter <tibo.depeuter@gmail.com>
 pkgbase=tdpeuter
-pkgname=(tdpeuter-base)
+pkgname=(tdpeuter-base tdpeuter-desktop tdpeuter-social)
 pkgver=0.0.1
-pkgrel=2
+pkgrel=1
 pkgdesc="Sysconfig for my systems"
 arch=(any)
-url="https://github.com/tdpeuter/sisyphus"
+url="https://git.depeuter.tk/tdpeuter/arch-pkgs"
 license=(GPL)
 groups=(tdpeuter)
 
 package_tdpeuter-base() {
-    provides=(tdpeuter-devel)
+    
+    # Linux base
+    depends=(
+        base 
+        linux 
+        linux-firmware
+    )
+}
 
-    depends=(base linux linux-firmware)
+package_tdpeuter-desktop() {
+    
+    depends=(
+        alacritty
+        brightnessctl
+        dunst
+        sway
+        waybar
+        xwayland
+    )
 
-    depends+=(traceroute vscodium vscode thunderbird)
+    # Fonts
+    depends+=(
+        awesome-terminal-fonts
+        noto-fonts
+        noto-fonts-cjk
+        noto-fonts-emoji
+    )
+}
+
+package_tdpeuter-social() {
+    depends=(
+        betterbird
+    )
 }
