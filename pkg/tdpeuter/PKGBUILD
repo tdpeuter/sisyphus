@@ -1,7 +1,7 @@
 # Maintainer: Tibo De Peuter <tibo.depeuter@gmail.com>
 pkgbase=tdpeuter
 pkgname=(tdpeuter-base tdpeuter-dev tdpeuter-desktop tdpeuter-me)
-pkgver=0.0.9
+pkgver=0.0.10
 pkgrel=1
 pkgdesc="Sysconfig for my systems"
 arch=(any)
@@ -13,7 +13,7 @@ package_tdpeuter-base() {
     install=tdpeuter-base.install
 
     depends=(
-        base linux linux-firmware
+        base linux linux-firmware vim
     )
 
     # Networking
@@ -60,7 +60,7 @@ package_tdpeuter-desktop() {
 
     # To move dotfiles around
     depends+=(
-        stow
+        fzf stow
     )
    
     # Base of sway desktop
