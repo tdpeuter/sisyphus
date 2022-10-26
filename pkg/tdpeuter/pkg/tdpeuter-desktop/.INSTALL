@@ -18,6 +18,7 @@ pre_remove() {
 
 install_one() {
     user=$(who | cut -f1 -d' ')
+    mkdir -p "/home/${user}/.cache/tdpeuter"
     cd "/home/${user}/.cache/tdpeuter"
 
     >&2 echo "Installing ${1}"
