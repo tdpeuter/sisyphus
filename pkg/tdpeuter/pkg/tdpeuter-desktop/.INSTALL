@@ -16,22 +16,22 @@ pre_remove() {
     rm -rf /usr/share/tdpeuter/arch-pkgs
 }
 
-install_software() {
+install_one() {
+
     user=$(who | cut -f1 -d' ')
+    dir=$(pwd)
 
-    >&2 echo "Installing betterbird"
-    git clone --depth 1 --progress https://aur.archlinux.org/betterbird-bin.git
-    cd betterbird-bin
+    >&2 echo "Installing ${1}"
+    git clone --depth 1 --progress "https://aur.archlinux.org/${1}.git"
+    cd "${1}"
     git pull
-    $(su -w PATH -c "makepkg -ic" - "${user}")
-    cd
 
-    >&2 echo "Installing google-chrome"
-    git clone --depth 1 --progress https://aur.archlinux.org/google-chrome.git
-    cd google-chrome
-    git pull
-    $(su -w PATH -c "makepkg -ic" - "${user}")
-    cd
+    su -c "cd ${dir} && makepkg -ic" - "${user}"
+}
+
+install_software() {
+    install_one "betterbird-bin"
+    install_one "google-chrome"
 
     >&2 echo "Installing hamsket"
     git clone --depth 1 --progress https://aur.archlinux.org/hamsket-bin.git
