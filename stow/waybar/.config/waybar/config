@@ -1,0 +1,45 @@
+//
+// ~/.config/waybar/config
+//
+
+[{
+
+    "name": "toggle",
+
+    "mode": "hide",
+	"ipc": true,
+
+    "position": "top",
+	"height": 25,
+	"spacing": 4, 
+    "margin": "-25px 0 0 0", // Show this bar on top of the other one, seemingly the "same" one.
+
+    "custom/sep": {
+        "format": "\uf142"
+    },
+
+    "include": [
+        // Import modules (!)
+        "~/.config/waybar/modules.json", 
+//      "~/.config/waybar/default.json"
+        "~/.config/waybar/left.json"
+    ],
+
+}, 
+
+{
+    
+    "name": "keep",
+    "position": "top",
+    "height": 25,
+	"modules-left": ["sway/mode", "custom/browser"],
+    "modules-center": ["sway/window"],
+    "modules-right": ["clock"],
+
+    "include": [
+        // Import modules (!)
+        "~/.config/waybar/modules.json"
+    ],
+
+}]
+

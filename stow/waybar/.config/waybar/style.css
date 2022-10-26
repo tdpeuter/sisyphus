@@ -1,0 +1,132 @@
+/*
+ * ~/.config/waybar/style.css
+ *
+ * `otf-font-awesome` is required to be installed for icons.
+ *
+ * Pick your stylesheet: 
+ * - sharp.css
+ * - transparent.css
+ * - round.css
+ */
+
+@define-color transparent-black rgba(23, 23, 23, 0.9); 
+@define-color white #ecf0f1;
+@define-color warning-red #eb4d4b;
+@define-color accent #00897b;
+
+window#waybar {
+    font-family: Letter; /* This is my personal font. */
+    font-size: 13px;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+#window, #workspaces {
+    margin: 0 5px;
+}
+
+#workspaces button {
+    border: none;
+    border-radius: 0;
+    min-width: 30px; 
+    padding: 0 5px;
+}
+
+#workspaces button:hover, 
+#workspaces button.focused {
+    background-color: transparent;
+    color: @white;
+}
+
+#workspaces button.urgent {
+    color: @white; 
+    background-color: @warning-red;
+}
+
+/* All modules individually. */
+#backlight, #battery, #bluetooth, #clock, #cpu, 
+#custom-browser, #custom-media, #disk, #idle_inhibitor, 
+#memory, #mode, #mpd, #network, #pulseaudio, 
+#temperature, #tray {
+    padding: 0 5px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+label:focus {
+    background-color: #000000;
+}
+
+/* Module specific colours */
+
+#battery.charging, #battery.plugged {
+    color: #ffffff;
+    background-color: #26A65B;
+}
+
+#battery.critical:not(.charging) {
+    background-color: #f53c3c;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#bluetooth.disabled,
+#bluetooth.off,
+#network.disconnected,
+#pulseaudio.muted {
+    opacity: 0.6;
+}
+
+#custom-media {
+    color: #2a5c45;
+    background-color: #66cc99;
+    min-width: 100px;
+}
+
+#custom-media.custom-spotify {
+    background-color: #66cc99;
+}
+
+#custom-media.custom-vlc {
+    background-color: #ffa000;
+}
+
+#temperature.critical {
+    background-color: #eb4d4b;
+}
+
+#idle_inhibitor.activated {
+    background-color: #ecf0f1;
+    color: #2d3436;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #eb4d4b;
+}
+
+@import "sharp.css";
+
