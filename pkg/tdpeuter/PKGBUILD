@@ -34,8 +34,33 @@ package_tdpeuter-dev() {
     )
 
     depends+=(
-	base-devel
+	archlinux-keyring
+	autoconf
+	automake
+	binutils
+	bison
+	debugedit
+	fakeroot
+	file
+	findutils
+	flex
+	gawk
+	gcc
+	gettext
 	git
+	grep
+	groff
+	gzip
+	libtool
+	m4
+	make
+	pacman
+	patch
+	pkgconf
+	sed
+	sudo
+	texinfo
+	which
     )
 
     # C/C++ programming
