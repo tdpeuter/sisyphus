@@ -1,7 +1,7 @@
 # Maintainer: Tibo De Peuter <tibo.depeuter@gmail.com>
 pkgbase=tdpeuter
 pkgname=(tdpeuter-base tdpeuter-dev tdpeuter-desktop tdpeuter-me)
-pkgver=0.0.8
+pkgver=0.0.9
 pkgrel=1
 pkgdesc="Sysconfig for my systems"
 arch=(any)
@@ -10,12 +10,10 @@ license=(GPL)
 groups=(tdpeuter)
 
 package_tdpeuter-base() {
-    
-    # Linux base
+    install=tdpeuter-base.install
+
     depends=(
-        base 
-        linux 
-        linux-firmware
+        base linux linux-firmware
     )
 
     # Networking
@@ -23,14 +21,6 @@ package_tdpeuter-base() {
     	networkmanager
     )
 
-    post_install() {
-        >&2 echo "Enabling NetworkManager"
-	    systemctl enable --now NetworkManager.service
-
-        >&2 echo "Fixing locale"
-        sed -i "s/^#\(nl_BE.UTF-8 UTF-8\)/\1/g" "/etc/locale.gen"
-        locale-gen
-    }
 }
 
 package_tdpeuter-dev() {
@@ -39,47 +29,15 @@ package_tdpeuter-dev() {
     )
 
     depends+=(
-	archlinux-keyring
-	autoconf
-	automake
-	binutils
-	bison
-	debugedit
-	fakeroot
-	file
-	findutils
-	flex
-	gawk
-	gcc
-	gettext
-	git
-	grep
-	groff
-	gzip
-	libtool
-	m4
-	make
-    man
-	pacman
-	patch
-	pkgconf
-	sed
-	sudo
-	texinfo
-	which
+        archlinux-keyring autoconf automake binutils bison debugedit
+    	fakeroot file findutils flex gawk gcc gettext git grep groff
+    	gzip libtool m4 make man pacman patch pkgconf sed sudo
+    	texinfo which
     )
 
     # C/C++ programming
     depends+=(
-        boost
-        boost-libs
-        cmake
-        gcc
-        gdb
-        glew
-        pkg-config
-        sdl2
-        sdl2_image
+        boost boost-libs cmake gcc gdb glew pkg-config sdl2 sdl2_image
     )
 
     # Haskell programming
@@ -89,9 +47,7 @@ package_tdpeuter-dev() {
 
     # Networking
     depends+=(
-        termshark
-        traceroute
-        wireshark-qt
+        termshark traceroute wireshark-qt
     )
 }
 
@@ -109,20 +65,13 @@ package_tdpeuter-desktop() {
    
     # Base of sway desktop
     depends+=(
-        alacritty
-        brightnessctl
-        dunst
-        libnotify
-        swayidle
-        waybar
+        alacritty brightnessctl dunst libnotify swayidle waybar 
         xorg-xwayland
     )
 
     # Fonts
     depends+=(
-        awesome-terminal-fonts
-        noto-fonts
-        noto-fonts-cjk
+        awesome-terminal-fonts noto-fonts noto-fonts-cjk 
         noto-fonts-emoji
     )
 

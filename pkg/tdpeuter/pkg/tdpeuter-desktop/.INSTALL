@@ -27,11 +27,20 @@ pre_remove() {
 }
 
 install_software() {
-    
+    cd
+
     >&2 echo "Installing sway-git"
     git clone https://aur.archlinux.org/sway-git.git
     cd sway-git
     makepkg
     pacman -U sway-git
+    cd
+
+    >&2 echo "Installing hamsket"
+    git clone https://aur.archlinux.org/hamsket-bin.git
+    cd hamsket-bin
+    makepkg
+    pacman -U hamsket-bin
+    cd
 
 }
