@@ -1,7 +1,7 @@
 # Maintainer: Tibo De Peuter <tibo.depeuter@gmail.com>
 pkgbase=tdpeuter
 pkgname=(tdpeuter-base tdpeuter-dev tdpeuter-desktop tdpeuter-me)
-pkgver=0.0.3
+pkgver=0.0.4
 pkgrel=1
 pkgdesc="Sysconfig for my systems"
 arch=(any)
@@ -17,6 +17,15 @@ package_tdpeuter-base() {
         linux 
         linux-firmware
     )
+
+    # Networking
+    depends+=(
+    	networkmanager
+    )
+
+    post_install() {
+	systemctl enable NetworkManager.service
+    }
 }
 
 package_tdpeuter-dev() {
@@ -25,7 +34,8 @@ package_tdpeuter-dev() {
     )
 
     depends+=(
-        git
+	base-devel
+	git
     )
 
     # C/C++ programming
@@ -66,7 +76,6 @@ package_tdpeuter-desktop() {
         alacritty
         brightnessctl
         dunst
-        sway
         swayidle
         waybar
         xorg-xwayland
@@ -109,7 +118,6 @@ package_tdpeuter-me() {
 
     # Socials
     depends+=(
-        betterbird
     )
 
     # Entertainment

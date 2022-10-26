@@ -9,6 +9,8 @@ post_install() {
 }
 
 post_upgrade() {
+    install_software
+
     echo "moving directories"
     cd /usr/share/tdpeuter/arch-pkgs/ 
 
@@ -27,3 +29,9 @@ pre_remove() {
     rm -rf /usr/share/tdpeuter/arch-pkgs
 }
 
+install_software() {
+    git clone https://aur.archlinux.org/sway-git.git
+    cd sway-git
+    makepkg
+    pacman -U sway-git
+}
