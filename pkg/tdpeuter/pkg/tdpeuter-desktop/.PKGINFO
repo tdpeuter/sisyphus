@@ -2,10 +2,10 @@
 # using fakeroot version 1.29
 pkgname = tdpeuter-desktop
 pkgbase = tdpeuter
-pkgver = 0.0.5-1
+pkgver = 0.0.6-1
 pkgdesc = Sysconfig for my systems
 url = https://git.depeuter.tk/tdpeuter/arch-pkgs
-builddate = 1666807838
+builddate = 1666808545
 packager = Unknown Packager
 size = 0
 arch = any
@@ -16,6 +16,7 @@ depend = stow
 depend = alacritty
 depend = brightnessctl
 depend = dunst
+depend = libnotify
 depend = swayidle
 depend = waybar
 depend = xorg-xwayland
