@@ -9,7 +9,7 @@ post_install() {
 post_upgrade() {
     install_software
     install_fonts
-    stow
+    do_stow
 }
 
 pre_remove() {
@@ -65,7 +65,7 @@ install_fonts() {
     cd
 }
 
-stow() {
+do_stow() {
     >&2 echo "Moving to dotfile directory"
     cd /usr/share/tdpeuter/arch-pkgs/ 
 
