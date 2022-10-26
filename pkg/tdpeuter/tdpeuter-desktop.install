@@ -30,8 +30,11 @@ pre_remove() {
 }
 
 install_software() {
+    
+    # Sway
     git clone https://aur.archlinux.org/sway-git.git
     cd sway-git
     makepkg
     pacman -U sway-git
+
 }
