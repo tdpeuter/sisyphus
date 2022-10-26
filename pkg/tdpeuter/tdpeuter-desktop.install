@@ -17,11 +17,6 @@ pre_remove() {
 }
 
 install_one() {
-    user=$(who | cut -f1 -d' ')
-    dir="/home/${user}/.cache/tdpeuter"
-    mkdir -p "${dir}"
-    chown -R "${user}" "${dir}"
-    cd "${dir}"
 
     >&2 echo "Installing ${1}"
     git clone --depth 1 --progress "https://aur.archlinux.org/${1}.git"
@@ -29,36 +24,21 @@ install_one() {
     git pull
 
     dir=$(pwd)
-    echo "${dir} by ${user}"
-
-    su -c "cd ${dir} && makepkg -ic" - "${user}"
+    makepkg -isc --asdeps tdpeuter-desktop --noconfirm
 }
 
 install_software() {
-    install_one "betterbird-bin"
+    user=$(who | cut -f1 -d' ' | head -n 1)
+    dir="/home/${user}/.cache/tdpeuter"
+    mkdir -p "${dir}"
+    chown -R "${user}" "${dir}"
+
+    ./install.sh "${dir}" "betterbird-bin"
+
     install_one "google-chrome"
-
-    >&2 echo "Installing hamsket"
-    git clone --depth 1 --progress https://aur.archlinux.org/hamsket-bin.git
-    cd hamsket-bin
-    git pull
-    $(su -w PATH -c "makepkg -ic" - "${user}")
-    cd
-
-    >&2 echo "Installing jetbrains-toolbox"
-    git clone --depth 1 --progress https://aur.archlinux.org/jetbrains-toolbox.git
-    cd jetbrains-toolbox
-    git pull
-    $(su -w PATH -c "makepkg -ic" - "${user}")
-    cd
-
-    >&2 echo "Installing sway-git"
-    git clone --depth 1 --progress https://aur.archlinux.org/sway-git.git
-    cd sway-git
-    git pull
-    $(su -w PATH -c "makepkg -ic" - "${user}")
-    cd
-
+    install_one "hamsket-bin"
+    install_one "jetbrains-toolbox"
+    install_one "sway-git"
 }
 
 install_fonts() {
@@ -86,3 +66,6 @@ do_stow() {
     >&2 echo "Stowing all packages"
     stow -d ./stow -t "/home/${user}" ${packages}
 }
+
+install_software
+
