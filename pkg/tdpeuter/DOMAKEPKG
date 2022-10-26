@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-
+ver=$(grep "^pkgver=" "./PKGBUILD" | sed "s/^pkgver=\(.*\)$/\1/" )
 new=$(makepkg -f | grep Creating | sed "s/^.*\"\(.*\)\".*$/\1/g")
 
 for pkg in "$new"; do
-    repo-add tdpeuter.db.tar.gz $(find . -name "*${pkg}*")
+    repo-add tdpeuter.db.tar.gz $(find . -name "*${pkg}-${version}*")
 done
 
 rm tdpeuter.db tdpeuter.files
