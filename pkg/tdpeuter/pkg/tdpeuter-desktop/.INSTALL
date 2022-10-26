@@ -1,27 +1,24 @@
 post_install() {
-    echo "installing repo"
-
     # Initiate the stow repo
+    >&2 echo "Cloning stow git repository"
     git clone --depth 1 --progress https://git.depeuter.tk/tdpeuter/arch-pkgs /usr/share/tdpeuter/arch-pkgs
    
-    sleep 2
     post_upgrade
 }
 
 post_upgrade() {
     install_software
 
-    echo "moving directories"
+    >&2 echo "Moving to dotfile directory"
     cd /usr/share/tdpeuter/arch-pkgs/ 
 
-    echo "pulling repo"
-    sleep 2
+    >&2 echo "Pulling stow git repository"
     git pull
 
     user=$(who | cut -f1 -d' ')
     packages=$(ls ./stow)
     
-    echo "stowing packages"
+    >&2 echo "Stowing all packages"
     stow -d ./stow -t "/home/${user}" ${packages}
 }
 
@@ -31,7 +28,7 @@ pre_remove() {
 
 install_software() {
     
-    # Sway
+    >&2 echo "Installing sway-git"
     git clone https://aur.archlinux.org/sway-git.git
     cd sway-git
     makepkg
