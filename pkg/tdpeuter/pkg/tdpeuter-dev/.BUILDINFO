@@ -1,5 +1,5 @@
 format = 2
-pkgname = tdpeuter-base
+pkgname = tdpeuter-dev
 pkgbase = tdpeuter
 pkgver = 0.0.1-1
 pkgarch = any

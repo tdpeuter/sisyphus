@@ -1,6 +1,6 @@
 # Maintainer: Tibo De Peuter <tibo.depeuter@gmail.com>
 pkgbase=tdpeuter
-pkgname=(tdpeuter-base tdpeuter-desktop tdpeuter-social)
+pkgname=(tdpeuter-base tdpeuter-dev tdpeuter-desktop tdpeuter-me)
 pkgver=0.0.1
 pkgrel=1
 pkgdesc="Sysconfig for my systems"
@@ -19,15 +19,50 @@ package_tdpeuter-base() {
     )
 }
 
+package_tdpeuter-dev() {
+    depends=(
+        git
+    )
+
+    # C/C++ programming
+    depends+=(
+        boost
+        boost-libs
+        cmake
+        gcc
+        gdb
+        glew
+        pkg-config
+        sdl2
+        sdl2_image
+    )
+
+    # Haskell programming
+    depends+=(
+        stack
+    )
+
+    # Networking
+    depends+=(
+        termshark
+        traceroute
+        wireshark-qt
+    )
+}
+
 package_tdpeuter-desktop() {
-    
+   
+    # Base of sway desktop
     depends=(
         alacritty
         brightnessctl
         dunst
         sway
+        swaybg-git
+        swayidle
+        swaylock-effects-git
         waybar
-        xwayland
+        xorg-xwayland
     )
 
     # Fonts
@@ -39,8 +74,36 @@ package_tdpeuter-desktop() {
     )
 }
 
-package_tdpeuter-social() {
+package_tdpeuter-me() {
     depends=(
+        firefox
+        nextcloud-client
+        qutebrowser
+    )
+    
+    # Development
+    depends+=(
+        code
+    )
+
+    # Tools
+    depends+=(
+        vifm
+        zathura
+        zathura-pdf-mupdf
+        zellij
+    )
+
+    # Socials
+    depends+=(
         betterbird
     )
+
+    # Entertainment
+    depends+=(
+    )
+
+    post_install() {
+        code --install-extension ms-vscode.cpptools
+    }
 }
