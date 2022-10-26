@@ -67,9 +67,7 @@ package_tdpeuter-desktop() {
         brightnessctl
         dunst
         sway
-        swaybg-git
         swayidle
-        swaylock-effects-git
         waybar
         xorg-xwayland
     )
