@@ -1,6 +1,6 @@
 post_install() {
     # Initiate the stow repo
-    git clone --depth 1 --progress https://git.depeuter.tk/tdpeuter/arch-pkgs /usr/share/tdpeuter/arch-pkgs.git
+    git clone --depth 1 --progress https://git.depeuter.tk/tdpeuter/arch-pkgs /usr/share/tdpeuter/arch-pkgs
 
     post_upgrade
 }
@@ -11,6 +11,6 @@ post_upgrade() {
 
     user=$(who | cut -f1 -d' ')
     
-    stow -d /usr/share/tdpeuter/arch-pkgs/stow -t "/home/${user}" fuzzel
+    stow -d ./stow -t "/home/${user}" $(ls ./stow)
 }
 
