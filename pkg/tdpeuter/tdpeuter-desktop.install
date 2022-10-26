@@ -1,7 +1,8 @@
 post_install() {
     # Initiate the stow repo
     git clone --depth 1 --progress https://git.depeuter.tk/tdpeuter/arch-pkgs /usr/share/tdpeuter/arch-pkgs
-
+   
+    sleep 2
     post_upgrade
 }
 
