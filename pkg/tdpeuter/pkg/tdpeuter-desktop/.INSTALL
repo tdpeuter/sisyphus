@@ -18,8 +18,10 @@ pre_remove() {
 
 install_one() {
     user=$(who | cut -f1 -d' ')
-    mkdir -p "/home/${user}/.cache/tdpeuter"
-    cd "/home/${user}/.cache/tdpeuter"
+    dir="/home/${user}/.cache/tdpeuter"
+    mkdir -p "${dir}"
+    chown "${user}" "${dir}"
+    cd "${dir}"
 
     >&2 echo "Installing ${1}"
     git clone --depth 1 --progress "https://aur.archlinux.org/${1}.git"
