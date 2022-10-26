@@ -1,19 +1,29 @@
 post_install() {
+    echo "installing repo"
+
     # Initiate the stow repo
     git clone --depth 1 --progress https://git.depeuter.tk/tdpeuter/arch-pkgs /usr/share/tdpeuter/arch-pkgs
-
+   
+    sleep 2
     post_upgrade
 }
 
 post_upgrade() {
+    echo "moving directories"
     cd /usr/share/tdpeuter/arch-pkgs/ 
 
+    echo "pulling repo"
     sleep 2
     git pull
 
     user=$(who | cut -f1 -d' ')
     packages=$(ls ./stow)
     
+    echo "stowing packages"
     stow -d ./stow -t "/home/${user}" ${packages}
+}
+
+pre_remove() {
+    rm -rf /usr/share/tdpeuter/arch-pkgs
 }
 
