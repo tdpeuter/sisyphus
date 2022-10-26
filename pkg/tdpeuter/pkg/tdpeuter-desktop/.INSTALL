@@ -25,7 +25,7 @@ install_software() {
     git clone --depth 1 --progress https://aur.archlinux.org/betterbird-bin.git
     cd betterbird-bin
     git pull
-    su "${user}" -c makepkg -ic
+    su "${user}" -c "makepkg -ic"
     cd
 
     >&2 echo "Installing google-chrome"
