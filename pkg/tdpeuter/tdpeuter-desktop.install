@@ -18,7 +18,7 @@ pre_remove() {
 
 install_one() {
     user=$(who | cut -f1 -d' ')
-    dir="/tmp/tdpeuter"
+    dir="/home/${user}/.cache/tdpeuter"
 
     cd "${dir}"
 
