@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
-ver=$(grep "^pkgver=" "./PKGBUILD" | sed "s/^pkgver=\(.*\)$/\1/" )
-new=$(makepkg -f | grep Creating | sed "s/^.*\"\(.*\)\".*$/\1/g")
 
-for pkg in "$new"; do
+ver=$( grep "^pkgver=" "./PKGBUILD" | sed "s/^pkgver=\(.*\)$/\1/" )
+>&2 echo "Building version ${ver}"
+
+while read pkg ; do
     match=$(find . -name "*${pkg}-${ver}*")
     >&2 echo "Adding ${match}"
     repo-add tdpeuter.db.tar.gz ${match}
-done
+done <<< $( makepkg -f | grep Creating | sed "s/^.*\"\(.*\)\".*$/\1/g" )
 
 rm tdpeuter.db tdpeuter.files
 cp tdpeuter.db.tar.gz tdpeuter.db
