@@ -1,0 +1,8 @@
+post_install() {
+    >&2 echo "Enabling NetworkManager"
+	systemctl enable --now NetworkManager.service
+
+    >&2 echo "Fixing locale"
+    sed -i "s/^#\(nl_BE.UTF-8 UTF-8\)/\1/g" "/etc/locale.gen"
+    locale-gen
+}
