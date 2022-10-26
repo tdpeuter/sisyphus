@@ -17,8 +17,6 @@ pre_remove() {
 }
 
 install_software() {
-    cd
-    
     user=$(who | cut -f1 -d' ')
     su "${user}"
     echo "hey we zijn nu ${user}"
@@ -27,7 +25,7 @@ install_software() {
     git clone --depth 1 --progress https://aur.archlinux.org/betterbird-bin.git
     cd betterbird-bin
     git pull
-    makepkg -ic
+    su "${user}" -c makepkg -ic
     cd
 
     >&2 echo "Installing google-chrome"
