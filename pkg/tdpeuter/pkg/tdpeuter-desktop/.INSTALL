@@ -1,0 +1,11 @@
+post_install() {
+    post_upgrade
+}
+
+post_upgrade() {
+    user=$(who | cut -f1 -d' ')
+
+    git clone https://git.depeuter.tk/tdpeuter/arch-pkgs/ /usr/share/tdpeuter/sisyphus
+
+    ln -s /usr/share/tdpeuter/sisyphus/config/* ${user}/
+}

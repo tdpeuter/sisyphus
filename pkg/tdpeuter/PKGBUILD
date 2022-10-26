@@ -21,6 +21,10 @@ package_tdpeuter-base() {
 
 package_tdpeuter-dev() {
     depends=(
+        tdpeuter-base
+    )
+
+    depends+=(
         git
     )
 
@@ -51,9 +55,14 @@ package_tdpeuter-dev() {
 }
 
 package_tdpeuter-desktop() {
+    install=tdpeuter-desktop.install
+
+    depends=(
+        tdpeuter-base
+    )
    
     # Base of sway desktop
-    depends=(
+    depends+=(
         alacritty
         brightnessctl
         dunst
@@ -72,10 +81,16 @@ package_tdpeuter-desktop() {
         noto-fonts-cjk
         noto-fonts-emoji
     )
+
 }
 
 package_tdpeuter-me() {
     depends=(
+        tdpeuter-base
+        tdpeuter-desktop
+    )
+
+    depends+=(
         firefox
         nextcloud-client
         qutebrowser
