@@ -2,10 +2,10 @@
 # using fakeroot version 1.29
 pkgname = tdpeuter-dev
 pkgbase = tdpeuter
-pkgver = 0.0.6-1
+pkgver = 0.0.7-1
 pkgdesc = Sysconfig for my systems
 url = https://git.depeuter.tk/tdpeuter/arch-pkgs
-builddate = 1666809633
+builddate = 1666810071
 packager = Unknown Packager
 size = 0
 arch = any
@@ -32,6 +32,7 @@ depend = gzip
 depend = libtool
 depend = m4
 depend = make
+depend = man
 depend = pacman
 depend = patch
 depend = pkgconf
