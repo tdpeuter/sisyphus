@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+new=$(makepkg -f | grep Creating | sed "s/^.*\"\(.*\)\".*$/\1/g")
+
+for pkg in "$new"; do
+    repo-add tdpeuter.db.tar.gz $(find . -name "*${pkg}*")
+done
+
+rm tdpeuter.db tdpeuter.files
+cp tdpeuter.db.tar.gz tdpeuter.db
+cp tdpeuter.files.tar.gz tdpeuter.files
+
+git add --all
+git commit
+git push
+
