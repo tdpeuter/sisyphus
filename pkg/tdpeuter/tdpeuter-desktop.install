@@ -6,7 +6,10 @@ post_install() {
 }
 
 post_upgrade() {
-    cd /usr/share/tdpeuter/arch-pkgs/ && git pull
+    cd /usr/share/tdpeuter/arch-pkgs/ 
+
+    sleep 2
+    git pull
 
     user=$(who | cut -f1 -d' ')
     packages=$(ls ./stow)
