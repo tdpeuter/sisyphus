@@ -18,6 +18,9 @@ pre_remove() {
 
 install_software() {
     cd
+    
+    user=$(who | cut -f1 -d' ')
+    su "${user}"
 
     >&2 echo "Installing betterbird"
     git clone --depth 1 --progress https://aur.archlinux.org/betterbird-bin.git
