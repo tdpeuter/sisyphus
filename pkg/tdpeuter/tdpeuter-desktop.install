@@ -20,7 +20,7 @@ install_one() {
     user=$(who | cut -f1 -d' ')
     dir="/home/${user}/.cache/tdpeuter"
     mkdir -p "${dir}"
-    chown "${user}" "${dir}"
+    chown -R "${user}" "${dir}"
     cd "${dir}"
 
     >&2 echo "Installing ${1}"
