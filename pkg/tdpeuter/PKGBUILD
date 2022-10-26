@@ -24,7 +24,9 @@ package_tdpeuter-base() {
     )
 
     post_install() {
-	systemctl enable NetworkManager.service
+	    systemctl enable NetworkManager.service
+
+        sed -i "s/^#\(nl_BE.UTF-8 UTF-8\)/\1/g" "/etc/locale.gen"
     }
 }
 
