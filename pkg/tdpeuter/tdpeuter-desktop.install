@@ -23,32 +23,35 @@ install_software() {
     git clone --depth 1 --progress https://aur.archlinux.org/betterbird-bin.git
     cd betterbird-bin
     git pull
-    makepkg
-    pacman -U betterbird-bin
+    makepkg -ic
+    cd
+
+    >&2 echo "Installing google-chrome"
+    git clone --depth 1 --progress https://aur.archlinux.org/google-chrome.git
+    cd google-chrome
+    git pull
+    makepkg -ic
     cd
 
     >&2 echo "Installing hamsket"
     git clone --depth 1 --progress https://aur.archlinux.org/hamsket-bin.git
     cd hamsket-bin
     git pull
-    makepkg
-    pacman -U hamsket-bin
+    makepkg -ic
     cd
 
     >&2 echo "Installing jetbrains-toolbox"
     git clone --depth 1 --progress https://aur.archlinux.org/jetbrains-toolbox.git
     cd jetbrains-toolbox
     git pull
-    makepkg
-    pacman -U jetbrains-toolbox
+    makepkg -ic
     cd
 
     >&2 echo "Installing sway-git"
     git clone --depth 1 --progress https://aur.archlinux.org/sway-git.git
     cd sway-git
     git pull
-    makepkg
-    pacman -U sway-git
+    makepkg -ic
     cd
 
 }

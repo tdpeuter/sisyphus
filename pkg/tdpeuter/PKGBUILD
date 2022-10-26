@@ -1,7 +1,7 @@
 # Maintainer: Tibo De Peuter <tibo.depeuter@gmail.com>
 pkgbase=tdpeuter
 pkgname=(tdpeuter-base tdpeuter-dev tdpeuter-desktop)
-pkgver=0.0.11
+pkgver=0.0.12
 pkgrel=1
 pkgdesc="Sysconfig for my systems"
 arch=(any)
@@ -16,9 +16,9 @@ package_tdpeuter-base() {
         base linux linux-firmware vim
     )
 
-    # Networking
+    # Networking & wireless
     depends+=(
-    	networkmanager
+        bluez bluez-utils networkmanager
     )
 
 }
