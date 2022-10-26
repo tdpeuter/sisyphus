@@ -17,16 +17,17 @@ pre_remove() {
 }
 
 install_one() {
-
     user=$(who | cut -f1 -d' ')
-    dir=$(pwd)
+    dir="/tmp/tdpeuter/"
+
+    cd "${dir}"
 
     >&2 echo "Installing ${1}"
     git clone --depth 1 --progress "https://aur.archlinux.org/${1}.git"
     cd "${1}"
     git pull
 
-    su -c "cd ${dir} && makepkg -ic" - "${user}"
+    su -c "cd ${dir}/${1} && makepkg -ic" - "${user}"
 }
 
 install_software() {
