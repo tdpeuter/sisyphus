@@ -33,7 +33,7 @@ install_software() {
     mkdir -p "${dir}"
     chown -R "${user}" "${dir}"
 
-    su -c "./install.sh \"${dir}\" \"betterbird-bin\""
+    su -c "./install.sh \"${dir}\" \"betterbird-bin\"" "${user}"
 
     install_one "google-chrome"
     install_one "hamsket-bin"
