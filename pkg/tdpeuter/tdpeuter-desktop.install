@@ -23,35 +23,35 @@ install_software() {
     git clone --depth 1 --progress https://aur.archlinux.org/betterbird-bin.git
     cd betterbird-bin
     git pull
-    $(su -c "makepkg -ic" - "${user}")
+    $(su -w PATH -c "makepkg -ic" - "${user}")
     cd
 
     >&2 echo "Installing google-chrome"
     git clone --depth 1 --progress https://aur.archlinux.org/google-chrome.git
     cd google-chrome
     git pull
-    $(su -c "makepkg -ic" - "${user}")
+    $(su -w PATH -c "makepkg -ic" - "${user}")
     cd
 
     >&2 echo "Installing hamsket"
     git clone --depth 1 --progress https://aur.archlinux.org/hamsket-bin.git
     cd hamsket-bin
     git pull
-    $(su -c "makepkg -ic" - "${user}")
+    $(su -w PATH -c "makepkg -ic" - "${user}")
     cd
 
     >&2 echo "Installing jetbrains-toolbox"
     git clone --depth 1 --progress https://aur.archlinux.org/jetbrains-toolbox.git
     cd jetbrains-toolbox
     git pull
-    $(su -c "makepkg -ic" - "${user}")
+    $(su -w PATH -c "makepkg -ic" - "${user}")
     cd
 
     >&2 echo "Installing sway-git"
     git clone --depth 1 --progress https://aur.archlinux.org/sway-git.git
     cd sway-git
     git pull
-    $(su -c "makepkg -ic" - "${user}")
+    $(su -w PATH -c "makepkg -ic" - "${user}")
     cd
 
 }
