@@ -9,7 +9,63 @@ post_install() {
 post_upgrade() {
     install_software
     install_fonts
+    stow
+}
 
+pre_remove() {
+    rm -rf /usr/share/tdpeuter/arch-pkgs
+}
+
+install_software() {
+    cd
+
+    >&2 echo "Installing betterbird"
+    git clone --depth 1 --progress https://aur.archlinux.org/betterbird-bin.git
+    cd betterbird-bin
+    git pull
+    makepkg
+    pacman -U betterbird-bin
+    cd
+
+    >&2 echo "Installing hamsket"
+    git clone --depth 1 --progress https://aur.archlinux.org/hamsket-bin.git
+    cd hamsket-bin
+    git pull
+    makepkg
+    pacman -U hamsket-bin
+    cd
+
+    >&2 echo "Installing jetbrains-toolbox"
+    git clone --depth 1 --progress https://aur.archlinux.org/jetbrains-toolbox.git
+    cd jetbrains-toolbox
+    git pull
+    makepkg
+    pacman -U jetbrains-toolbox
+    cd
+
+    >&2 echo "Installing sway-git"
+    git clone --depth 1 --progress https://aur.archlinux.org/sway-git.git
+    cd sway-git
+    git pull
+    makepkg
+    pacman -U sway-git
+    cd
+
+}
+
+install_fonts() {
+    mkdir -p /usr/local/share/fonts/letter
+
+    >&2 echo "Installing letter (font)"
+    git clone --depth 1 --progress https://github.com/tdpeuter/letter.git
+    cd letter
+    cp ttf/* /usr/local/share/fonts/letter/
+    cp ttf-unhinted/* /usr/local/share/fonts/letter/
+    cp woff2/* /usr/local/share/fonts/letter/
+    cd
+}
+
+stow() {
     >&2 echo "Moving to dotfile directory"
     cd /usr/share/tdpeuter/arch-pkgs/ 
 
@@ -21,49 +77,4 @@ post_upgrade() {
     
     >&2 echo "Stowing all packages"
     stow -d ./stow -t "/home/${user}" ${packages}
-}
-
-pre_remove() {
-    rm -rf /usr/share/tdpeuter/arch-pkgs
-}
-
-install_software() {
-    cd
-
-    >&2 echo "Installing betterbird"
-    git clone https://aur.archlinux.org/betterbird-bin.git
-    cd betterbird-bin
-    git pull
-    makepkg
-    pacman -U betterbird-bin
-    cd
-
-    >&2 echo "Installing hamsket"
-    git clone https://aur.archlinux.org/hamsket-bin.git
-    cd hamsket-bin
-    git pull
-    makepkg
-    pacman -U hamsket-bin
-    cd
-
-    >&2 echo "Installing sway-git"
-    git clone https://aur.archlinux.org/sway-git.git
-    cd sway-git
-    git pull
-    makepkg
-    pacman -U sway-git
-    cd
-
-}
-
-install_fonts() {
-    mkdir -p /usr/local/share/fonts
-
-    >&2 echo "Installing letter (font)"
-    git clone https://github.com/tdpeuter/letter.git
-    cd letter
-    cp ttf/* /usr/local/share/fonts/ttf/letter/
-    cp ttf-unhinted/* /usr/local/share/fonts/ttf-unhinted/letter/
-    cp woff2/* /usr/local/share/fonts/woff2/letter/
-    cd
 }

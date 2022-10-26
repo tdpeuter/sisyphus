@@ -1,7 +1,7 @@
 # Maintainer: Tibo De Peuter <tibo.depeuter@gmail.com>
 pkgbase=tdpeuter
-pkgname=(tdpeuter-base tdpeuter-dev tdpeuter-desktop tdpeuter-me)
-pkgver=0.0.10
+pkgname=(tdpeuter-base tdpeuter-dev tdpeuter-desktop)
+pkgver=0.0.11
 pkgrel=1
 pkgdesc="Sysconfig for my systems"
 arch=(any)
@@ -66,7 +66,7 @@ package_tdpeuter-desktop() {
     # Base of sway desktop
     depends+=(
         alacritty brightnessctl dunst libnotify swayidle waybar 
-        xorg-xwayland
+        xorg-xwayland firefox nextcloud-client qutebrowser
     )
 
     # Fonts
@@ -74,41 +74,16 @@ package_tdpeuter-desktop() {
         awesome-terminal-fonts noto-fonts noto-fonts-cjk 
         noto-fonts-emoji
     )
-
-}
-
-package_tdpeuter-me() {
-    depends=(
-        tdpeuter-base
-        tdpeuter-desktop
-    )
-
-    depends+=(
-        firefox
-        nextcloud-client
-        qutebrowser
-    )
     
-    # Development
+    # Tools
+    depends+=(
+        vifm zathura zathura-pdf-mupdf zellij
+    )
+
     depends+=(
         code
     )
 
-    # Tools
-    depends+=(
-        vifm
-        zathura
-        zathura-pdf-mupdf
-        zellij
-    )
-
-    # Socials
-    depends+=(
-    )
-
-    # Entertainment
-    depends+=(
-    )
 
     post_install() {
         code --install-extension ms-vscode.cpptools
