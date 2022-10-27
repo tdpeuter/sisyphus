@@ -32,14 +32,14 @@ install_apps() {
     # Jetbrains
     pkgs+=" intellij-idea-ultimate-edition pycharm-professional jetbrains-fleet"
 
-    # Prompt for sudo password
-    options="--sudo \"SUDO_ASKPASS=/usr/lib/ssh/x11-ssh-askpass sudo\" "
     # Skip these
-    options+="--sudoflags \"-A\" --answerclean None --answerdiff None "
+    options="--sudoflags -A --answerclean None --answerdiff None "
     # Install as dependency
-    options+="--makepkg \"makepkg --asdeps\" "
+    options+="--makepkg \"makepkg -s --asdeps\" "
+    # Do not wait
+    options+="--noconfirm "
 
-    su -c "yay ${options} -S ${pkgs}" - tdpeuter
+    su -c "export SUDO_ASKPASS=/usr/lib/ssh/x11-ssh-askpass && yay ${options} -S ${pkgs}" - tdpeuter
 }
 
 install_fonts() {
