@@ -86,6 +86,7 @@ package_tdpeuter-desktop() {
     )
 
     post_install() {
+        bash ./install.sh
         code --install-extension ms-vscode.cpptools
     }
 }
