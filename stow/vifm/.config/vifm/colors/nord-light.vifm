@@ -1,0 +1,72 @@
+" automatically converted from Vim color scheme nord-light
+
+highlight clear
+
+highlight Win ctermfg=7 ctermbg=0 cterm=none
+highlight OtherWin ctermfg=8 ctermbg=-1 cterm=none
+" no conversion defined for AuxWin
+" no conversion defined for OddLine
+
+highlight TopLine ctermfg=7 ctermbg=0 cterm=none
+highlight TopLineSel ctermfg=6 ctermbg=8 cterm=none
+
+highlight TabLine ctermfg=0 ctermbg=0 cterm=none
+highlight TabLineSel ctermfg=6 ctermbg=8 cterm=none
+
+highlight JobLine ctermfg=6 ctermbg=0 cterm=none
+highlight StatusLine ctermfg=6 ctermbg=8 cterm=none
+highlight Border ctermfg=8 ctermbg=17 cterm=none
+
+highlight CurrLine ctermfg=0 ctermbg=12 cterm=none
+highlight OtherLine ctermfg=0 ctermbg=4 cterm=none
+highlight LineNr ctermfg=8 ctermbg=-1 cterm=none
+
+highlight Selected ctermfg=0 ctermbg=6 cterm=none
+highlight CmpMismatch ctermfg=3 ctermbg=225 cterm=reverse
+
+highlight SuggestBox ctermfg=0 ctermbg=14 cterm=none
+highlight WildMenu ctermfg=0 ctermbg=0 cterm=none
+
+highlight CmdLine ctermfg=7 ctermbg=0 cterm=none
+highlight ErrorMsg ctermfg=15 ctermbg=1 cterm=none
+
+highlight Directory ctermfg=4 ctermbg=-1 cterm=none
+highlight Executable ctermfg=4 ctermbg=-1 cterm=none
+highlight Socket ctermfg=5 ctermbg=-1 cterm=none
+highlight Device ctermfg=15 ctermbg=-1 cterm=none
+highlight Fifo ctermfg=2 ctermbg=-1 cterm=none
+highlight Link ctermfg=5 ctermbg=-1 cterm=none
+highlight BrokenLink ctermfg=3 ctermbg=11 cterm=none
+" no conversion defined for HardLink
+
+" no conversion defined for User1..User9
+
+" warnings:
+" - incomplete source color scheme: missing fg of Normal
+" - incomplete source color scheme: missing bg of Normal
+" - incomplete source color scheme: missing bg of NonText
+" - incomplete source color scheme: missing fg of StatusLineNC
+" - incomplete source color scheme: missing fg of TabLine
+" - incomplete source color scheme: missing fg of MsgSeparator
+" - incomplete source color scheme: missing bg of MsgSeparator
+" - incomplete source color scheme: missing bg of VertSplit
+" - incomplete source color scheme: missing fg of Cursor
+" - incomplete source color scheme: missing bg of Cursor
+" - incomplete source color scheme: missing fg of lCursor
+" - incomplete source color scheme: missing bg of lCursor
+" - incomplete source color scheme: missing bg of LineNr
+" - incomplete source color scheme: missing bg of DiffChange
+" - incomplete source color scheme: missing fg of Normal
+" - incomplete source color scheme: missing bg of Normal
+" - incomplete source color scheme: missing fg of Pmenu
+" - incomplete source color scheme: missing fg of Normal
+" - incomplete source color scheme: missing bg of Normal
+" - incomplete source color scheme: missing fg of ErrorMsg
+" - incomplete source color scheme: missing bg of Keyword
+" - incomplete source color scheme: missing bg of Macro
+" - incomplete source color scheme: missing fg of Debug
+" - incomplete source color scheme: missing bg of Debug
+" - incomplete source color scheme: missing bg of Delimiter
+" - incomplete source color scheme: missing bg of String
+" - incomplete source color scheme: missing bg of Number
+" - incomplete source color scheme: missing bg of Todo
