@@ -8,7 +8,7 @@ post_install() {
     pacman -S --needed git base-devel
     git clone https://aur.archlinux.org/yay.git
     cd yay
-    su -c "makepkg -si" - tdpeuter
+    su -c "makepkg -si --asdeps" - tdpeuter
    
     post_upgrade
 }
@@ -32,7 +32,14 @@ install_apps() {
     # Jetbrains
     pkgs+=" intellij-idea-ultimate-edition pycharm-professional jetbrains-fleet"
 
-    su -c "yay --sudoflags "-S" --answerclean None --answerdiff None -S ${pkgs} < ~/testje" - tdpeuter
+    # Prompt for sudo password
+    options="--sudo \"SUDO_ASKPASS=/usr/lib/ssh/x11-ssh-askpass sudo\" "
+    # Skip these
+    options+="--sudoflags \"-A\" --answerclean None --answerdiff None "
+    # Install as dependency
+    options+="--makepkg \"makepkg --asdeps\" "
+
+    su -c "yay ${options} -S ${pkgs}" - tdpeuter
 }
 
 install_fonts() {
