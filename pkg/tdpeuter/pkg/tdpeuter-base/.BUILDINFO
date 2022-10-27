@@ -1,11 +1,11 @@
 format = 2
 pkgname = tdpeuter-base
 pkgbase = tdpeuter
-pkgver = 0.0.16-1
+pkgver = 0.0.17-1
 pkgarch = any
-pkgbuild_sha256sum = aa6da9307dd728c75067ec2eb471cfe612a7a324adcb3802e6d21ea7001e895b
+pkgbuild_sha256sum = f8b8e944ffe7d43d2bb81ea100d97054a7ee3994a8517df318d96a3708f1f632
 packager = Unknown Packager
-builddate = 1666858154
+builddate = 1666858231
 builddir = /mnt/MyFiles/.hidden/arch-pkgs/pkg/tdpeuter
 startdir = /mnt/MyFiles/.hidden/arch-pkgs/pkg/tdpeuter
 buildtool = makepkg
