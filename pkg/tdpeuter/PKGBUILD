@@ -1,7 +1,7 @@
 # Maintainer: Tibo De Peuter <tibo.depeuter@gmail.com>
 pkgbase=tdpeuter
 pkgname=(tdpeuter-base tdpeuter-dev tdpeuter-desktop)
-pkgver=0.1.3
+pkgver=0.1.4
 pkgrel=1
 pkgdesc="Sysconfig for my systems"
 arch=(any)
@@ -76,7 +76,7 @@ package_tdpeuter-desktop() {
 
     # Applications
     depends+=(
-        alacritty firefox nextcloud-client qutebrowser obsidian code
+        alacritty firefox nextcloud-client qutebrowser obsidian
     )
 
     # Fonts
@@ -90,7 +90,4 @@ package_tdpeuter-desktop() {
         vifm zathura zathura-pdf-mupdf zellij
     )
 
-    post_install() {
-        code --install-extension ms-vscode.cpptools
-    }
 }
