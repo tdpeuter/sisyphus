@@ -58,9 +58,9 @@ package_tdpeuter-desktop() {
         tdpeuter-base
     )
 
-    # To move dotfiles around
+    # Utilities
     depends+=(
-        fzf stow
+        fzf stow x11-ssh-askpass
     )
    
     # Base of sway desktop

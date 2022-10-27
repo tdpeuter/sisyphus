@@ -32,7 +32,7 @@ install_apps() {
     # Jetbrains
     pkgs+=" intellij-idea-ultimate-edition pycharm-professional jetbrains-fleet"
 
-    su -c "yay --sudoflags "-S" --answerclean None --answerdiff None -S ${pkgs} < ~/testje" - tdpeuter
+    su -c "yay --sudo \"SUDO_ASKPASS=/usr/lib/ssh/x11-ssh-askpass sudo\" --sudoflags \"-A\" --answerclean None --answerdiff None -S ${pkgs}" - tdpeuter
 }
 
 install_fonts() {
