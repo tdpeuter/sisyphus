@@ -1,7 +1,7 @@
 # Maintainer: Tibo De Peuter <tibo.depeuter@gmail.com>
 pkgbase=tdpeuter
 pkgname=(tdpeuter-base tdpeuter-dev tdpeuter-desktop)
-pkgver=0.0.17
+pkgver=0.0.18
 pkgrel=1
 pkgdesc="Sysconfig for my systems"
 arch=(any)
@@ -66,7 +66,7 @@ package_tdpeuter-desktop() {
     # Base of sway desktop
     depends+=(
         brightnessctl dunst libnotify swayidle waybar xorg-xwayland
-        network-manager-applet
+        network-manager-applet pamixer playerctl jq
     )
 
     # Applications
@@ -82,7 +82,7 @@ package_tdpeuter-desktop() {
     
     # Tools
     depends+=(
-        vifm zathura zathura-pdf-mupdf zellij
+        vifm zathura zathura-pdf-mupdf zellij zenith
     )
 
     post_install() {

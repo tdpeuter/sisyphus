@@ -2,10 +2,10 @@
 # using fakeroot version 1.29
 pkgname = tdpeuter-desktop
 pkgbase = tdpeuter
-pkgver = 0.0.17-1
+pkgver = 0.0.18-1
 pkgdesc = Sysconfig for my systems
 url = https://git.depeuter.tk/tdpeuter/arch-pkgs
-builddate = 1666858231
+builddate = 1666866945
 packager = Unknown Packager
 size = 0
 arch = any
@@ -21,6 +21,9 @@ depend = swayidle
 depend = waybar
 depend = xorg-xwayland
 depend = network-manager-applet
+depend = pamixer
+depend = playerctl
+depend = jq
 depend = alacritty
 depend = firefox
 depend = nextcloud-client
@@ -35,3 +38,4 @@ depend = vifm
 depend = zathura
 depend = zathura-pdf-mupdf
 depend = zellij
+depend = zenith
