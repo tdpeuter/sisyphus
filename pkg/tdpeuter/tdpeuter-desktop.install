@@ -18,27 +18,31 @@ pre_remove() {
 
 install_one() {
 
-    >&2 echo "Installing ${1}"
-    git clone --depth 1 --progress "https://aur.archlinux.org/${1}.git"
     cd "${1}"
+
+    >&2 echo "Installing ${2}"
+    git clone --depth 1 --progress "https://aur.archlinux.org/${2}.git"
+    cd "${2}"
     git pull
 
-    dir=$(pwd)
-    makepkg -isc --asdeps tdpeuter-desktop --noconfirm
+    makepkg -isc --asdeps "tdpeuter-desktop" --noconfirm
+
 }
 
 install_software() {
+    
     user=$(who | cut -f1 -d' ' | head -n 1)
     dir="/home/${user}/.cache/tdpeuter"
     mkdir -p "${dir}"
     chown -R "${user}" "${dir}"
 
-    su -c "./install.sh \"${dir}\" \"betterbird-bin\"" "${user}"
+    su -c "install_one \"${dir}\" \"betterbird-bin\"" "${user}"
+    su -c "install_one \"${dir}\" \"gooogle-chrome\"" "${user}"
+    su -c "install_one \"${dir}\" \"hamsket-bin\"" "${user}"
+    su -c "install_one \"${dir}\" \"jetbrains-toolbox\"" "${user}"
+    su -c "install_one \"${dir}\" \"rstudio-dekstop-bin\"" "${user}"
+    su -c "install_one \"${dir}\" \"sway-git\"" "${user}"
 
-    install_one "google-chrome"
-    install_one "hamsket-bin"
-    install_one "jetbrains-toolbox"
-    install_one "sway-git"
 }
 
 install_fonts() {
