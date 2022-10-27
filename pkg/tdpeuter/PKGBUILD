@@ -21,6 +21,11 @@ package_tdpeuter-base() {
         bluez bluez-utils networkmanager
     )
 
+    # Keyring
+    depends+=(
+        keychain
+    )
+
 }
 
 package_tdpeuter-dev() {
