@@ -26,11 +26,12 @@ pre_remove() {
 install_apps() {
     rm /var/lib/pacman/db.lck
 
-    pkgs="betterbird-bin google-chrome hamsket-bin zenith"
-    pkgs+=" rstudio-desktop-bin sway-git swaylock-effects-git spotify"
+    pkgs=" betterbird-bin google-chrome hamsket-bin zenith "
+    pkgs+=" rstudio-desktop-bin sway-git swaylock-effects-git spotify "
 
     # Jetbrains
-    pkgs+=" intellij-idea-ultimate-edition pycharm-professional jetbrains-fleet"
+    pkgs+=" intellij-idea-ultimate-edition intellij-idea-ultimate-edition-jre "
+    pkgs+=" pycharm-professional jetbrains-fleet "
 
     # Skip these
     options="--sudoflags -A --answerclean None --answerdiff None "
