@@ -8,7 +8,7 @@ post_install() {
     pacman -S --needed git base-devel
     git clone https://aur.archlinux.org/yay.git
     cd yay
-    su -c "makepkg -si --asdeps" - tdpeuter
+    su -c "makepkg -si --asdeps --noconfirm" - tdpeuter
    
     post_upgrade
 }
