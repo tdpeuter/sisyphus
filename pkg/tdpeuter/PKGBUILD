@@ -1,7 +1,7 @@
 # Maintainer: Tibo De Peuter <tibo.depeuter@gmail.com>
 pkgbase=tdpeuter
 pkgname=(tdpeuter-base tdpeuter-dev tdpeuter-desktop)
-pkgver=0.0.14
+pkgver=0.0.15
 pkgrel=1
 pkgdesc="Sysconfig for my systems"
 arch=(any)
@@ -65,8 +65,13 @@ package_tdpeuter-desktop() {
    
     # Base of sway desktop
     depends+=(
-        alacritty brightnessctl dunst libnotify swayidle waybar 
-        xorg-xwayland firefox nextcloud-client qutebrowser
+        brightnessctl dunst libnotify swayidle waybar xorg-xwayland
+        network-manager-applet
+    )
+
+    # Applications
+    depends+=(
+        alacritty firefox nextcloud-client qutebrowser obsidian code
     )
 
     # Fonts
@@ -79,11 +84,6 @@ package_tdpeuter-desktop() {
     depends+=(
         vifm zathura zathura-pdf-mupdf zellij
     )
-
-    depends+=(
-        code
-    )
-
 
     post_install() {
         code --install-extension ms-vscode.cpptools
