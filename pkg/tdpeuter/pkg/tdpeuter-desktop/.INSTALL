@@ -34,8 +34,6 @@ install_apps() {
 
     # Skip these
     options="--sudoflags -A --answerclean None --answerdiff None "
-    # Install as dependency
-    options+="--makepkg \"makepkg -s --asdeps\" "
     # Do not wait
     options+="--noconfirm "
 
