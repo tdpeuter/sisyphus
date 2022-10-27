@@ -15,6 +15,9 @@ post_install() {
 
 post_upgrade() {
     install_apps
+    
+    code --install-extension ms-vscode.cpptools
+    
     install_fonts
     do_stow
 }
@@ -28,6 +31,7 @@ install_apps() {
 
     pkgs=" betterbird-bin google-chrome hamsket-bin zenith "
     pkgs+=" rstudio-desktop-bin sway-git swaylock-effects-git spotify "
+    pkgs+=" visual-studio-code-bin " 
 
     # Jetbrains
     pkgs+=" intellij-idea-ultimate-edition intellij-idea-ultimate-edition-jre "
