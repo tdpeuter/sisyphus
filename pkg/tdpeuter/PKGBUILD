@@ -1,7 +1,7 @@
 # Maintainer: Tibo De Peuter <tibo.depeuter@gmail.com>
 pkgbase=tdpeuter
 pkgname=(tdpeuter-base tdpeuter-dev tdpeuter-desktop)
-pkgver=0.0.18
+pkgver=0.0.19
 pkgrel=1
 pkgdesc="Sysconfig for my systems"
 arch=(any)
@@ -82,11 +82,10 @@ package_tdpeuter-desktop() {
     
     # Tools
     depends+=(
-        vifm zathura zathura-pdf-mupdf zellij zenith
+        vifm zathura zathura-pdf-mupdf zellij
     )
 
     post_install() {
-        bash ./install.sh
         code --install-extension ms-vscode.cpptools
     }
 }
