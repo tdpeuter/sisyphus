@@ -2,6 +2,13 @@ post_install() {
     # Initiate the stow repo
     >&2 echo "Cloning stow git repository"
     git clone --depth 1 --progress https://git.depeuter.tk/tdpeuter/arch-pkgs /usr/share/tdpeuter/arch-pkgs
+
+    # Installing yay
+    >&2 echo "Installing yay"
+    pacman -S --needed git base-devel
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    su -c "makepkg -si" - tdpeuter
    
     post_upgrade
 }
@@ -17,8 +24,15 @@ pre_remove() {
 }
 
 install_apps() {
-    yay -S betterbird-bin google-chrome hamsket-bin jetbrains-toolbox
-    yay -S rstudio-desktop-bin sway-git
+    rm /var/lib/pacman/db.lck
+
+    pkgs="betterbird-bin google-chrome hamsket-bin zenith"
+    pkgs+=" rstudio-desktop-bin sway-git swaylock-effects-git spotify"
+
+    # Jetbrains
+    pkgs+=" intellij-idea-ultimate-edition pycharm-professional jetbrains-fleet"
+
+    su -c "yay --sudoflags "-S" --answerclean None --answerdiff None -S ${pkgs} < ~/testje" - tdpeuter
 }
 
 install_fonts() {

@@ -5,6 +5,9 @@ post_install() {
     >&2 echo "Disabling Bluetooth"
     systemctl disable --now bluetooth.service
 
+    >&2 echo "Disabling terminal bell"
+    echo "blacklist pcspkr" > /etc/modprobe.d/blacklist.conf
+
     >&2 echo "Fixing locale"
     sed -i "s/^#\(en_GB.UTF-8 UTF-8\)$/\1/g" "/etc/locale.gen"
     locale-gen
