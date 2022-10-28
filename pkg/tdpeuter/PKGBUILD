@@ -1,7 +1,7 @@
 # Maintainer: Tibo De Peuter <tibo.depeuter@gmail.com>
 pkgbase=tdpeuter
 pkgname=(tdpeuter-base tdpeuter-dev tdpeuter-desktop)
-pkgver=0.1.4
+pkgver=0.1.5
 pkgrel=1
 pkgdesc="Sysconfig for my systems"
 arch=(any)
@@ -10,7 +10,7 @@ license=(GPL)
 groups=(tdpeuter)
 
 package_tdpeuter-base() {
-    install=tdpeuter-base.install
+    install=base.install
 
     depends=(
         base linux linux-firmware vim
@@ -18,10 +18,12 @@ package_tdpeuter-base() {
 
     # Networking & wireless
     depends+=(
-        bluez bluez-utils networkmanager
+        bluez bluez-utils 
+        networkmanager
+        pamixer playerctl pulseaudio-bluetooth
     )
 
-    # Keyring
+    # Secrets
     depends+=(
         keychain
     )
@@ -57,7 +59,7 @@ package_tdpeuter-dev() {
 }
 
 package_tdpeuter-desktop() {
-    install=tdpeuter-desktop.install
+    install=desktop.install
 
     depends=(
         tdpeuter-base
@@ -65,29 +67,39 @@ package_tdpeuter-desktop() {
 
     # Utilities
     depends+=(
-        fzf stow x11-ssh-askpass
+        fzf jq
+        stow 
+        x11-ssh-askpass
     )
    
     # Base of sway desktop
     depends+=(
-        brightnessctl dunst libnotify swayidle waybar xorg-xwayland
-        network-manager-applet pamixer playerctl jq
+        brightnessctl 
+        dunst libnotify 
+        swayidle waybar xorg-xwayland
+        network-manager-applet 
     )
 
     # Applications
     depends+=(
-        alacritty firefox nextcloud-client qutebrowser obsidian
+        alacritty 
+        firefox qutebrowser
+        nextcloud-client 
+        obsidian
     )
 
     # Fonts
     depends+=(
-        awesome-terminal-fonts noto-fonts noto-fonts-cjk 
-        noto-fonts-emoji
+        awesome-terminal-fonts 
+        noto-fonts noto-fonts-cjk noto-fonts-emoji
     )
     
     # Tools
     depends+=(
-        vifm zathura zathura-pdf-mupdf zellij
+        neofetch
+        vifm
+        zathura zathura-pdf-mupdf
+        zellij
     )
 
 }

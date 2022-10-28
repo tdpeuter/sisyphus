@@ -136,7 +136,7 @@
     		"car": "\uf1b9",
 			"default": ["\uf026", "\uf027", "\uf028 "]
 		},
-        "on-click": "pulsemixer --toggle-mute",
+        "on-click": "pamixer --toggle-mute",
         "on-click-right": "pavucontrol",
         "scroll-step": 2
 	},

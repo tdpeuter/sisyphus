@@ -100,7 +100,7 @@ bindsym {
 		$flag+Shift+ccedilla    move container to workspace $ws9, workspace $ws9
 		$flag+Shift+agrave      move container to workspace $ws10, workspace $ws10
 		$flag+Shift+parenright  move container to workspace $ws11, workspace $ws11
-		$flag+Shift+minus       move container to workspace $ws0, workspace $ws12
+		$flag+Shift+minus       move container to workspace $ws12, workspace $ws12
 
 		$flag+Control+j focus output 'eDP-1'
 		$flag+Control+h workspace prev_on_output
