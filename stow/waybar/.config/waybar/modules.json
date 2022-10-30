@@ -40,7 +40,7 @@
     "clock": {
 	    "format": "{:%H:%M}",
 		"format-alt": "{:%d/%m/%Y %H:%M}",
-        "timezone": "Europe/Brussels",
+        // "timezone": "Europe/Brussels",
 	    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
 	},
 
