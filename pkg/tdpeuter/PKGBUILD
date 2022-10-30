@@ -1,7 +1,7 @@
 # Maintainer: Tibo De Peuter <tibo.depeuter@gmail.com>
 pkgbase=tdpeuter
 pkgname=(tdpeuter-base tdpeuter-dev tdpeuter-desktop)
-pkgver=0.1.5
+pkgver=0.1.6
 pkgrel=1
 pkgdesc="Sysconfig for my systems"
 arch=(any)
@@ -90,14 +90,16 @@ package_tdpeuter-desktop() {
 
     # Fonts
     depends+=(
-        awesome-terminal-fonts 
         noto-fonts noto-fonts-cjk noto-fonts-emoji
+        otf-font-awesome
     )
     
     # Tools
     depends+=(
+        duf
         neofetch
         vifm
+        wget
         zathura zathura-pdf-mupdf
         zellij
     )
