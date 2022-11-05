@@ -27,7 +27,6 @@ set tabstop=4
 set number
 set relativenumber
 
-" colorscheme nord-light
 set conceallevel=2
 
 " Add mouse support
@@ -42,10 +41,13 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'dense-analysis/ale'
 Plug 'https://github.com/vifm/vifm.vim.git'
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 
 call plug#end() 
 
 " }}}
+
+colorscheme catppuccin_mocha_mod
 
 " AUTOMATIC STUFF ------------------------------------------------------- {{{
 
