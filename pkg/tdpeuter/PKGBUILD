@@ -98,6 +98,7 @@ package_tdpeuter-desktop() {
     depends+=(
         duf
         neofetch
+        pandoc pydflatex texlive-cleanthesis textlive-latexextra
         vifm
         wget
         zathura zathura-pdf-mupdf
