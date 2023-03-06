@@ -1,4 +1,5 @@
 #!/bin/sh
 pushd ~/projects/sisyphus/nixos
-home-manager switch -f ./users/tdpeuter/home.nix
+nix build .#homeManagerConfigurations.tdpeuter.activationPackage
+./result/activate
 popd
