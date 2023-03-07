@@ -1,2 +1,2 @@
-#!/bin/sh
+#!/usr/bin/env bash
 nix flake update

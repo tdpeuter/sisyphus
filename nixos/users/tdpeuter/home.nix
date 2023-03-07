@@ -1,38 +1,67 @@
-{ config, pkgs, ... }:
+{ inputs, lib, config, pkgs, ... }:
 
 {
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
-  home.username = "tdpeuter";
-  home.homeDirectory = "/home/tdpeuter";
+  imports = [
+  ];
 
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # changes in each release.
-  home.stateVersion = "22.11";
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  # Home manager
+  home = {
+    # Home Manager needs a bit of information about you and the
+    # paths it should manage.
+    username = "tdpeuter";
+    homeDirectory = "/home/tdpeuter";
   
-  programs.gpg.enable = true;
-  services.gpg-agent = {
-    enable = true;
-    pinentryFlavor = "qt";
+    # This value determines the Home Manager release that your
+    # configuration is compatible with. This helps avoid breakage
+    # when a new Home Manager release introduces backwards
+    # incompatible changes.
+    #
+    # You can update Home Manager without changing this value. See
+    # the Home Manager release notes for a list of state version
+    # changes in each release.
+    stateVersion = "22.11";
+  
+    packages = with pkgs; [
+      alacritty
+      duf
+      git-crypt
+      gnupg
+      pinentry_qt
+      vifm
+      zellij
+      zenith
+      jetbrains.webstorm
+    ];
+  
+  };
+  
+  programs = {
+    # Let Home Manager install and manage itself.
+    home-manager.enable = true;
+
+    git = {
+      enable = true;
+      userName = "tdpeuter";
+      userEmail = "tibo.depeuter@gmail.com";
+      extraConfig = {
+        core.editor = "vim";
+      };
+    };
+
+    gpg.enable = true;
   };
 
-  home.packages = with pkgs; [
-    alacritty
-    duf
-    git-crypt
-    gnupg
-    pinentry_qt
-    zellij
-    zenith
-  ];
-  
+
+  services = {
+    gpg-agent = {
+      enable = true;
+      pinentryFlavor = "qt";
+    };
+
+    nextcloud-client = {
+      enable = true;
+      startInBackground = true;
+    };
+  };
+
 }
