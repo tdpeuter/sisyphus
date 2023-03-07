@@ -46,21 +46,34 @@
   #   useXkbConfig = true; # use xkbOptions in tty.
   # };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-
-  # Enable the Plasma 5 Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-  
-
   # Configure keymap in X11
   # services.xserver.layout = "us";
   # services.xserver.xkbOptions = {
   #   "eurosign:e";
   #   "caps:escape" # map caps to escape.
   # };
+
+
+  services.xserver = {
+    # Enable the X11 windowing system.
+    enable = true;
+
+    # Enable the Plasma 5 Desktop Environment.
+    displayManager.sddm.enable = true;
+    displayManager.defaultSession = "plasmawayland";
+
+    desktopManager.plasma5 = {
+      enable = true;
+      excludePackages = with pkgs.libsForQt5; [
+        elisa
+        okular
+        plasma-browser-integration
+        khelpcenter
+        oxygen
+      ];
+    };
+
+  };  
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;

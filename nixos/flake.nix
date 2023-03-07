@@ -2,9 +2,10 @@
   description = "System configuration";
  
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-22.11";
     home-manager.url = "github:nix-community/home-manager/release-22.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs.url = "nixpkgs/nixos-22.11";
+    nur.url = "github:nix-community/NUR";
   };
 
   outputs = { nixpkgs, home-manager, ... }:
@@ -13,14 +14,17 @@
     
     pkgs = import nixpkgs {
       inherit system;
-      config = { allowUnfree = true; };
+      config.allowUnfree = true;
     };
 
     lib = nixpkgs.lib;
-  in {
+  in rec {
     homeManagerConfigurations = {
       tdpeuter = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${system};
+        pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        };
         modules = [
           ./users/tdpeuter/home.nix
           {
@@ -36,7 +40,7 @@
     nixosConfigurations = {
       Tibo-NixTest = lib.nixosSystem { # Use hostname
         inherit system;
-        modules = [
+        modules = (builtins.attrValues) ++ [
           ./system/configuration.nix
         ];
       };
