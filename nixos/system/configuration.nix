@@ -69,6 +69,7 @@
         okular
         plasma-browser-integration
         khelpcenter
+        kwalletmanager
         oxygen
       ];
     };
@@ -104,6 +105,7 @@
   environment.systemPackages = with pkgs; [
     firefox
     git
+    mongodb
     vim
     wget
   ];

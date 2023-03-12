@@ -26,15 +26,29 @@
       duf
       git-crypt
       gnupg
+      libreoffice-fresh-unwrapped
+      nextcloud-client
       pinentry_qt
       vifm
+      zathura
       zellij
       zenith
+      
+      # Webdevelopment
       jetbrains.webstorm
+      nodejs
+      nodePackages_latest.npm
+
+      # Multimedia
+      jetbrains.pycharm-professional
+      python39
+      python39Packages.pip
+      gcc
+      cmake
     ];
-  
+
   };
-  
+
   programs = {
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
@@ -58,10 +72,6 @@
       pinentryFlavor = "qt";
     };
 
-    nextcloud-client = {
-      enable = true;
-      startInBackground = true;
-    };
   };
 
 }
