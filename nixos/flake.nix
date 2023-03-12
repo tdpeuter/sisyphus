@@ -8,7 +8,7 @@
     nur.url = "github:nix-community/NUR";
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
+  outputs = { self, nixpkgs, home-manager, nur, ... }:
   let
     system = "x86_64-linux"; # Use flake tools?
     
@@ -40,8 +40,9 @@
     nixosConfigurations = {
       Tibo-NixTest = lib.nixosSystem { # Use hostname
         inherit system;
-        modules = (builtins.attrValues) ++ [
+        modules = [
           ./system/configuration.nix
+          nur.nixosModules.nur
         ];
       };
     };
