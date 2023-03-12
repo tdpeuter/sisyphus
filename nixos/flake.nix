@@ -41,7 +41,7 @@
       Tibo-NixTest = lib.nixosSystem { # Use hostname
         inherit system;
         modules = [
-          ./system/configuration.nix
+          ./hosts/test
           nur.nixosModules.nur
         ];
       };
