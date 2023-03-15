@@ -27,6 +27,8 @@
       git-crypt
       gnupg
       libreoffice-fresh-unwrapped
+      lynx
+      w3m
       nextcloud-client
       pinentry_qt
       vifm
@@ -38,6 +40,10 @@
       jetbrains.webstorm
       nodejs
       nodePackages_latest.npm
+      mongodb-6_0
+      mongosh
+      mongodb-tools
+      mongodb-compass
 
       # Multimedia
       jetbrains.pycharm-professional
@@ -45,6 +51,9 @@
       python39Packages.pip
       gcc
       cmake
+
+      # Software Engineering Lab 1
+      android-studio
     ];
 
   };

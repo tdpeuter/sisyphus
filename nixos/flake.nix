@@ -45,6 +45,12 @@
           nur.nixosModules.nur
         ];
       };
+      Tibo-NixFatso = lib.nixosSystem {
+        inherit system;
+        modules = [
+          ./hosts/fatso
+        ];
+      };
     };
   };
 }
