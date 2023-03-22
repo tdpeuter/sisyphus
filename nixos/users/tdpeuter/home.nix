@@ -23,34 +23,25 @@
   
     packages = with pkgs; [
       alacritty
+      discord
       duf
       git-crypt
       gnupg
       libreoffice-fresh-unwrapped
       lynx
-      w3m
+      mattermost-desktop
       nextcloud-client
       pinentry_qt
+      spotify
       vifm
+      vim
+      w3m
       zathura
       zellij
       zenith
       
       # Webdevelopment
       jetbrains.webstorm
-      nodejs
-      nodePackages_latest.npm
-      mongodb-6_0
-      mongosh
-      mongodb-tools
-      mongodb-compass
-
-      # Multimedia
-      jetbrains.pycharm-professional
-      python39
-      python39Packages.pip
-      gcc
-      cmake
 
       # Software Engineering Lab 1
       android-studio
