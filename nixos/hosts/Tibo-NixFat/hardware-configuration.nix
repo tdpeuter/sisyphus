@@ -18,6 +18,8 @@
       fsType = "ext4";
     };
 
+  boot.initrd.luks.devices."luks-7319552e-7148-4a9b-aa56-aa580b0b935a".device = "/dev/disk/by-uuid/7319552e-7148-4a9b-aa56-aa580b0b935a";
+
   fileSystems."/boot/efi" =
     { device = "/dev/disk/by-label/NIXBOOT";
       fsType = "vfat";

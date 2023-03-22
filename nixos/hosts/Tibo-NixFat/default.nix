@@ -6,7 +6,7 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./hardware-configuration.nix
     ];
 
@@ -19,14 +19,18 @@
   # Use the systemd-boot EFI boot loader.]
   boot.loader = {
     systemd-boot.enable = true;
-    
     efi = {
        canTouchEfiVariables = true;
        efiSysMountPoint = "/boot/efi";
     };
   };
 
-  networking.hostName = "Tibo-NixFatso";
+  # Setup keyfile
+  boot.initrd.secrets = {
+    "/crypto_keyfile.bin" = null;
+  };
+
+  networking.hostName = "Tibo-NixFat";
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -39,7 +43,7 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "en_GB.UTF-8";
   # console = {
   #   font = "Lat2-Terminus16";
   #   keyMap = "us";
@@ -47,40 +51,46 @@
   # };
 
   services.xserver = {
-    # Enable the X11 windowing system.
     enable = true;
 
+    videoDrivers = [ "nvidia" ]; # Also for wayland compositors
+  
+    # Enable the GNOME Desktop Environment.
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+
+
     # Enable the Plasma 5 Desktop Environment.
-    displayManager.sddm.enable = true;
-    displayManager.defaultSession = "plasmawayland";
-
-    desktopManager.plasma5 = {
-      enable = true;
-      excludePackages = with pkgs.libsForQt5; [
-        elisa
-        okular
-        plasma-browser-integration
-        khelpcenter
-        kwalletmanager
-        oxygen
-      ];
-    };
-
+    # displayManager.sddm = {
+    #   enable = true;
+    #   defaultSession = "plasmawayland";
+    # };
+    # desktopManager.plasma.enable = true;
+  
+    # Configure keymap in X11
+    layout = "us";
+    xkbVariant = "";
   };  
-
-  # Configure keymap in X11
-  # services.xserver.layout = "us";
-  # services.xserver.xkbOptions = {
-  #   "eurosign:e";
-  #   "caps:escape" # map caps to escape.
-  # };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  # Enable sound.
+  # Enable sound with pipewire.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    #jack.enable = true;
+
+    # use the example session manager (no others are packaged yet so this is enabled by default,
+    # no need to redefine it in your config for now)
+    #media-session.enable = true;
+  };
 
   # Enable Bluetooth.
   hardware.bluetooth.enable = true;
@@ -88,30 +98,36 @@
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
 
+  # NVIDIA drivers
   hardware.opengl.enable = true;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   hardware.nvidia.modesetting.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tdpeuter = {
     description = "Tibo De Peuter";
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "networkmanager" "wheel" ];
     initialPassword = "ChangeMe";
     packages = with pkgs; [
       home-manager
     ];
   };
+  
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    firefox
-    git
-    vim
-    wget
   ];
-
-  services.mongodb.enable = true;
+  
+  # Computer architecture
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enableExtensionPack = true;
+  virtualisation.virtualbox.guest.enable = true;
+  virtualisation.virtualbox.guest.x11 = true;
+  users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
