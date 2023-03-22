@@ -1,56 +1,65 @@
 {
-  description = "System configuration";
+  description = "System configuration of my machines using flakes";
  
   inputs = {
-    home-manager.url = "github:nix-community/home-manager/release-22.11";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs.url = "nixpkgs/nixos-22.11";
-    nur.url = "github:nix-community/NUR";
-  };
-
-  outputs = { self, nixpkgs, home-manager, nur, ... }:
-  let
-    system = "x86_64-linux"; # Use flake tools?
     
-    pkgs = import nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-    };
-
-    lib = nixpkgs.lib;
-  in rec {
-    homeManagerConfigurations = {
-      tdpeuter = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-        };
-        modules = [
-          ./users/tdpeuter/home.nix
-          {
-            home = {
-              username = "tdpeuter";
-              homeDirectory = "/home/tdpeuter";
-            };
-          }
-        ];
+    devshell = {
+      url = "github:numtide/devshell";
+      inputs = {
+        flake-utils.follows = "flake-utils";
+        nixpkgs.follows = "nixpkgs";
       };
     };
-
-    nixosConfigurations = {
-      Tibo-NixTest = lib.nixosSystem { # Use hostname
-        inherit system;
-        modules = [
-          ./hosts/test
-          nur.nixosModules.nur
-        ];
+    flake-utils.url = "github:numtide/flake-utils";
+    home-manager = {
+      url = "github:nix-community/home-manager/release-22.11";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        utils.follows = "flake-utils";
       };
-      Tibo-NixFatso = lib.nixosSystem {
-        inherit system;
-        modules = [
-          ./hosts/fatso
-        ];
-      };
+    };
+    utils = {
+      url = "github:gytis-ivaskevicius/flake-utils-plus";
+      inputs.flake-utils.follows = "flake-utils";
     };
   };
+
+  outputs = inputs@{
+    self, nixpkgs,
+    devshell, flake-utils, home-manager, utils,
+    ... }:
+    let
+      system = "x86_64-linux";
+    in
+    utils.lib.mkFlake {
+      inherit self inputs;
+      homeManagerConfigurations = {
+        tdpeuter = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+          };
+          modules = [
+            ./users/tdpeuter/home.nix
+            {
+              home = {
+                username = "tdpeuter";
+                homeDirectory = "/home/tdpeuter";
+              };
+            }
+          ];
+        };
+      };
+      nixosConfigurations = {
+        Tibo-NixFat = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [ ./hosts/Tibo-NixFat ];
+        };
+        Tibo-NixTest = nixpkgs.lib.nixossSytem {
+          inherit system;
+          modules = [ ./hosts/Tibo-NixTest ];
+        };
+      };    
+    };
 }
