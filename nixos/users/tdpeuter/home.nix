@@ -1,6 +1,9 @@
 { inputs, lib, config, pkgs, ... }:
 
 {
+  # Check documentation at
+  # https://rycee.gitlab.io/home-manager/options.html
+
   imports = [
   ];
 
@@ -10,7 +13,7 @@
     # paths it should manage.
     username = "tdpeuter";
     homeDirectory = "/home/tdpeuter";
-  
+
     # This value determines the Home Manager release that your
     # configuration is compatible with. This helps avoid breakage
     # when a new Home Manager release introduces backwards
@@ -46,6 +49,9 @@
 
       # Software Engineering Lab 1
       android-studio
+
+      # Fonts
+      font-awesome_5 # Vifm and zsh dependency
     ];
 
     file = {
@@ -54,6 +60,7 @@
       ".vim".source = ../../../stow/vim/.vim;
       ".vimrc".source = ../../../stow/vim/.vimrc;
       ".config/zellij".source = ../../../stow/zellij/.config/zellij;
+      ".oh-my-zsh".source = ../../../stow/zsh/.oh-my-zsh;
     };
 
   };
@@ -72,6 +79,27 @@
     };
 
     gpg.enable = true;
+
+    zsh = {
+      enable = true;
+      oh-my-zsh = {
+        enable = true;
+        custom = "$HOME/.oh-my-zsh";
+        plugins = [ "dirhistory" "git" "screen" ];
+        theme = "mrfortem";
+      };
+      plugins = [
+        {
+          name = "cmdtime";
+          src = pkgs.fetchFromGitHub {
+            owner  = "tom-auger";
+            repo   = "cmdtime";
+            rev    = "ffc72641dcfa0ee6666ceb1dc712b61be30a1e8b";
+            hash = "sha256-v6wCfNoPXDD3sS6yUYE6lre8Ir1yJcLGoAW3O8sUOCg=";
+          };
+        }
+      ];
+    };
   };
 
 
