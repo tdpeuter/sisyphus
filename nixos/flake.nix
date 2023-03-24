@@ -50,7 +50,7 @@
           inherit system;
           modules = [ ./hosts/Tibo-NixFat ];
         };
-        Tibo-NixTest = nixpkgs.lib.nixossSytem {
+        Tibo-NixTest = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [ ./hosts/Tibo-NixTest ];
         };
