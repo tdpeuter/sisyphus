@@ -112,6 +112,7 @@
     packages = with pkgs; [
       home-manager
     ];
+    shell = pkgs.zsh;
   };
   
   # Allow unfree packages

@@ -42,12 +42,6 @@
           };
           modules = [
             ./users/tdpeuter/home.nix
-            {
-              home = {
-                username = "tdpeuter";
-                homeDirectory = "/home/tdpeuter";
-              };
-            }
           ];
         };
       };
@@ -60,6 +54,6 @@
           inherit system;
           modules = [ ./hosts/Tibo-NixTest ];
         };
-      };    
+      };
     };
 }
