@@ -39,13 +39,22 @@
       zathura
       zellij
       zenith
-      
+      zoom-us
+
       # Webdevelopment
       jetbrains.webstorm
 
       # Software Engineering Lab 1
       android-studio
     ];
+
+    file = {
+      ".config/alacritty".source = ../../../stow/alacritty/.config/alacritty;
+      ".config/vifm".source = ../../../stow/vifm/.config/vifm;
+      ".vim".source = ../../../stow/vim/.vim;
+      ".vimrc".source = ../../../stow/vim/.vimrc;
+      ".config/zellij".source = ../../../stow/zellij/.config/zellij;
+    };
 
   };
 
