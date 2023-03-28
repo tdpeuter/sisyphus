@@ -13,6 +13,7 @@
 
     programs.zsh = {
         enable = true;
+        enableAutosuggestions = true;
         enableSyntaxHighlighting = true;
         history = {
             expireDuplicatesFirst = true;
@@ -46,6 +47,7 @@
             cp    = "cp -i"; # Confirm before overwriting something
             df    = "df -h";
             free  = "free -m";
+            ll    = "ls -la";
             np    = "nano -w PKGBUILD";
             more  = "less";
             hgrep = "history | grep";
