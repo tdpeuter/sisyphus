@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-    home = {
+    home-manager.users.tdpeuter.home = {
         packages = with pkgs; [
             vifm
             font-awesome_5
