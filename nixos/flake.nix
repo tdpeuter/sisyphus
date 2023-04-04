@@ -43,6 +43,7 @@
         inherit system;
         modules = [
           home-manager.nixosModule
+          ./modules
         ];
       };
 
