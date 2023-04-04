@@ -2,12 +2,14 @@
 
 {
     home-manager.users.tdpeuter = { pkgs, ... }: {
-        packages = with pkgs; [
-            alacritty
-        ];
+        home = {
+            packages = with pkgs; [
+                alacritty
+            ];
 
-        file = {
-            ".config/alacritty".source = ../../stow/alacritty/.config/alacritty;
+            file = {
+                ".config/alacritty".source = ../../../../stow/alacritty/.config/alacritty;
+            };
         };
     };
 }
