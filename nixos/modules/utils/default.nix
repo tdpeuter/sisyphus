@@ -1,6 +1,7 @@
 {
     imports = [
         ./vifm
+        ./vim
         ./zellij
     ];
 }
