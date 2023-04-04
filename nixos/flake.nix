@@ -1,9 +1,9 @@
 {
   description = "System configuration of my machines using flakes";
- 
+
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-22.11";
-    
+
     devshell = {
       url = "github:numtide/devshell";
       inputs = {
@@ -34,26 +34,21 @@
     in
     utils.lib.mkFlake {
       inherit self inputs;
-      homeManagerConfigurations = {
-        tdpeuter = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs {
-            inherit system;
-            config.allowUnfree = true;
-          };
-          modules = [
-            ./users/tdpeuter/home.nix
-          ];
-        };
+
+      channelsConfig = {
+        allowUnfree = true;
       };
-      nixosConfigurations = {
-        Tibo-NixFat = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [ ./hosts/Tibo-NixFat ];
-        };
-        Tibo-NixTest = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [ ./hosts/Tibo-NixTest ];
-        };
+
+      hostDefaults = {
+        inherit system;
+        modules = [
+          home-manager.nixosModule
+        ];
+      };
+
+      hosts = {
+        Tibo-NixFat.modules  = [ ./hosts/Tibo-NixFat  ];
+        Tibo-NixTest.modules = [ ./hosts/Tibo-NixTest ];
       };
     };
 }
