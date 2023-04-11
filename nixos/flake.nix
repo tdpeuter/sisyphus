@@ -48,6 +48,7 @@
       };
 
       hosts = {
+        Tibo-NixDesk.modules = [ ./hosts/Tibo-NixDesk ];
         Tibo-NixFat.modules  = [ ./hosts/Tibo-NixFat  ];
         Tibo-NixTest.modules = [ ./hosts/Tibo-NixTest ];
       };
