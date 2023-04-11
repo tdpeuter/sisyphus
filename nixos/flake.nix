@@ -19,6 +19,10 @@
         utils.follows = "flake-utils";
       };
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
     utils = {
       url = "github:gytis-ivaskevicius/flake-utils-plus";
       inputs.flake-utils.follows = "flake-utils";
@@ -27,7 +31,7 @@
 
   outputs = inputs@{
     self, nixpkgs,
-    devshell, flake-utils, home-manager, utils,
+    devshell, flake-utils, home-manager, sops-nix, utils,
     ... }:
     let
       system = "x86_64-linux";
@@ -43,6 +47,7 @@
         inherit system;
         modules = [
           home-manager.nixosModule
+          sops-nix.nixosModules.sops
           ./modules
         ];
       };

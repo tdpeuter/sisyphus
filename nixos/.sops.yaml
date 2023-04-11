@@ -1,0 +1,9 @@
+keys:
+  - &tdpeuter@Tibo-NixFat age1q2gqur3t4fu8flsuu2zdnule37vdkh6egpt6a2e3ytx433x8gpvsr4hw6l
+
+creation_rules:
+  - path_regex: secrets/[^/]+\.yaml$
+    key_groups:
+    - age:
+      - *tdpeuter@Tibo-NixFat
+
