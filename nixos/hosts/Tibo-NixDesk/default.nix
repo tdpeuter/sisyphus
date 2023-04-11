@@ -1,13 +1,20 @@
+<<<<<<< HEAD
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
+=======
+>>>>>>> 63c6be3 (Add desktop)
 { config, pkgs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+<<<<<<< HEAD
+=======
+      ../../modules/hardware/nvidia
+>>>>>>> 63c6be3 (Add desktop)
 
       ../../modules/apps/virtualbox
       ../../modules/des/gnome
@@ -18,6 +25,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
+<<<<<<< HEAD
   networking.hostName = "Tibo-NixDesk"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -27,6 +35,12 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+=======
+  # Enable networking
+  networking.hostName = "Tibo-NixDesk"; # Define your hostname.
+  networking.networkmanager.enable = true;
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+>>>>>>> 63c6be3 (Add desktop)
 
   # Set your time zone.
   time.timeZone = "Europe/Brussels";
@@ -34,6 +48,7 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_GB.utf8";
 
+<<<<<<< HEAD
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -41,15 +56,20 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
+=======
+>>>>>>> 63c6be3 (Add desktop)
   # Configure keymap in X11
   services.xserver = {
     layout = "us";
     xkbVariant = "";
   };
 
+<<<<<<< HEAD
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+=======
+>>>>>>> 63c6be3 (Add desktop)
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -67,9 +87,12 @@
     #media-session.enable = true;
   };
 
+<<<<<<< HEAD
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+=======
+>>>>>>> 63c6be3 (Add desktop)
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
