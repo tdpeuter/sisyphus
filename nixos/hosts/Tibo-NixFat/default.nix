@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ../../modules/hardware/nvidia.nix
 
     ../../modules/apps/virtualbox
     ../../modules/des/gnome
@@ -43,15 +44,11 @@
   # };
 
   services.xserver = {
-    enable = true;
-
-    videoDrivers = [ "nvidia" ]; # Also for wayland compositors
-    
     # Configure keymap in X11
     layout = "us";
     xkbVariant = "";
-  };  
-  
+  };
+
   # Enable CUPS to print documents.
   # services.printing.enable = true;
   
@@ -77,21 +74,6 @@
   
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
-  
-  # NVIDIA drivers
-  hardware = {
-    opengl.enable = true;
-    nvidia = {
-      open = true;
-      #     package = config.boot.kernelPackages.nvidiaPackages.stable;
-      modesetting.enable = true;
-      #     prime = {
-      #         offload.enable = true;
-      #         intelBusId = "PCI::00:02:0";
-      #         nvidiaBusId = "PCI:01:00:0";
-      #     };
-    };
-  };
   
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
