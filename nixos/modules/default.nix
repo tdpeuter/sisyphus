@@ -49,6 +49,7 @@
         nextcloud-client
         obsidian
         pinentry_qt
+        qalculate-gtk
         spotify
         w3m
         zathura

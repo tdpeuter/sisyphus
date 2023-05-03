@@ -26,7 +26,9 @@
   ]) ++ (with pkgs.gnome; [
     geary # Mail client
     gedit
+    gnome-calculator
     gnome-calendar
+    gnome-characters
     gnome-clocks
     gnome-contacts
     gnome-maps
