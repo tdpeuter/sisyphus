@@ -35,26 +35,7 @@
       stateVersion = "22.11";
 
       packages = with pkgs; [
-        brave
-        caprine-bin
-        direnv
-        discord
-        duf
-        git-crypt
         gnupg
-        jellyfin-media-player
-        libreoffice-fresh-unwrapped
-        lynx
-        mattermost-desktop
-        nextcloud-client
-        obsidian
-        pinentry_qt
-        qalculate-gtk
-        spotify
-        w3m
-        zathura
-        zenith
-        zoom-us
         
         # Fonts
         corefonts      # Calibri for Uni
@@ -63,28 +44,7 @@
 
     programs = {
       home-manager.enable = true;
-      direnv = {
-        enable = true;
-        nix-direnv.enable = true;
-      };
-
-      git = {
-        enable = true;
-        userName = "tdpeuter";
-        userEmail = "tibo.depeuter@gmail.com";
-        extraConfig = {
-          core.editor = "vim";
-        };
-        includes = [
-          {
-            path = "~/.gitconfig-ugent";
-            condition = "gitdir:~/Nextcloud/Documenten/UGent";
-          }
-        ];
-      };
-
       gpg.enable = true;
-
     };
 
     services = {
