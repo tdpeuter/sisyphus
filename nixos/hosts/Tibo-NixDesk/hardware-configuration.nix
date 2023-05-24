@@ -14,20 +14,12 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-<<<<<<< HEAD
     { device = "/dev/disk/by-label/NIXROOT";
-=======
-    { device = "/dev/disk/by-uuid/5e4bacff-07fb-4d3a-8ac6-d535c913659b";
->>>>>>> 63c6be3 (Add desktop)
       fsType = "ext4";
     };
 
   fileSystems."/boot/efi" =
-<<<<<<< HEAD
     { device = "/dev/disk/by-label/NIXBOOT";
-=======
-    { device = "/dev/disk/by-uuid/4D30-B01D";
->>>>>>> 63c6be3 (Add desktop)
       fsType = "vfat";
     };
 
