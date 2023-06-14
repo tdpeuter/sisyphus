@@ -68,6 +68,8 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
+
+  services.logind.lidSwitch = "ignore";
   
   # Enable Bluetooth.
   hardware.bluetooth.enable = true;
