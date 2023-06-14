@@ -11,12 +11,7 @@ include {
     style
 }
 
-# Input
-input type:keyboard {
-    xkb_layout  "be"
-}
-
-input 2:7:SynPS/2_Synaptics_TouchPad {
+input type:touchpad {
     natural_scroll      enabled
     scroll_factor       0.6
     middle_emulation    enabled

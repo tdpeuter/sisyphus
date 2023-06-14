@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # 
 # ~/.config/sway/autostart.sh
 # List of applications to autostart
