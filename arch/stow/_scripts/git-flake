@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Ignore flake.nix and flake.lock
+# For using personal flakes in a project that does not provide and want flakes.
+# Syntaxis: git flake
+
+git add --intent-to-add flake.nix flake.lock
+git update-index --assume-unchanged flake.nix
