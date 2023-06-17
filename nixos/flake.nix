@@ -2,7 +2,7 @@
   description = "System configuration of my machines using flakes";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-22.11";
+    nixpkgs.url = "nixpkgs/nixos-23.05";
 
     devshell = {
       url = "github:numtide/devshell";
@@ -13,7 +13,7 @@
     };
     flake-utils.url = "github:numtide/flake-utils";
     home-manager = {
-      url = "github:nix-community/home-manager/release-22.11";
+      url = "github:nix-community/home-manager/release-23.05";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         utils.follows = "flake-utils";
