@@ -23,7 +23,6 @@
     packages = with pkgs; [
       home-manager
     ];
-    shell = pkgs.zsh;
   };
 
   home-manager.useGlobalPkgs = true;
@@ -32,7 +31,7 @@
     home = {
       username = "tdpeuter";
       homeDirectory = "/home/tdpeuter";
-      stateVersion = "22.11";
+      stateVersion = "23.05";
 
       packages = with pkgs; [
         gnupg

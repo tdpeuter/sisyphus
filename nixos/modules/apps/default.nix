@@ -13,7 +13,7 @@
         caprine-bin
         discord
         jellyfin-media-player
-        libreoffice-fresh-unwrapped
+        libreoffice-fresh
         mattermost-desktop
         nextcloud-client
         obsidian
