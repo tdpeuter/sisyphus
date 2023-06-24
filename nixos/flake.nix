@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.05";
+    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
     devshell = {
       url = "github:numtide/devshell";
@@ -30,7 +31,7 @@
   };
 
   outputs = inputs@{
-    self, nixpkgs,
+    self, nixpkgs, nixpkgs-unstable,
     devshell, flake-utils, home-manager, sops-nix, utils,
     ... }:
     let
@@ -45,6 +46,13 @@
 
       hostDefaults = {
         inherit system;
+
+        specialArgs = {
+          pkgs-unstable = import nixpkgs-unstable {
+            inherit system;
+          };
+        };
+
         modules = [
           home-manager.nixosModule
           sops-nix.nixosModules.sops

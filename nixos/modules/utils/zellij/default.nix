@@ -1,8 +1,11 @@
 { config, pkgs, lib, ... }:
 
 {
-    home-manager.users.tdpeuter.home = {
-        packages = [ pkgs.zellij ];
-        file.".config/zellij".source = ../../../../stow/zellij/.config/zellij;
-    };
+  home-manager.users.tdpeuter.home = {
+    packages = with pkgs; [
+      zellij
+    ];
+
+    file.".config/zellij".source = ../../../../stow/zellij/.config/zellij;
+  };
 }
