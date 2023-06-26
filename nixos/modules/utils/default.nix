@@ -12,6 +12,7 @@
       duf
       git-crypt
       lynx
+      nsxiv
       w3m
       zenith
     ];
