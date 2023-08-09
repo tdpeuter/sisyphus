@@ -14,7 +14,7 @@
       lynx
       nsxiv
       w3m
-      zenith
+      zenith-nvidia
     ];
 
     programs = {
