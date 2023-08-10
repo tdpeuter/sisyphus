@@ -511,7 +511,8 @@ mouse:
   #triple_click: { threshold: 300 }
 
   # If this is `true`, the cursor is temporarily hidden when typing.
-  hide_when_typing: true
+  hide_when_typing: false
+  # You are more likely to be struggling with a disappeared mouse than you are going to struggle with a mouse over your text.
 
 # Regex hints
 #
