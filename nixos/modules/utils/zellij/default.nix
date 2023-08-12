@@ -8,4 +8,9 @@
 
     file.".config/zellij".source = ../../../../stow/zellij/.config/zellij;
   };
+
+  fonts.fonts = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk
+  ];
 }
