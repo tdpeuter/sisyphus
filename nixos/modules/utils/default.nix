@@ -14,6 +14,7 @@
       lynx
       nsxiv
       w3m
+      wget
       zenith-nvidia
     ];
 
