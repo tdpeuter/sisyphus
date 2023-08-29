@@ -17,13 +17,19 @@
     gnomeExtensions.launch-new-instance
   ];
 
+  # We do not want these packages automatically
   environment.gnome.excludePackages = (with pkgs; [
+    baobab
     epiphany # Web browser
+    evince # Document viewer
+    gnome-connections # Remote desktop client
     gnome-console
     gnome-photos
     gnome-text-editor
     gnome-tour
   ]) ++ (with pkgs.gnome; [
+    eog # Image viewer
+    file-roller # Archive manager
     geary # Mail client
     gedit
     gnome-calculator
@@ -31,8 +37,10 @@
     gnome-characters
     gnome-clocks
     gnome-contacts
+    gnome-disk-utility
     gnome-maps
     gnome-music
+    gnome-system-monitor
     gnome-weather
     simple-scan
     totem # Movie player
