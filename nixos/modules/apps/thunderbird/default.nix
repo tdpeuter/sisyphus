@@ -122,6 +122,40 @@ in
             "mailnews.mark_message_read.delay" = true;
             "mailnews.start_page.enabled" = false;
             "mail.pane_config.dynamic" = 2; # Vertical view
+
+            "calendar.list.sortOrder" = "personal ugent tasks planning zeus";
+
+            "calendar.registry.personal.cache.enabled" = true;
+            "calendar.registry.personal.name" = "Personal";
+            "calendar.registry.personal.type" = "caldav";
+            "calendar.registry.personal.uri" = "https://cloud.depeuter.dev/remote.php/dav/calendars/tdpeuter/personal/";
+            "calendar.registry.personal.username" = "tdpeuter";
+
+            "calendar.registry.ugent.cache.enabled" = true;
+            "calendar.registry.ugent.color" = "#1E64C8";
+            "calendar.registry.ugent.name" = "UGent";
+            "calendar.registry.ugent.type" = "caldav";
+            "calendar.registry.ugent.uri" = "https://cloud.depeuter.dev/remote.php/dav/calendars/tdpeuter/ugent/";
+            "calendar.registry.ugent.username" = "tdpeuter";
+
+            "calendar.registry.planning.cache.enabled" = true;
+            "calendar.registry.planning.name" = "Planning";
+            "calendar.registry.planning.type" = "caldav";
+            "calendar.registry.planning.uri" = "https://cloud.depeuter.dev/remote.php/dav/calendars/tdpeuter/planning/";
+            "calendar.registry.planning.username" = "tdpeuter";
+
+            "calendar.registry.zeus.cache.enabled" = true;
+            "calendar.registry.zeus.color" = "#FF7F00";
+            "calendar.registry.zeus.name" = "ZeusWPI";
+            "calendar.registry.zeus.type" = "ics";
+            "calendar.registry.zeus.uri" = "https://zeus.ugent.be/ical.ics";
+
+            "calendar.registry.tasks.cache.enabled" = true;
+            "calendar.registry.tasks.color" = "#813D9C";
+            "calendar.registry.tasks.name" = "Tasks";
+            "calendar.registry.tasks.type" = "caldav";
+            "calendar.registry.tasks.uri" = "https://cloud.depeuter.dev/remote.php/dav/calendars/tdpeuter/tasks-2/";
+            "calendar.registry.tasks.username" = "tdpeuter";
           };
         };
       };
