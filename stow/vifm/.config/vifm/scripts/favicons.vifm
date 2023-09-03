@@ -48,6 +48,7 @@ set classify+='  ::*.fish,,*.sh,,*.bash::'
 set classify+='  ::*.ejs,,*.slim,,*.xml::'
 set classify+='C  ::*.c++,,*.cpp,,*.cxx,,*.h,,*.cc,,*.c::'
 set classify+='  ::*.coffee::'
+set classify+='  ::*.nix::'
 
 " Unsorted and unconverted
 set classify+='λ  ::*.ml,,*.mli::'
