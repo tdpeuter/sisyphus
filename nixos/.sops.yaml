@@ -1,10 +1,13 @@
 keys:
-  - &tdpeuter age1q2gqur3t4fu8flsuu2zdnule37vdkh6egpt6a2e3ytx433x8gpvsr4hw6l
-  - &Tibo-NixDesk age1quvlqpznqkw2r0jhyx6p2hsq3dk93087yha46ugtce6ew9c64pgq4uhcvz
+  - &tdpeuter age1fva6s64s884z0q2w7de024sp69ucvqu0pg9shrhhqsn3ewlpjfpsh6md7y
+
+  - &server_H4G0 age1d4gvqz3anf082ja6xt03hnkzazfum80um9t45m4rerl4n3va2yuqgnsg03
 
 creation_rules:
-  - path_regex: secrets/[^/]+\.yaml$
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
     - age:
       - *tdpeuter
+
+      - *server_H4G0
 
