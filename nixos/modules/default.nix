@@ -18,7 +18,11 @@
   users.users.tdpeuter = {
     description = "Tibo De Peuter";
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ 
+      config.users.groups.keys.name
+      config.users.groups.networkmanager.name
+      config.users.groups.wheel.name
+    ];
     initialPassword = "ChangeMe";
     packages = with pkgs; [
       home-manager

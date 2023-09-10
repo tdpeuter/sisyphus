@@ -1,6 +1,8 @@
 {
   imports = [
     ./mpv
+    ./sops
+    ./ssh
     ./vifm
     ./vim
     ./zellij
