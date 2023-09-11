@@ -14,12 +14,17 @@
       # Use an age key that is expected to already be in the filesystem
       keyFile = "/var/lib/sops-nix/key.txt";
       # Generate new keys if the key specified above does not exist
-      generateKey = true;
+      # generateKey = true;
     };
     secrets = {
       "H4G0/ssh" = {
         format = "yaml";
         sopsFile = ../../../secrets/H4G0.yaml;
+        owner = config.users.users.tdpeuter.name;
+      };
+      "GitHub/ssh" = {
+        format = "yaml";
+        sopsFile = ../../../secrets/GitHub.yaml;
         owner = config.users.users.tdpeuter.name;
       };
     };

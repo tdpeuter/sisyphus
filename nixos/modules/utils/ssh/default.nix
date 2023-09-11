@@ -16,6 +16,12 @@
           identityFile = "/run/secrets/H4G0/ssh";
           user = "admin";
         };
+        "github.com" = {
+          hostname = "github.com";
+          identitiesOnly = true;
+          identityFile = "/run/secrets/GitHub/ssh";
+          user = "tdpeuter";
+        };
       };
     };
   };
