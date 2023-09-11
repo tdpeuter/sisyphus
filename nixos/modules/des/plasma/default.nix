@@ -4,10 +4,13 @@
   services.xserver = {
     enable = true;
 
-    displayManager.sddm = {
-      enable = true;
-      # https://discourse.nixos.org/t/plasma-wayland-session-not-available-from-sddm/13447/2
-      settings.Wayland.SessionDir = "${pkgs.plasma5Packages.plasma-workspace}/share/wayland-sessions";
+    displayManager = {
+      defaultSession = "plasmawayland";
+      sddm = {
+        enable = true;
+        # https://discourse.nixos.org/t/plasma-wayland-session-not-available-from-sddm/13447/2
+        settings.Wayland.SessionDir = "${pkgs.plasma5Packages.plasma-workspace}/share/wayland-sessions";
+      };
     };
     
     desktopManager.plasma5 = {
