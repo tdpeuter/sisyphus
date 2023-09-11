@@ -11,14 +11,19 @@
     ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  boot.loader = {
+      systemd-boot.enable = true;
+      efi = {
+          canTouchEfiVariables = true;
+          efiSysMountPoint = "/boot/efi";
+      };
+  };
 
-  # Enable networking
-  networking.hostName = "Tibo-NixDesk"; # Define your hostname.
-  networking.networkmanager.enable = true;
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking = {
+      hostName = "Tibo-NixDesk";
+      networkmanager.enable = true;
+      # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Brussels";
@@ -56,11 +61,6 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
