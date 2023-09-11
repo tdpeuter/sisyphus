@@ -27,6 +27,11 @@
         sopsFile = ../../../secrets/GitHub.yaml;
         owner = config.users.users.tdpeuter.name;
       };
+      "GitHub-UGent/ssh" = {
+        format = "yaml";
+        sopsFile = ../../../secrets/GitHub-UGent.yaml;
+        owner = config.users.users.tdpeuter.name;
+      };
     };
   };
 }

@@ -22,6 +22,12 @@
           identityFile = "/run/secrets/GitHub/ssh";
           user = "tdpeuter";
         };
+        "github.ugent.be" = {
+          hostname = "github.ugent.be";
+          identitiesOnly = true;
+          identityFile = "/run/secrets/GitHub-UGent/ssh";
+          user = "tdpeuter";
+        };
       };
     };
   };
