@@ -4,33 +4,56 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+  ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot = {
+    initrd = {
+      availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+      kernelModules = [ ];
+    };
+    kernelModules = [ "kvm-intel" ];
+    extraModulePackages = [ ];
+  };
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-label/NIX-ROOT";
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-label/NIX-ROOT";
       fsType = "ext4";
     };
 
-  fileSystems."/boot/efi" =
-    { device = "/dev/disk/by-label/NIX-BOOT";
+    "/boot/efi" = {
+      device = "/dev/disk/by-label/NIX-BOOT";
       fsType = "vfat";
     };
 
-  fileSystems."/nix" =
-    { device = "/dev/disk/by-label/NIX-STORE";
+    "/nix" = {
+      device = "/dev/disk/by-label/NIX-STORE";
       fsType = "ext4";
     };
 
-  swapDevices =
-    [ { device = "/dev/disk/by-label/SWAP"; }
-    ];
+    "/mnt/Nextcloud" = {
+      device = "/dev/disk/by-label/Nextcloud";
+      fsType = "ntfs";
+    };
+
+    # "/home/${config.users.users.tdpeuter.name}/Nextcloud" = {
+    "/home/tdpeuter/Nextcloud" = {
+      depends = [
+        "/mnt/Nextcloud"
+      ];
+      device = "/mnt/Nextcloud/Nextcloud";
+      fsType = "none";
+      options = [
+        "bind"
+      ];
+    };
+  };
+
+  swapDevices = [
+    { device = "/dev/disk/by-label/SWAP"; }
+  ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
