@@ -16,20 +16,20 @@
     desktopManager.plasma5 = {
       enable = true;
       useQtScaling = true;
-
-      excludePackages = with pkgs.libsForQt5; [
-        elisa
-        okular
-        khelpcenter
-        konsole
-        print-manager
-        plasma-systemmonitor
-        gwenview
-      ];
     };
     
     excludePackages = with pkgs; [
       xterm
     ];
   };
+
+  environment.plasma5.excludePackages = with pkgs.libsForQt5; [
+    elisa
+    okular
+    khelpcenter
+    konsole
+    print-manager
+    plasma-systemmonitor
+    gwenview
+  ];
 }
