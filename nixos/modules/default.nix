@@ -66,18 +66,19 @@
       enable = true;
 
       defaultApplications = {
-        "x-scheme-handler/http" = browser;
-        "x-scheme-handler/https" = browser;
-        "x-scheme-handler/chrome" = browser;
-        "text/html" = browser;
+        "application/pdf" = "org.pwmt.zathura-pdf-mupdf.desktop";
         "application/x-extension-htm" = browser;
         "application/x-extension-html" = browser;
         "application/x-extension-shtml" = browser;
-        "application/xhtml+xml" = browser;
-        "application/x-extension-xhtml" = browser;
         "application/x-extension-xht" = browser;
+        "application/x-extension-xhtml" = browser;
+        "application/xhtml+xml" = browser;
         "image/jpeg" = image-viewer;
         "image/png" = image-viewer;
+        "text/html" = browser;
+        "x-scheme-handler/chrome" = browser;
+        "x-scheme-handler/http" = browser;
+        "x-scheme-handler/https" = browser;
       };
     };
   };
