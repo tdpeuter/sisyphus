@@ -1,11 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  services.openssh = {
-    enable = true;
-    settings.PasswordAuthentication = false;
-  };
-
   home-manager.users.tdpeuter = {
     programs.ssh = {
       enable = true;
@@ -26,6 +21,12 @@
           hostname = "github.ugent.be";
           identitiesOnly = true;
           identityFile = "/run/secrets/GitHub-UGent/ssh";
+          user = "tdpeuter";
+        };
+        "git.depeuter.dev" = {
+          hostname = "git.depeuter.dev";
+          identitiesOnly = true;
+          identityFile = "/run/secrets/H4Git/ssh";
           user = "tdpeuter";
         };
       };
