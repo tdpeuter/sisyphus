@@ -16,21 +16,29 @@
       # Generate new keys if the key specified above does not exist
       # generateKey = true;
     };
-    secrets = {
-      "H4G0/ssh" = {
-        format = "yaml";
-        sopsFile = ../../../secrets/H4G0.yaml;
-        owner = config.users.users.tdpeuter.name;
-      };
+    secrets =
+      let
+        user = config.users.users.tdpeuter.name;
+      in {
       "GitHub/ssh" = {
         format = "yaml";
         sopsFile = ../../../secrets/GitHub.yaml;
-        owner = config.users.users.tdpeuter.name;
+        owner = user;
       };
       "GitHub-UGent/ssh" = {
         format = "yaml";
         sopsFile = ../../../secrets/GitHub-UGent.yaml;
-        owner = config.users.users.tdpeuter.name;
+        owner = user;
+      };
+      "H4G0/ssh" = {
+        format = "yaml";
+        sopsFile = ../../../secrets/H4G0.yaml;
+        owner = user;
+      };
+      "H4Git/ssh" = {
+        format = "yaml";
+        sopsFile = ../../../secrets/H4Git.yaml;
+        owner = user;
       };
     };
   };
