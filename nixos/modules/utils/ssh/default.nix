@@ -1,6 +1,11 @@
 { config, lib, pkgs, ... }:
 
 {
+  services.openssh = {
+    enable = true;
+    settings.PasswordAuthentication = false;
+  };
+
   home-manager.users.tdpeuter = {
     programs.ssh = {
       enable = true;
