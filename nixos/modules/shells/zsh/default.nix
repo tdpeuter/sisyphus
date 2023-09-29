@@ -8,6 +8,7 @@
     home = {
       packages = with pkgs; [
         font-awesome
+        fzf
       ];
 
       file = {
@@ -25,6 +26,12 @@
       };
       initExtra = ''
         eval "$(direnv hook zsh)"
+
+         # Add fzf
+         if [ -x "$(command -v fzf-share)" ]; then
+           source "$(fzf-share)/key-bindings.zsh"
+           source "$(fzf-share)/completion.zsh"
+         fi
       '';
       oh-my-zsh = {
         enable = true;
