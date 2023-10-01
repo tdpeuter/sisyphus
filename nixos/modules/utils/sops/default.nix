@@ -30,12 +30,12 @@
         sopsFile = ../../../secrets/GitHub-UGent.yaml;
         owner = user;
       };
-      "H4G0/ssh" = {
+      "Hugo/ssh" = {
         format = "yaml";
-        sopsFile = ../../../secrets/H4G0.yaml;
+        sopsFile = ../../../secrets/Hugo.yaml;
         owner = user;
       };
-      "H4Git/ssh" = {
+      "Git/ssh" = {
         format = "yaml";
         sopsFile = ../../../secrets/H4Git.yaml;
         owner = user;
