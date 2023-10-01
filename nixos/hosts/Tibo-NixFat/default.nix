@@ -9,24 +9,32 @@
     ../../modules/des/gnome
   ];
   
-  # Use the systemd-boot EFI boot loader.]
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot/efi";
+  boot = {
+    # Use the systemd-boot EFI boot loader.]
+    loader = {
+      systemd-boot.enable = true;
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot/efi";
+      };
+    };
+
+    initrd = {
+      # Setup keyfile
+      secrets."/crypto_keyfile.bin" = null;
+
+      # Enable swap on luks
+      luks.devices."luks-3825c43c-6cc4-4846-b1cc-02b5938640c9" = {
+        device = "/dev/disk/by-uuid/3825c43c-6cc4-4846-b1cc-02b5938640c9";
+        keyFile = "/crypto_keyfile.bin";
+      };
     };
   };
-  
-  # Setup keyfile
-  boot.initrd.secrets = {
-    "/crypto_keyfile.bin" = null;
-  };
 
-  networking.hostName = "Tibo-NixFat";
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking = {
+    hostName = "Tibo-NixFat";
+    networkmanager.enable = true;
+  };
   
   # Set your time zone.
   time.timeZone = "Europe/Brussels";
@@ -34,23 +42,6 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-  
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_GB.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkbOptions in tty.
-  # };
-
-  services.xserver = {
-    # Configure keymap in X11
-    layout = "us";
-    xkbVariant = "";
-  };
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
   
   # Enable sound with pipewire.
   sound.enable = true;
@@ -69,35 +60,24 @@
     #media-session.enable = true;
   };
 
-  services.logind.lidSwitch = "ignore";
-  
   # Enable Bluetooth.
   hardware.bluetooth.enable = true;
   
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
-  
+  services = {
+    logind = {
+      lidSwitch = "hybrid-sleep";
+      lidSwitchExternalPower = "lock";
+      lidSwitchDocked = "ignore";
+    };
+
+    # Enable touchpad support (enabled default in most desktopManager).
+    xserver = {
+      libinput.enable = true;
+    };
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-  
-  # List services that you want to enable:
-  
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-  
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
   
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you

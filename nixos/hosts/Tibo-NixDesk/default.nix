@@ -28,15 +28,6 @@
   # Set your time zone.
   time.timeZone = "Europe/Brussels";
 
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_GB.utf8";
-
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
-  };
-
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
