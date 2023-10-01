@@ -29,6 +29,18 @@
     ];
   };
 
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_GB.UTF-8";
+  console = {
+    # font = "Lat2-Terminus16";
+    useXkbConfig = true; # use xkbOptions in tty.
+  };
+
+  services.xserver = {
+    layout = "us";
+    xkbVariant = "altgr-intl";
+  };
+
   home-manager.useGlobalPkgs = true;
 
   home-manager.users.tdpeuter = { pkgs, ... }: {
