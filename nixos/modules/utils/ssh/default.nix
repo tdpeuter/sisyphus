@@ -10,10 +10,10 @@
     programs.ssh = {
       enable = true;
       matchBlocks = {
-        "H4G0" = {
+        "Hugo" = {
           hostname = "192.168.0.11";
           identitiesOnly = true;
-          identityFile = "/run/secrets/H4G0/ssh";
+          identityFile = "/run/secrets/Hugo/ssh";
           user = "admin";
         };
         "github.com" = {
