@@ -46,4 +46,28 @@
     totem # Movie player
     yelp # Help viewer
   ]);
+
+  # GNOME ricing
+  # Browse available settings by running:
+  # gsettings list-schemas | xargs -I % sh -c 'echo %; gsettings list-keys %' | less
+  home-manager.users.tdpeuter.dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      enable-animations = false;
+    };
+    "org/gnome/desktop/notifications" = {
+      show-in-lock-screen = false;
+    };
+    "org/gnome/desktop/peripherals.touchpad" = {
+      tap-to-click = true;
+    };
+    "org/gnome/mutter" = {
+      dynamic-workspaces = true;
+      workspaces-only-on-primary = false;
+    };
+    "org/gnome/shell/app-switcher" = {
+      current-workspace-only = true;
+    };
+    # TODO Add background
+    # "org/gnome/desktop/background"
+  };
 }
