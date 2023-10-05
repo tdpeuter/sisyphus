@@ -19,27 +19,28 @@
     secrets =
       let
         user = config.users.users.tdpeuter.name;
-      in {
+
+        Hugo = {
+          format = "yaml";
+          sopsFile = ../../../secrets/Hugo.yaml;
+          owner = user;
+        };
+        UGent = {
+        format = "yaml";
+        sopsFile = ../../../secrets/UGent.yaml;
+        owner = user;
+      };
+    in {
+      "Hugo/ssh" = Hugo;
+      "UGent/HPC/ssh" = UGent;
+
       "GitHub/ssh" = {
         format = "yaml";
         sopsFile = ../../../secrets/GitHub.yaml;
         owner = user;
       };
-      "GitHub-UGent/ssh" = {
-        format = "yaml";
-        sopsFile = ../../../secrets/GitHub-UGent.yaml;
-        owner = user;
-      };
-      "Hugo/ssh" = {
-        format = "yaml";
-        sopsFile = ../../../secrets/Hugo.yaml;
-        owner = user;
-      };
-      "Git/ssh" = {
-        format = "yaml";
-        sopsFile = ../../../secrets/H4Git.yaml;
-        owner = user;
-      };
+      "Hugo/Gitea/ssh" = Hugo; 
+      "UGent/GitHub/ssh" = UGent; 
     };
   };
 }

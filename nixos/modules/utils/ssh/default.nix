@@ -16,6 +16,20 @@
           identityFile = "/run/secrets/Hugo/ssh";
           user = "admin";
         };
+        "HPC" = {
+          hostname = "login.hpc.ugent.be";
+          identitiesOnly = true;
+          identityFile = "/run/secrets/UGent/HPC/ssh";
+          user = "vsc44995";
+        };
+
+        # Git authentication
+        "git.depeuter.dev" = {
+          hostname = "git.depeuter.dev";
+          identitiesOnly = true;
+          identityFile = "/run/secrets/Hugo/Gitea/ssh";
+          user = "tdpeuter";
+        };
         "github.com" = {
           hostname = "github.com";
           identitiesOnly = true;
@@ -25,13 +39,7 @@
         "github.ugent.be" = {
           hostname = "github.ugent.be";
           identitiesOnly = true;
-          identityFile = "/run/secrets/GitHub-UGent/ssh";
-          user = "tdpeuter";
-        };
-        "git.depeuter.dev" = {
-          hostname = "git.depeuter.dev";
-          identitiesOnly = true;
-          identityFile = "/run/secrets/H4Git/ssh";
+          identityFile = "/run/secrets/UGent/GitHub/ssh";
           user = "tdpeuter";
         };
       };
