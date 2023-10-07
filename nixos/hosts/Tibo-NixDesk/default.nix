@@ -5,6 +5,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../modules/hardware/nvidia.nix
+      ../../modules/hardware/corsair
 
       ../../modules/apps/virtualbox
       ../../modules/des/gnome
