@@ -2,6 +2,7 @@
     imports = [
         ./alacritty
         ./firefox
+        ./spotify
         ./steam
         ./thunderbird
         # ./virtualbox
@@ -19,7 +20,6 @@
         obsidian
         pinentry_qt
         qalculate-gtk
-        spotify
         zathura
         zoom-us
       ];
