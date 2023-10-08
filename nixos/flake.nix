@@ -47,6 +47,10 @@
         (import ./overlays/cmdtime)
       ];
 
+      sharedOverlays = [
+        (import ./overlays/spotify)
+      ];
+
       hostDefaults = {
         inherit system;
 
