@@ -51,8 +51,13 @@
   # Browse available settings by running:
   # gsettings list-schemas | xargs -I % sh -c 'echo %; gsettings list-keys %' | less
   home-manager.users.tdpeuter.dconf.settings = {
+    "org/gnome/desktop/background" = {
+      picture-uri = "file:///home/tdpeuter/Nextcloud/Afbeeldingen/wallpapers/bg";
+      picture-uri-dark = "file:///home/tdpeuter/Nextcloud/Afbeeldingen/wallpapers/bg-dark";
+    };
     "org/gnome/desktop/interface" = {
       enable-animations = false;
+      enable-hot-corners = false;
     };
     "org/gnome/desktop/notifications" = {
       show-in-lock-screen = false;
@@ -67,7 +72,5 @@
     "org/gnome/shell/app-switcher" = {
       current-workspace-only = true;
     };
-    # TODO Add background
-    # "org/gnome/desktop/background"
   };
 }
