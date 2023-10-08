@@ -11,7 +11,14 @@
     # TODO Is it possible to inherit all other values?
     xdg.desktopEntries.spotify = {
       name = "Spotify";
-      exec = "LD_PRELOAD=${pkgs.spotify-adblock}/lib/libspotifyadblock.so spotify %U";
+      genericName = "Music Player";
+      icon = "spotify-client";
+      exec = "env LD_PRELOAD=${pkgs.spotify-adblock}/lib/libspotifyadblock.so spotify %U";
+      mimeType = [ "x-scheme-handler/spotify" ];
+      categories = [ "Audio" "Music" "Player" "AudioVideo" ];
+      settings = {
+        StartupWMClass = "spotify";
+      };
     };
   };
 }
