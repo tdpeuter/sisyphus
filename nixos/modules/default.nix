@@ -87,6 +87,7 @@
         "application/xhtml+xml" = browser;
         "image/jpeg" = image-viewer;
         "image/png" = image-viewer;
+        "image/webp" = image-viewer;
         "text/html" = browser;
         "x-scheme-handler/chrome" = browser;
         "x-scheme-handler/http" = browser;
