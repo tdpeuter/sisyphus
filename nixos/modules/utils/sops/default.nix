@@ -26,10 +26,10 @@
           owner = user;
         };
         UGent = {
-        format = "yaml";
-        sopsFile = ../../../secrets/UGent.yaml;
-        owner = user;
-      };
+          format = "yaml";
+          sopsFile = ../../../secrets/UGent.yaml;
+          owner = user;
+        };
     in {
       "Hugo/ssh" = Hugo;
       "UGent/HPC/ssh" = UGent;
@@ -41,6 +41,7 @@
       };
       "Hugo/Gitea/ssh" = Hugo; 
       "UGent/GitHub/ssh" = UGent; 
+      "UGent/SubGit/ssh" = UGent;
     };
   };
 }
