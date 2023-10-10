@@ -42,6 +42,11 @@
           identityFile = "/run/secrets/UGent/GitHub/ssh";
           user = "tdpeuter";
         };
+        "subgit.ugent.be" = {
+          hostname = "subgit.ugent.be";
+          identitiesOnly = true;
+          identityFile = "/run/secrets/UGent/SubGit/ssh";
+        };
       };
     };
   };
