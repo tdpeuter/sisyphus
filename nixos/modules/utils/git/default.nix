@@ -4,7 +4,7 @@
   home-manager.users.tdpeuter = {
     programs.git = {
       enable = true;
-      userName = "tdpeuter";
+      userName = "Tibo De Peuter";
       userEmail = "tibo.depeuter@gmail.com";
       extraConfig = {
         core.editor = "vim";
@@ -14,8 +14,11 @@
       ];
       includes = [
         {
-          path = "~/.gitconfig-ugent";
-          condition = "gitdir:~/Nextcloud/Documenten/UGent";
+          condition = "gitdir:~/university/"; # Trailing backslash is necessary!
+          contentSuffix = ".gitconfig";
+          contents = {
+            user.email = "tibo.depeuter@ugent.be";
+          };
         }
       ];
     };
