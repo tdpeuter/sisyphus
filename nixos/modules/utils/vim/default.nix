@@ -9,7 +9,7 @@
         programs.vim = {
             enable = true;
             extraConfig = ''
-                colorscheme catppuccin_mocha_mod
+                colorscheme tdpeuter-dark
                 
                 " Tags
                 " pacman -S ctags
@@ -47,6 +47,11 @@
                 if $TERM == 'alacritty'
                     set ttymouse=sgr " Alacritty specific
                 endif
+                if $TERM == 'xterm-kitty'
+                    " Fix <HOME> and <END> not working
+                    set term=xterm-256color
+                endif
+
                 if has("autocmd")
                     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
                     " https://stackoverflow.com/a/37558470/19044747

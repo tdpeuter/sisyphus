@@ -1,4 +1,4 @@
-" Name: catppuccin_mocha.vim
+" Name: tdpeuter-dark.vim
 
 set background=dark
 hi clear
@@ -7,7 +7,8 @@ if exists('syntax on')
     syntax reset
 endif
 
-let g:colors_name='catppuccin_mocha_mod'
+let g:colors_name="tdpeuter-dark"
+let colors_name="tdpeuter-dark"
 set t_Co=256
 set cursorline
 
