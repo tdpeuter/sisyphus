@@ -15,6 +15,11 @@
     keep-derivations = true
   '';
 
+  fonts.fonts = with pkgs; [
+    corefonts      # Calibri for Uni
+    letter         # Personal font
+  ];
+
   users.users.tdpeuter = {
     description = "Tibo De Peuter";
     isNormalUser = true;
@@ -50,10 +55,7 @@
       stateVersion = "23.05";
 
       packages = with pkgs; [
-        gnupg
-        
-        # Fonts
-        corefonts      # Calibri for Uni
+        gnupg  
       ];
     };
 

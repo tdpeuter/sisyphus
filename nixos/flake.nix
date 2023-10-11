@@ -38,6 +38,10 @@
         allowUnfree = true;
       };
 
+      sharedOverlays = [
+        (import ./overlays/letter)
+      ];
+
       hostDefaults = {
         inherit system;
 
