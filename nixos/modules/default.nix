@@ -17,6 +17,8 @@
 
   fonts.fonts = with pkgs; [
     corefonts      # Calibri for Uni
+    vistafonts
+
     letter         # Personal font
   ];
 
