@@ -17,6 +17,7 @@
       mimeType = [ "x-scheme-handler/spotify" ];
       categories = [ "Audio" "Music" "Player" "AudioVideo" ];
       settings = {
+        TryExec = "spotify";
         StartupWMClass = "spotify";
       };
     };
