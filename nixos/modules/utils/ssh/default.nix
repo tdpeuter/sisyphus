@@ -28,24 +28,25 @@
           hostname = "git.depeuter.dev";
           identitiesOnly = true;
           identityFile = "/run/secrets/Hugo/Gitea/ssh";
-          user = "tdpeuter";
+          user = "git";
         };
         "github.com" = {
           hostname = "github.com";
           identitiesOnly = true;
           identityFile = "/run/secrets/GitHub/ssh";
-          user = "tdpeuter";
+          user = "git";
         };
         "github.ugent.be" = {
           hostname = "github.ugent.be";
           identitiesOnly = true;
           identityFile = "/run/secrets/UGent/GitHub/ssh";
-          user = "tdpeuter";
+          user = "git";
         };
         "subgit.ugent.be" = {
           hostname = "subgit.ugent.be";
           identitiesOnly = true;
           identityFile = "/run/secrets/UGent/SubGit/ssh";
+          user = "git";
         };
       };
     };
