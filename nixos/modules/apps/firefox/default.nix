@@ -6,7 +6,7 @@
     package = pkgs.firefox.override {
       cfg = {
         enableTridactylNative = true;
-        speechSynthesisSupport = true;
+        speechSynthesisSupport = true; # Allow Text-to-speech in e.g. Discord
       };
       extraPolicies = {
         DisableFirefoxStudies = true;
@@ -35,6 +35,18 @@
 
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAliases = [ "@np" ];
+          };
+          "GitHub" = {
+            urls = [{
+              template = "https://github.com/search";
+              params = [
+                { name = "q"; value = "{searchTerms}"; }
+                { name = "type"; value = "repositories"; }
+              ];
+            }];
+
+            icon = "${pkgs.icosystem}/share/icons/icosystem/scalable/apps/github-mark.svg";
+            definedAliases = [ "@gh" ];
           };
         };
       };
