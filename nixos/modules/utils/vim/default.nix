@@ -9,7 +9,7 @@
         programs.vim = {
             enable = true;
             extraConfig = ''
-                colorscheme tdpeuter-dark
+                colorscheme tdpeuter-light
                 
                 " Tags
                 " pacman -S ctags
