@@ -40,6 +40,7 @@
 
       sharedOverlays = [
         (import ./overlays/letter)
+        (import ./overlays/icosystem)
       ];
 
       hostDefaults = {

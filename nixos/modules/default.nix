@@ -58,6 +58,8 @@
 
       packages = with pkgs; [
         gnupg  
+
+        icosystem
       ];
     };
 
