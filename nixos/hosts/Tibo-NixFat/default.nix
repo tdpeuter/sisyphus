@@ -8,17 +8,17 @@
     ../../modules-old/apps/virtualbox
     ../../modules-old/des/gnome
   ];
-  
-  boot = {
-    # Use the systemd-boot EFI boot loader.]
-    loader = {
-      systemd-boot.enable = true;
-      efi = {
-        canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot/efi";
-      };
-    };
 
+  sisyphus = {
+    users.tdpeuter.enable = true;
+
+    programs = {
+      home-manager.enable = true;
+    };
+  };
+
+  boot = {
+    # Encryption
     initrd = {
       # Setup keyfile
       secrets."/crypto_keyfile.bin" = null;
@@ -29,7 +29,24 @@
         keyFile = "/crypto_keyfile.bin";
       };
     };
+
+    # Use the systemd-boot EFI boot loader.]
+    loader = {
+      systemd-boot.enable = true;
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot/efi";
+      };
+    };
   };
+
+  environment.systemPackages = with pkgs; [
+    wget
+  ];
+
+  system.stateVersion = "23.05";
+
+  # --- Barrier ---
 
   networking = {
     hostName = "Tibo-NixFat";
@@ -78,12 +95,4 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = true;
-  
-  system.stateVersion = "23.05";
 }
-
