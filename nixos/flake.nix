@@ -55,7 +55,7 @@
         modules = [
           home-manager.nixosModule
           sops-nix.nixosModules.sops
-          ./modules
+          ./modules-old
         ];
       };
 

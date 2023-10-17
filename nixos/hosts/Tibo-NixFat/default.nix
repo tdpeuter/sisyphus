@@ -3,10 +3,10 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/hardware/nvidia.nix
+    ../../modules-old/hardware/nvidia.nix
 
-    ../../modules/apps/virtualbox
-    ../../modules/des/gnome
+    ../../modules-old/apps/virtualbox
+    ../../modules-old/des/gnome
   ];
   
   boot = {
