@@ -13,6 +13,7 @@
 
     programs = {
       home-manager.enable = true;
+      zellij.enable = true;
     };
   };
 

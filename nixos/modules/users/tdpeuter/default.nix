@@ -3,7 +3,7 @@
 let
   cfg = config.sisyphus.users.tdpeuter;
 
-  installedPkgs = config.home-manager.users.tdpeuter.home.packages;
+  installedPkgs = config.environment.systemPackages ++ config.home-manager.users.tdpeuter.home.packages;
 in {
   options.sisyphus.users.tdpeuter.enable = lib.mkEnableOption "user Tibo De Peuter";
 
