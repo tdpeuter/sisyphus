@@ -7,7 +7,7 @@ Welcome to my dotfiles repository, named Sisyphus. This repository houses the co
 To maintain clarity and versatility, I've organized my configuration files into distinct subdirectories. The "bare" configuration files, those you typically find in your `~/.config` directory, are located in [stow](./stow). This separation allows for a streamlined approach to managing configurations, while other subdirectories house OS-specific settings.
 
 - [Arch Linux](./arch) (+ [stow](./stow))
-- [NixOS](./nixos)
+- [NixOS](./nixos) (+ [stow](./stow))
 
 ## The Sisyphus Analogy
 
