@@ -4,6 +4,5 @@
         ./kitty
         ./steam
         ./thunderbird
-        # ./virtualbox
     ];
 }

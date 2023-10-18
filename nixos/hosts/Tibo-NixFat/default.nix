@@ -5,7 +5,6 @@
     ./hardware-configuration.nix
     ../../modules-old/hardware/nvidia.nix
 
-    ../../modules-old/apps/virtualbox
     ../../modules-old/des/gnome
   ];
 
