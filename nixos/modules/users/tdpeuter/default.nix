@@ -30,7 +30,6 @@ in {
         # If you specify an application here, it will be detected by the configuration module
         #  and the configuration files will be put in place for you.
         packages = with pkgs; [
-          brave
           duf
           jellyfin-media-player
           libreoffice-fresh
