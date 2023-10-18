@@ -19,6 +19,10 @@ in {
       initialPassword = "ChangeMe";
     };
 
+    fonts.fonts = with pkgs; [
+      font-awesome_5        # Dependency of Vifm config
+    ];
+
     home-manager.users.tdpeuter = lib.mkIf config.sisyphus.programs.home-manager.enable {
       programs.home-manager.enable = true;
 
@@ -26,10 +30,6 @@ in {
         username = "tdpeuter";
         homeDirectory = "/home/tdpeuter";
         stateVersion = config.system.stateVersion;
-
-        fonts.fonts = with pkgs; [
-          font-awesome_5        # Dependency of Vifm config
-        ];
 
         # If you specify an application here, it will be detected by the configuration module
         #  and the configuration files will be put in place for you.
