@@ -3,6 +3,7 @@
 let
   cfg = config.sisyphus.users.tdpeuter;
 
+  user = config.users.users.tdpeuter.name;
   installedPkgs = config.environment.systemPackages ++ config.home-manager.users.tdpeuter.home.packages;
 in {
   options.sisyphus.users.tdpeuter.enable = lib.mkEnableOption "user Tibo De Peuter";
@@ -29,8 +30,8 @@ in {
       programs.home-manager.enable = true;
 
       home = {
-        username = "tdpeuter";
-        homeDirectory = "/home/tdpeuter";
+        username = user;
+        homeDirectory = "/home/${user}";
         stateVersion = config.system.stateVersion;
 
         # If you specify an application here, it will be detected by the configuration module
@@ -141,5 +142,30 @@ in {
         };
       };
     };
+    sops.secrets = lib.mkIf config.sisyphus.programs.sops.enable (
+      let
+        Hugo = {
+          format = "yaml";
+          sopsFile = ../../../secrets/Hugo.yaml;
+          owner = user;
+        };
+        UGent = {
+          format = "yaml";
+          sopsFile = ../../../secrets/UGent.yaml;
+          owner = user;
+        };
+      in {
+        "Hugo/ssh" = Hugo;
+        "UGent/HPC/ssh" = UGent;
+
+        "GitHub/ssh" = {
+          format = "yaml";
+          sopsFile = ../../../secrets/GitHub.yaml;
+          owner = user;
+        };
+        "Hugo/Gitea/ssh" = Hugo;
+        "UGent/GitHub/ssh" = UGent;
+        "UGent/SubGit/ssh" = UGent;
+      });
   };
 }
