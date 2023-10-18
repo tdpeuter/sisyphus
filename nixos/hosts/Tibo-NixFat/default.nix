@@ -11,6 +11,7 @@
 
     programs = {
       home-manager.enable = true;
+      sops.enable = true;
       ssh.enable = true;
       zellij.enable = true;
     };
