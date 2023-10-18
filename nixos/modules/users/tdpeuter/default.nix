@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, pkgs-unstable, ... }:
 
 let
   cfg = config.sisyphus.users.tdpeuter;
@@ -29,7 +29,7 @@ in {
 
         # If you specify an application here, it will be detected by the configuration module
         #  and the configuration files will be put in place for you.
-        packages = with pkgs; [
+        packages = (with pkgs; [
           duf
           jellyfin-media-player
           libreoffice-fresh
@@ -40,12 +40,20 @@ in {
           spotify
           unzip
           zathura
-          zenith-nvidia
-        ];
+        ]) ++ (with pkgs-unstable; [
+          mpv
+        ]);
 
+        # Put dotfiles in place.
         file = {
           ".config/alacritty" = lib.mkIf (builtins.elem pkgs.alacritty installedPkgs) {
             source = ../../../../stow/alacritty/.config/alacritty;
+          };
+          ".config/mpv" = lib.mkIf (builtins.elem pkgs-unstable.mpv installedPkgs) {
+            source = ../../../../stow/mpv/.config/mpv;
+          };
+          ".config/zellij" = lib.mkIf (builtins.elem pkgs.zellij installedPkgs) {
+            source = ../../../../stow/zellij/.config/zellij;
           };
         };
       };
