@@ -4,8 +4,6 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules-old/hardware/nvidia.nix
-
-    ../../modules-old/des/gnome
   ];
 
   sisyphus = {
@@ -16,6 +14,7 @@
       ssh.enable = true;
       zellij.enable = true;
     };
+    services.desktop.gnome.enable = true;
   };
 
   boot = {
