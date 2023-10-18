@@ -1,7 +1,6 @@
 {
   imports = [
     ./sops
-    ./ssh
     ./vim
   ];
 }
