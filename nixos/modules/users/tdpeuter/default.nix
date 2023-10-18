@@ -27,19 +27,26 @@ in {
         homeDirectory = "/home/tdpeuter";
         stateVersion = config.system.stateVersion;
 
+        fonts.fonts = with pkgs; [
+          font-awesome_5        # Dependency of Vifm config
+        ];
+
         # If you specify an application here, it will be detected by the configuration module
         #  and the configuration files will be put in place for you.
         packages = (with pkgs; [
-          duf
+          chafa                 # Terminal image viewer
+          duf                   # Df alternative
+          glow                  # Terminal Markdown renderer
           jellyfin-media-player
           libreoffice-fresh
           nextcloud-client
-          nsxiv
+          nsxiv                 # Lightweight image viewer
           obsidian
-          qalculate-gtk
+          qalculate-gtk         # Calculator
           spotify
           unzip
-          zathura
+          vifm                  # File manager
+          zathura               # PDF viewer
         ]) ++ (with pkgs-unstable; [
           mpv
         ]);
@@ -49,9 +56,22 @@ in {
           ".config/alacritty" = lib.mkIf (builtins.elem pkgs.alacritty installedPkgs) {
             source = ../../../../stow/alacritty/.config/alacritty;
           };
+
           ".config/mpv" = lib.mkIf (builtins.elem pkgs-unstable.mpv installedPkgs) {
             source = ../../../../stow/mpv/.config/mpv;
           };
+
+          # Put Vifm files separately so history fill still works.
+          ".config/vifm/colors" = lib.mkIf (builtins.elem pkgs.vifm installedPkgs) {
+            source = ../../../../stow/vifm/.config/vifm/colors;
+          };
+          ".config/vifm/scripts" = lib.mkIf (builtins.elem pkgs.vifm installedPkgs) {
+            source = ../../../../stow/vifm/.config/vifm/scripts;
+          };
+          ".config/vifm/vifmrc" = lib.mkIf (builtins.elem pkgs.vifm installedPkgs) {
+            source = ../../../../stow/vifm/.config/vifm/vifmrc;
+          };
+
           ".config/zellij" = lib.mkIf (builtins.elem pkgs.zellij installedPkgs) {
             source = ../../../../stow/zellij/.config/zellij;
           };
