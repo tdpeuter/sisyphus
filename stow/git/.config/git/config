@@ -1,0 +1,17 @@
+[user]
+    name = "Tibo De Peuter"
+    email = "tibo.depeuter@gmail.com"
+
+[core]
+    editor = "vim";
+    excludesFile = "~/.config/git/ignore"
+
+[color]
+    ui = true
+
+[help]
+    autocorrect = 20
+
+[includeIf "gitdir:~/university/"] # Trailing backslash is necessary!
+    path = "~/.config/git/university"
+

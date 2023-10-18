@@ -41,8 +41,9 @@
   };
 
   environment.systemPackages = with pkgs; [
-    zenith-nvidia
+    git
     wget
+    zenith-nvidia
   ];
 
   system.stateVersion = "23.05";
