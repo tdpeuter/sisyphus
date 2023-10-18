@@ -70,7 +70,7 @@ in {
           ".config/mpv" = lib.mkIf (builtins.elem pkgs-unstable.mpv installedPkgs) {
             source = ../../../../stow/mpv/.config/mpv;
           };
-          ".ssh/config" = { # Always put SSH configuration
+          ".ssh/config" = lib.mkIf config.sisyphus.programs.ssh.enable {
             source = ../../../../stow/ssh/.ssh/config;
           };
           # Put Vifm files separately so history fill still works.
@@ -86,6 +86,33 @@ in {
           ".config/zellij" = lib.mkIf (builtins.elem pkgs.zellij installedPkgs) {
             source = ../../../../stow/zellij/.config/zellij;
           };
+        };
+      };
+
+      # GNOME ricing
+      # Browse available settings by running:
+      # gsettings list-schemas | xargs -I % sh -c 'echo %; gsettings list-keys %' | less
+      dconf.settings = lib.mkIf config.sisyphus.services.desktop.gnome.enable {
+        "org/gnome/desktop/background" = {
+          picture-uri = "file:///home/tdpeuter/Nextcloud/Afbeeldingen/wallpapers/bg";
+          picture-uri-dark = "file:///home/tdpeuter/Nextcloud/Afbeeldingen/wallpapers/bg-dark";
+        };
+        "org/gnome/desktop/interface" = {
+          enable-animations = false;
+          enable-hot-corners = false;
+        };
+        "org/gnome/desktop/notifications" = {
+          show-in-lock-screen = false;
+        };
+        "org/gnome/desktop/peripherals.touchpad" = {
+          tap-to-click = true;
+        };
+        "org/gnome/mutter" = {
+          dynamic-workspaces = true;
+          workspaces-only-on-primary = false;
+        };
+        "org/gnome/shell/app-switcher" = {
+          current-workspace-only = true;
         };
       };
 
