@@ -6,6 +6,5 @@
     ./tea
     ./vifm
     ./vim
-    ./zellij
   ];
 }
