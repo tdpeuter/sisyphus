@@ -21,6 +21,8 @@ in {
 
     fonts.fonts = with pkgs; [
       font-awesome_5        # Dependency of Vifm config
+      noto-fonts            # Dependency of Zellij config
+      noto-fonts-cjk        # Dependency of Zellij config
     ];
 
     home-manager.users.tdpeuter = lib.mkIf config.sisyphus.programs.home-manager.enable {
@@ -48,6 +50,7 @@ in {
           unzip
           vifm                  # File manager
           zathura               # PDF viewer
+          zellij                # Tmux + screen alternative
         ]) ++ (with pkgs-unstable; [
           mpv
         ]);
@@ -64,6 +67,10 @@ in {
 
           ".config/mpv" = lib.mkIf (builtins.elem pkgs-unstable.mpv installedPkgs) {
             source = ../../../../stow/mpv/.config/mpv;
+          };
+
+          ".ssh/config" = { # Always put SSH configuration
+            source = ../../../../stow/ssh/.ssh/config;
           };
 
           # Put Vifm files separately so history fill still works.

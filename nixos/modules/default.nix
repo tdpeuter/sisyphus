@@ -1,8 +1,7 @@
-{ lib, ... }:
-
 {
   imports = [
     ./programs
+    ./services
     ./users
     ./virtualisation
   ];
