@@ -3,7 +3,6 @@
     ./git
     ./sops
     ./ssh
-    ./tea
     ./vim
   ];
 }
