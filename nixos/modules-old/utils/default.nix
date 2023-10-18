@@ -4,7 +4,6 @@
     ./sops
     ./ssh
     ./tea
-    ./vifm
     ./vim
   ];
 }
