@@ -58,6 +58,10 @@ in {
             source = ../../../../stow/alacritty/.config/alacritty;
           };
 
+          ".config/git" = lib.mkIf (builtins.elem pkgs.git installedPkgs) {
+            source = ../../../../stow/git/.config/git;
+          };
+
           ".config/mpv" = lib.mkIf (builtins.elem pkgs-unstable.mpv installedPkgs) {
             source = ../../../../stow/mpv/.config/mpv;
           };
