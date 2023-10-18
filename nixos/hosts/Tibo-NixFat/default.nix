@@ -13,6 +13,7 @@
 
     programs = {
       home-manager.enable = true;
+      ssh.enable = true;
       zellij.enable = true;
     };
   };
@@ -46,21 +47,28 @@
     zenith-nvidia
   ];
 
+  hardware.bluetooth.enable = true;
+  
+  networking.hostName = "Tibo-NixFat";
+
+  services = {
+    # Handle the laptop lid switch as follows:
+    logind = {
+      lidSwitch = "hybrid-sleep";
+      lidSwitchExternalPower = "lock";
+      lidSwitchDocked = "ignore";
+    };
+  };
+
   system.stateVersion = "23.05";
+
+  time.timeZone = "Europe/Brussels";
 
   # --- Barrier ---
 
   networking = {
-    hostName = "Tibo-NixFat";
     networkmanager.enable = true;
   };
-  
-  # Set your time zone.
-  time.timeZone = "Europe/Brussels";
-  
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   
   # Enable sound with pipewire.
   sound.enable = true;
@@ -79,20 +87,9 @@
     #media-session.enable = true;
   };
 
-  # Enable Bluetooth.
-  hardware.bluetooth.enable = true;
-  
-  services = {
-    logind = {
-      lidSwitch = "hybrid-sleep";
-      lidSwitchExternalPower = "lock";
-      lidSwitchDocked = "ignore";
-    };
-
-    # Enable touchpad support (enabled default in most desktopManager).
-    xserver = {
-      libinput.enable = true;
-    };
+  # Enable touchpad support (enabled default in most desktopManager).
+  services.xserver = {
+    libinput.enable = true;
   };
 
   # Allow unfree packages
