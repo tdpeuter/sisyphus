@@ -1,13 +1,16 @@
-# nixos
+# NixOS
 
-Nix Flake for my Linux machines running NixOS.
+Nix Flake configuration for my Linux machines running NixOS.
 
-The directory structure can be interpreted as follows:
+## Structure
 
-- [`flake.nix`](./flake.nix): Main entrypoint for the configuration
-- [hosts/*hostname*](./hosts): Host-specific configuration by setting options
-- [modules](./modules): Declarations of options
-- [modules/users/*username*](./modules/users): Since users are dependent on a host machine to exist, they are defined as a module as well
-- [overlays](./overlays): Attribute overrides of Nix Packages
-- [secrets](./secrets): Encrypted files that hold secrets, for example SSH private keys
+The directory structure is organized as follows:
 
+- [`flake.nix`](./flake.nix): Main entrypoint for the configuration.
+- [hosts/*hostname*](./hosts): Host-specific configuration by setting options. Each host has its own folder.
+- [modules](./modules): Declarations of configuration options.
+- [modules/users/*username*](./modules/users): User-specific configuration. Users are defined as modules, as they are dependent on a host machine.
+- [overlays](./overlays): Attribute overrides for Nix Packages.
+- [secrets](./secrets): Encrypted files that store sensitive information, such as SSH private keys.
+
+[Modules](https://nixos.wiki/wiki/NixOS_modules) are a key component of NixOS. They encapsulate various configuration options, which should make it easy for you to integrate it into your specific configuration.
