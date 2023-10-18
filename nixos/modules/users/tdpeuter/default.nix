@@ -40,6 +40,7 @@ in {
           duf                   # Df alternative
           glow                  # Terminal Markdown renderer
           jellyfin-media-player
+          kitty
           libreoffice-fresh
           nextcloud-client
           nsxiv                 # Lightweight image viewer
@@ -60,19 +61,18 @@ in {
           ".config/alacritty" = lib.mkIf (builtins.elem pkgs.alacritty installedPkgs) {
             source = ../../../../stow/alacritty/.config/alacritty;
           };
-
           ".config/git" = lib.mkIf (builtins.elem pkgs.git installedPkgs) {
             source = ../../../../stow/git/.config/git;
           };
-
+          ".config/kitty" = lib.mkIf (builtins.elem pkgs.kitty installedPkgs) {
+            source = ../../../../stow/kitty/.config/kitty;
+          };
           ".config/mpv" = lib.mkIf (builtins.elem pkgs-unstable.mpv installedPkgs) {
             source = ../../../../stow/mpv/.config/mpv;
           };
-
           ".ssh/config" = { # Always put SSH configuration
             source = ../../../../stow/ssh/.ssh/config;
           };
-
           # Put Vifm files separately so history fill still works.
           ".config/vifm/colors" = lib.mkIf (builtins.elem pkgs.vifm installedPkgs) {
             source = ../../../../stow/vifm/.config/vifm/colors;
@@ -83,7 +83,6 @@ in {
           ".config/vifm/vifmrc" = lib.mkIf (builtins.elem pkgs.vifm installedPkgs) {
             source = ../../../../stow/vifm/.config/vifm/vifmrc;
           };
-
           ".config/zellij" = lib.mkIf (builtins.elem pkgs.zellij installedPkgs) {
             source = ../../../../stow/zellij/.config/zellij;
           };
