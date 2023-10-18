@@ -44,6 +44,7 @@ in {
           obsidian
           qalculate-gtk         # Calculator
           spotify
+          tea                   # Gitea CLI
           unzip
           vifm                  # File manager
           zathura               # PDF viewer
