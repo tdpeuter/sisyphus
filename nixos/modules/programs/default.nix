@@ -3,6 +3,5 @@
     ./home-manager
     ./sops
     ./ssh
-    ./zellij
   ];
 }
