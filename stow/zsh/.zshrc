@@ -6,7 +6,7 @@ fpath+="$HOME/.zsh/plugins/cmdtime"
 plugins=(dirhistory git screen)
 ZSH_CUSTOM="$HOME/.oh-my-zsh"
 ZSH_THEME="tdpeuter"
-# source $ZSH/oh-my-zsh.sh
+source $ZSH_CUSTOM/oh-my-zsh.sh
 
 if [[ -f "$HOME/.zsh/plugins/cmdtime/cmdtime.plugin.zsh" ]]; then
     source "$HOME/.zsh/plugins/cmdtime/cmdtime.plugin.zsh"
