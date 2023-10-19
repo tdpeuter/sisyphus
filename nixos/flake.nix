@@ -41,6 +41,7 @@
       sharedOverlays = [
         (import ./overlays/letter)
         (import ./overlays/icosystem)
+        (import ./overlays/cmdtime)
       ];
 
       hostDefaults = {
