@@ -46,9 +46,14 @@
 
   environment.systemPackages = with pkgs; [
     git
+    vim
     wget
     zenith-nvidia
   ];
+
+  programs = {
+    zsh.enable = true;
+  };
 
   hardware.bluetooth.enable = true;
   

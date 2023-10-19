@@ -1,5 +1,5 @@
 # 
-# ~/.oh-my-zsh/themes/mrfortem.zsh-theme
+# ~/.oh-my-zsh/themes/tdpeuter.zsh-theme
 # Stolen from gentoo-theme and gianni
 #
 
