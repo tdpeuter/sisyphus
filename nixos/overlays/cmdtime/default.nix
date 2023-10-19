@@ -11,7 +11,7 @@ final: prev: {
 
     installPhase = ''
       mkdir -p $out/share/cmdtime
-      cp $src/cmdtime.plugin.zsh $out/share/cmdtime.plugin.zsh
+      cp $src/cmdtime.plugin.zsh $out/share/cmdtime/cmdtime.plugin.zsh
     '';
   };
 }

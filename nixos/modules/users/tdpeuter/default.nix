@@ -50,6 +50,7 @@ in {
           nextcloud-client
           nsxiv                 # Lightweight image viewer
           obsidian
+          oh-my-zsh
           qalculate-gtk         # Calculator
           spotify
           tea                   # Gitea CLI
@@ -100,7 +101,12 @@ in {
           };
           ".oh-my-zsh" = {
             enable = (builtins.elem pkgs.zsh installedPkgs);
-            source = ../../../../stow/zsh/.oh-my-zsh;
+            source = "${pkgs.oh-my-zsh}/share/oh-my-zsh";
+            recursive = true;
+          };
+          ".oh-my-zsh/themes/tdpeuter.zsh-theme" = {
+            enable = (builtins.elem pkgs.zsh installedPkgs);
+            source = ../../../../stow/zsh/.oh-my-zsh/themes/tdpeuter.zsh-theme;
           };
           ".vim" = {
             enable = (builtins.elem pkgs.vim installedPkgs);
