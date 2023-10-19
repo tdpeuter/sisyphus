@@ -15,7 +15,10 @@
       ssh.enable = true;
       zellij.enable = true;
     };
-    services.desktop.gnome.enable = true;
+    services = {
+      desktop.gnome.enable = true;
+      printing.enable = true;
+    };
   };
 
   boot = {
