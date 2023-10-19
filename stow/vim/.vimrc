@@ -2,88 +2,35 @@
 " ~/.vimrc
 "
 
-filetype on
-filetype plugin on
-filetype indent on
-set expandtab
-set smarttab
-set smartindent
-set incsearch
-set showmatch
-set title
-set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
-syntax enable
-
-" --
-
-set scrolloff=3
-set showcmd
+colorscheme tdpeuter-light
 
 set autoindent
-set linebreak
-set shiftwidth=4
-set tabstop=4
-
-set number
-set relativenumber
-
 set conceallevel=2
-
-" Add mouse support
+set expandtab
+set incsearch
+set linebreak
 set mouse=a
-if $TERM == 'alacritty'
-    set ttymouse=sgr " Alacritty specific
-endif
-
-" PLUGINS --------------------------------------------------------------- {{{
-
-call plug#begin('~/.vim/plugged')
-
-Plug 'dense-analysis/ale'
-Plug 'https://github.com/vifm/vifm.vim.git'
-Plug 'catppuccin/vim', { 'as': 'catppuccin' }
-
-call plug#end() 
-
-" }}}
-
-colorscheme catppuccin_mocha_mod
-
-" AUTOMATIC STUFF ------------------------------------------------------- {{{
-
-if has("autocmd")
-          
-    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-
-    " https://stackoverflow.com/a/37558470/19044747
-    augroup remember_folds
-        autocmd!
-        autocmd BufWinLeave * silent! mkview
-        autocmd BufWinEnter * silent! loadview
-    augroup END
-
-endif
-
-" }}}
-
-" TALK ------------------------------------------------------------------ {{{
-" https://youtu.be/XA2WjJbmmoM ----------------------------------------------
-
 set nocompatible
-
-" Finding files using :find <name>
+set number
 set path+=**
-" Also use :b to select files in buffer
-
-" Show suggestions on another line instead of inplace
+set relativenumber
+set scrolloff=3
+set shiftwidth=4
+set showcmd
+set showmatch
+set smartindent
+set smarttab
+set tabstop=4
+set title
+set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+"" Show suggestions on another line instead of inplace
 set wildmenu
 
-" Tags
-" pacman -S ctags
-command! MakeTags !ctags -R . &
-" Move to defintion using ^]
-" Move to ambigious using g^]
-" Move back using ^t
+syntax enable
+
+filetype on
+filetype indent on
+filetype plugin on
 
 " File browsing
 let g:netrw_browse_split=4  " open in the previous window
@@ -96,4 +43,39 @@ let g:netrw_liststyle=3     " treeview
 " ^p previous
 " ^x^f filename completion
 
+if $TERM == 'alacritty'
+    set ttymouse=sgr " Alacritty specific
+endif
+if $TERM == 'xterm-kitty'
+    " Fix <HOME> and <END> not working
+    set term=xterm-256color
+endif
+
+" AUTO ------------------------------------------------------------------ {{{
+
+if has("autocmd")
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+    " https://stackoverflow.com/a/37558470/19044747
+    augroup remember_folds
+        autocmd!
+        autocmd BufWinLeave * silent! mkview
+        autocmd BufWinEnter * silent! loadview
+    augroup END
+endif
+
 " }}}
+
+" PLUGINS --------------------------------------------------------------- {{{
+
+call plug#begin()
+
+Plug 'dense-analysis/ale'
+Plug 'vifm/vifm.vim'
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+Plug 'NerdyPepper/statix'
+
+call plug#end() 
+
+" }}}
+

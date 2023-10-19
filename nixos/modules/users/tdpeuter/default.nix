@@ -32,7 +32,7 @@ in {
       home = {
         username = user;
         homeDirectory = "/home/${user}";
-        stateVersion = config.system.stateVersion;
+        inherit (config.system) stateVersion;
 
         # If you specify an application here, it will be detected by the configuration module
         #  and the configuration files will be put in place for you.
@@ -55,6 +55,9 @@ in {
           zellij                # Tmux + screen alternative
         ]) ++ (with pkgs-unstable; [
           mpv
+        ]) ++ (with pkgs.vimPlugins; [
+          statix
+          vim-plug
         ]);
 
         # Put dotfiles in place.
@@ -74,18 +77,22 @@ in {
           ".ssh/config" = lib.mkIf config.sisyphus.programs.ssh.enable {
             source = ../../../../stow/ssh/.ssh/config;
           };
-          # Put Vifm files separately so history fill still works.
-          ".config/vifm/colors" = lib.mkIf (builtins.elem pkgs.vifm installedPkgs) {
-            source = ../../../../stow/vifm/.config/vifm/colors;
-          };
-          ".config/vifm/scripts" = lib.mkIf (builtins.elem pkgs.vifm installedPkgs) {
-            source = ../../../../stow/vifm/.config/vifm/scripts;
-          };
-          ".config/vifm/vifmrc" = lib.mkIf (builtins.elem pkgs.vifm installedPkgs) {
-            source = ../../../../stow/vifm/.config/vifm/vifmrc;
+          ".config/vifm" = lib.mkIf (builtins.elem pkgs.vifm installedPkgs) {
+            source = ../../../../stow/vifm/.config/vifm;
+            recursive = true;
           };
           ".config/zellij" = lib.mkIf (builtins.elem pkgs.zellij installedPkgs) {
             source = ../../../../stow/zellij/.config/zellij;
+          };
+          ".vim" = lib.mkIf (builtins.elem pkgs.vim installedPkgs) {
+            source = ../../../../stow/vim/.vim;
+            recursive = true;
+          };
+          ".vim/autoload/plug.vim" = lib.mkIf (builtins.elem pkgs.vim installedPkgs) {
+            source = "${pkgs.vimPlugins.vim-plug}/plug.vim";
+          };
+          ".vimrc" = lib.mkIf (builtins.elem pkgs.vim installedPkgs) {
+            source = ../../../../stow/vim/.vimrc;
           };
         };
       };
