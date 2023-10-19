@@ -4,7 +4,6 @@
   imports = [
     ./apps
     ./shells
-    ./utils
   ];
   
   # Nix Flakes

@@ -51,7 +51,9 @@ endfun
 
 
 " User interface colors {
-call s:h("Normal", s:fg, s:bg, "")
+" call s:h("Normal", s:fg, s:bg, "")
+" Transparent background
+hi Normal   guisp=NONE  guifg=#383a42   guibg=#1E1E2E   ctermfg=237     ctermbg=None    gui=NONE    cterm=NONE
 
 call s:h("Cursor", s:bg, s:blue, "")
 call s:h("CursorColumn", "", s:cursor_line, "")
