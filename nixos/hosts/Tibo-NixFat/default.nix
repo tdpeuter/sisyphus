@@ -13,7 +13,6 @@
       home-manager.enable = true;
       sops.enable = true;
       ssh.enable = true;
-      zellij.enable = true;
     };
     services = {
       desktop.gnome.enable = true;
@@ -66,6 +65,9 @@
       lidSwitchExternalPower = "lock";
       lidSwitchDocked = "ignore";
     };
+
+    # Touchpad
+    xserver.libinput.enable = true;
   };
 
   system.stateVersion = "23.05";
@@ -94,12 +96,4 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver = {
-    libinput.enable = true;
-  };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 }

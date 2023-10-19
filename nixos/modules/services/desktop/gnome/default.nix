@@ -8,6 +8,9 @@ in {
   config = lib.mkIf cfg.enable {
     services.xserver = {
       enable = true;
+      layout = "us";
+      xkbVariant = "altgr-intl";
+
       excludePackages = with pkgs; [
         xterm
       ];

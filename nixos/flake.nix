@@ -35,7 +35,8 @@
       inherit self inputs;
 
       channelsConfig = {
-        allowUnfree = true;
+        allowUnfree.allowUnfreePredicate = pkg: builtins.elem (utils.lib.getName pkg) [
+        ];
       };
 
       sharedOverlays = [
