@@ -68,8 +68,10 @@ in {
           ".config/git" = lib.mkIf (builtins.elem pkgs.git installedPkgs) {
             source = ../../../../stow/git/.config/git;
           };
-          ".config/kitty" = lib.mkIf (builtins.elem pkgs.kitty installedPkgs) {
+          ".config/kitty" = {
+            enable = builtins.elem pkgs.kitty installedPkgs;
             source = ../../../../stow/kitty/.config/kitty;
+            recursive = true;
           };
           ".config/mpv" = lib.mkIf (builtins.elem pkgs-unstable.mpv installedPkgs) {
             source = ../../../../stow/mpv/.config/mpv;
