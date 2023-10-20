@@ -8,6 +8,7 @@ let
 in {
   imports = [
     ./dotfiles.nix
+    ./mail.nix
     ./secrets.nix
   ];
 
