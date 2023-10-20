@@ -8,7 +8,8 @@ let
 in {
   imports = [
     ./dotfiles.nix
-    ./mail.nix
+    ./firefox.nix  # Enables Firefox without setting options
+    ./mail.nix     # Enables Thunderbird without setting options
     ./secrets.nix
   ];
 
@@ -28,10 +29,13 @@ in {
     };
 
     fonts.fonts = with pkgs; [
-      font-awesome          # Dependency of zsh
+      corefonts             # Calibri for Uni
       font-awesome_5        # Dependency of Vifm config
-      noto-fonts            # Dependency of Zellij config
+      font-awesome          # Dependency of zsh
+      letter                # Personal font
       noto-fonts-cjk        # Dependency of Zellij config
+      noto-fonts            # Dependency of Zellij config
+      vistafonts            # Microsoft fonts
     ];
 
     home-manager.users.tdpeuter = lib.mkIf config.sisyphus.programs.home-manager.enable {
@@ -50,6 +54,7 @@ in {
           duf                   # Df alternative
           fzf
           glow                  # Terminal Markdown renderer
+          icosystem             # Personal icon theme
           jellyfin-media-player
           kitty
           libreoffice-fresh
