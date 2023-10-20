@@ -34,10 +34,12 @@
     utils.lib.mkFlake {
       inherit self inputs;
 
-      channelsConfig = {
-        allowUnfree.allowUnfreePredicate = pkg: builtins.elem (utils.lib.getName pkg) [
-        ];
-      };
+      channelsConfig.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+        "nvidia-x11"
+        "nvidia-settings"
+        "corefonts"
+        "vista-fonts"
+      ];
 
       sharedOverlays = [
         (import ./overlays/letter)
@@ -51,6 +53,10 @@
         specialArgs = {
           pkgs-unstable = import nixpkgs-unstable {
             inherit system;
+            config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+              "obsidian"
+              "spotify"
+            ];
           };
         };
 

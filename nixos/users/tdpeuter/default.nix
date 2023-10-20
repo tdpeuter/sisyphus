@@ -60,10 +60,8 @@ in {
           libreoffice-fresh
           nextcloud-client
           nsxiv                 # Lightweight image viewer
-          obsidian
           oh-my-zsh
           qalculate-gtk         # Calculator
-          spotify
           tea                   # Gitea CLI
           unzip
           vifm                  # File manager
@@ -74,6 +72,8 @@ in {
           zsh-syntax-highlighting
         ]) ++ (with pkgs-unstable; [
           mpv
+          obsidian
+          spotify
         ]) ++ (with pkgs.vimPlugins; [
           statix
           vim-plug

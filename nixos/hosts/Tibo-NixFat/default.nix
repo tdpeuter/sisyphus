@@ -3,12 +3,14 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules-old/hardware/nvidia.nix
     ../../modules-old
   ];
 
   sisyphus = {
     users.tdpeuter.enable = true;
+
+    hardware.nvidia.enable = true;
+    hardware.nvidia.model = "T2000";
 
     programs = {
       home-manager.enable = true;
