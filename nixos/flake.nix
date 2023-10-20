@@ -58,8 +58,7 @@
           home-manager.nixosModule
           sops-nix.nixosModules.sops
           ./modules
-
-          ./modules-old # Wordt stilaan weggewerkt
+          ./users
         ];
       };
 
