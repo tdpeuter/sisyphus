@@ -4,6 +4,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules-old/hardware/nvidia.nix
+    ../../modules-old
   ];
 
   sisyphus = {

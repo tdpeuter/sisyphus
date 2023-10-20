@@ -9,12 +9,12 @@ in {
       let
         Hugo = {
           format = "yaml";
-          sopsFile = ../../../secrets/Hugo.yaml;
+          sopsFile = ../../secrets/Hugo.yaml;
           owner = user;
         };
         UGent = {
           format = "yaml";
-          sopsFile = ../../../secrets/UGent.yaml;
+          sopsFile = ../../secrets/UGent.yaml;
           owner = user;
         };
       in {
@@ -23,7 +23,7 @@ in {
 
         "GitHub/ssh" = {
           format = "yaml";
-          sopsFile = ../../../secrets/GitHub.yaml;
+          sopsFile = ../../secrets/GitHub.yaml;
           owner = user;
         };
         "Hugo/Gitea/ssh" = Hugo;
