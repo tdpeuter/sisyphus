@@ -31,6 +31,7 @@
     "/nix" = {
       device = "/dev/disk/by-label/NIX-STORE";
       fsType = "ext4";
+      options = [ "noatime" ];
     };
 
     "/mnt/Nextcloud" = {
