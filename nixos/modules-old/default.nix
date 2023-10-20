@@ -1,10 +1,6 @@
 { inputs, lib, config, pkgs, ... }:
 
 {
-  imports = [
-    ./apps
-  ];
-  
   # Nix Flakes
   nix.package = pkgs.nixFlakes;
   nix.extraOptions = ''
@@ -12,13 +8,6 @@
     keep-outputs = true
     keep-derivations = true
   '';
-
-  fonts.fonts = with pkgs; [
-    corefonts      # Calibri for Uni
-    vistafonts
-
-    letter         # Personal font
-  ];
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_GB.UTF-8";
