@@ -59,7 +59,9 @@ call s:h("Cursor", s:bg, s:blue, "")
 call s:h("CursorColumn", "", s:cursor_line, "")
 call s:h("CursorLine", "", s:cursor_line, "")
 
-call s:h("LineNr", s:gutter_fg, s:gutter_bg, "")
+" call s:h("LineNr", s:gutter_fg, s:gutter_bg, "")
+" Transparent column
+hi LineNr   guisp=NONE  guifg=#d4d4d4   guibg=#fafafa   ctermfg=252     ctermbg=NONE    gui=NONE
 call s:h("CursorLineNr", s:fg, "", "")
 
 call s:h("DiffAdd", s:green, "", "")
