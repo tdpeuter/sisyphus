@@ -15,24 +15,10 @@ final: prev: {
       cargo
       rustc
     ];
-  };
-#  spotify-wrapper = final.writeScriptBin "spotify-with-adblock" ''
-#    #!/bin/sh
-#    LD_PRELOAD=/usr/local/lib/spotify-adblock.so spotify
-#  '';
-#  spotify = prev.spotify.overrideAttrs (something: rec {
-#    installPhase = ''
-#      echo no
-#    '';
 
-#    desktopItem = something.desktopItem.override (desktop: {
-#      exec = "LD_PRELOAD=/usr/local/lib/spotify-adblock.so ${desktop.exec}";
-#    });
-#
-#    installPhase = builtins.replaceString [
-#      "${something.desktopItem}"
-#    ] [
-#      "${desktopItem}"
-#    ] something.installPhase;
-#  });
+    postPatch = ''
+      mkdir -p $out
+      cp $src/config.toml $out/config.toml
+    '';
+  };
 }
