@@ -2,10 +2,14 @@
 
 {
   home-manager.users.tdpeuter = {
-    home.packages = with pkgs; [
-      spotify
-      spotify-adblock
-    ];
+    home = {
+      packages = with pkgs; [
+        spotify
+        spotify-adblock
+      ];
+
+      file.".config/spotify-adblock/config.toml".source = "${pkgs.spotify-adblock}/config.toml";
+    };
 
     # Set the desktop entry to use adblock.
     # TODO Is it possible to inherit all other values?
