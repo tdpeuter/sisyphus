@@ -38,6 +38,8 @@ in {
       vistafonts            # Microsoft fonts
     ];
 
+    sisyphus.programs.spotify-adblock.enable = true;
+
     home-manager.users.tdpeuter = lib.mkIf config.sisyphus.programs.home-manager.enable {
       programs.home-manager.enable = true;
 
