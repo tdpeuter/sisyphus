@@ -1,7 +1,8 @@
 {
   imports = [
-    ./desktop
+    ./openrgb
     ./openssh
+    ./pipewire
     ./printing
   ];
 }

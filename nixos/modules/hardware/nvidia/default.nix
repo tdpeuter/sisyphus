@@ -3,6 +3,7 @@
 let
   cfg = config.sisyphus.hardware.nvidia;
 
+  do-offloading = builtins.elem cfg.model [ "Quadro T2000" ];
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
     export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
@@ -35,24 +36,33 @@ in {
         open = true;
         package = config.boot.kernelPackages.nvidiaPackages.stable;
         modesetting.enable = true;
-        nvidiaSettings = config.sisyphus.hardware.nvidia.gui-settings;
+        nvidiaSettings = cfg.gui-settings;
         powerManagement = {
-          enable = true;
-          finegrained = true;
+          enable = do-offloading;
+          finegrained = do-offloading;
         };
 
-        prime = lib.mkIf (cfg.model == "Quadro T2000") {
-          offload = {
-            enable = true;
-            enableOffloadCmd = true;
-          };
-          intelBusId = "PCI::00:02:0";
-          nvidiaBusId = "PCI:01:00:0";
-        };
+        prime = lib.mkMerge [
+          (lib.mkIf do-offloading {
+            offload = {
+              enable = true;
+              enableOffloadCmd = true;
+            };
+          })
+          (lib.mkIf (cfg.model == "Quadro T2000") {
+            intelBusId = "PCI::00:02:0";
+            nvidiaBusId = "PCI:01:00:0";
+          })
+          (lib.mkIf (cfg.model == "RTX 2060") {
+            sync.enable = true;
+            intelBusId = "PCI::00:02:0";
+            nvidiaBusId = "PCI:01:00:0";
+          })
+        ];
       };
     };
 
-    environment.systemPackages = lib.mkIf (cfg.model != "") [
+    environment.systemPackages = lib.mkIf do-offloading [
       nvidia-offload
     ];
   };

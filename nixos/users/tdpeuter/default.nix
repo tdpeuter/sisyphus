@@ -38,7 +38,10 @@ in {
       vistafonts            # Microsoft fonts
     ];
 
-    sisyphus.programs.spotify-adblock.enable = true;
+    sisyphus = {
+      desktop.gnome.enable = true;
+      programs.spotify-adblock.enable = true;
+    };
 
     home-manager.users.tdpeuter = lib.mkIf config.sisyphus.programs.home-manager.enable {
       programs.home-manager.enable = true;
@@ -85,7 +88,7 @@ in {
       # GNOME ricing
       # Browse available settings by running:
       # gsettings list-schemas | xargs -I % sh -c 'echo %; gsettings list-keys %' | less
-      dconf.settings = lib.mkIf config.sisyphus.services.desktop.gnome.enable {
+      dconf.settings = lib.mkIf config.sisyphus.desktop.gnome.enable {
         "org/gnome/desktop/background" = {
           picture-uri = "file:///home/tdpeuter/Nextcloud/Afbeeldingen/wallpapers/bg";
           picture-uri-dark = "file:///home/tdpeuter/Nextcloud/Afbeeldingen/wallpapers/bg-dark";

@@ -1,64 +1,86 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../../modules/hardware/nvidia.nix
-      ../../modules/hardware/corsair
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
-      ../../modules/apps/virtualbox
-      ../../modules/des/gnome
-    ];
+  sisyphus = {
+    hardware.nvidia = {
+      enable = true;
+      model = "RTX 2060";
+    };
 
-  # Bootloader.
-  boot.loader = {
-      systemd-boot.enable = true;
-      efi = {
-          canTouchEfiVariables = true;
-          efiSysMountPoint = "/boot/efi";
-      };
+    programs = {
+      home-manager.enable = true;
+      sops.enable = true;
+      ssh.enable = true;
+    };
+
+    services = {
+      pipewire.enable = true;
+      printing.enable = true;
+      openrgb.enable = true;
+    };
+
+    users.tdpeuter.enable = true;
+
+    virtualisation.virtualbox.enable = true;
   };
+
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot/efi";
+    };
+  };
+
+  environment.systemPackages = with pkgs; [
+    git
+    vim
+    w3m
+    wget
+    zenith-nvidia
+  ];
+
+  programs.zsh.enable = true;
+
+  hardware.bluetooth.enable = true;
 
   networking = {
-      hostName = "Tibo-NixDesk";
-      networkmanager.enable = true;
-      # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    hostName = "Tibo-NixDesk";
+    networkmanager.enable = true;
+    # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   };
-
-  # Set your time zone.
-  time.timeZone = "Europe/Brussels";
-
-  # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   system.stateVersion = "23.05";
+
+  time.timeZone = "Europe/Brussels";
+
+  nix = {
+    # Allow Nix Flakes
+    # Keep derivations so shells don't break (direnv)
+    # If the disk has less than 100MiB, free up to 2GiB by garbage-collecting.
+    extraOptions = ''
+      experimental-features = nix-command flakes
+      keep-outputs = true
+      keep-derivations = true
+      min-free = ${toString (100 * 1024 * 1024)}
+      max-free = ${toString (2048 * 1024 * 1024)}
+    '';
+    # Scheduled garbage-collect
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
+    package = pkgs.nixFlakes;
+  };
+
+  i18n.defaultLocale = "en_GB.UTF-8";
+  console = {
+    # font = "Lat2-Terminus16";
+    useXkbConfig = true; # use xkbOptions in tty.
+  };
 }

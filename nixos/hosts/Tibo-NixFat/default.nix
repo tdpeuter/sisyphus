@@ -3,24 +3,25 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules-old
   ];
 
   sisyphus = {
-    users.tdpeuter.enable = true;
-
-    hardware.nvidia.enable = true;
-    hardware.nvidia.model = "Quadro T2000";
+    hardware.nvidia = {
+      enable = true;
+      model = "Quadro T2000";
+    };
 
     programs = {
       home-manager.enable = true;
       sops.enable = true;
       ssh.enable = true;
     };
+
     services = {
-      desktop.gnome.enable = true;
-      printing.enable = true;
+      pipewire.enable = true;
     };
+
+    users.tdpeuter.enable = true;
   };
 
   boot = {
@@ -83,21 +84,30 @@
   networking = {
     networkmanager.enable = true;
   };
-  
-  # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-    
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
+
+  nix = {
+    # Allow Nix Flakes
+    # Keep derivations so shells don't break (direnv)
+    # If the disk has less than 100MiB, free up to 2GiB by garbage-collecting.
+    extraOptions = ''
+      experimental-features = nix-command flakes
+      keep-outputs = true
+      keep-derivations = true
+      min-free = ${toString (100 * 1024 * 1024)}
+      max-free = ${toString (2048 * 1024 * 1024)}
+    '';
+    # Scheduled garbage-collect
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
+    package = pkgs.nixFlakes;
+  };
+
+  i18n.defaultLocale = "en_GB.UTF-8";
+  console = {
+    # font = "Lat2-Terminus16";
+    useXkbConfig = true; # use xkbOptions in tty.
   };
 }

@@ -35,9 +35,10 @@
       inherit self inputs;
 
       channelsConfig.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
-        "nvidia-x11"
-        "nvidia-settings"
         "corefonts"
+        "nvidia-settings"
+        "nvidia-x11"
+        "Oracle_VM_VirtualBox_Extension_Pack"
         "vista-fonts"
       ];
 
