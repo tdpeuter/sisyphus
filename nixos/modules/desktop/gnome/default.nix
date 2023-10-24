@@ -1,9 +1,9 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.sisyphus.services.desktop.gnome;
+  cfg = config.sisyphus.desktop.gnome;
 in {
-  options.sisyphus.services.desktop.gnome.enable = lib.mkEnableOption "GNOME";
+  options.sisyphus.desktop.gnome.enable = lib.mkEnableOption "GNOME";
 
   config = lib.mkIf cfg.enable {
     services.xserver = {
