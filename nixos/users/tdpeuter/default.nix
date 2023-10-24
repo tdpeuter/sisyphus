@@ -62,6 +62,7 @@ in {
           nsxiv                 # Lightweight image viewer
           oh-my-zsh
           qalculate-gtk         # Calculator
+          spotify-adblock
           tea                   # Gitea CLI
           unzip
           vifm                  # File manager
@@ -78,6 +79,8 @@ in {
           statix
           vim-plug
         ]);
+
+        file.".config/spotify-adblock/config.toml".source = "${pkgs.spotify-adblock}/config.toml";
       };
 
       # GNOME ricing
@@ -107,28 +110,42 @@ in {
         };
       };
 
-      xdg.mimeApps = {
-        enable = true;
+      xdg = {
+        desktopEntries.spotify = {
+          name = "Spotify";
+          genericName = "Music Player";
+          icon = "spotify-client";
+          exec = "env LD_PRELOAD=${pkgs.spotify-adblock}/lib/libspotifyadblock.so spotify %U";
+          mimeType = [ "x-scheme-handler/spotify" ];
+          categories = [ "Audio" "Music" "Player" "AudioVideo" ];
+          settings = {
+            TryExec = "spotify";
+            StartupWMClass = "spotify";
+          };
+        };
+        mimeApps = {
+          enable = true;
 
-        defaultApplications = let
-          browser = "firefox.desktop";
-          image-viewer = "nsxiv.desktop";
-          pdf-viewer = "org.pwmt.zathura-pdf-mupdf.desktop";
-        in {
-          "application/pdf" = pdf-viewer;
-          "application/x-extension-htm" = browser;
-          "application/x-extension-html" = browser;
-          "application/x-extension-shtml" = browser;
-          "application/x-extension-xht" = browser;
-          "application/x-extension-xhtml" = browser;
-          "application/xhtml+xml" = browser;
-          "image/jpeg" = image-viewer;
-          "image/png" = image-viewer;
-          "image/webp" = image-viewer;
-          "text/html" = browser;
-          "x-scheme-handler/chrome" = browser;
-          "x-scheme-handler/http" = browser;
-          "x-scheme-handler/https" = browser;
+          defaultApplications = let
+            browser = "firefox.desktop";
+            image-viewer = "nsxiv.desktop";
+            pdf-viewer = "org.pwmt.zathura-pdf-mupdf.desktop";
+          in {
+            "application/pdf" = pdf-viewer;
+            "application/x-extension-htm" = browser;
+            "application/x-extension-html" = browser;
+            "application/x-extension-shtml" = browser;
+            "application/x-extension-xht" = browser;
+            "application/x-extension-xhtml" = browser;
+            "application/xhtml+xml" = browser;
+            "image/jpeg" = image-viewer;
+            "image/png" = image-viewer;
+            "image/webp" = image-viewer;
+            "text/html" = browser;
+            "x-scheme-handler/chrome" = browser;
+            "x-scheme-handler/http" = browser;
+            "x-scheme-handler/https" = browser;
+          };
         };
       };
     };
