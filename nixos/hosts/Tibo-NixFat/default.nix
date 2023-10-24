@@ -10,7 +10,7 @@
     users.tdpeuter.enable = true;
 
     hardware.nvidia.enable = true;
-    hardware.nvidia.model = "T2000";
+    hardware.nvidia.model = "Quadro T2000";
 
     programs = {
       home-manager.enable = true;
