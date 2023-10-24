@@ -38,6 +38,8 @@ in {
       vistafonts            # Microsoft fonts
     ];
 
+    sisyphus.programs.spotify-adblock.enable = true;
+
     home-manager.users.tdpeuter = lib.mkIf config.sisyphus.programs.home-manager.enable {
       programs.home-manager.enable = true;
 
@@ -79,8 +81,6 @@ in {
           statix
           vim-plug
         ]);
-
-        file.".config/spotify-adblock/config.toml".source = "${pkgs.spotify-adblock}/config.toml";
       };
 
       # GNOME ricing
