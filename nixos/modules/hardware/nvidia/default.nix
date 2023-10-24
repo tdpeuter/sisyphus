@@ -14,25 +14,38 @@ in {
   options.sisyphus.hardware.nvidia = {
     enable = lib.mkEnableOption "NVIDIA GPU support";
     model = lib.mkOption {
-      type = lib.types.enum [ "" "T2000" "RTX 2060" ];
+      type = lib.types.enum [ "" "Quadro T2000" "RTX 2060" ];
       default = "";
-      example = "T2000";
+      example = "Quadro T2000";
       description = lib.mdDoc "The model of NVIDIA GPU card";
     };
+    gui-settings = lib.mkEnableOption "NVIDIA settings menu";
   };
 
   config = lib.mkIf cfg.enable {
     services.xserver.videoDrivers = [ "nvidia" ];
   
     hardware = {
-      opengl.enable = true;
+      opengl = {
+        enable = true;
+        driSupport = true;
+        driSupport32Bit = true;
+      };
       nvidia = {
         open = true;
         package = config.boot.kernelPackages.nvidiaPackages.stable;
         modesetting.enable = true;
+        nvidiaSettings = config.sisyphus.hardware.nvidia.gui-settings;
+        powerManagement = {
+          enable = true;
+          finegrained = true;
+        };
 
-        prime = lib.mkIf (cfg.model == "T2000") {
-          offload.enable = true;
+        prime = lib.mkIf (cfg.model == "Quadro T2000") {
+          offload = {
+            enable = true;
+            enableOffloadCmd = true;
+          };
           intelBusId = "PCI::00:02:0";
           nvidiaBusId = "PCI:01:00:0";
         };
