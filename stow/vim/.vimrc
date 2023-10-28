@@ -2,7 +2,7 @@
 " ~/.vimrc
 "
 
-colorscheme tdpeuter-light
+source ~/.vim/theme.conf
 
 set autoindent
 set conceallevel=2
