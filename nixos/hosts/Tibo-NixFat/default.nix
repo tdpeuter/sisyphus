@@ -19,6 +19,7 @@
 
     services = {
       pipewire.enable = true;
+      tailscale.enable = true;
     };
 
     users.tdpeuter.enable = true;
