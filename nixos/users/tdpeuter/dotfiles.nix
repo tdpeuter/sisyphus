@@ -26,13 +26,15 @@ in {
             enable = (builtins.elem pkgs-unstable.mpv installedPkgs);
             source = ../../../stow/mpv/.config/mpv;
           };
-          ".ssh/config" = lib.mkIf config.sisyphus.programs.ssh.enable {
-            source = ../../../stow/ssh/.ssh/config;
+          ".config/OpenRGB" = {
+            enable = config.sisyphus.services.openrgb.enable;
+            source = ../../../stow/openrgb/.config/OpenRGB;
+            recursive = true;
           };
           ".config/vifm" = {
             enable = (builtins.elem pkgs.vifm installedPkgs);
             source = ../../../stow/vifm/.config/vifm;
-            recursive = true;
+            recursive = true; # Fix history and all working
           };
           ".config/zellij" = {
             enable = (builtins.elem pkgs.zellij installedPkgs);
@@ -46,6 +48,9 @@ in {
           ".oh-my-zsh/themes/tdpeuter.zsh-theme" = {
             enable = (builtins.elem pkgs.zsh installedPkgs);
             source = ../../../stow/zsh/.oh-my-zsh/themes/tdpeuter.zsh-theme;
+          };
+          ".ssh/config" = lib.mkIf config.sisyphus.programs.ssh.enable {
+            source = ../../../stow/ssh/.ssh/config;
           };
           ".vim" = {
             enable = (builtins.elem pkgs.vim installedPkgs);
