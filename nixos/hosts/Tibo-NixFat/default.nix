@@ -23,6 +23,8 @@
     };
 
     users.tdpeuter.enable = true;
+
+    virtualisation.virtualbox.enable = true;
   };
 
   boot = {
