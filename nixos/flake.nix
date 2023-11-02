@@ -46,6 +46,7 @@
         (import ./overlays/cmdtime)
         (import ./overlays/icosystem)
         (import ./overlays/letter)
+        (import ./overlays/openconnect-sso)
         (import ./overlays/spotify)
       ];
 

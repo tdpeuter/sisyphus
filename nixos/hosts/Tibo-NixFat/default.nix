@@ -11,6 +11,8 @@
       model = "Quadro T2000";
     };
 
+    networking.openconnect-sso.enable = true;
+
     programs = {
       home-manager.enable = true;
       sops.enable = true;
