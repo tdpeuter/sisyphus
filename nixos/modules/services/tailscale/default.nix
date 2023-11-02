@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, pkgs-unstable, ... }:
 
 let
   cfg = config.sisyphus.services.tailscale;
@@ -8,6 +8,7 @@ in {
   config = lib.mkIf cfg.enable {
     services.tailscale = {
       enable = true;
+      package = pkgs-unstable.tailscale;
       useRoutingFeatures = "client";
     };
   };
