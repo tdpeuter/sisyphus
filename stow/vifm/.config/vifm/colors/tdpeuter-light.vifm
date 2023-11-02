@@ -34,3 +34,5 @@
 highlight Win       ctermfg=12 ctermbg=-1 cterm=none
 
 highlight Border    ctermfg=-1 ctermbg=-1 cterm=none
+
+highlight CmdLine   ctermfg=7 ctermbg=12 cterm=none

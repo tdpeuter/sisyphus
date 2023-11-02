@@ -71,6 +71,13 @@ if [ "$(command -v kitty)" ]; then
     kitten themes --config-file-name theme.conf "${theme}"
 fi
 
+# Vifm
+if [ "$(command -v vifm)" ]; then
+    echo "colorscheme ${theme} Default-256 Default" > ~/.config/vifm/theme.conf
+    # Update all running instances
+    vifm --remote -c "colorscheme ${theme}"
+fi
+
 # Vim
 # This does not reload the config, but will use it when you restart vim
 # Toggle an existing window using `:colorscheme ${theme}`
