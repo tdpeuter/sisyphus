@@ -26,6 +26,10 @@ in {
             source = ../../../stow/kitty/.config/kitty;
             recursive = true;
           };
+          ".config/mako" = {
+            enable = builtins.elem pkgs.mako installedPkgs;
+            source = ../../../stow/mako/.config/mako;
+          };
           ".config/mpv" = {
             enable = (builtins.elem pkgs-unstable.mpv installedPkgs);
             source = ../../../stow/mpv/.config/mpv;
