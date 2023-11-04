@@ -12,6 +12,10 @@ in {
           ".config/alacritty" = lib.mkIf (builtins.elem pkgs.alacritty installedPkgs) {
             source = ../../../stow/alacritty/.config/alacritty;
           };
+          ".config/dunst" = {
+            enable = config.sisyphus.desktop.sway.enable;
+            source = ../../../stow/dunst/.config/dunst;
+          };
           ".config/git" = {
             enable = (builtins.elem pkgs.git installedPkgs);
             source = ../../../stow/git/.config/git;
