@@ -16,6 +16,11 @@ in {
             enable = config.sisyphus.desktop.sway.enable;
             source = ../../../stow/dunst/.config/dunst;
           };
+          ".config/fuzzel" = {
+            enable = builtins.elem pkgs.fuzzel installedPkgs;
+            source = ../../../stow/fuzzel/.config/fuzzel;
+            recursive = true;
+          };
           ".config/git" = {
             enable = (builtins.elem pkgs.git installedPkgs);
             source = ../../../stow/git/.config/git;
