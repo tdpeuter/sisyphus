@@ -51,6 +51,9 @@ if $TERM == 'xterm-kitty'
     set term=xterm-256color
 endif
 
+" Automatically start vim in a server - enable colorscheme switching
+call remote_startserver("VIM")
+
 " AUTO ------------------------------------------------------------------ {{{
 
 if has("autocmd")

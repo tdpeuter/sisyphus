@@ -20,6 +20,10 @@ declare -A gsettings_alt
 gsettings_alt[${THEME_LIGHT}]='default'
 gsettings_alt[${THEME_DARK}]='prefer-dark'
 
+declare -A wallpaper
+wallpaper[${THEME_LIGHT}]="bg"
+wallpaper[${THEME_DARK}]="bg-dark"
+
 #############
 ### Logic ###
 #############
@@ -63,19 +67,24 @@ echo "${theme:=${THEME_DEFAULT}}" > "${STATE_FILE}"
 
 # GNOME
 if [ "$(command -v gsettings)" ]; then
-    gsettings set org.gnome.desktop.interface color-scheme "${gsettings_alt[${theme}]}"
+    gsettings set org.gnome.desktop.interface color-scheme "${gsettings_alt[${theme}]}" &
 fi
 
 # Kitty
 if [ "$(command -v kitty)" ]; then
-    kitten themes --config-file-name theme.conf "${theme}"
+    kitten themes --reload-in all --config-file-name theme.conf "${theme}" &
+fi
+
+# Sway
+if [ "$(command -v swaybg)" ]; then
+    pkill swaybg && swaybg -i ~/Nextcloud/Afbeeldingen/wallpapers/${wallpaper[${theme}]} && swaymsg reload &
 fi
 
 # Vifm
 if [ "$(command -v vifm)" ]; then
     echo "colorscheme ${theme} Default-256 Default" > ~/.config/vifm/theme.conf
     # Update all running instances
-    vifm --remote -c "colorscheme ${theme}"
+    vifm --remote -c "colorscheme ${theme}" &
 fi
 
 # Vim
@@ -83,5 +92,9 @@ fi
 # Toggle an existing window using `:colorscheme ${theme}`
 if [ "$(command -v vim)" ]; then
     echo "colorscheme ${theme}" > ~/.vim/theme.conf
+    # Update all running instances
+    for server in $(vim --serverlist); do
+        vim --servername "${server}" --remote-send "<C-\><C-N>:colorscheme ${theme}<CR>"
+    done
 fi
 
