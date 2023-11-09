@@ -5,6 +5,12 @@ let
 
   user = config.users.users.tdpeuter.name;
   installedPkgs = config.environment.systemPackages ++ config.home-manager.users.tdpeuter.home.packages;
+
+  cursor = {
+    package = pkgs.phinger-cursors;
+    name = "phinger-cursors";
+    size = 24;
+  };
 in {
   imports = [
     ./dotfiles.nix
@@ -66,6 +72,7 @@ in {
           nextcloud-client
           nsxiv                 # Lightweight image viewer
           oh-my-zsh
+          phinger-cursors       # Cursor theme
           qalculate-gtk         # Calculator
           spotify-adblock
           tea                   # Gitea CLI
@@ -84,6 +91,14 @@ in {
           statix
           vim-plug
         ]);
+
+        pointerCursor = {
+          package = cursor.package;
+          name = cursor.name;
+          size = cursor.size;
+          gtk.enable = true;
+          x11.enable = true;
+        };
       };
 
       # GNOME ricing
@@ -111,6 +126,11 @@ in {
         "org/gnome/shell/app-switcher" = {
           current-workspace-only = true;
         };
+      };
+
+      gtk = {
+        enable = true;
+        cursorTheme = cursor;
       };
 
       xdg = {
