@@ -101,12 +101,6 @@
       min-free = ${toString (100 * 1024 * 1024)}
       max-free = ${toString (2048 * 1024 * 1024)}
     '';
-    # Scheduled garbage-collect
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 30d";
-    };
     package = pkgs.nixFlakes;
   };
 
