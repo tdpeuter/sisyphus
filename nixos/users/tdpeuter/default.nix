@@ -5,6 +5,12 @@ let
 
   user = config.users.users.tdpeuter.name;
   installedPkgs = config.environment.systemPackages ++ config.home-manager.users.tdpeuter.home.packages;
+
+  cursor = {
+    package = pkgs.phinger-cursors;
+    name = "phinger-cursors";
+    size = 24;
+  };
 in {
   imports = [
     ./dotfiles.nix
@@ -66,6 +72,7 @@ in {
           nextcloud-client
           nsxiv                 # Lightweight image viewer
           oh-my-zsh
+          phinger-cursors       # Cursor theme
           qalculate-gtk         # Calculator
           tea                   # Gitea CLI
           unzip
@@ -83,6 +90,14 @@ in {
           statix
           vim-plug
         ]);
+
+        pointerCursor = {
+          package = cursor.package;
+          name = cursor.name;
+          size = cursor.size;
+          gtk.enable = true;
+          x11.enable = true;
+        };
       };
 
       # GNOME ricing
@@ -112,28 +127,47 @@ in {
         };
       };
 
-      xdg.mimeApps = {
+      gtk = {
         enable = true;
+        cursorTheme = cursor;
+      };
 
-        defaultApplications = let
-          browser = "firefox.desktop";
-          image-viewer = "nsxiv.desktop";
-          pdf-viewer = "org.pwmt.zathura-pdf-mupdf.desktop";
-        in {
-          "application/pdf" = pdf-viewer;
-          "application/x-extension-htm" = browser;
-          "application/x-extension-html" = browser;
-          "application/x-extension-shtml" = browser;
-          "application/x-extension-xht" = browser;
-          "application/x-extension-xhtml" = browser;
-          "application/xhtml+xml" = browser;
-          "image/jpeg" = image-viewer;
-          "image/png" = image-viewer;
-          "image/webp" = image-viewer;
-          "text/html" = browser;
-          "x-scheme-handler/chrome" = browser;
-          "x-scheme-handler/http" = browser;
-          "x-scheme-handler/https" = browser;
+      xdg = {
+        desktopEntries.spotify = {
+          name = "Spotify";
+          genericName = "Music Player";
+          icon = "spotify-client";
+          exec = "env LD_PRELOAD=${pkgs.spotify-adblock}/lib/libspotifyadblock.so spotify %U";
+          mimeType = [ "x-scheme-handler/spotify" ];
+          categories = [ "Audio" "Music" "Player" "AudioVideo" ];
+          settings = {
+            TryExec = "spotify";
+            StartupWMClass = "spotify";
+          };
+        };
+        mimeApps = {
+          enable = true;
+
+          defaultApplications = let
+            browser = "firefox.desktop";
+            image-viewer = "nsxiv.desktop";
+            pdf-viewer = "org.pwmt.zathura-pdf-mupdf.desktop";
+          in {
+            "application/pdf" = pdf-viewer;
+            "application/x-extension-htm" = browser;
+            "application/x-extension-html" = browser;
+            "application/x-extension-shtml" = browser;
+            "application/x-extension-xht" = browser;
+            "application/x-extension-xhtml" = browser;
+            "application/xhtml+xml" = browser;
+            "image/jpeg" = image-viewer;
+            "image/png" = image-viewer;
+            "image/webp" = image-viewer;
+            "text/html" = browser;
+            "x-scheme-handler/chrome" = browser;
+            "x-scheme-handler/http" = browser;
+            "x-scheme-handler/https" = browser;
+          };
         };
       };
     };
