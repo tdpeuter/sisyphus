@@ -64,7 +64,10 @@
     zsh.enable = true;
   };
 
-  hardware.bluetooth.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = false;
+  };
   
   networking.hostName = "Tibo-NixFat";
 
