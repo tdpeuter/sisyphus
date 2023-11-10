@@ -28,8 +28,12 @@ in {
         x11 = true;
       };
     };
-    users.extraGroups.vboxusers.members = [
-      "user-with-access-to-virtualbox"
+
+    users.groups.vboxusers = {};
+
+    sisyphus.users.wantedGroups = [
+      config.users.groups.vboxusers.name # The group we defined earlier
+      config.users.groups.dialout.name   # Serial Port
     ];
   };
 }
