@@ -13,6 +13,11 @@
 
     networking.openconnect-sso.enable = true;
 
+    nix = {
+      flakes.enable = true;
+      gc.onFull.enable = true;
+    };
+
     programs = {
       home-manager.enable = true;
       sops.enable = true;
@@ -61,23 +66,11 @@
   time.timeZone = "Europe/Brussels";
 
   nix = {
-    # Allow Nix Flakes
     # Keep derivations so shells don't break (direnv)
-    # If the disk has less than 100MiB, free up to 2GiB by garbage-collecting.
     extraOptions = ''
-      experimental-features = nix-command flakes
       keep-outputs = true
       keep-derivations = true
-      min-free = ${toString (100 * 1024 * 1024)}
-      max-free = ${toString (2048 * 1024 * 1024)}
     '';
-    # Scheduled garbage-collect
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 30d";
-    };
-    package = pkgs.nixFlakes;
   };
 
   i18n.defaultLocale = "en_GB.UTF-8";
