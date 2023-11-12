@@ -2,4 +2,5 @@ timeout 60  'brightnessctl -sq set $(( $(brightnessctl get) / 10 * 3 ))' resume 
 timeout 120 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
 timeout 240 'systemctl suspend'
 
-before-sleep 'swaymsg "output * dpms on"; swaylock'
+before-sleep 'playerctl pause'
+before-sleep 'swaymsg "output * dpms on"; swaylock --grace 0' # Avoid being able to unlock immediately without password
