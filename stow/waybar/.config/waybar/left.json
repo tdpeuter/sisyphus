@@ -1,14 +1,13 @@
-
 {
 	"modules-left": [
+        "sway/workspaces",
         "idle_inhibitor",
+        "custom/light-dark-toggle",
+        "custom/night-light-toggle",
+        "custom/toggle-notifications",
         "custom/media"
     ],
-    "modules-center": [
-        "sway/workspaces"
-    ],
 	"modules-right": [
-        "disk", 
         "memory", 
         "cpu", 
         "temperature", 
@@ -21,4 +20,3 @@
         "tray"
     ]
 }
-

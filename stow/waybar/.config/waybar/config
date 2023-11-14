@@ -3,15 +3,14 @@
 //
 
 [{
-
     "name": "toggle",
 
     "mode": "hide",
-	"ipc": true,
+    "ipc": true,
 
     "position": "top",
-	"height": 25,
-	"spacing": 4, 
+    "height": 25,
+    "spacing": 4, 
     "margin": "-25px 0 0 0", // Show this bar on top of the other one, seemingly the "same" one.
 
     "custom/sep": {
@@ -28,18 +27,15 @@
 }, 
 
 {
-    
     "name": "keep",
     "position": "top",
     "height": 25,
-	"modules-left": ["sway/mode", "custom/browser"],
-    "modules-center": ["sway/window"],
-    "modules-right": ["clock"],
+    "modules-left": ["sway/mode"],
+    "modules-center": ["clock"],
 
     "include": [
         // Import modules (!)
         "~/.config/waybar/modules.json"
     ],
-
 }]
 
