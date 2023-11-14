@@ -49,6 +49,10 @@ in {
             source = ../../../stow/vifm/.config/vifm;
             recursive = true; # Fix history and all working
           };
+          ".config/waybar" = {
+            enable = config.sisyphus.desktop.sway.enable;
+            source = ../../../stow/waybar/.config/waybar;
+          };
           ".config/zellij" = {
             enable = (builtins.elem pkgs.zellij installedPkgs);
             source = ../../../stow/zellij/.config/zellij;

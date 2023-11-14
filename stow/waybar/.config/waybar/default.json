@@ -1,10 +1,13 @@
 {
-	"modules-left": [
-        "sway/workspaces",
+    "modules-left": [
         "idle_inhibitor",
         "custom/media"
     ],
-	"modules-right": [
+    "modules-center": [
+        "sway/workspaces"
+    ],
+    "modules-right": [
+        "disk", 
         "memory", 
         "cpu", 
         "temperature", 
@@ -17,3 +20,4 @@
         "tray"
     ]
 }
+

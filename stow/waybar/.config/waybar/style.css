@@ -15,8 +15,9 @@
 @define-color accent #00897b;
 
 window#waybar {
-    font-family: Letter; /* This is my personal font. */
+    font-family: font-awesome, letter, monospace;
     font-size: 13px;
+    -webkit-font-smoothing: antialiased;
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -32,10 +33,14 @@ window#waybar {
     padding: 0 5px;
 }
 
-#workspaces button:hover, 
 #workspaces button.focused {
     background-color: transparent;
     color: @white;
+}
+
+#workspaces button:hover {
+    background-color: transparent;
+    color: @transparent-black;
 }
 
 #workspaces button.urgent {
@@ -44,10 +49,10 @@ window#waybar {
 }
 
 /* All modules individually. */
-#backlight, #battery, #bluetooth, #clock, #cpu, 
-#custom-browser, #custom-media, #disk, #idle_inhibitor, 
-#memory, #mode, #mpd, #network, #pulseaudio, 
-#temperature, #tray {
+#backlight, #battery, #bluetooth, #clock, #cpu,
+#custom-browser, #custom-media, #custom-light-dark-toggle, #custom-night-light-toggle, #custom-toggle-notifications,
+#disk, #idle_inhibitor, #memory, #mode, #mpd, #network,
+#pulseaudio, #temperature, #tray {
     padding: 0 5px;
 }
 
@@ -114,6 +119,7 @@ label:focus {
     background-color: #eb4d4b;
 }
 
+#custom_light-dark-toggle.activated,
 #idle_inhibitor.activated {
     background-color: #ecf0f1;
     color: #2d3436;
