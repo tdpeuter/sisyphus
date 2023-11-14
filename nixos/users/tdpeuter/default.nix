@@ -25,7 +25,8 @@ in {
     users.users.tdpeuter = {
       description = "Tibo De Peuter";
       isNormalUser = true;
-      extraGroups = [ 
+      extraGroups = config.sisyphus.users.wantedGroups ++ [
+        config.users.groups.input.name
         config.users.groups.keys.name
         config.users.groups.networkmanager.name
         config.users.groups.wheel.name
@@ -36,8 +37,7 @@ in {
 
     fonts.fonts = with pkgs; [
       corefonts             # Calibri for Uni
-      font-awesome_5        # Dependency of Vifm config
-      font-awesome          # Dependency of zsh
+      font-awesome          # Dependency of Vifm & zsh config
       letter                # Personal font
       noto-fonts-cjk        # Dependency of Zellij config
       noto-fonts            # Dependency of Zellij config
@@ -82,6 +82,9 @@ in {
           zsh
           zsh-autosuggestions
           zsh-syntax-highlighting
+
+          # SMB
+          cifs-utils psmisc
         ]) ++ (with pkgs-unstable; [
           mpv
           obsidian
