@@ -1,0 +1,61 @@
+#
+# ~/.config/sway/config
+#
+
+# Variables
+set {
+    $alt   Mod1
+    $flag  Mod4
+
+    $left  h
+    $down  j
+    $up    k
+    $right l
+
+    $scrollUp   button4
+    $scrollDown button5
+
+    $term   kitty || alacritty || foot
+    $menu   j4-dmenu-desktop --dmenu "rofi -dmenu -i"
+    $window_switcher /home/tdpeuter/projects/fzf-jump/new.sh
+    $lock   swaylock -f
+}
+
+include {
+    input-output
+    keybinds
+    modes
+    style
+}
+
+# Focus
+focus_follows_mouse no
+floating_modifier   $flag normal
+
+# Window rules
+for_window {
+    [window_role="About"]       floating enable
+    [window_role="bubble"]      floating enable
+    [window_role="Organizer"]   floating enable
+    [window_role="page-info"]   floating enable
+    [window_role="pop-up"]      floating enable
+    [window_role="Preferences"] floating enable
+    [window_role="splash"]      floating enable
+    [window_role="task_dialog"] floating enable
+    [window_role="task_dialog"] floating enable
+    [window_role="toolbox"]     floating enable
+    [window_role="webconsole"]  floating enable
+    [window_type="dialog"]      floating enable
+    [window_type="menu"]        floating enable
+}
+
+exec dbus-sway-environment
+exec configure-gtk
+exec dbus-update-activation-environment --systemd DISPLAY XAUTHORITY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway
+
+exec wlsunset -l 50.50 -L 4.00 -t 3000 -T 6500
+exec gnome-keyring-daemon --start --components=secrets # Secrets
+exec dunst --verbosity crit                            # Notification manager
+exec swayidle -w
+
+exec nextcloud --background

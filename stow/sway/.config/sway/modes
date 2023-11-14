@@ -1,0 +1,88 @@
+#
+# ~/.config/sway/modes
+#
+
+set $default "default"
+
+# Resizing
+set $resize "Resize"
+bindsym $flag+r mode $resize
+mode $resize bindsym {
+    $right       resize grow   width  10 px or 10 ppt
+    $up          resize grow   height 10 px or 10 ppt
+    $left        resize shrink width  10 px or 10 ppt
+    $down        resize shrink height 10 px or 10 ppt
+
+    Right        resize grow   width  10 px or 10 ppt
+    Up           resize grow   height 10 px or 10 ppt
+    Left         resize shrink width  10 px or 10 ppt
+    Down         resize shrink height 10 px or 10 ppt
+
+    Shift+$right resize grow   width  50 px or 50 ppt
+    Shift+$up    resize grow   height 50 px or 50 ppt
+    Shift+$left  resize shrink width  50 px or 50 ppt
+    Shift+$down  resize shrink height 50 px or 50 ppt
+
+    Shift+Right  resize grow   width  50 px or 50 ppt
+    Shift+Up     resize grow   height 50 px or 50 ppt
+    Shift+Left   resize shrink width  50 px or 50 ppt
+    Shift+Down   resize shrink height 50 px or 50 ppt
+
+    $flag+$right move right
+    $flag+$up    move up
+    $flag+$left  move left
+    $flag+$down  move down
+
+    $flag+Right  move right
+    $flag+Up     move up
+    $flag+Left   move left
+    $flag+Down   move down
+
+    Return       mode $default
+    Escape       mode $default
+    $flag+r      mode $default
+}
+
+# System actions
+set $mode_system "System (l)ock, (s)leep, (h)ibernate, (r)eboot, (Shift+s)hutdown"
+bindsym Control+$alt+Delete mode $mode_system
+mode $mode_system bindsym {
+    l                   mode $default, exec $lock
+    s                   mode $default, exec $lock, exec systemctl suspend
+    h                   mode $default, exec $lock, exec systemctl hibernate
+    r                   mode $default, exec systemctl reboot
+    Shift+s             mode $default, exec systemctl poweroff -i
+
+    Return              mode $default
+    Escape              mode $default
+    Control+$alt+Delete mode $default
+}
+
+# Screenshots
+set $mode_screenshot "Screenshot of (a)rea, current (w)indow, (s)creen - Shift to save"
+set $save_format ~/Nextcloud/Afbeeldingen/Screenshots/$(date +%F-%H-%M-%S).png
+bindsym Print mode $mode_screenshot
+mode $mode_screenshot bindsym {
+    a       exec grimshot copy area,                         mode $default
+    w       exec grimshot --notify copy active,              mode $default
+    s       exec grimshot --notify copy screen,              mode $default
+
+    Shift+a exec grimshot --notify save area   $save_format, mode $default
+    Shift+w exec grimshot --notify save active $save_format, mode $default
+    Shift+s exec grimshot --notify save screen $save_format, mode $default
+    Print   exec grimshot --notify save screen $save_format, mode $default
+
+    Return mode $default
+    Escape mode $default
+}
+
+set $mode_preferences "Toggle (d)ark mode, (s)unset, (n)otification"
+bindsym $alt+end mode $mode_preferences {
+    d        exec "${SCRIPT_DIR}/toggle-light-dark.sh", mode $default
+    s        exec "${SCRIPT_DIR}/sunset.sh",            mode $default
+    n        exec "${SCRIPT_DIR}/do-not-disturb.sh",    mode $default
+
+    Return   mode $default
+    Escape   mode $default
+    $alt+end mode $default
+}
