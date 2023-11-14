@@ -257,7 +257,8 @@ filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
         \ shotwell,
         \ gwenview &,
 fileviewer {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
-         \ chafa,
+         \ kitten icat %f,
+         \ chafa %f,
          \ identify %f,
 
 " OpenRaster

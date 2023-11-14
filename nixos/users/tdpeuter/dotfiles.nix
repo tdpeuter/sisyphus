@@ -70,7 +70,7 @@ in {
             source = ../../../stow/zellij/.config/zellij;
           };
           ".oh-my-zsh" = {
-            enable = (builtins.elem pkgs.zsh installedPkgs);
+            enable = true;
             source = "${pkgs.oh-my-zsh}/share/oh-my-zsh";
             recursive = true;
           };
