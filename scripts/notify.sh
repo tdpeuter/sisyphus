@@ -2,8 +2,10 @@
 # Show system status in notification, or your own message
 # Syntaxis: notify [-vb] [-t <timeout>] [-p <value>] [<title> <message>]
 
-# Requirements: 
+# Requirements/dependencies: 
+# - amixer
 # - brightnessctl
+# - libnotify (notify-send)
 
 panic () {
     >&2 echo "Syntaxis: notify [-vb] [-t <timeout>] [-p <value>] [<title> <message>]"
@@ -20,15 +22,15 @@ while getopts ":bvt:p:" options; do
 			;;
 		v)
             # Get volume (don't use pamixer because that is way slower)
-            value=$( pactl get-sink-volume @DEFAULT_SINK@ \
-                | cut -d '/' -f2 \
-                | grep -o '[0-9]*%' \
-                | tr -d '%' )
+            value=$( amixer sget 'Master' \
+                | grep -o '\[[0-9]*%\]' \
+                | tr -d '][%' \
+	        | head -n1 )
             title="Volume: ${value}%"
             category='sysinfo'
 
             # If audio disabled, set value to zero.
-            if [ "$( pactl get-sink-mute @DEFAULT_SINK@ )" == "Mute: yes" ] ; then 
+	    if [ "$( amixer sget 'Master' | grep -o '\[\(on\|off\)\]' | head -n1 )" == "[off]" ] ; then 
                 title="Volume: ${value}% (Disabled)"
                 value=0
             fi
