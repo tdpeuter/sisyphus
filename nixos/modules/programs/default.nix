@@ -1,8 +1,9 @@
 {
   imports = [
+    ./direnv
     ./home-manager
     ./sops
-    ./ssh
     ./spotify-adblock
+    ./ssh
   ];
 }

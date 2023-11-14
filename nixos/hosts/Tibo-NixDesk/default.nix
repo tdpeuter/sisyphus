@@ -19,6 +19,7 @@
     };
 
     programs = {
+      direnv.enable = true;
       home-manager.enable = true;
       sops.enable = true;
       ssh.enable = true;
@@ -68,14 +69,6 @@
   system.stateVersion = "23.05";
 
   time.timeZone = "Europe/Brussels";
-
-  nix = {
-    # Keep derivations so shells don't break (direnv)
-    extraOptions = ''
-      keep-outputs = true
-      keep-derivations = true
-    '';
-  };
 
   i18n.defaultLocale = "en_GB.UTF-8";
   console = {
