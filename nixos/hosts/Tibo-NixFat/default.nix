@@ -61,7 +61,7 @@
 
   environment.systemPackages = with pkgs; [
     git
-    vim
+    vim-full
     w3m
     wget
     zenith-nvidia

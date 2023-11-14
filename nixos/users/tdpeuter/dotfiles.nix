@@ -66,16 +66,16 @@ in {
             source = ../../../stow/ssh/.ssh/config;
           };
           ".vim" = {
-            enable = (builtins.elem pkgs.vim installedPkgs);
+            enable = (builtins.elem pkgs.vim-full installedPkgs);
             source = ../../../stow/vim/.vim;
             recursive = true;
           };
           ".vim/autoload/plug.vim" = {
-            enable = (builtins.elem pkgs.vim installedPkgs);
+            enable = (builtins.elem pkgs.vim-full installedPkgs);
             source = "${pkgs.vimPlugins.vim-plug}/plug.vim";
           };
           ".vimrc" = {
-            enable = (builtins.elem pkgs.vim installedPkgs);
+            enable = (builtins.elem pkgs.vim-full installedPkgs);
             source = ../../../stow/vim/.vimrc;
           };
           ".zshrc" = {
