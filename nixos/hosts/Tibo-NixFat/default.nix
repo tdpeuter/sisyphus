@@ -19,6 +19,7 @@
     };
 
     programs = {
+      direnv.enable = true;
       home-manager.enable = true;
       sops.enable = true;
       ssh.enable = true;
@@ -99,14 +100,6 @@
 
   networking = {
     networkmanager.enable = true;
-  };
-
-  nix = {
-    # Keep derivations so shells don't break (direnv)
-    extraOptions = ''
-      keep-outputs = true
-      keep-derivations = true
-    '';
   };
 
   i18n.defaultLocale = "en_GB.UTF-8";
