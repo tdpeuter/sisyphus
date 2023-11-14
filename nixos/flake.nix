@@ -30,17 +30,21 @@
     ... }:
     let
       system = "x86_64-linux";
+
+      unfreePackages = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+        "corefonts"
+        "nvidia-settings" "nvidia-x11"
+        "obsidian"
+        "Oracle_VM_VirtualBox_Extension_Pack"
+        "spotify"
+        "steam" "steam-original" "steam-run"
+        "vista-fonts"
+      ];
     in
     utils.lib.mkFlake {
       inherit self inputs;
 
-      channelsConfig.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
-        "corefonts"
-        "nvidia-settings"
-        "nvidia-x11"
-        "Oracle_VM_VirtualBox_Extension_Pack"
-        "vista-fonts"
-      ];
+      channelsConfig.allowUnfreePredicate = unfreePackages;
 
       sharedOverlays = [
         (import ./overlays/cmdtime)
@@ -56,10 +60,7 @@
         specialArgs = {
           pkgs-unstable = import nixpkgs-unstable {
             inherit system;
-            config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
-              "obsidian"
-              "spotify"
-            ];
+            config.allowUnfreePredicate = unfreePackages;
           };
         };
 
