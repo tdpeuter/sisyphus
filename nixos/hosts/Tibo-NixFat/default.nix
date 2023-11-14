@@ -47,6 +47,8 @@
       };
     };
 
+    kernelPackages = pkgs.linuxPackages_hardened;
+
     # Use the systemd-boot EFI boot loader.]
     loader = {
       systemd-boot.enable = true;
@@ -66,6 +68,7 @@
   ];
 
   programs = {
+    steam.enable = true;
     zsh.enable = true;
   };
 
