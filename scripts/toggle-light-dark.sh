@@ -88,8 +88,6 @@ if [ "$(command -v vifm)" ]; then
 fi
 
 # Vim
-# This does not reload the config, but will use it when you restart vim
-# Toggle an existing window using `:colorscheme ${theme}`
 if [ "$(command -v vim)" ]; then
     echo "colorscheme ${theme}" > ~/.vim/theme.conf
     # Update all running instances
