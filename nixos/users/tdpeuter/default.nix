@@ -45,7 +45,7 @@ in {
     ];
 
     sisyphus = {
-      desktop.gnome.enable = true;
+      desktop.sway.enable = true;
       programs.spotify-adblock.enable = true;
     };
 

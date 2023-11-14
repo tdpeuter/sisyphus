@@ -44,6 +44,18 @@ in {
             source = ../../../stow/openrgb/.config/OpenRGB;
             recursive = true;
           };
+          ".config/sway" = {
+            enable = config.sisyphus.desktop.sway.enable;
+            source = ../../../stow/sway/.config/sway;
+          };
+          ".config/swayidle" = {
+            enable = (builtins.elem pkgs.swayidle installedPkgs);
+            source = ../../../stow/swayidle/.config/swayidle;
+          };
+          ".config/swaylock" = {
+            enable = config.sisyphus.desktop.sway.enable;
+            source = ../../../stow/swaylock/.config/swaylock;
+          };
           ".config/vifm" = {
             enable = (builtins.elem pkgs.vifm installedPkgs);
             source = ../../../stow/vifm/.config/vifm;

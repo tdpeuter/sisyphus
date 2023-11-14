@@ -1,0 +1,31 @@
+#
+# ~/.config/sway/style 
+# Styling for sway
+#
+
+# Decrease the height of the window title bar. 
+font pango:monospace 0.1
+
+bar {
+    swaybar_command waybar
+    mode hide
+}
+
+default_border pixel 1
+default_floating_border normal 1
+hide_edge_borders smart
+smart_borders on
+
+# Mimic no titles by setting the text color to background color
+#                       border  backgr. text    indic.  child_border
+client.focused          #00897b #00897b #00897b #00897b #00897b
+client.focused_inactive #a6a6a6 #a6a6a6 #a6a6a6 #a6a6a6 #a6a6a6
+client.unfocused        #a6a6a6 #a6a6a6 #a6a6a6 #a6a6a6 #a6a6a6
+client.urgent           #ff0000 #ff0000 #ff0000 #ff0000 #ff0000
+
+# Configure GTK
+exec gsettings set org.gnome.desktop.interface icon-theme 'IcoSystem'
+exec gsettings set org.gnome.desktop.interface cursor-theme 'phinger-cursor'
+exec gsettings set org.gnome.desktop.interface gtk-theme 'Nordic'
+
+seat seat0 xcursor_theme phinger-cursors 24
