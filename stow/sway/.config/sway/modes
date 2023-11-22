@@ -77,12 +77,15 @@ mode $mode_screenshot bindsym {
 }
 
 set $mode_preferences "Toggle (d)ark mode, (s)unset, (n)otification"
-bindsym $alt+end mode $mode_preferences {
-    d        exec "${SCRIPT_DIR}/toggle-light-dark.sh", mode $default
-    s        exec "${SCRIPT_DIR}/sunset.sh",            mode $default
-    n        exec "${SCRIPT_DIR}/do-not-disturb.sh",    mode $default
+bindsym $alt+end    mode $mode_preferences
+bindsym $alt+KP_End mode $mode_preferences
+mode $mode_preferences bindsym {
+    d           exec "${SCRIPT_DIR}/toggle-light-dark.sh", mode $default
+    s           exec "${SCRIPT_DIR}/sunset.sh",            mode $default
+    n           exec "${SCRIPT_DIR}/do-not-disturb.sh",    mode $default
 
-    Return   mode $default
-    Escape   mode $default
-    $alt+end mode $default
+    Return      mode $default
+    Escape      mode $default
+    $alt+end    mode $default
+    $alt+KP_End mode $default
 }

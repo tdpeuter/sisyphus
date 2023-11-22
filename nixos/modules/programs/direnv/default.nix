@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = sisyphus.programs.direnv;
+  cfg = config.sisyphus.programs.direnv;
 in {
   options.sisyphus.programs.direnv.enable = lib.mkEnableOption "direnv";
 
@@ -14,9 +14,9 @@ in {
 
     # This is also done by setting programs.direnv.persistDerivations.
     # Keep derivations so shells don't break.
-    nix.extraOption = ''
+    nix.extraOptions = ''
       keep-outputs = true
       keep-derivations = true
     '';
   };
-};
+}
