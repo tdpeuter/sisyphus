@@ -32,7 +32,11 @@
 
     users.tdpeuter.enable = true;
 
-    virtualisation.virtualbox.enable = true;
+    virtualisation = {
+      docker.enable = true;
+      qemu.enable = true;
+      virtualbox.enable = true;
+    };
   };
 
   boot = {

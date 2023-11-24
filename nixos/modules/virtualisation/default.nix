@@ -1,5 +1,7 @@
 {
   imports = [
+    ./docker
+    ./qemu
     ./virtualbox
   ];
 }
