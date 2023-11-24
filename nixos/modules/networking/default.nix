@@ -1,5 +1,6 @@
 {
   imports = [
+    ./networkmanager
     ./openconnect-sso
   ];
 }

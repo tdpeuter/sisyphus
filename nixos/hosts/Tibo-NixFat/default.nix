@@ -11,7 +11,10 @@
       model = "Quadro T2000";
     };
 
-    networking.openconnect-sso.enable = true;
+    networking = {
+      networkmanager.enable = true;
+      openconnect-sso.enable = true;
+    };
 
     nix = {
       flakes.enable = true;
@@ -101,10 +104,6 @@
   time.timeZone = "Europe/Brussels";
 
   # --- Barrier ---
-
-  networking = {
-    networkmanager.enable = true;
-  };
 
   i18n.defaultLocale = "en_GB.UTF-8";
   console = {
