@@ -77,7 +77,7 @@ fi
 
 # Sway
 if [ "$(command -v swaybg)" ]; then
-    pkill swaybg && swaybg -i ~/Nextcloud/Afbeeldingen/wallpapers/${wallpaper[${theme}]} && swaymsg reload &
+    pkill swaybg && swaybg --mode fill --image ~/Nextcloud/Afbeeldingen/wallpapers/${wallpaper[${theme}]} && swaymsg reload &
 fi
 
 # Vifm
