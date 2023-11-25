@@ -7,11 +7,13 @@ in {
   config = lib.mkIf cfg.enable {
     home-manager.users.tdpeuter.programs.firefox = lib.mkIf config.sisyphus.programs.home-manager.enable {
       enable = true;
-      package = pkgs.firefox.override {
+      package = pkgs-unstable.firefox.override {
         cfg = {
-          enableTridactylNative = true;
           speechSynthesisSupport = true; # Allow Text-to-speech in e.g. Discord
         };
+        nativeMessagingHosts = with pkgs; [
+          tridactyl-native
+        ];
         extraPolicies = {
           DisableFirefoxStudies = true;
           DisablePocket = true;
