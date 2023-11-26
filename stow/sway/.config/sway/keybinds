@@ -55,21 +55,22 @@ bindsym {
 
 # Workspaces
 set {
-    $ws1 "1:1"
-    $ws2 "2:2"
-    $ws3 "3:3"
-    $ws4 "4:4"
-    $ws5 "5:5"
-    $ws6 "6:6"
-    $ws7 "7:7"
-    $ws8 "8:8"
-    $ws9 "9:9"
+    $ws1  "1:1"
+    $ws2  "2:2"
+    $ws3  "3:3"
+    $ws4  "4:4"
+    $ws5  "5:5"
+    $ws6  "6:6"
+    $ws7  "7:7"
+    $ws8  "8:8"
+    $ws9  "9:9"
     $ws10 "10:10"
     $ws11 "11:Soc"
     $ws12 "12:Ent"
 }
 
 bindsym {
+    # Focus a specific workspace
     $flag+1              workspace $ws1
     $flag+2              workspace $ws2
     $flag+3              workspace $ws3
@@ -83,6 +84,7 @@ bindsym {
     $flag+minus          workspace $ws11
     $flag+equal          workspace $ws12
 
+    # Move window to a specific workspace
     $flag+Shift+1        move container to workspace $ws1,  workspace $ws1
     $flag+Shift+2        move container to workspace $ws2,  workspace $ws2
     $flag+Shift+3        move container to workspace $ws3,  workspace $ws3
@@ -96,20 +98,35 @@ bindsym {
     $flag+Shift+minus    move container to workspace $ws11, workspace $ws11
     $flag+Shift+equal    move container to workspace $ws12, workspace $ws12
 
+    # Go through workspaces in order
     $flag+Control+$left  workspace prev_on_output
     $flag+Control+$right workspace next_on_output
 
     $flag+Control+Left   workspace prev_on_output
     $flag+Control+Right  workspace next_on_output
 
-    --whole-window $flag+$scrollUp      workspace prev_on_output
-    --whole-window $flag+$scrollDown    workspace next_on_output
-
     $flag+Control+Shift+$left  move container to workspace prev_on_output, workspace prev_on_output
     $flag+Control+Shift+$right move container to workspace next_on_output, workspace next_on_output
 
     $flag+Control+Shift+Left   move container to workspace prev_on_output, workspace prev_on_output
     $flag+Control+Shift+Right  move container to workspace next_on_output, workspace next_on_output
+
+    # Also GNOME-like keybinds
+    $flag+$alt+$left     workspace prev_on_output
+    $flag+$alt+$right    workspace next_on_output
+
+    $flag+$alt+Left      workspace prev_on_output
+    $flag+$alt+Right     workspace next_on_output
+
+    $flag+$alt+Shift+$left     move container to workspace prev_on_output, workspace prev_on_output
+    $flag+$alt+Shift+$right    move container to workspace next_on_output, workspace next_on_output
+
+    $flag+$alt+Shift+Left      move container to workspace prev_on_output, workspace prev_on_output
+    $flag+$alt+Shift+Right     move container to workspace next_on_output, workspace next_on_output
+
+    # Use your mouse to scroll between workspaces
+    --whole-window $flag+$scrollUp      workspace prev_on_output
+    --whole-window $flag+$scrollDown    workspace next_on_output
 }
 
 bindgesture {
@@ -119,17 +136,40 @@ bindgesture {
 
 # Outputs
 bindsym {
-    $flag+Control+$up         focus output up
-    $flag+Control+$down       focus output down
+    # Use "left" and "up" at the same time to mimic "previous"
+    # Use "right" and "down" at the same time to mimic "next"
+    # Though this does not work when using multiple screens, it's an intermediary solution until Sway supports "output next/previous"
+    $flag+Control+$up         focus output left,  focus output up
+    $flag+Control+$down       focus output right, focus output down
 
-    $flag+Control+Up          focus output up
-    $flag+Control+Down        focus output down
+    $flag+Control+Up          focus output left,  focus output up
+    $flag+Control+Down        focus output right, focus output down
 
-    $flag+Control+Shift+$up   move container to output up,   focus output up
-    $flag+Control+Shift+$down move container to output down, focus output down
+    $flag+$alt+$up            focus output left,  focus output up
+    $flag+$alt+$down          focus output right, focus output down
 
-    $flag+Control+Shift+Up    move container to output up,   focus output up
-    $flag+Control+Shift+Down  move container to output down, focus output down
+    $flag+$alt+Up             focus output left,  focus output up
+    $flag+$alt+Down           focus output right, focus output down
+
+    $flag+Control+Shift+$up   move container to output left,  focus output left \
+                              move container to output up,    focus output up
+    $flag+Control+Shift+$down move container to output right, focus output right \
+                              move container to output down,  focus output down
+
+    $flag+Control+Shift+Up    move container to output left,  focus output left \
+                              move container to output up,    focus output up
+    $flag+Control+Shift+Down  move container to output right, focus output right \
+                              move container to output down,  focus output down
+
+    $flag+$alt+Shift+$up      move container to output left,  focus output left \
+                              move container to output up,    focus output up
+    $flag+$alt+Shift+$down    move container to output right, focus output right \
+                              move container to output down,  focus output down
+
+    $flag+$alt+Shift+Up       move container to output left,  focus output left \
+                              move container to output up,    focus output up
+    $flag+$alt+Shift+Down     move container to output right, focus output right \
+                              move container to output down,  focus output down
 }
 
 # System
@@ -159,7 +199,6 @@ bindsym --locked {
 
 bindgesture hold:3              exec playerctl play-pause
 
-
 # Shortcuts
 bindsym {
     # Reload sway
@@ -177,6 +216,9 @@ bindsym {
     $alt+Tab     focus prev
     $flag+Tab    exec $window_switcher
 
+    --whole-window $alt+$scrollUp   focus prev
+    --whole-window $alt+$scrollDown focus next
+
     # Lock the screen
     $flag+Delete exec $lock
     
@@ -187,9 +229,10 @@ bindsym {
 }
 
 bindgesture {
-    swipe:3:up    exec $window_switcher
-    swipe:4:up    exec $menu
+    # Also show the bar, hide when finished
+    swipe:3:up    bar hidden_state show, exec "$window_switcher; swaymsg bar hidden_state hide"
+    swipe:4:up    exec "$menu; swaymsg bar hidden_state hide"
 
-    # Cancel
-    swipe:down    exec pkill rofi
+    # Cancel and hide bar
+    swipe:down    exec pkill rofi, bar hidden_state hide
 }

@@ -15,10 +15,11 @@ set {
     $scrollUp   button4
     $scrollDown button5
 
-    $term   kitty || alacritty || foot
-    $menu   j4-dmenu-desktop --dmenu "rofi -dmenu -i"
+    $term            kitty || alacritty || foot
+    $menu            j4-dmenu-desktop --dmenu "rofi -dmenu -i"
+    # TODO Find better location and better way to reference this.
     $window_switcher /home/tdpeuter/projects/fzf-jump/new.sh
-    $lock   swaylock -f
+    $lock            swaylock -f
 }
 
 include {
@@ -47,6 +48,8 @@ for_window {
     [window_role="webconsole"]  floating enable
     [window_type="dialog"]      floating enable
     [window_type="menu"]        floating enable
+
+    [app_id="qalculate-gtk"]    floating enable, border pixel 1
 }
 
 exec dbus-sway-environment
