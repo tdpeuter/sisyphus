@@ -35,7 +35,7 @@ add-zsh-hook precmd loadgit
 # Backup line(s)
 # PROMPT='%(!.%B%F{red}.%B%F{green}%n@)%m %F{blue}%(!.%1~.%~) ${vcs_info_msg_0_}%F{blue}%(!.#.$)%k%b%f '
 # PROMPT='%(!.%B%F{red}.%B%F{green}%n@)%m %{$reset_color%}%F{cyan}%c %B${vcs_info_msg_0_}%F{green}%(!.#.$)%k%b%f '
-PROMPT='%(!.%B%F{red}%m .)%{$reset_color%}%F{cyan}%c %B${vcs_info_msg_0_}%F{green}%(!.#.$)%k%b%f '
+PROMPT='%(!.%B%F{red}%m .)%{$reset_color%}%F{cyan}%c %B${vcs_info_msg_0_}%(?.%F{green}%(!.#.$).%F{red}%?)%k%b%f '
 
 # PROMPT='%{$fg_bold[green]%}[%n@%m%{$reset_color%} %{$fg[cyan]%}%c%{$reset_color%}$(git_prompt_info)%{$fg_bold[green]%}]%{$reset_color%}$ '
 
