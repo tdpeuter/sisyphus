@@ -6,6 +6,9 @@ in {
   options.sisyphus.virtualisation.docker.enable = lib.mkEnableOption "Docker";
 
   config = lib.mkIf cfg.enable {
-    virtualisation.docker.enable = true;
+    virtualisation.docker = {
+      enable = true;
+      enableNvidia = true;
+    };
   };
 }
