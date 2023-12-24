@@ -9,7 +9,6 @@ in {
     programs.direnv = {
       enable = true;
       nix-direnv.enable = true;  # Use nix-specific direnv.
-      persistDerivations = true; # Sets the extraOptions listed below.
     };
 
     # This is also done by setting programs.direnv.persistDerivations.
