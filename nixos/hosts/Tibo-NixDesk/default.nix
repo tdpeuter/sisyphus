@@ -6,9 +6,12 @@
   ];
 
   sisyphus = {
+    desktop.gnome.enable = true;
+
     hardware.nvidia = {
       enable = true;
       model = "RTX 2060";
+      gui-settings = true;
     };
 
     networking = {
@@ -36,12 +39,13 @@
 
     users.tdpeuter.enable = true;
 
-    virtualisation.virtualbox.enable = true;
+    virtualisation = {
+      docker.enable = true;
+      virtualbox.enable = true;
+    };
   };
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_hardened;
-
     loader = {
       systemd-boot.enable = true;
       efi = {
@@ -66,13 +70,14 @@
 
   hardware.bluetooth.enable = true;
 
-  networking = {
-    hostName = "Tibo-NixDesk";
-    networkmanager.enable = true;
-    # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.hostName = "Tibo-NixDesk";
+
+  services.xserver = {
+    layout = "us";
+    xkbVariant = "altgr-intl";
   };
 
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
 
   time.timeZone = "Europe/Brussels";
 

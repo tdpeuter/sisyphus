@@ -35,7 +35,7 @@ in {
       shell = pkgs.zsh;
     };
 
-    fonts.fonts = with pkgs; [
+    fonts.packages = with pkgs; [
       corefonts             # Calibri for Uni
       font-awesome          # Dependency of Vifm & zsh config
       letter                # Personal font
@@ -45,7 +45,6 @@ in {
     ];
 
     sisyphus = {
-      desktop.sway.enable = true;
       programs.spotify-adblock.enable = true;
     };
 
@@ -57,8 +56,6 @@ in {
         homeDirectory = "/home/${user}";
         inherit (config.system) stateVersion;
 
-        # If you specify an application here, it will be detected by the configuration module
-        #  and the configuration files will be put in place for you.
         packages = (with pkgs; [
           chafa                 # Terminal image viewer
           cmdtime               # Zsh plugin
@@ -71,7 +68,6 @@ in {
           libreoffice-fresh
           nextcloud-client
           nsxiv                 # Lightweight image viewer
-          oh-my-zsh
           phinger-cursors       # Cursor theme
           qalculate-gtk         # Calculator
           spotify-adblock
@@ -87,8 +83,8 @@ in {
           # SMB
           cifs-utils psmisc
         ]) ++ (with pkgs-unstable; [
+          brave
           mpv
-          obsidian
           spotify
         ]) ++ (with pkgs.vimPlugins; [
           statix
