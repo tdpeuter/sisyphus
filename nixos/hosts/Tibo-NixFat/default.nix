@@ -95,8 +95,12 @@
       lidSwitchDocked = "ignore";
     };
 
-    # Touchpad
-    xserver.libinput.enable = true;
+    xserver = {
+      # Keyboard layout
+      layout = "us";
+      xkbVariant = "altgr-intl";
+      # Touchpad
+      libinput.enable = true;
   };
 
   system.stateVersion = "23.05";
@@ -107,7 +111,6 @@
 
   i18n.defaultLocale = "en_GB.UTF-8";
   console = {
-    # font = "Lat2-Terminus16";
     useXkbConfig = true; # use xkbOptions in tty.
   };
 }
