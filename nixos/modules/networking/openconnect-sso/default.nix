@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, inputs, lib, pkgs, ... }:
 
 let
   cfg = config.sisyphus.networking.openconnect-sso;
@@ -14,7 +14,7 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
-      openconnect-sso
+      inputs.openconnect-sso.packages.${config.nixpkgs.localSystem.system}.default
     ];
   };
 }

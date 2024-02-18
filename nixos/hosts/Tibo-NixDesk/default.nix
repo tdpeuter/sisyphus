@@ -11,7 +11,10 @@
       model = "RTX 2060";
     };
 
-    networking.openconnect-sso.enable = true;
+    networking = {
+      networkmanager.enable = true;
+      openconnect-sso.enable = true;
+    };
 
     nix = {
       flakes.enable = true;

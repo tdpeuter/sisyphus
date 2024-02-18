@@ -14,6 +14,13 @@
       url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    openconnect-sso = {
+      url = github:ThinkChaos/openconnect-sso/fix/nix-flake;
+      inputs = {
+        flake-utils.follows = "utils";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
     sops-nix = {
       url = "github:Mic92/sops-nix";
         inputs.nixpkgs.follows = "nixpkgs";
@@ -26,7 +33,7 @@
 
   outputs = inputs@{
     self, nixpkgs, nixpkgs-unstable,
-    devshell, flake-utils, home-manager, sops-nix, utils,
+    devshell, flake-utils, home-manager, openconnect-sso, sops-nix, utils,
     ... }:
     let
       system = "x86_64-linux";
@@ -50,7 +57,6 @@
         (import ./overlays/cmdtime)
         (import ./overlays/icosystem)
         (import ./overlays/letter)
-        (import ./overlays/openconnect-sso)
         (import ./overlays/spotify)
       ];
 
