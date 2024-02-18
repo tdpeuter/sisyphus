@@ -50,6 +50,16 @@
         "bind"
       ];
     };
+
+    "/mnt/Games" = {
+      device = "/dev/disk/by-label/Games";
+      fsType = "ntfs";
+      options = [
+        "uid=tdpeuter"
+        "gid=users"
+        "defaults"
+      ];
+    };
   };
 
   swapDevices = [

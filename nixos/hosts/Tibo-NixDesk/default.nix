@@ -56,7 +56,10 @@
     zenith-nvidia
   ];
 
-  programs.zsh.enable = true;
+  programs = {
+    steam.enable = true;
+    zsh.enable = true;
+  };
 
   hardware.bluetooth.enable = true;
 
