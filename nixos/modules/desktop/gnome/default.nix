@@ -8,8 +8,6 @@ in {
   config = lib.mkIf cfg.enable {
     services.xserver = {
       enable = true;
-      layout = "us";
-      xkbVariant = "altgr-intl";
 
       excludePackages = with pkgs; [
         xterm
@@ -34,6 +32,8 @@ in {
       gnome-photos
       gnome-text-editor
       gnome-tour
+      loupe             # Image viewer
+      snapshot          # Camera
     ]) ++ (with pkgs.gnome; [
       eog               # Image viewer
       file-roller       # Archive manager
@@ -45,6 +45,8 @@ in {
       gnome-clocks
       gnome-contacts
       gnome-disk-utility
+      gnome-font-viewer
+      gnome-logs
       gnome-maps
       gnome-music
       gnome-system-monitor
