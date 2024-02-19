@@ -66,11 +66,12 @@ in {
           jellyfin-media-player
           kitty
           libreoffice-fresh
+          mpv
           nextcloud-client
           nsxiv                 # Lightweight image viewer
           phinger-cursors       # Cursor theme
           qalculate-gtk         # Calculator
-          spotify-adblock
+          spotify
           tea                   # Gitea CLI
           unzip
           vifm                  # File manager
@@ -86,9 +87,11 @@ in {
           brave
           mpv
           spotify
-        ]) ++ (with pkgs.vimPlugins; [
+        ]) ++ (with pkgs-unstable.vimPlugins; [
+          # ale
           statix
-          vim-plug
+          # vim-plug
+          vifm-vim
         ]);
 
         pointerCursor = {

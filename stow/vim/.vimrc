@@ -71,7 +71,7 @@ endif
 
 " PLUGINS --------------------------------------------------------------- {{{
 
-call plug#begin()
+call plug#begin('~/.vim/plugins')
 
 Plug 'dense-analysis/ale'
 Plug 'vifm/vifm.vim'
