@@ -36,7 +36,6 @@
     users.tdpeuter.enable = true;
 
     virtualisation = {
-      docker.enable = true;
       qemu.enable = true;
       virtualbox.enable = true;
     };
@@ -54,8 +53,6 @@
         keyFile = "/crypto_keyfile.bin";
       };
     };
-
-    kernelPackages = pkgs.linuxPackages_hardened;
 
     # Use the systemd-boot EFI boot loader.]
     loader = {
@@ -76,7 +73,6 @@
   ];
 
   programs = {
-    steam.enable = true;
     zsh.enable = true;
   };
 
@@ -101,9 +97,10 @@
       xkbVariant = "altgr-intl";
       # Touchpad
       libinput.enable = true;
+    };
   };
 
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
 
   time.timeZone = "Europe/Brussels";
 
