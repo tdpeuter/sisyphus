@@ -3,6 +3,7 @@
 "
 
 source ~/.vim/theme.conf
+source ~/.vim/source/python
 
 set autoindent
 set conceallevel=2
@@ -12,6 +13,7 @@ set linebreak
 set mouse=a
 set nocompatible
 set number
+set omnifunc=ale#completion#OmniFunc
 set path+=**
 set relativenumber
 set scrolloff=3
@@ -73,10 +75,12 @@ endif
 
 call plug#begin('~/.vim/plugins')
 
-Plug 'dense-analysis/ale'
-Plug 'vifm/vifm.vim'
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+Plug 'dense-analysis/ale'
 Plug 'NerdyPepper/statix'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'sheerun/vim-polyglot'
+Plug 'vifm/vifm.vim'
 
 call plug#end() 
 

@@ -57,12 +57,18 @@ in {
         inherit (config.system) stateVersion;
 
         packages = (with pkgs; [
-          chafa                 # Terminal image viewer
           cmdtime               # Zsh plugin
+          icosystem             # Personal icon theme
+          spotify-adblock
+        ]) ++ (with pkgs-unstable; [
+          # logseq
+          # obsidian
+
+          brave
+          chafa                 # Terminal image viewer
           duf                   # Df alternative
           fzf
           glow                  # Terminal Markdown renderer
-          icosystem             # Personal icon theme
           jellyfin-media-player
           kitty
           libreoffice-fresh
@@ -83,15 +89,10 @@ in {
 
           # SMB
           cifs-utils psmisc
-        ]) ++ (with pkgs-unstable; [
-          brave
-          mpv
-          spotify
-        ]) ++ (with pkgs-unstable.vimPlugins; [
-          # ale
-          statix
-          # vim-plug
-          vifm-vim
+
+          # Linters and LSPs
+          statix      # Nix
+          ruff pylint # Python
         ]);
 
         pointerCursor = {
