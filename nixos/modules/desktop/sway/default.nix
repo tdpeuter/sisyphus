@@ -74,7 +74,7 @@ in {
       SCRIPT_DIR = ../../../../scripts;
     };
 
-    fonts.fonts = with pkgs; [
+    fonts.packages = with pkgs; [
       dejavu_fonts
       font-awesome
       noto-fonts

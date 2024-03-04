@@ -61,9 +61,6 @@ in {
           icosystem             # Personal icon theme
           spotify-adblock
         ]) ++ (with pkgs-unstable; [
-          # logseq
-          # obsidian
-
           brave
           chafa                 # Terminal image viewer
           duf                   # Df alternative
@@ -72,6 +69,7 @@ in {
           jellyfin-media-player
           kitty
           libreoffice-fresh
+          logseq
           mpv
           nextcloud-client
           nsxiv                 # Lightweight image viewer
@@ -96,9 +94,7 @@ in {
         ]);
 
         pointerCursor = {
-          package = cursor.package;
-          name = cursor.name;
-          size = cursor.size;
+          inherit (cursor) package name size;
           gtk.enable = true;
           x11.enable = true;
         };
