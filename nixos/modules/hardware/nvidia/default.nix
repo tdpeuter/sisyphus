@@ -3,6 +3,7 @@
 let
   cfg = config.sisyphus.hardware.nvidia;
 
+  # The graphics cards for which to do offloading
   do-offloading = builtins.elem cfg.model [ "Quadro T2000" ];
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
@@ -24,8 +25,17 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    services.xserver.videoDrivers = [ "nvidia" ];
-  
+#    boot = {
+#      extraModprobeConfig = "options nvidia-drm modeset=1";
+#
+#      initrd.kernelModules = [
+#        "nvidia"
+#        "nvidia_modeset"
+#        "nvidia_uvm"
+#        "nvidia_drm"
+#      ];
+#    };
+
     hardware = {
       opengl = {
         enable = true;
@@ -33,7 +43,7 @@ in {
         driSupport32Bit = true;
       };
       nvidia = {
-        open = true;
+        open = false;
         package = config.boot.kernelPackages.nvidiaPackages.stable;
         modesetting.enable = true;
         nvidiaSettings = cfg.gui-settings;
@@ -41,6 +51,9 @@ in {
           enable = do-offloading;
           finegrained = do-offloading;
         };
+
+        # Avoid flickering
+        forceFullCompositionPipeline = true;
 
         prime = lib.mkMerge [
           (lib.mkIf do-offloading {

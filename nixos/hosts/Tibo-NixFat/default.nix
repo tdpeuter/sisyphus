@@ -6,6 +6,8 @@
   ];
 
   sisyphus = {
+    desktop.sway.enable = true;
+
     hardware.nvidia = {
       enable = true;
       model = "Quadro T2000";

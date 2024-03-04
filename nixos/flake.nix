@@ -45,6 +45,7 @@
         "spotify"
         "steam" "steam-original" "steam-run"
         "vista-fonts"
+        "nvidia-persistenced" # Docker
       ];
     in
     utils.lib.mkFlake {
