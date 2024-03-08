@@ -64,6 +64,7 @@ in {
           brave
           chafa                 # Terminal image viewer
           duf                   # Df alternative
+          foot
           fzf
           glow                  # Terminal Markdown renderer
           jellyfin-media-player
