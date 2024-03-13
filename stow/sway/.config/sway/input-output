@@ -1,3 +1,8 @@
+input type:keyboard {
+    xkb_layout  "us"
+    xkb_variant "altgr-intl"
+}
+
 input type:touchpad {
     natural_scroll   enabled
     scroll_factor    0.8
