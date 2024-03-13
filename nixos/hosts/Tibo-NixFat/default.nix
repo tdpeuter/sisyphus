@@ -31,6 +31,7 @@
     };
 
     services = {
+      monero.enable = true;
       pipewire.enable = true;
       tailscale.enable = true;
     };

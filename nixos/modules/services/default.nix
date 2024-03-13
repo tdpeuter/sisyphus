@@ -1,5 +1,6 @@
 {
   imports = [
+    ./monero
     ./openrgb
     ./openssh
     ./pipewire
