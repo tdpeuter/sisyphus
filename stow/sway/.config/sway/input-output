@@ -14,3 +14,7 @@ output * {
     bg "~/Nextcloud/Afbeeldingen/wallpapers/bg" fill
 }
 
+# Vertical display
+output "Dell Inc. DELL P2214H 29C2937M4YTL" {
+    transform 270
+}
