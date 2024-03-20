@@ -9,6 +9,8 @@ in {
     virtualisation.docker = {
       enable = true;
       enableNvidia = true;
+      # Because these are made for development purposes and not for servers
+      enableOnBoot = false;
     };
   };
 }
