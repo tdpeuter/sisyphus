@@ -1,2 +1,5 @@
 [user]
 	email = "tibo.depeuter@ugent.be"
+
+[commit]
+	gpgsign = false
