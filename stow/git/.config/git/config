@@ -1,9 +1,14 @@
 [user]
     name = "Tibo De Peuter"
-    email = "tibo.depeuter@gmail.com"
+    email = "tibo@depeuter.dev"
+    signingkey = "0x9B11F5243089DB5B"
 
 [color]
     ui = true
+
+[commit]
+    # Always sign commits
+    gpgsign = true
 
 [core]
     editor = "vim";
