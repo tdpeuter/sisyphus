@@ -1,5 +1,6 @@
 {
   imports = [
+    ./eid
     ./nvidia
     ./yubikey
   ];
