@@ -8,9 +8,12 @@
   sisyphus = {
     desktop.sway.enable = true;
 
-    hardware.nvidia = {
-      enable = true;
-      model = "Quadro T2000";
+    hardware = {
+      nvidia = {
+        enable = true;
+        model = "Quadro T2000";
+      };
+      yubikey.enable = true;
     };
 
     networking = {
