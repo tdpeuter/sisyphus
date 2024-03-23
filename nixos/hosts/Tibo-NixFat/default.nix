@@ -34,7 +34,6 @@
     };
 
     services = {
-      monero.enable = true;
       pipewire.enable = true;
       tailscale.enable = true;
     };
@@ -42,7 +41,7 @@
     users.tdpeuter.enable = true;
 
     virtualisation = {
-      qemu.enable = true;
+      docker.enable = true;
       virtualbox.enable = true;
     };
   };
