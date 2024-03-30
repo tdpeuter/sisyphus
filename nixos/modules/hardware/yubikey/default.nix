@@ -6,12 +6,14 @@ in {
   options.sisyphus.hardware.yubikey.enable = lib.mkEnableOption "YubiKey support";
 
   config = lib.mkIf cfg.enable {
-    # Enable smart card reading
-    services.pcscd.enable = true;
-
     programs.gnupg.agent = {
       enable = true;
-      pinentryFlavor = "curses";
+      # TODO Necessary?
+      # enableSSHSupport = true;
+      # pinentryFlavor = "curses";
     };
+
+    # Enable smart card reading
+    services.pcscd.enable = true;
   };
 }

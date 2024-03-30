@@ -67,9 +67,13 @@ in {
           thunderbird = {
             enable = true;
             settings = id: {
-              "mail.server.server_${id}.authMethod" = 10;
+              "mail.server.server_${id}.authMethod"   = 10;
               "mail.smtpserver.smtp_${id}.authMethod" = 10;
-              "mail.identity.id_${id}.htmlSigText" = signatures.UGent;
+              "mail.identity.id_${id}.htmlSigText"    = signatures.UGent;
+
+              # Allow PGP
+              "mail.identity.id_${id}.openpgp_key_id" = "9B11F5243089DB5B"; # Your 'master' key
+              "mail.identity.id_${id}.attachPgpKey"   = true;
             };
           };
         };
@@ -117,10 +121,15 @@ in {
           profiles.tdpeuter = {
             isDefault = true;
             settings = {
-              "mailnews.default_sort_order" = 2; # Sort descending
+              # View
+              "mailnews.default_sort_order" = 2;          # Sort descending
               "mailnews.mark_message_read.delay" = true;
               "mailnews.start_page.enabled" = false;
-              "mail.pane_config.dynamic" = 2; # Vertical view
+              "mail.pane_config.dynamic" = 2;             # Vertical view
+
+              # Encryption
+              "mail.openpgp.allow_external_gnupg" = true; # Enable YubiKey GPG signing
+              "mail.e2ee.auto_enable" = true;             # Automatically enable encryption when possible.
             };
           };
         };
