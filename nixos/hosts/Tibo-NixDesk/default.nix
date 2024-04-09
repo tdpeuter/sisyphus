@@ -6,7 +6,7 @@
   ];
 
   sisyphus = {
-    desktop.gnome.enable = true;
+    desktop.sway.enable = true;
 
     hardware = {
       nvidia = {
