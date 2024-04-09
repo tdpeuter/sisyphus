@@ -16,8 +16,8 @@ set {
     $scrollDown button5
 
     # $term            kitty || alacritty || foot
-    $term            kitty
-    $menu            j4-dmenu-desktop --dmenu "rofi -dmenu -i" --usage-log="/home/tdpeuter/.local/state/dmenu.log"
+    $term            foot
+    $menu            j4-dmenu-desktop --dmenu="rofi -dmenu -i" --no-generic --usage-log="/home/tdpeuter/.local/state/dmenu.log" --term=$term
     # TODO Find better location and better way to reference this.
     $window_switcher /home/tdpeuter/projects/fzf-jump/new.sh
     $lock            swaylock -f
