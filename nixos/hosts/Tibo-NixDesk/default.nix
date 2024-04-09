@@ -8,10 +8,13 @@
   sisyphus = {
     desktop.gnome.enable = true;
 
-    hardware.nvidia = {
-      enable = true;
-      model = "RTX 2060";
-      gui-settings = true;
+    hardware = {
+      nvidia = {
+        enable = true;
+        model = "RTX 2060";
+        gui-settings = true;
+      };
+      yubikey.enable = true;
     };
 
     networking = {
