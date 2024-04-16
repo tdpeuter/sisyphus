@@ -74,7 +74,6 @@ in {
           mpv
           nextcloud-client
           nsxiv                 # Lightweight image viewer
-          phinger-cursors       # Cursor theme
           qalculate-gtk         # Calculator
           spotify
           tea                   # Gitea CLI
