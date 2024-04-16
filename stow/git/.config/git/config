@@ -15,11 +15,14 @@
     excludesFile = "~/.config/git/ignore"
 
 [help]
-    autocorrect = 20
+    autocorrect = 15
 
 [includeIf "gitdir:~/university/"] # Trailing backslash is necessary!
     path = "~/.config/git/university"
 
 [init]
     defaultBranch = "main"
+
+[safe]
+    directory = "/home/tdpeuter/university/sshfs"
 
