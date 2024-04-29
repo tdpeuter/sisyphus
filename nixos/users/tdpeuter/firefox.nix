@@ -20,6 +20,11 @@ in {
           DisableTelemetry = true;
           OfferToSaveLogins = false;
         };
+
+        # Support smart cards
+        pkcs11Modules = with pkgs-unstable; [
+          eid-mw
+        ];
       };
 
       profiles.tdpeuter.search= {

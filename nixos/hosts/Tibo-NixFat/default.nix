@@ -9,6 +9,7 @@
     desktop.sway.enable = true;
 
     hardware = {
+      eid.enable = true;
       nvidia = {
         enable = true;
         model = "Quadro T2000";
