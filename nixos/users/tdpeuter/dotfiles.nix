@@ -20,6 +20,9 @@ in {
               inherit (config.sisyphus.desktop.sway) enable;
               source = ../../../stow/dunst/.config/dunst;
             };
+            ".config/foot" = {
+              source = ../../../stow/foot/.config/foot;
+            };
             ".config/fuzzel" = {
               recursive = true;
               source = ../../../stow/fuzzel/.config/fuzzel;
