@@ -30,7 +30,7 @@
     "name": "keep",
     "position": "top",
     "height": 25,
-    "modules-left": ["sway/mode"],
+    "modules-left": ["sway/mode", "keyboard-state"],
     "modules-center": ["clock"],
     "modules-right": ["privacy"],
 

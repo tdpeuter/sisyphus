@@ -83,6 +83,19 @@
         "tooltip": false
     },
 
+    "keyboard-state": {
+        "format": {
+            "capslock": "{icon}",
+        },
+        "format-icons": {
+            "locked": "\uf023",
+            "unlocked": ""
+        },
+        "numlock": false,
+        "capslock": true,
+        "scrollock": false,
+    },
+
     "memory": {
         "format": "{}% \uf1c0",
         "on-click": "kitty -e zenith"
