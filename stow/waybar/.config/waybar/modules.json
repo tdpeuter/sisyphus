@@ -58,7 +58,52 @@
         "on-click": "bash ${SCRIPT_DIR}/sunset.sh",
         "tooltip-format": "Toggle night-light on or off",
         "format": "\uf0eb ",
-        "tooltip": true
+        "tooltip": true,
+        "tooltip-format": "Toggle night-light on or off",
+    },
+
+    "custom/scratchpad-indicator": {
+        "interval": 3,
+        "return-type": "json",
+        "exec": "swaymsg -t get_tree | jq --unbuffered --compact-output '(recurse(.nodes[]) | select(.name == \"__i3_scratch\") | .focus) as $scratch_ids | [..  | (.nodes? + .floating_nodes?) // empty | .[] | select(.id |IN($scratch_ids[]))] as $scratch_nodes | if ($scratch_nodes|length) > 0 then { text: \"\\($scratch_nodes | length)\", tooltip: $scratch_nodes | map(\"\\(.app_id // .window_properties.class) (\\(.id)): \\(.name)\") | join(\"\\n\") } else empty end'",
+        "format": "{} \uf2d2",
+        "on-click": "exec swaymsg 'scratchpad show'",
+        "on-click-right": "exec swaymsg 'move scratchpad'"
+    },
+
+    "custom/system-lock": {
+        "format": "\uf09c",
+        "tooltip": true,
+        "tooltip-format": "Lock device",
+        "on-click": "swaylock -f"
+    },
+
+    "custom/system-sleep": {
+        "format": "\uf186",
+        "tooltip": true,
+        "tooltip-format": "Put device to sleep",
+        "on-click": "swaylock -f; systemctl suspend"
+    },
+
+    "custom/system-hibernate": {
+        "format": "\uf2dc",
+        "tooltip": true,
+        "tooltip-format": "Hibernate device",
+        "on-click": "swaylock -f; systemctl hibernate"
+    },
+
+    "custom/system-reboot": {
+        "format": "\uf0e2",
+        "tooltip": true,
+        "tooltip-format": "Reboot device",
+        "on-click": "systemctl reboot"
+    },
+
+    "custom/system-shutdown": {
+        "format": "\uf011",
+        "tooltip": true,
+        "tooltip-format": "Shutdown device",
+        "on-click": "systemctl poweroff -i"
     },
 
     "custom/toggle-notifications": {
@@ -70,8 +115,43 @@
    
     "cpu": {
         "format": "{usage}% \uf2db",
-        "on-click": "kitty -e htop",
+        "on-click": "foot -e htop",
         "tooltip": true
+    },
+
+    "group/hardware": {
+        "orientation": "inherit",
+        "modules": [
+            "power-profiles-daemon",
+            "memory",
+            "cpu",
+            "temperature",
+            "custom/system-shutdown",
+            "custom/system-reboot",
+            "custom/system-hibernate",
+            "custom/system-sleep",
+            "custom/system-lock",
+        ],
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false,
+            "children-class": "drawer-child",
+        },
+    },
+
+    "group/system": {
+        "orientation": "inherit",
+        "modules": [
+            "idle_inhibitor",
+            "custom/light-dark-toggle",
+            "custom/night-light-toggle",
+            "custom/toggle-notifications",
+        ],
+        "drawer": {
+            "transition-duration": 500,
+            "tansition-left-to-right": true,
+            "children-class": "drawer-child",
+        },
     },
 
     "idle_inhibitor": {
@@ -148,6 +228,18 @@
         //     "0:¯\\_(ツ)_/¯": []
         // }
     }, 
+
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+        "tooltip": true,
+        "format-icons": {
+            "default": "",
+            "performance": "",
+            "balanced": "",
+            "power-saver": ""
+        }
+    },
 
     "privacy": {
         "icon-spacing": 4,

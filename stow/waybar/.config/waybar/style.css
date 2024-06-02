@@ -49,10 +49,31 @@ window#waybar {
 }
 
 /* All modules individually. */
-#backlight, #battery, #bluetooth, #clock, #cpu,
-#custom-browser, #custom-media, #custom-light-dark-toggle, #custom-night-light-toggle, #custom-toggle-notifications,
-#disk, #idle_inhibitor, #memory, #mode, #mpd, #network,
-#pulseaudio, #temperature, #tray {
+#backlight,
+#battery,
+#bluetooth,
+#clock,
+#cpu,
+#custom-browser,
+#custom-light-dark-toggle,
+#custom-night-light-toggle,
+#custom-system-lock, #custom-system-sleep, #custom-system-hibernate, #custom-system-reboot, #custom-system-shutdown,
+#custom-toggle-notifications,
+#disk,
+#group-hardware,
+#group-system,
+#idle_inhibitor,
+#keyboard-state,
+#memory,
+#mode,
+#mpd,
+#mpris,
+#network,
+#power-profiles-daemon,
+#privacy-item.audio-in, #privacy-item.audio-out, #privacy-item.screenshare,
+#pulseaudio,
+#temperature,
+#tray {
     padding: 0 5px;
 }
 

@@ -1,17 +1,12 @@
 {
     "modules-left": [
         "sway/workspaces",
-        "idle_inhibitor",
-        "custom/light-dark-toggle",
-        "custom/night-light-toggle",
-        "custom/toggle-notifications",
-        "mpris"
+        "custom/scratchpad-indicator",
+        "mpris",
+        "group/system",
     ],
-
     "modules-right": [
-        "memory",
-        "cpu",
-        "temperature",
+        "group/hardware",
         "custom/sep",
         "bluetooth",
         "network",
