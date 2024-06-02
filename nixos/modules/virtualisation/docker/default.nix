@@ -8,9 +8,10 @@ in {
   config = lib.mkIf cfg.enable {
     virtualisation.docker = {
       enable = true;
-      enableNvidia = true;
       # Because these are made for development purposes and not for servers
       enableOnBoot = false;
     };
+
+    hardware.nvidia-container-toolkit.enable = true;
   };
 }

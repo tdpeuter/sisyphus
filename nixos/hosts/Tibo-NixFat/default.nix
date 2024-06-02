@@ -19,7 +19,7 @@
 
     networking = {
       networkmanager.enable = true;
-      openconnect-sso.enable = true;
+      # openconnect-sso.enable = true;
     };
 
     nix = {
@@ -97,16 +97,17 @@
       lidSwitchDocked = "ignore";
     };
 
-    xserver = {
+    xserver.xkb = {
       # Keyboard layout
       layout = "us";
-      xkbVariant = "altgr-intl";
-      # Touchpad
-      libinput.enable = true;
+      variant = "altgr-intl";
     };
+
+    # Touchpad
+    libinput.enable = true;
   };
 
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.05";
 
   time.timeZone = "Europe/Brussels";
 

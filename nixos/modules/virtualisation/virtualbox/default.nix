@@ -25,10 +25,12 @@ in {
       };
       guest = {
         enable = true;
-        x11 = true;
+        clipboard = true;
+        seamless = true;
       };
     };
 
+    # Define the group
     users.groups.vboxusers = {};
 
     sisyphus.users.wantedGroups = [

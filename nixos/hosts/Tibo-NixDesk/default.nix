@@ -80,7 +80,7 @@
     xkbVariant = "altgr-intl";
   };
 
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.05";
 
   time.timeZone = "Europe/Brussels";
 
