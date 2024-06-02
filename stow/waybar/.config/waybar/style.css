@@ -15,7 +15,7 @@
 @define-color accent #00897b;
 
 window#waybar {
-    font-family: font-awesome, letter, monospace;
+    font-family: letter, "Font Awesome 6 Free", font-awesome, monospace;
     font-size: 13px;
     -webkit-font-smoothing: antialiased;
     transition-property: background-color;
