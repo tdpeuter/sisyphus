@@ -134,5 +134,12 @@ label:focus {
     background-color: #eb4d4b;
 }
 
+#privacy-item.audio-in,
+#privacy-item.audio-out,
+#privacy-item.screenshare {
+    background-color: #ffaa01;
+    color: #2d3436;
+}
+
 @import "sharp.css";
 

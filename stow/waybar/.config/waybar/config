@@ -32,6 +32,7 @@
     "height": 25,
     "modules-left": ["sway/mode"],
     "modules-center": ["clock"],
+    "modules-right": ["privacy"],
 
     "include": [
         // Import modules (!)
