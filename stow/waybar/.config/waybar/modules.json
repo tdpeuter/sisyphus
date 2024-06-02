@@ -47,19 +47,6 @@
         "tooltip-format": "Launch an application"
     },
 
-    "custom/media": {
-        "escape": true,
-        "exec": "~/.config/waybar/mediaplayer.py 2> /dev/null",
-        "format": "{icon} {}", 
-        "format-icons": {
-            "default": "\uf51f",
-            "spotify": "\uf1bc"
-        },
-        "max-length": 40,
-        "on-click": "playerctl play-pause",
-        "return-type": "json"
-    },
-
     "custom/light-dark-toggle": {
         "on-click": "bash ${SCRIPT_DIR}/toggle-light-dark.sh",
         "tooltip-format": "Toggle between light and dark mode",
@@ -99,6 +86,26 @@
     "memory": {
         "format": "{}% \uf1c0",
         "on-click": "kitty -e zenith"
+    },
+
+    "mpris": {
+        // "ignored-players": ["firefox"]
+        "format": "{player_icon} {dynamic}",
+        "format-paused": "{status_icon} <i>{dynamic}</i>",
+        "tooltip-format": "{player} ({status}) {title} - {artist} - {album}",
+        "player-icons": {
+            "default": "\uf51f",
+            "spotify": "\uf1bc",
+            "mpv": "🎵"
+        },
+        "status-icons": {
+            "paused": "⏸"
+        },
+        "dynamic-order": [
+            "title",
+            "artist"
+        ],
+        "dynamic-len": 40,
     },
 
     "network": {

@@ -1,7 +1,7 @@
 {
     "modules-left": [
         "idle_inhibitor",
-        "custom/media"
+        "mpris"
     ],
     "modules-center": [
         "sway/workspaces"

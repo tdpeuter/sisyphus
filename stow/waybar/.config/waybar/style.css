@@ -101,17 +101,16 @@ label:focus {
     opacity: 0.6;
 }
 
-#custom-media {
+#mpris {
     color: #2a5c45;
-    background-color: #66cc99;
     min-width: 100px;
 }
 
-#custom-media.custom-spotify {
+#mpris.spotify {
     background-color: #66cc99;
 }
 
-#custom-media.custom-vlc {
+#mpris.vlc {
     background-color: #ffa000;
 }
 

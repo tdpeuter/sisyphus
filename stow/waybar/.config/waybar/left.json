@@ -1,21 +1,22 @@
 {
-	"modules-left": [
+    "modules-left": [
         "sway/workspaces",
         "idle_inhibitor",
         "custom/light-dark-toggle",
         "custom/night-light-toggle",
         "custom/toggle-notifications",
-        "custom/media"
+        "mpris"
     ],
-	"modules-right": [
-        "memory", 
-        "cpu", 
-        "temperature", 
+
+    "modules-right": [
+        "memory",
+        "cpu",
+        "temperature",
         "custom/sep",
-        "bluetooth", 
-        "network", 
-        "pulseaudio", 
-        "battery", 
+        "bluetooth",
+        "network",
+        "pulseaudio",
+        "battery",
         "custom/sep",
         "tray"
     ]
