@@ -21,6 +21,7 @@ in {
               source = ../../../stow/dunst/.config/dunst;
             };
             ".config/foot" = {
+              recursive = true;
               source = ../../../stow/foot/.config/foot;
             };
             ".config/fuzzel" = {

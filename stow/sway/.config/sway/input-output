@@ -11,7 +11,7 @@ input type:touchpad {
 }
 
 output * {
-    bg "~/Nextcloud/Afbeeldingen/wallpapers/bg" fill
+    bg "${HOME}/.local/state/sisyphus/bg" fill
 }
 
 # Vertical display

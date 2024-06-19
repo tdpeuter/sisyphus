@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Toggle light- or dark-mode for your applications
-# Usage: toggle [-m light|dark]
+# Usage: toggle [-m light|dark] [-g]
 
 #################
 ### Variables ###
@@ -10,7 +10,9 @@ THEME_LIGHT='tdpeuter-light'
 THEME_DARK='tdpeuter-dark'
 THEME_DEFAULT="${THEME_LIGHT}"
 
-STATE_FILE="${HOME}/.local/state/sisyphus/theme"
+STATE_DIR="${HOME}/.local/state/sisyphus"
+STATE_FILE="${STATE_DIR}/theme"
+BG_DIR="${HOME}/Nextcloud/Afbeeldingen/wallpapers"
 
 declare -A theme_next
 theme_next[${THEME_LIGHT}]="${THEME_DARK}"
@@ -20,8 +22,12 @@ declare -A gsettings_alt
 gsettings_alt[${THEME_LIGHT}]='default'
 gsettings_alt[${THEME_DARK}]='prefer-dark'
 
+declare -A gtk_theme
+gtk_theme[${THEME_LIGHT}]='Adwaita'
+gtk_theme[${THEME_DARK}]='Adwaita-dark'
+
 declare -A wallpaper
-wallpaper[${THEME_LIGHT}]="bg"
+wallpaper[${THEME_LIGHT}]="bg-light"
 wallpaper[${THEME_DARK}]="bg-dark"
 
 #############
@@ -29,7 +35,7 @@ wallpaper[${THEME_DARK}]="bg-dark"
 #############
 
 # Parse options
-while getopts ":m:" option; do
+while getopts ":m:g" option; do
     case "${option}" in
         m)
             if [ "${OPTARG}" == 'light' ]; then
@@ -40,6 +46,17 @@ while getopts ":m:" option; do
                 >&2 printf "Error: Invalid mode: '%s'.\nShould be either 'light' or 'dark'\n" "${option}"
                 exit 1
             fi
+            ;;
+        g)
+            previous_theme="$(cat ${STATE_FILE})"
+            if [ "${previous_theme}" == "${THEME_LIGHT}" ]; then
+                class="activated"
+                percentage=1
+            else
+                percentage=0
+            fi
+            printf '{ "class": "%s", "percentage": %d }' "${class}" "${percentage}"
+            exit 0
             ;;
         *)
             >&2 printf "Error: Invalid option: '%s'.\n" "${option}"
@@ -65,9 +82,33 @@ echo "${theme:=${THEME_DEFAULT}}" > "${STATE_FILE}"
 ### Set all themes ###
 ######################
 
-# GNOME
+# Update terminal colors by sending it OSC sequences.
+# Alternatively, you could use theme.sh (https://github.com/lemnos/theme.sh)
+# Function below loosely based on theme.sh and https://codeberg.org/dnkl/foot/issues/708
+function update_terminal_colors() {
+    for pid in $(pgrep zsh); do
+        if [ "${theme}" == "${THEME_LIGHT}" ]; then
+            printf "\033]10;#000000\007" >> /proc/${pid}/fd/0
+            printf "\033]11;#ffffff\007" >> /proc/${pid}/fd/0
+        elif [ "${theme}" == "${THEME_DARK}" ]; then
+            printf "\033]10;#ffffff\007" >> /proc/${pid}/fd/0
+            printf "\033]11;#000000\007" >> /proc/${pid}/fd/0
+        fi
+    done
+}
+
+# Foot
+if [ "$(command -v foot)" ] ; then
+    # Make color theme switch 'permanent'.
+    echo "include=~/.config/foot/themes/${theme}.ini" > ~/.config/foot/theme.ini &
+    # We will have to change the terminal colors ourselves.
+    update_terminal_colors &
+fi
+
+# GNOME (GTK)
 if [ "$(command -v gsettings)" ]; then
     gsettings set org.gnome.desktop.interface color-scheme "${gsettings_alt[${theme}]}" &
+    gsettings set org.gnome.desktop.interface gtk-theme "${gtk_theme[${theme}]}" &
 fi
 
 # Kitty
@@ -77,7 +118,8 @@ fi
 
 # Sway
 if [ "$(command -v swaybg)" ]; then
-    pkill swaybg && swaybg --mode fill --image ~/Nextcloud/Afbeeldingen/wallpapers/${wallpaper[${theme}]} && swaymsg reload &
+    bg_path="${BG_DIR}/${wallpaper[${theme}]}"
+    /run/current-system/sw/bin/cp "${bg_path}" "${STATE_DIR}/bg" && swaymsg reload &
 fi
 
 # Vifm
