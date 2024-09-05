@@ -65,14 +65,17 @@ in {
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = (with pkgs; [
+      # Window manager related
       dbus-sway-environment
       configure-gtk
       wayland
       xdg-utils # Open with default program
       glib      # gsettings
       wl-clipboard
+      wl-mirror # Mirror an output
       wdisplays # Tool to configure displays
 
+      # Desktop Environment related
       brightnessctl
       dunst
       libnotify
