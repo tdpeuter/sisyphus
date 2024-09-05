@@ -1,7 +1,8 @@
 set $notify ~/projects/sisyphus/scripts/notify.sh
 
-# Focus
 bindsym {
+
+    # Focus
     $flag+$up    focus up
     $flag+$right focus right
     $flag+$down  focus down
@@ -14,10 +15,8 @@ bindsym {
 
     $flag+p      focus parent
     $flag+space  focus mode_toggle
-}
 
-# Move windows
-bindsym {
+    # Move windows
     $flag+Shift+$up     move up
     $flag+Shift+$right  move right
     $flag+Shift+$down   move down
@@ -32,10 +31,8 @@ bindsym {
     $flag+KP_Next       move scratchpad
     $flag+Prior         scratchpad show
     $flag+KP_Prior      scratchpad show
-}
 
-# Layouts
-bindsym {
+    # Layouts
     $flag+z       layout toggle split
     $flag+x       layout tabbed
     $flag+c       split h
@@ -224,8 +221,6 @@ bindsym {
     
     # File explorer
     $flag+e      exec $term -e vifm
-    # Internet browser
-    $flag+i      exec firefox
 }
 
 bindgesture {

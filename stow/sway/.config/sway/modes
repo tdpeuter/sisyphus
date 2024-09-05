@@ -5,9 +5,9 @@
 set $default "default"
 
 # Resizing
-set $resize "Resize"
-bindsym $flag+r mode $resize
-mode $resize bindsym {
+set $mode_resize "Resize"
+bindsym $flag+r mode $mode_resize
+mode $mode_resize bindsym {
     $right       resize grow   width  10 px or 10 ppt
     $up          resize grow   height 10 px or 10 ppt
     $left        resize shrink width  10 px or 10 ppt
@@ -38,9 +38,9 @@ mode $resize bindsym {
     $flag+Left   move left
     $flag+Down   move down
 
-    Return       mode $default
-    Escape       mode $default
     $flag+r      mode $default
+    Escape       mode $default
+    Return       mode $default
 }
 
 # System actions
@@ -53,9 +53,23 @@ mode $mode_system bindsym {
     r                   mode $default, exec systemctl reboot
     Shift+s             mode $default, exec systemctl poweroff -i
 
-    Return              mode $default
-    Escape              mode $default
     Control+$alt+Delete mode $default
+    Escape              mode $default
+    Return              mode $default
+}
+
+set $mode_preferences "Toggle (d)ark mode, (s)unset, (n)otification"
+bindsym $alt+end    mode $mode_preferences
+bindsym $alt+KP_End mode $mode_preferences
+mode $mode_preferences bindsym {
+    d           exec "${SCRIPT_DIR}/toggle-light-dark.sh", mode $default
+    s           exec "${SCRIPT_DIR}/sunset.sh",            mode $default
+    n           exec "${SCRIPT_DIR}/do-not-disturb.sh",    mode $default
+
+    $alt+end    mode $default
+    $alt+KP_End mode $default
+    Escape      mode $default
+    Return      mode $default
 }
 
 # Screenshots
@@ -72,20 +86,23 @@ mode $mode_screenshot bindsym {
     Shift+s exec grimshot --notify save screen $save_format, mode $default
     Print   exec grimshot --notify save screen $save_format, mode $default
 
-    Return mode $default
     Escape mode $default
+    Return mode $default
 }
 
-set $mode_preferences "Toggle (d)ark mode, (s)unset, (n)otification"
-bindsym $alt+end    mode $mode_preferences
-bindsym $alt+KP_End mode $mode_preferences
-mode $mode_preferences bindsym {
-    d           exec "${SCRIPT_DIR}/toggle-light-dark.sh", mode $default
-    s           exec "${SCRIPT_DIR}/sunset.sh",            mode $default
-    n           exec "${SCRIPT_DIR}/do-not-disturb.sh",    mode $default
+# Launcher
+set $mode_launcher "Launch (f)irefox, (s)potify or (t)hunderbird."
+bindsym $flag+o mode $mode_launcher
+mode $mode_launcher bindsym {
+    f   exec firefox
+    t   exec thunderbird
 
-    Return      mode $default
-    Escape      mode $default
-    $alt+end    mode $default
-    $alt+KP_End mode $default
+    $flag+o mode $default
+    Escape  mode $default
+    Return  mode $default
 }
+
+# Ignore (all) keybinds. Useful when working with Virtual Machines.
+set $mode_ignore "Ignore keybinds - Press Control+Alt+Insert to escape."
+bindsym Control+$alt+Insert mode $mode_ignore
+mode $mode_ignore bindsym Control+$alt+Insert mode $default
