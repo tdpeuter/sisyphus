@@ -8,21 +8,32 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
-
-  fileSystems."/" = {
-    device = "/dev/disk/by-label/NIX-ROOT";
-    fsType = "ext4";
+  boot = {
+    initrd = {
+      availableKernelModules = [
+        "xhci_pci"
+        "nvme"
+        "usb_storage"
+        "sd_mod"
+        "rtsx_pci_sdmmc"
+      ];
+      kernelModules = [ ];
+      luks.devices."luks-c21cb4a4-f618-43af-bc0c-e8be74fe3b81".device = "/dev/disk/by-uuid/c21cb4a4-f618-43af-bc0c-e8be74fe3b81";
+    };
+    kernelModules = [ "kvm-intel" ];
+    extraModulePackages = [ ];
   };
 
-  boot.initrd.luks.devices."luks-c21cb4a4-f618-43af-bc0c-e8be74fe3b81".device = "/dev/disk/by-uuid/c21cb4a4-f618-43af-bc0c-e8be74fe3b81";
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-label/NIX-ROOT";
+      fsType = "ext4";
+    };
 
-  fileSystems."/boot/efi" = {
-    device = "/dev/disk/by-label/NIX-BOOT";
-    fsType = "vfat";
+    "/boot/efi" = {
+      device = "/dev/disk/by-label/NIX-BOOT";
+      fsType = "vfat";
+    };
   };
 
   swapDevices = [
