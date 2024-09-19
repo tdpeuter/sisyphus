@@ -54,8 +54,12 @@ alias free='free -m'
 alias gs='git status'
 alias hgrep='history | grep'
 alias ll='ls -la'
+alias mkdir='mkdir -pv'
 alias more='less'
+alias mv='mv -i'
 alias np='nano -w PKGBUILD'
+alias rm='rm -I --preserve-root'
+alias zip='zip -r'
 alias update='pushd ~/projects/sisyphus/nixos
 nix flake update
 sudo nixos-rebuild switch --flake .# --show-trace
