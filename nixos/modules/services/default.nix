@@ -5,6 +5,7 @@
     ./openssh
     ./pipewire
     ./printing
+    ./remEYEnder
     ./tailscale
   ];
 }

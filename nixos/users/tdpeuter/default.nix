@@ -46,6 +46,7 @@ in {
 
     sisyphus = {
       programs.spotify-adblock.enable = true;
+      services.remEYEnder.enable = true;
     };
 
     home-manager.users.tdpeuter = lib.mkIf config.sisyphus.programs.home-manager.enable {
