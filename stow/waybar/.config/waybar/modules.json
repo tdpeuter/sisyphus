@@ -132,24 +132,39 @@
         "tooltip": true
     },
 
-    "group/hardware": {
+    "group/battery": {
         "orientation": "inherit",
         "modules": [
-            "power-profiles-daemon",
-            "memory",
-            "cpu",
-            "temperature",
+            "battery",
             "custom/system-shutdown",
             "custom/system-reboot",
             "custom/system-hibernate",
             "custom/system-sleep",
             "custom/system-lock",
+            "custom/sep",
+            "power-profiles-daemon",
+            "custom/sep"
         ],
         "drawer": {
             "transition-duration": 500,
             "transition-left-to-right": false,
-            "children-class": "drawer-child",
-        },
+            "children-class": "drawer-child"
+        }
+    },
+
+    "group/hardware": {
+        "orientation": "inherit",
+        "modules": [
+            "custom/sep",
+            "memory",
+            "cpu",
+            "temperature"
+        ],
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false,
+            "children-class": "drawer-child"
+        }
     },
 
     "group/system": {
