@@ -291,7 +291,7 @@
         },
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
         "on-click-right": "pavucontrol",
-        "scroll-step": 2
+        "scroll-step": -2
     },
 
     "temperature": {
