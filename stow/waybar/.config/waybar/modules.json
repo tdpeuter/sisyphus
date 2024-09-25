@@ -48,18 +48,31 @@
     },
 
     "custom/light-dark-toggle": {
+        "exec": "bash ${SCRIPT_DIR}/toggle-light-dark.sh -g",
+        "exec-on-event": true,
         "on-click": "bash ${SCRIPT_DIR}/toggle-light-dark.sh",
-        "tooltip-format": "Toggle between light and dark mode",
-        "format": "\uf042 ",
+        // "format": "\uf042 ",
+        "format": "{icon}",
+        "format-icons": [
+            "\uf185",
+            "\uf111"
+        ],
+        "tooltip": true,
+        "tooltip-format": "Toggle between light and dark mode"
+    },
+
+    "custom/keyboard-switch": {
+        "format": "\uf11c",
+        "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
+        "tooltip-format": "Toggle keyboard layouts",
         "tooltip": true
     },
 
     "custom/night-light-toggle": {
         "on-click": "bash ${SCRIPT_DIR}/sunset.sh",
-        "tooltip-format": "Toggle night-light on or off",
         "format": "\uf0eb ",
         "tooltip": true,
-        "tooltip-format": "Toggle night-light on or off",
+        "tooltip-format": "Toggle night-light on or off"
     },
 
     "custom/scratchpad-indicator": {

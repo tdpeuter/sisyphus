@@ -30,9 +30,9 @@
     "name": "keep",
     "position": "top",
     "height": 25,
-    "modules-left": ["sway/mode", "keyboard-state"],
+    "modules-left": ["sway/mode"],
     "modules-center": ["clock"],
-    "modules-right": ["privacy"],
+    "modules-right": ["privacy", "keyboard-state"],
 
     "include": [
         // Import modules (!)
