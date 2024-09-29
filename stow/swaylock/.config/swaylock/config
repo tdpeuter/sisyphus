@@ -8,8 +8,10 @@ indicator-radius=200
 clock
 datestr=%A, %B %d %Y
 
+show-failed-attempts
+
 screenshots
-effect-blur=5x5
+effect-pixelate=10
 effect-vignette=0.75:0 # Darken the whole screen.
 fade-in=0.25
 
@@ -21,22 +23,30 @@ grace-no-mouse
 font=letter extended
 text-color=ffffff
 text-clear-color=ffffff
-text-wrong-color=eb4d4b
+text-caps-lock-color=ffffff
+text-wrong-color=bd2024
+
+layout-text-color=ffffff
 
 # Make all the other stuff invisible
-key-hl-color=00000000
-separator-color=00000000
-ring-color=00000000
-ring-clear-color=00000000
-ring-ver-color=00000000
-ring-wrong-color=00000000
-line-color=00000000
-line-clear-color=00000000
-line-ver-color=00000000
-line-wrong-color=00000000
 inside-color=00000000
 inside-clear-color=00000000
+inside-caps-lock-color=00000000
 inside-ver-color=00000000
 inside-wrong-color=00000000
+key-hl-color=00000000
+layout-bg-color=00000000
+layout-border-color=00000000
+line-color=00000000
+line-clear-color=00000000
+line-caps-lock-color=00000000
+line-ver-color=00000000
+line-wrong-color=00000000
+ring-color=00000000
+ring-clear-color=00000000
+ring-caps-lock-color=00000000
+ring-ver-color=00000000
+ring-wrong-color=00000000
+separator-color=00000000
 text-ver-color=00000000
 
