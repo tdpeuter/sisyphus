@@ -20,6 +20,8 @@ grace-no-mouse
 
 # Styling
 
+color=000000 # The default background color when no image could be loaded
+
 font=letter extended
 text-color=ffffff
 text-clear-color=ffffff
