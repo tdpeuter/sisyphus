@@ -7,9 +7,14 @@ in {
   config = lib.mkIf cfg.enable {
     sops.secrets = lib.mkIf config.sisyphus.programs.sops.enable (
       let
-        Hugo = {
+        HomeLab = {
           format = "yaml";
-          sopsFile = ../../secrets/Hugo.yaml;
+          sopsFile = ../../secrets/HomeLab.yaml;
+          owner = user;
+        };
+        personal = {
+          format = "yaml";
+          sopsFile = ../../secrets/personal.yaml;
           owner = user;
         };
         UGent = {
@@ -18,17 +23,17 @@ in {
           owner = user;
         };
       in {
-        "Hugo/ssh" = Hugo;
         "UGent/HPC/ssh" = UGent;
 
-        "GitHub/ssh" = {
-          format = "yaml";
-          sopsFile = ../../secrets/GitHub.yaml;
-          owner = user;
-        };
-        "Hugo/Gitea/ssh" = Hugo;
+        # Git authentication
+        "Gitea/ssh" = personal;
+        "GitHub/ssh" = personal;
         "UGent/GitHub/ssh" = UGent;
         "UGent/SubGit/ssh" = UGent;
+
+        # HomeLab
+        "HomeLab/Hugo/ssh" = HomeLab;
+        "HomeLab/Nextcloud/ssh" = HomeLab;
       });
   };
 }
