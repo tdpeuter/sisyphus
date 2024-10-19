@@ -206,21 +206,23 @@ bindsym {
         -B 'Yes, exit sway' 'swaymsg exit'
     
     # Kill focused window
-    $flag+q      kill
+    $flag+q        kill
     # Start a terminal
-    $flag+Return exec $term
-    $alt+space   exec $menu
-    $alt+Tab     focus prev
-    $flag+Tab    exec $window_switcher
+    $flag+Return   exec $term
+    Control+$alt+t exec $term
+
+    $alt+space     exec $menu
+    $alt+Tab       focus prev
+    $flag+Tab      exec $window_switcher
 
     --whole-window $alt+$scrollUp   focus prev
     --whole-window $alt+$scrollDown focus next
 
     # Lock the screen
-    $flag+Delete exec $lock
+    $flag+Delete   exec $lock
     
     # File explorer
-    $flag+e      exec $term -e vifm
+    $flag+e        exec $term -e vifm
 }
 
 bindgesture {
