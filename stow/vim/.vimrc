@@ -82,6 +82,9 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'sheerun/vim-polyglot'
 Plug 'vifm/vifm.vim'
 
+" Coq
+Plug 'whonore/Coqtail'
+
 call plug#end() 
 
 " }}}
