@@ -36,12 +36,13 @@ in {
     };
 
     fonts.packages = with pkgs; [
-      corefonts             # Calibri for Uni
-      font-awesome          # Dependency of Vifm & zsh config
-      letter                # Personal font
-      noto-fonts-cjk        # Dependency of Zellij config
-      noto-fonts            # Dependency of Zellij config
-      vistafonts            # Microsoft fonts
+      corefonts              # Calibri for Uni
+      font-awesome           # Dependency of Vifm & zsh config
+      letter                 # Personal font
+      noto-fonts-cjk         # Dependency of Zellij config
+      noto-fonts             # Dependency of Zellij config
+      noto-fonts-color-emoji # Emoji's!
+      vistafonts             # Microsoft fonts
     ];
 
     sisyphus = {
@@ -60,20 +61,21 @@ in {
         packages = (with pkgs; [
           cmdtime               # Zsh plugin
           icosystem             # Personal icon theme
+          nextcloud-client
           spotify-adblock
         ]) ++ (with pkgs-unstable; [
           brave
           chafa                 # Terminal image viewer
           duf                   # Df alternative
+          feishin               # Jellyfin music client
           foot
           fzf
           glow                  # Terminal Markdown renderer
           jellyfin-media-player
-          kitty
-          libreoffice-fresh
-          logseq
-          mpv
-          nextcloud-client
+          libreoffice-fresh     # Office tools
+          # FIXME Waiting for electron version to update, now insecure.
+          # logseq                # Note taking
+          mpv                   # Media player
           nsxiv                 # Lightweight image viewer
           qalculate-gtk         # Calculator
           spotify
@@ -86,11 +88,13 @@ in {
           zsh-syntax-highlighting
 
           # SMB
-          cifs-utils psmisc
+          cifs-utils
+          psmisc
 
           # Linters and LSPs
           statix      # Nix
-          ruff pylint # Python
+          # TODO Move to devshells
+          # ruff pylint # Python
         ]);
 
         pointerCursor = {
