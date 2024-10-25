@@ -12,6 +12,11 @@ in {
       enableOnBoot = false;
     };
 
+    # Updated version of deprecated enableNvidia.
     hardware.nvidia-container-toolkit.enable = true;
+
+    sisyphus.users.wantedGroups = [
+      "docker"
+    ];
   };
 }
