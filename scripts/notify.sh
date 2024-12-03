@@ -22,15 +22,15 @@ while getopts ":bvt:p:" options; do
 			;;
 		v)
             # Get volume (don't use pamixer because that is way slower)
-            value=$( amixer sget 'Master' \
-                | grep -o '\[[0-9]*%\]' \
-                | tr -d '][%' \
-	        | head -n1 )
+            value=$( pactl get-sink-volume @DEFAULT_SINK@ \
+                | grep -o '[0-9]*%' \
+                | tr -d '%' \
+                | head -n1 )
             title="Volume: ${value}%"
             category='sysinfo'
 
             # If audio disabled, set value to zero.
-	    if [ "$( amixer sget 'Master' | grep -o '\[\(on\|off\)\]' | head -n1 )" == "[off]" ] ; then 
+            if [ "$( pactl get-sink-mute @DEFAULT_SINK@ | grep -o '\(yes\|no\)' | head -n1 )" == 'yes' ] ; then 
                 title="Volume: ${value}% (Disabled)"
                 value=0
             fi
