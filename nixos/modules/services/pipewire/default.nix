@@ -6,8 +6,6 @@ in {
   options.sisyphus.services.pipewire.enable = lib.mkEnableOption "Pipewire";
 
   config = lib.mkIf cfg.enable {
-    sound.enable = true;
-    hardware.pulseaudio.enable = false;
     security.rtkit.enable = true;
     services.pipewire = {
       enable = true;
@@ -20,6 +18,26 @@ in {
       # use the example session manager (no others are packaged yet so this is enabled by default,
       # no need to redefine it in your config for now)
       #media-session.enable = true;
+
+      wireplumber = {
+        enable = true;
+        # Fix pops after silence
+        extraConfig."99-disable-suspend" = {
+          "monitor.alsa.rules" = [
+            {
+              matches = [
+                # Headphone jack on laptop
+                { "node.name" = "alsa_output.pci-0000_00_1f.3.analog-stereo"; }
+              ];
+              actions = {
+                update-props = {
+                  "session.suspend-timeout-seconds" = 0;
+                };
+              };
+            }
+          ];
+        };
+      };
     };
   };
 }
