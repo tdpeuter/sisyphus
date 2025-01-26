@@ -30,6 +30,10 @@ declare -A wallpaper
 wallpaper[${THEME_LIGHT}]="bg-light"
 wallpaper[${THEME_DARK}]="bg-dark"
 
+declare -A icon
+icon[${THEME_LIGHT}]="\uf185"
+icon[${THEME_DARK}]="\uf186"
+
 #############
 ### Logic ###
 #############
@@ -48,14 +52,14 @@ while getopts ":m:g" option; do
             fi
             ;;
         g)
-            previous_theme="$(cat ${STATE_FILE})"
-            if [ "${previous_theme}" == "${THEME_LIGHT}" ]; then
-                class="activated"
-                percentage=1
-            else
-                percentage=0
+            current_state="$(cat "${STATE_FILE}")"
+            next_state="${theme_next[${current_state}]}"
+            if [ "${current_state}" == "${THEME_DARK}" ]; then
+                class='activated'
+                percentage=100
             fi
-            printf '{ "class": "%s", "percentage": %d }' "${class}" "${percentage}"
+            printf '{"text": "%s", "alt": "%s", "tooltip": "Set theme to %s", "percentage": %d, "class": "%s"}' \
+                "${icon[${current_state}]}" "${gsettings_alt[${next_state}]}" "${next_state}" "${percentage:=0}" "${class:="none"}"
             exit 0
             ;;
         *)
@@ -119,7 +123,12 @@ fi
 # Sway
 if [ "$(command -v swaybg)" ]; then
     bg_path="${BG_DIR}/${wallpaper[${theme}]}"
-    /run/current-system/sw/bin/cp "${bg_path}" "${STATE_DIR}/bg" && swaymsg reload &
+    /run/current-system/sw/bin/cp "${bg_path}" "${STATE_DIR}/bg"
+    if [ "$(command -v swaymsg)" ]; then
+        pkill swaybg && swaymsg exec "swaybg -m fill -i ${STATE_DIR}/bg" &
+    elif [ "$(command -v hyprctl)" ]; then
+        pkill swaybg && hyprctl keyword exec "swaybg -m fill -i ${STATE_DIR}/bg" &
+    fi
 fi
 
 # Vifm
