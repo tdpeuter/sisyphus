@@ -39,11 +39,11 @@ in {
     hardware = {
       graphics = {
         enable = true;
-        driSupport32Bit = true;
+        enable32Bit = true;
       };
 
       nvidia = {
-        # Use the NVidia open source kernel module
+        # Use the NVidia open source kernel module (or not)
         open = false;
         package = config.boot.kernelPackages.nvidiaPackages.stable;
         # Modesetting is required.
