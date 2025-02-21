@@ -24,6 +24,7 @@ in {
         };
       in {
         "UGent/HPC/ssh" = UGent;
+        "UGent/Dwengo" = UGent;
 
         # Git authentication
         "Gitea/ssh" = personal;
