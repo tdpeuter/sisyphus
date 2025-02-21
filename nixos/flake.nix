@@ -2,7 +2,7 @@
   description = "System configuration of my machines using flakes";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-24.05";
+    nixpkgs.url = "nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
     devshell = {
@@ -11,7 +11,7 @@
     };
     flake-utils.url = "github:numtide/flake-utils";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     openconnect-sso = {
@@ -41,9 +41,9 @@
       unfreePackages = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
         "corefonts"
         "nvidia-settings" "nvidia-x11" "nvidia-persistenced"
-        "Oracle_VM_VirtualBox_Extension_Pack"
+        "Oracle_VirtualBox_Extension_Pack"
         "spotify"
-        "steam" "steam-original" "steam-run"
+        "steam" "steam-unwrapped" "steam-run"
         "vista-fonts"
         "nvidia-persistenced" # Docker
       ];

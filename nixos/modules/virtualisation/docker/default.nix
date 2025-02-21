@@ -10,6 +10,8 @@ in {
       enable = true;
       # Because these are made for development purposes and not for servers
       enableOnBoot = false;
+
+      daemon.settings.features.cdi = true;
     };
 
     # Updated version of deprecated enableNvidia.

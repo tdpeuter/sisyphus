@@ -101,11 +101,9 @@ in {
       dejavu_fonts
       font-awesome
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
       noto-fonts-emoji
-      source-han-sans
-      source-han-sans-japanese
-      source-han-serif-japanese
     ];
 
     security.polkit.enable = true;

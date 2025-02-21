@@ -39,8 +39,10 @@ in {
       corefonts              # Calibri for Uni
       font-awesome           # Dependency of Vifm & zsh config
       letter                 # Personal font
-      noto-fonts-cjk         # Dependency of Zellij config
+      noto-fonts-cjk-sans    # Dependency of Zellij config
+      noto-fonts-cjk-serif   # Dependency of Zellij config
       noto-fonts             # Dependency of Zellij config
+      noto-fonts-emoji       # Dependency of Zellij config
       noto-fonts-color-emoji # Emoji's!
       vistafonts             # Microsoft fonts
     ];
