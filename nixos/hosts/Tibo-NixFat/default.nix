@@ -90,11 +90,14 @@
   networking.hostName = "Tibo-NixFat";
 
   services = {
-    # Handle the laptop lid switch as follows:
     logind = {
+      # Handle the laptop lid switch as follows:
       lidSwitch = "hybrid-sleep";
       lidSwitchExternalPower = "lock";
       lidSwitchDocked = "ignore";
+
+      # Handle the power key
+      powerKey = "suspend";
     };
 
     xserver.xkb = {
