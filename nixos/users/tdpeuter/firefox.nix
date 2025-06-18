@@ -18,7 +18,16 @@ in {
           DisableFirefoxStudies = true;
           DisablePocket = true;
           DisableTelemetry = true;
+          FirefoxHome = {
+            SponsoredTopSites = false;
+            SponsoredPocket = false;
+          };
           OfferToSaveLogins = false;
+
+          # https://discourse.nixos.org/t/declare-firefox-extensions-and-settings/36265
+          ExtensionSettings = {
+            "amazom@search.mozilla.org".installation_mode = "blocked";
+          };
         };
 
         # Support smart cards
@@ -27,13 +36,17 @@ in {
         ];
       };
 
+      languagePacks = [
+        "en-GB"
+        "nl"
+      ];
+
       profiles.tdpeuter.search= {
         default = "DuckDuckGo";
         force = true;
         engines = {
           "Bing".metaData.hidden = true;
           "eBay".metaData.hidden = true;
-          "Qwant".metaData.hidden = true;
 
           "Nix Packages" = {
             urls = [{
