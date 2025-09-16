@@ -8,36 +8,41 @@ in {
   options.sisyphus.desktop.plasma.enable = lib.mkEnableOption "KDE Plasma";
 
   config = lib.mkIf cfg.enable {
-    services.xserver = {
-      enable = true;
-
+    services = {
       displayManager = {
-        defaultSession = "plasmawayland";
+        defaultSession = "plasma";
         sddm = {
           enable = true;
+          wayland.enable = true;
           # https://discourse.nixos.org/t/plasma-wayland-session-not-available-from-sddm/13447/2
-          settings.Wayland.SessionDir = "${pkgs.plasma5Packages.plasma-workspace}/share/wayland-sessions";
+          # settings.Wayland.SessionDir = "${pkgs.plasma5Packages.plasma-workspace}/share/wayland-sessions";
         };
       };
       
-      desktopManager.plasma5 = {
+      desktopManager.plasma6.enable = true;
+
+      # Use gnome keyring instead of KDE Wallet.
+      gnome.gnome-keyring.enable = true;
+
+      xserver = {
         enable = true;
-        useQtScaling = true;
+        excludePackages = with pkgs; [
+          xterm
+        ];
+        videoDrivers = [ "nvidia" ];
       };
-      
-      excludePackages = with pkgs; [
-        xterm
-      ];
     };
 
-    environment.plasma5.excludePackages = with pkgs.libsForQt5; [
+    environment.plasma6.excludePackages = with pkgs.kdePackages; [
       elisa
-      okular
+      gwenview
+      kate
       khelpcenter
       konsole
-      print-manager
+      kwalletmanager
+      okular
       plasma-systemmonitor
-      gwenview
+      print-manager
     ];
   };
 }
