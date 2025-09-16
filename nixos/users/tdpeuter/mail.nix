@@ -8,13 +8,17 @@ let
       Met vriendelijke groeten
       Tibo De Peuter
     '';
-    UGent = ''
+    english = ''
+      Kind regards
+      Tibo De Peuter
+    '';
+    academic = ''
       Met vriendelijke groeten
       Tibo De Peuter
       
-      Student 2Ba/3Ba Informatica
+      Student Ma Informatica
     '';
-    MrFortem = ''
+    alias = ''
       Kind regards
       MrFortem Fiducia
     '';
@@ -61,7 +65,7 @@ in {
           realName = config.users.users.tdpeuter.description;
           signature = {
             showSignature = "append";
-            text = signatures.UGent;
+            text = signatures.academic;
           };
 
           thunderbird = {
@@ -69,7 +73,7 @@ in {
             settings = id: {
               "mail.server.server_${id}.authMethod"   = 10;
               "mail.smtpserver.smtp_${id}.authMethod" = 10;
-              "mail.identity.id_${id}.htmlSigText"    = signatures.UGent;
+              "mail.identity.id_${id}.htmlSigText"    = signatures.academic;
 
               # Allow PGP
               "mail.identity.id_${id}.openpgp_key_id" = "9B11F5243089DB5B"; # Your 'master' key
@@ -109,7 +113,7 @@ in {
             settings = id: {
               "mail.server.server_${id}.directory" = ".thunderbird/tdpeuter/ImapMail/imap.gmail.com-mrfortem";
               "mail.server.server_${id}.directory-rel" = "[ProfD]ImapMail/imap.gmail.com-mrfortem";
-              "mail.identity.id_${id}.htmlSigText" = signatures.MrFortem;
+              "mail.identity.id_${id}.htmlSigText" = signatures.alias;
             };
           };
         };
