@@ -6,7 +6,10 @@
   ];
 
   sisyphus = {
-    desktop.sway.enable = true;
+    desktop = {
+      sway.enable = true;
+      hyprland.enable = true;
+    };
 
     hardware = {
       eid.enable = true;
@@ -115,7 +118,7 @@
     thermald.enable = true;
   };
 
-  system.stateVersion = "24.11";
+  system.stateVersion = "24.05";
 
   systemd.coredump.enable = false;
 

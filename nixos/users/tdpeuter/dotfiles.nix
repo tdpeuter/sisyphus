@@ -66,7 +66,7 @@ in {
               source = ../../../stow/vifm/.config/vifm;
             };
             ".config/waybar" = {
-              inherit (config.sisyphus.desktop.sway) enable;
+              enable = config.sisyphus.desktop.sway.enable || config.sisyphus.desktop.hyprland.enable;
               source = ../../../stow/waybar/.config/waybar;
             };
             ".config/zellij" = {
