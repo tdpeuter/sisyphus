@@ -10,11 +10,13 @@ in {
       host = {
         enable = true;
         enableExtensionPack = true;
+        enableHardening = true;
       };
       guest = {
         enable = true;
         clipboard = true;
         seamless = true;
+        vboxsf = false; # Module not found?...
       };
     };
 

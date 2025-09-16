@@ -19,7 +19,7 @@
 
     networking = {
       networkmanager.enable = true;
-      # openconnect-sso.enable = true;
+      openconnect-sso.enable = true;
     };
 
     nix = {
@@ -87,7 +87,10 @@
     powerOnBoot = false;
   };
   
-  networking.hostName = "Tibo-NixFat";
+  networking = {
+    hostName = "Tibo-NixFat";
+    networkmanager.wifi.powersave = true;
+  };
 
   services = {
     logind = {
@@ -108,9 +111,13 @@
 
     # Touchpad
     libinput.enable = true;
+
+    thermald.enable = true;
   };
 
-  system.stateVersion = "24.05";
+  system.stateVersion = "24.11";
+
+  systemd.coredump.enable = false;
 
   time.timeZone = "Europe/Brussels";
 

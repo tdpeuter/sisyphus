@@ -29,10 +29,8 @@ in {
                 # Headphone jack on laptop
                 { "node.name" = "alsa_output.pci-0000_00_1f.3.analog-stereo"; }
               ];
-              actions = {
-                update-props = {
-                  "session.suspend-timeout-seconds" = 0;
-                };
+              actions.update-props = {
+                "session.suspend-timeout-seconds" = 0;
               };
             }
           ];
