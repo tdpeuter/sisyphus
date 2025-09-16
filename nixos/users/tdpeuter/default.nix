@@ -1,4 +1,4 @@
-{ config, lib, pkgs, pkgs-unstable, ... }:
+{ config, inputs, lib, pkgs, pkgs-unstable, ... }:
 
 let
   cfg = config.sisyphus.users.tdpeuter;
@@ -33,6 +33,48 @@ in {
       ];
       initialPassword = "ChangeMe";
       shell = pkgs.zsh;
+
+      packages = (with pkgs; [
+        cmdtime               # Zsh plugin
+        icosystem             # Personal icon theme
+        nextcloud-client
+        spotify-adblock
+        brave                 # Internet browser
+        chafa                 # Terminal image viewer
+        duf                   # Df alternative
+        feishin               # Jellyfin music client
+        foot
+        fzf
+        gh                    # GitHub CLI tool
+        glow                  # Terminal Markdown renderer
+        jellyfin-media-player
+        libreoffice-fresh     # Office tools
+        librewolf             # Internet browser
+        mpv                   # Media player
+        nsxiv                 # Lightweight image viewer
+        qalculate-gtk         # Calculator
+        spotify
+        unzip
+        vifm                  # File manager
+        zathura               # PDF viewer
+        zellij                # Tmux + screen alternative
+        zsh
+        zsh-autosuggestions
+        zsh-syntax-highlighting
+
+        # SMB
+        cifs-utils
+        psmisc
+
+        # Linters and LSPs
+        statix      # Nix
+        # TODO Move to devshells
+        # ruff pylint # Python
+      ]) ++ (with pkgs-unstable; [
+        logseq                # Note taking
+      ]) ++ [
+        inputs.zen-browser.packages.${pkgs.system}.default
+      ];
     };
 
     fonts.packages = with pkgs; [
@@ -60,44 +102,9 @@ in {
         homeDirectory = "/home/${user}";
         inherit (config.system) stateVersion;
 
-        packages = (with pkgs; [
-          cmdtime               # Zsh plugin
-          icosystem             # Personal icon theme
-          nextcloud-client
-          spotify-adblock
-        ]) ++ (with pkgs-unstable; [
-          brave
-          chafa                 # Terminal image viewer
-          duf                   # Df alternative
-          feishin               # Jellyfin music client
-          foot
-          fzf
-          glow                  # Terminal Markdown renderer
-          jellyfin-media-player
-          libreoffice-fresh     # Office tools
-          # FIXME Waiting for electron version to update, now insecure.
-          # logseq                # Note taking
-          mpv                   # Media player
-          nsxiv                 # Lightweight image viewer
-          qalculate-gtk         # Calculator
-          spotify
-          unzip
-          vifm                  # File manager
-          zathura               # PDF viewer
-          zellij                # Tmux + screen alternative
-          zsh
-          zsh-autosuggestions
-          zsh-syntax-highlighting
-
-          # SMB
-          cifs-utils
-          psmisc
-
-          # Linters and LSPs
-          statix      # Nix
-          # TODO Move to devshells
-          # ruff pylint # Python
-        ]);
+        # packages = (with pkgs; [
+        # ]) ++ (with pkgs-unstable; [
+        # ]);
 
         pointerCursor = {
           inherit (cursor) package name size;

@@ -5,17 +5,13 @@
     nixpkgs.url = "nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
-    devshell = {
-      url = "github:numtide/devshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     flake-utils.url = "github:numtide/flake-utils";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     openconnect-sso = {
-      url = github:ThinkChaos/openconnect-sso/fix/nix-flake;
+      url = "github:ThinkChaos/openconnect-sso/fix/nix-flake";
       inputs = {
         flake-utils.follows = "utils";
         nixpkgs.follows = "nixpkgs";
@@ -23,20 +19,24 @@
     };
     sops-nix = {
       url = "github:Mic92/sops-nix";
-        inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     utils = {
       url = "github:gytis-ivaskevicius/flake-utils-plus";
       inputs.flake-utils.follows = "flake-utils";
     };
+    zen-browser = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{
     self, nixpkgs, nixpkgs-unstable,
-    devshell, flake-utils, home-manager, openconnect-sso, sops-nix, utils,
+    flake-utils, home-manager, openconnect-sso, sops-nix, utils, zen-browser,
     ... }:
     let
-      system = "x86_64-linux";
+      system = utils.lib.system.x86_64-linux;
 
       unfreePackages = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
         "corefonts"
