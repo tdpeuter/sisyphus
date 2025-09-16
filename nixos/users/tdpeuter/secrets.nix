@@ -33,6 +33,7 @@ in {
         "UGent/SubGit/ssh" = UGent;
 
         # HomeLab
+        "HomeLab/Gitea/ssh" = HomeLab;
         "HomeLab/Hugo/ssh" = HomeLab;
         "HomeLab/Nextcloud/ssh" = HomeLab;
       });
