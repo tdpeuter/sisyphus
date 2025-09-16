@@ -30,10 +30,6 @@ declare -A wallpaper
 wallpaper[${THEME_LIGHT}]="bg-light"
 wallpaper[${THEME_DARK}]="bg-dark"
 
-declare -A icon
-icon[${THEME_LIGHT}]="\uf185"
-icon[${THEME_DARK}]="\uf186"
-
 #############
 ### Logic ###
 #############
@@ -58,8 +54,8 @@ while getopts ":m:g" option; do
                 class='activated'
                 percentage=100
             fi
-            printf '{"text": "%s", "alt": "%s", "tooltip": "Set theme to %s", "percentage": %d, "class": "%s"}' \
-                "${icon[${current_state}]}" "${gsettings_alt[${next_state}]}" "${next_state}" "${percentage:=0}" "${class:="none"}"
+            printf '{"alt": "%s", "tooltip": "Set theme to %s", "percentage": %d, "class": "%s"}' \
+                "${gsettings_alt[${current_state}]}" "${next_state}" "${percentage:=0}" "${class:="none"}"
             exit 0
             ;;
         *)
