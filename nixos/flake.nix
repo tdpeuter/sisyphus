@@ -84,5 +84,64 @@
         Tibo-NixFat.modules  = [ ./hosts/Tibo-NixFat  ];
         Tibo-NixTest.modules = [ ./hosts/Tibo-NixTest ];
       };
+
+      outputsBuilder = channels: {
+        devShells = {
+          default = channels.nixpkgs.mkShell {
+            name = "devShell";
+            packages = with channels.nixpkgs; [
+              nodejs
+            ];
+          };
+          unstable = let
+            pkgs = import nixpkgs-unstable {
+              inherit system;
+              config.allowUnfree = true;
+            };
+          in channels.nixpkgs.mkShell {
+            name = "Unstable";
+            packages = with pkgs; [
+              anytype
+            ];
+          };
+          rust = let
+            pkgs = import nixpkgs-unstable {
+              inherit system;
+              config.allowUnfree = true;
+            };
+          in channels.nixpkgs.mkShell {
+            name = "Rust Shell";
+            packages = with pkgs; [
+              rustc
+              cargo
+              rustup
+
+              (jetbrains.plugins.addPlugins jetbrains.rust-rover [ "github-copilot" ])
+            ];
+          };
+          webdev = let
+            pkgs = import nixpkgs-unstable {
+              inherit system;
+              config.allowUnfree = true;
+            };
+          in channels.nixpkgs.mkShell {
+            name = "Web development Shell";
+            packages = with pkgs; [
+              nodejs
+              playwright-test
+              playwright-driver
+              playwright-driver.browsers
+
+              # IDE's
+              (jetbrains.plugins.addPlugins jetbrains.webstorm [ "github-copilot" ])
+            ];
+
+            shellHook = ''
+              export PLAYWRIGHT_BROWSERS_PATH=${pkgs.playwright-driver.browsers}
+              export PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS=true
+            '';
+          };
+        };
+      };
     };
 }
