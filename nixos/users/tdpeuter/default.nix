@@ -8,7 +8,7 @@ let
 
   cursor = {
     package = pkgs.phinger-cursors;
-    name = "phinger-cursors";
+    name = "phinger-cursors-light";
     size = 24;
   };
 in {
@@ -79,12 +79,13 @@ in {
 
     fonts.packages = with pkgs; [
       corefonts              # Calibri for Uni
+      dejavu_fonts
       font-awesome           # Dependency of Vifm & zsh config
       letter                 # Personal font
+      noto-fonts             # Dependency of Zellij config
       noto-fonts-cjk-sans    # Dependency of Zellij config
       noto-fonts-cjk-serif   # Dependency of Zellij config
-      noto-fonts             # Dependency of Zellij config
-      noto-fonts-emoji       # Dependency of Zellij config
+      noto-fonts-emoji
       noto-fonts-color-emoji # Emoji's!
       vistafonts             # Microsoft fonts
     ];
@@ -109,7 +110,6 @@ in {
         pointerCursor = {
           inherit (cursor) package name size;
           gtk.enable = true;
-          x11.enable = true;
         };
       };
 
@@ -140,9 +140,12 @@ in {
         };
       };
 
-      gtk = {
+      services.syncthing = {
         enable = true;
-        cursorTheme = cursor;
+        extraOptions = [
+          "--no-default-folder"
+        ];
+        tray.enable = true;
       };
 
       xdg = {

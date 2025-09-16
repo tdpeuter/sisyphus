@@ -45,7 +45,7 @@
         "spotify"
         "steam" "steam-unwrapped" "steam-run"
         "vista-fonts"
-        "nvidia-persistenced" # Docker
+        "intel-ocl"
       ];
     in
     utils.lib.mkFlake {
@@ -73,6 +73,7 @@
         modules = [
           home-manager.nixosModule
           sops-nix.nixosModules.sops
+
           ./modules
           ./users
         ];

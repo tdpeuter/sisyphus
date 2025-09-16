@@ -25,21 +25,27 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-#    boot = {
-#      extraModprobeConfig = "options nvidia-drm modeset=1";
-#
-#      initrd.kernelModules = [
-#        "nvidia"
-#        "nvidia_modeset"
-#        "nvidia_uvm"
-#        "nvidia_drm"
-#      ];
-#    };
+    boot = {
+      extraModprobeConfig = ''
+        options nvidia-drm modeset=1
+      '';
+      kernelParams = [
+        "nvidia_drm.modeset=1"
+      ];
+    };
 
     hardware = {
       graphics = {
         enable = true;
         enable32Bit = true;
+        extraPackages = with pkgs; [
+          intel-ocl
+          intel-compute-runtime
+          opencl-clhpp
+          opencl-clang
+          opencl-headers
+          ocl-icd
+        ];
       };
 
       nvidia = {

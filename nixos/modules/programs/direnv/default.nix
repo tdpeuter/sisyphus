@@ -8,7 +8,7 @@ in {
   config = lib.mkIf cfg.enable {
     programs.direnv = {
       enable = true;
-      nix-direnv.enable = true;  # Use nix-specific direnv.
+      nix-direnv.enable = true;  # Use nix-specific direnv, https://github.com/nix-community/nix-direnv
     };
 
     # This is also done by setting programs.direnv.persistDerivations.
