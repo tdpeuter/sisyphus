@@ -61,5 +61,9 @@ exec wlsunset -l 50.50 -L 4.00 -t 3000 -T 6500
 exec gnome-keyring-daemon --start --components=secrets # Secrets
 exec dunst --verbosity crit                            # Notification manager
 exec swayidle -w
+exec waycorner
 
 exec nextcloud --background
+
+# SwayFX
+blur enable

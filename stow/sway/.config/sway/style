@@ -15,6 +15,10 @@ default_border pixel 1
 default_floating_border normal 1
 hide_edge_borders smart
 smart_borders on
+gaps {
+    inner 5
+    outer 3
+}
 
 # Mimic no titles by setting the text color to background color
 #                       border  backgr. text    indic.  child_border
