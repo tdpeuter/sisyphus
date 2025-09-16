@@ -2,16 +2,15 @@
     "modules-left": [
         "sway/workspaces",
         "custom/scratchpad-indicator",
-        "mpris",
         "group/system"
     ],
     "modules-right": [
-        "group/hardware",
+        "tray",
+        "sway/language",
         "bluetooth",
         "network",
         "pulseaudio",
         "group/battery",
-        "custom/sep",
-        "tray"
+        "mpris"
     ]
 }

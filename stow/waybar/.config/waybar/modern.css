@@ -1,0 +1,80 @@
+@define-color foreground rgb(202, 202, 202);
+@define-color background rgb(  3,   3,   3);
+
+@define-color highlight-background alpha(@foreground, 0.4);
+
+@define-color accent #00897b;
+@define-color white #ecf0f1;
+@define-color warning-red #eb4d4b;
+
+* {
+    font-family: letter, "Font Awesome 6 Free", font-awesome, monospace;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+window#waybar {
+    border: none;
+    color: @white;
+
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.keep {
+    background-color: @transparent;
+}
+
+window#waybar.toggle {
+    background-color: alpha(@foreground, 0.4);
+}
+
+tooltip {
+  background: alpha(@background, 0.8);
+}
+tooltip label {
+  color: @white;
+}
+
+#workspaces button {
+    border: none;
+    padding: 0 8px;
+    border-radius: 5px;
+    animation: ws_normal 20s ease-in-out 1;
+}
+
+#mode,
+#workspaces button.focused {
+    background-color: alpha(@background, 0.2);
+}
+
+#workspaces button:hover {
+    background-color: alpha(@background, 0.2);
+}
+
+#battery,
+#disk,
+#bluetooth,
+#clock,
+#custom-browser,
+#custom-scratchpad-indicator,
+#custom-system-hibernate, #custom-system-lock, #custom-system-reboot, #custom-system-shutdown, #custom-system-sleep,
+#custom-toggle-light-dark,
+#custom-toggle-night-light,
+#custom-toggle-notifications,
+#cpu,
+#idle_inhibitor,
+#keyboard-state,
+#memory,
+#mpris,
+#network,
+#sway-language,
+#sway-window,
+#power-profiles-daemon,
+#privacy,
+#pulseaudio,
+#temperature,
+#tray {
+    color: @white;
+}
+

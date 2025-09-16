@@ -1,0 +1,14 @@
+@import 'style.css';
+
+* {
+    color: #C2C2C2;
+}
+
+window#waybar {
+    background-color: #171717;
+}
+
+window#waybar button.focused {
+    background-color: #C2C2C2;
+}
+

@@ -1,0 +1,60 @@
+/* * * * * * * * * * * * * * * * *
+ *                               *
+ * ~/.config/waybar/config.jsonc *
+ *                               *
+ * * * * * * * * * * * * * * * * */
+
+[
+    /* Always visible, contains less information */
+    {
+        "name": "keep",
+        "position": "top",
+        "height": 26,
+        "modules-left": [
+            "group/mode"
+        ],
+        "modules-center": [
+            "clock#center"
+        ],
+        "modules-right": [
+            "keyboard-state#numlock",
+            "keyboard-state#capslock",
+            "privacy"
+        ],
+        "include": [
+            "~/.config/waybar/modules.json"
+        ]
+    },
+
+    /* Toggle this bar, contains all information */
+    {
+        "name": "toggle",
+        "mode": "hide",
+        "ipc": true,
+        "position": "top",
+        "height": 26,
+        /* Show this bar on top of the other one, seemingly replacing it. */
+        "margin": "-26px 0 0 0",
+        "modules-left": [
+            "custom/meta",
+            "sway/window",
+            "group/workspaces",
+            "custom/scratchpad-indicator",
+        ],
+        "modules-center": [
+            "mpris"
+        ],
+        "modules-right": [
+            "privacy",
+            "tray",
+            "group/control-center",
+            "group/network",
+            "pulseaudio",
+            "group/power",
+            "clock#bar"
+        ],
+        "include": [
+            "~/.config/waybar/modules.json"
+        ]
+    }
+]

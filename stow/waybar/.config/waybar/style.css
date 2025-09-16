@@ -1,165 +1,119 @@
-/*
- * ~/.config/waybar/style.css
- *
- * `otf-font-awesome` is required to be installed for icons.
- *
- * Pick your stylesheet: 
- * - sharp.css
- * - transparent.css
- * - round.css
- */
+/* * * * * * * * * * * * * * * *
+ *                             *
+ * ~/.config/waybar/style.css  *
+ *                             *
+ * * * * * * * * * * * * * * * */
 
-@define-color transparent-black rgba(23, 23, 23, 0.9); 
-@define-color white #ecf0f1;
-@define-color warning-red #eb4d4b;
-@define-color accent #00897b;
+@define-color background #C2C2C2;
+@define-color foreground #171717;
+
+/* Pantone / PMS 18-1559 TCX / Red Alert */
+@define-color warning rgb(208,  52,  44);
+/* Safety orange */
+@define-color safety  rgb(255, 103,   0);
+
+* {
+    padding: 0 4px;
+}
 
 window#waybar {
+    /* background: linear-gradient(90deg, #CECECE 0%, #D1D1D1 10%, #C9C9C9 50%, #BBBBBB 90%, #BABABA 100%); */
+
     font-family: letter, "Font Awesome 6 Free", font-awesome, monospace;
     font-size: 13px;
-    -webkit-font-smoothing: antialiased;
-    transition-property: background-color;
-    transition-duration: .5s;
+    font-weight: 600;
 }
 
-#window, #workspaces {
-    margin: 0 5px;
-}
-
-#workspaces button {
-    border: none;
-    border-radius: 0;
-    min-width: 30px; 
-    padding: 0 5px;
-}
-
-#workspaces button.focused {
-    background-color: transparent;
-    color: @white;
-}
-
-#workspaces button:hover {
-    background-color: transparent;
-    color: @transparent-black;
-}
-
-#workspaces button.urgent {
-    color: @white; 
-    background-color: @warning-red;
-}
-
-/* All modules individually. */
-#backlight,
-#battery,
-#bluetooth,
-#clock,
-#cpu,
-#custom-browser,
-#custom-light-dark-toggle,
-#custom-night-light-toggle,
-#custom-system-lock, #custom-system-sleep, #custom-system-hibernate, #custom-system-reboot, #custom-system-shutdown,
-#custom-toggle-notifications,
-#disk,
-#group-hardware,
-#group-system,
-#idle_inhibitor,
-#keyboard-state,
-#memory,
-#mode,
-#mpd,
-#mpris,
-#network,
-#power-profiles-daemon,
-#privacy-item.audio-in, #privacy-item.audio-out, #privacy-item.screenshare,
-#pulseaudio,
-#temperature,
-#tray {
-    padding: 0 5px;
-}
-
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
-}
-
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > #workspaces {
+.modules-right,
+.modules-right > widget:last-child {
+    padding-right: 0;
     margin-right: 0;
 }
 
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #000000;
-    }
-}
-
-label:focus {
-    background-color: #000000;
-}
-
-/* Module specific colours */
-
-#battery.charging, #battery.plugged {
-    color: #ffffff;
+#battery.charging {
     background-color: #26A65B;
+    color: #FFFFFF;
 }
 
 #battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
+    background-color: @warning;
+    color: #FFFFFF;
     animation-name: blink;
     animation-duration: 0.5s;
-    animation-timing-function: linear;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#battery.plugged {
+    animation-name: blink;
+    animation-duration: 1.0s;
+    animation-timing-function: steps(12);
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
 
 #bluetooth.disabled,
-#bluetooth.off,
-#network.disconnected,
-#pulseaudio.muted {
+#bluetooth.off {
     opacity: 0.6;
 }
 
-#mpris {
-    color: #2a5c45;
-    min-width: 100px;
+#custom-toggle-tailscale.disconnected {
+    opacity: 0.6;
+}
+
+
+#mpris.Feishin {
+    background: linear-gradient(45deg, rgba(170,92,195,1) 100%, rgba(0,164,220,1) 0%);
 }
 
 #mpris.spotify {
     background-color: #66cc99;
+    color: #2a5c45;
 }
 
 #mpris.vlc {
     background-color: #ffa000;
 }
 
-#temperature.critical {
-    background-color: #eb4d4b;
+#network.disconnected {
+    opacity: 0.6;
 }
 
-#custom_light-dark-toggle.activated,
-#idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
+#privacy,
+#privacy-item,
+#privacy-item.screenshare,
+#privacy-item.audio-in {
+    background-color: @safety;
+}
+
+#privacy-item.screenshare {
+    background-color: #000000;
+}
+
+#pulseaudio.muted {
+    opacity: 0.6;
+}
+
+#systemd-failed-units.degraded {
+    background-color: @warning;
+}
+
+#temperature.critical {
+    background-color: @warning;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: @warning;
 }
 
 #tray > .passive {
     -gtk-icon-effect: dim;
 }
 
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
+#workspaces button.urgent {
+    background-color: @warning;
+    color: white;
 }
-
-#privacy-item.audio-in,
-#privacy-item.audio-out,
-#privacy-item.screenshare {
-    background-color: #ffaa01;
-    color: #2d3436;
-}
-
-@import "sharp.css";
 

@@ -2,148 +2,224 @@
     "battery": {
         "format": "{capacity}% {icon}",
         "format-alt": "{time} {icon}",
-        "format-charging": "{capacity}% \uf0e7 {icon}",
-        "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"],
+        "format-charging": "{capacity}% \ue55b", /*   */
         "format-plugged": "{capacity}% \ue55c",
-       	"states": {
-            "warning": 30,
-            "critical": 15
+        "format-icons": [
+            "\uf244", /*   */
+            "\uf243", /*   */
+            "\uf242", /*   */
+            "\uf241", /*   */
+            "\uf240"  /*   */
+        ],
+        "states": {
+            "warning": 25,
+            "critical": 12
         }
     },
 
-    "disk": {
-        "interval": 30, 
-        "format": "{percentage_used}% \uf0a0", 
-        "on-click": "kitty -e duf /",
-        "path": "/",
-        "tooltip-format": "{used} used out of {total} on {path} ({percentage_free}% or {free} free)"
-    },
-
     "bluetooth": {
-        "format-disabled": "<big>\uf294</big>",
-        "format-off": "\uf294",
-        "format-on": "<big>\uf294</big>",
-        "format-connected": "<big>\uf294</big>c",
+        "format-disabled": "\uf294", /*  */
+        "format-off": "\uf294", /*  */
+        "format-on": "<big>\uf294</big>", /*  */
+        "format-connected": "<big>\uf294</big>c", /* c */
         "max-length": 10.3,
         "on-click": "bluetoothctl power $( bluetoothctl show | sed -n 's/\\s*Powered: \\(yes\\|no\\)/\\1/p' | sed 's/yes/off/;s/no/on/' )",
-        "on-click-right": "kitty -e bluetoothctl",
         "tooltip-format": "{status}",
         "tooltip-format-on": "{status}, no devices connected",
         "tooltip-format-connected": "{status} ({num_connections}):\n{device_enumerate}", 
         "tooltip-format-enumerate-connected": "{device_alias} ({device_address})",
         "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}"
     },
-    
-    "clock": {
+
+    "clock#center": {
         "format": "{:%H:%M}",
-        "format-alt": "{:%d/%m/%Y %H:%M}",
+        "format-alt": "{:%a %b %d, %Y, %R}",
         "timezone": "Europe/Brussels",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "month",
+            "week-pos": "left",
+            "format": {
+                /* Highlight todays date. */
+                "today": "<span background='#ffffff' color='#000000'><b>{}</b></span>"
+            }
+        },
+        "actions": {
+            "on-click": "mode"
+        }
     },
 
-    "custom/browser": {
-        "format": "\uf120",
-        "on-click": "dmenu_run",
-        "tooltip-format": "Launch an application"
+    "clock#bar": {
+        "format": "{:%a %b %d, %R}",
+        "timezone": "Europe/Brussels",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode-mon-col": 3,
+            "on-scroll": 1,
+            "format": {
+                /* Highlight today's date. */
+                "today": "<span background='#FFFFFF' color='#000000'><b>{}</b></span>"
+            }
+        },
+        "actions": {
+            "on-click": "mode"
+        }
     },
 
-    "custom/light-dark-toggle": {
-        "exec": "bash ${SCRIPT_DIR}/toggle-light-dark.sh -g",
-        "exec-on-event": true,
-        "on-click": "bash ${SCRIPT_DIR}/toggle-light-dark.sh",
-        // "format": "\uf042 ",
-        "format": "{icon}",
-        "format-icons": [
-            "\uf185",
-            "\uf111"
-        ],
-        "tooltip": true,
-        "tooltip-format": "Toggle between light and dark mode"
+    "custom/control-center": {
+        "format": "\uf085", /*   */
+        "tooltip": false
     },
 
-    "custom/keyboard-switch": {
-        "format": "\uf11c",
-        "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
-        "tooltip-format": "Toggle keyboard layouts",
-        "tooltip": true
-    },
-
-    "custom/night-light-toggle": {
-        "on-click": "bash ${SCRIPT_DIR}/sunset.sh",
-        "format": "\uf0eb ",
-        "tooltip": true,
-        "tooltip-format": "Toggle night-light on or off"
+    "custom/meta": {
+        "format": "\uf17c", /*  */
+        "tooltip": false,
+        "on-click": "dmenu_run"
     },
 
     "custom/scratchpad-indicator": {
         "interval": 3,
         "return-type": "json",
         "exec": "swaymsg -t get_tree | jq --unbuffered --compact-output '(recurse(.nodes[]) | select(.name == \"__i3_scratch\") | .focus) as $scratch_ids | [..  | (.nodes? + .floating_nodes?) // empty | .[] | select(.id |IN($scratch_ids[]))] as $scratch_nodes | if ($scratch_nodes|length) > 0 then { text: \"\\($scratch_nodes | length)\", tooltip: $scratch_nodes | map(\"\\(.app_id // .window_properties.class) (\\(.id)): \\(.name)\") | join(\"\\n\") } else empty end'",
-        "format": "{} \uf2d2",
+        "format": "\uf2d2 {}",
         "on-click": "exec swaymsg 'scratchpad show'",
         "on-click-right": "exec swaymsg 'move scratchpad'"
     },
 
     "custom/system-lock": {
-        "format": "\uf09c",
+        "format": "\uf09c", /*  */
         "tooltip": true,
         "tooltip-format": "Lock device",
         "on-click": "swaylock -f"
     },
 
     "custom/system-sleep": {
-        "format": "\uf186",
+        "format": "\uf186", /*  */
         "tooltip": true,
         "tooltip-format": "Put device to sleep",
         "on-click": "swaylock -f; systemctl suspend"
     },
 
     "custom/system-hibernate": {
-        "format": "\uf2dc",
+        "format": "\uf2dc", /*  */
         "tooltip": true,
         "tooltip-format": "Hibernate device",
         "on-click": "swaylock -f; systemctl hibernate"
     },
 
     "custom/system-reboot": {
-        "format": "\uf0e2",
+        "format": "\uf0e2", /*  */
         "tooltip": true,
         "tooltip-format": "Reboot device",
         "on-click": "systemctl reboot"
     },
 
     "custom/system-shutdown": {
-        "format": "\uf011",
+        "format": "\uf011", /*  */
         "tooltip": true,
         "tooltip-format": "Shutdown device",
         "on-click": "systemctl poweroff -i"
     },
 
-    "custom/toggle-notifications": {
-        "on-click": "bash ${SCRIPT_DIR}/do-not-disturb.sh",
-        "tooltip-format": "Toggle notifications",
-        "format": "\uf1f6 ",
-        "tooltip": true
-    },
-   
-    "cpu": {
-        "format": "{usage}% \uf2db",
-        "on-click": "foot -e htop",
+    "custom/toggle-light-dark": {
+        "exec": "sleep 1 && bash ~/projects/sisyphus/scripts/toggle-light-dark.sh -g",
+        "return-type": "json",
+        "on-click": "bash ~/projects/sisyphus/scripts/toggle-light-dark.sh",
+        "format": "{icon}",
+        "format-icons": {
+            "default": "\uf185",
+            "prefer-dark": "\uf005"
+        },
         "tooltip": true
     },
 
-    "group/battery": {
+    "custom/toggle-notifications": {
+        "exec": "sleep 6 && bash ~/projects/sisyphus/scripts/toggle-notifications.sh -g",
+        "return-type": "json",
+        "on-click": "bash ~/projects/sisyphus/scripts/toggle-notifications.sh",
+        "format": "NOTIS {icon}",
+        "format-icons": {
+            "normal": "NRML",
+            "paused": "PAISED"
+        },
+        "tooltip": true
+    },
+
+    "custom/toggle-tailscale": {
+        "exec": "sleep 2 && bash ~/projects/sisyphus/scripts/toggle-tailscale.sh -g",
+        "return-type": "json",
+        "on-click": "bash ~/projects/sisyphus/scripts/toggle-tailscale.sh",
+        "format": "{icon}",
+        "format-icons": {
+            "disconnected": "\ue50b",
+            "connected": "\ue509",
+        },
+        "tooltip": true
+    },
+
+    "group/control-center": {
         "orientation": "inherit",
         "modules": [
+            "custom/control-center",
+            "group/language",
+            /* "hyprland/language", "sway/language", */
+            "custom/toggle-notifications",
+            "custom/toggle-light-dark",
+            "bluetooth"
+        ],
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false,
+            "children-class": "drawer-child"
+        }
+    },
+
+    "group/language": {
+        "orientation": "inherit",
+        "modules": [
+            "hyprland/language",
+            "sway/language"
+        ]
+    },
+
+    "group/mode": {
+        "orientation": "inherit",
+        "modules": [
+            "hyprland/submap",
+            "sway/mode"
+        ]
+    },
+
+    "group/network": {
+        "orientation": "inherit",
+        "modules": [
+            /* Preview */
+            "network",
+            /* Most-left */
+            "custom/toggle-tailscale"
+            /* Most-right */
+        ],
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false,
+            "children-class": "drawer-child"
+        }
+    },
+
+    "group/power": {
+        "orientation": "inherit",
+        "modules": [
+            /* Preview */
             "battery",
+            /* Most-left */
             "custom/system-shutdown",
             "custom/system-reboot",
             "custom/system-hibernate",
             "custom/system-sleep",
             "custom/system-lock",
-            "custom/sep",
             "power-profiles-daemon",
-            "custom/sep"
+            "idle_inhibitor"
+            /* Most-right */
         ],
         "drawer": {
             "transition-duration": 500,
@@ -152,170 +228,172 @@
         }
     },
 
-    "group/hardware": {
+    "group/workspaces": {
         "orientation": "inherit",
         "modules": [
-            "custom/sep",
-            "memory",
-            "cpu",
-            "temperature"
-        ],
-        "drawer": {
-            "transition-duration": 500,
-            "transition-left-to-right": false,
-            "children-class": "drawer-child"
-        }
+            "hyprland/workspaces",
+            "sway/workspaces"
+        ]
     },
 
-    "group/system": {
-        "orientation": "inherit",
-        "modules": [
-            "idle_inhibitor",
-            "custom/light-dark-toggle",
-            "custom/night-light-toggle",
-            "custom/keyboard-switch",
-            "custom/toggle-notifications"
-        ],
-        "drawer": {
-            "transition-duration": 500,
-            "tansition-left-to-right": true,
-            "children-class": "drawer-child"
+    "hyprland/language": {
+        "format": "\uf11c",
+        "on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next && notify-send \"$(hyprctl devices -j | jq -r '.keyboards[] | select(.name == \"at-translated-set-2-keyboard\") | .active_keymap')\" --app-name 'waybar'",
+        "tooltip": true,
+        "tooltip-format": "Switch keyboard layouts",
+        "keyboard-name": "at-translated-set-2-keyboard"
+    },
+
+    "hyprland/workspaces": {
+        "all-outputs": false,
+        "disable-scroll": true,
+        "format": "{icon}{name}",
+        "format-icons": {
+            "default": "",
+            "urgent": "\uf071 " /*   */
         }
     },
 
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": "\uf06e",
-            "deactivated": "\uf070"
-        }, 
+            "activated": "\uf06e",  /*   */
+            "deactivated": "\uf070" /*   */
+        },
         "tooltip": false
     },
 
-    "keyboard-state": {
+    "keyboard-state#capslock": {
+        "capslock": true,
         "format": {
             "capslock": "{icon}"
         },
         "format-icons": {
-            "locked": "\uf023",
+            "locked": "\uf11c", /*   */
             "unlocked": ""
-        },
-        "numlock": false,
-        "capslock": true,
-        "scrollock": false
+        }
     },
 
-    "memory": {
-        "format": "{}% \uf1c0",
-        "on-click": "kitty -e zenith"
+    "keyboard-state#numlock": {
+        "numlock": true,
+        "format": {
+            "numlock": "{icon}"
+        },
+        "format-icons": {
+            "locked": "\uf1ec", /*  */
+            "unlocked": ""
+        }
     },
 
     "mpris": {
-        // "ignored-players": ["firefox"]
         "format": "{player_icon} {dynamic}",
         "format-paused": "{status_icon} <i>{dynamic}</i>",
         "tooltip-format": "{player} ({status}) {title} - {artist} - {album}",
         "player-icons": {
-            "default": "\uf51f",
-            "spotify": "\uf1bc",
-            "mpv": "🎵"
+            "default": "\uf8d9", /*   */
+            "mpv": "\uf144", /*   */
+            "spotify": "\uf1bc" /*   */
         },
         "status-icons": {
-            "paused": "⏸"
+            "paused": "\uf04c" /*  */
         },
         "dynamic-order": [
             "title",
             "artist"
         ],
-        "dynamic-len": 40,
+        "dynamic-len": 40
     },
 
     "network": {
-        "format-disconnected": "\uf127", 
-        "format-ethernet": "\uf6ff {ifname}: {ipadds}/{cidr}",
-        "format-wifi": "\uf1eb",
+        "format-disconnected": "\uf127", /*   */
+        "format-ethernet": "\uf6ff", /*   */
+        "format-linked": "\uf0c1", /*   */
+        "format-wifi": "{icon}",
         "interval": 5,
-        "on-click-right": "kitty -e nmtui",
+        "tooltip": true,
         "tooltip-format": "{ifname}: {ipaddr}",
         "tooltip-format-disconnected": "Disconnected",
-        "tooltip-format-wifi": "{essid} ({signalStrength}%)\n{ifname}: {ipaddr}"
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)\n{ifname}: {ipaddr}",
+        "format-icons": [
+            "\uf05e", /*   */
+            "\uf1eb", /*   */
+            "\uf1eb" /*   */
+        ]
+    },
+
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "format-icons": {
+            "default": "\uf110", /*   */
+            "performance": "\uf135", /*   */
+            "balanced": "\uf24e", /*   */
+            "power-saver": "\uf06c" /*   */
+        },
+        "tooltip": true,
+        "tooltip-format": "Profile: {profile}\nDriver: {driver}"
+    },
+
+    "privacy": {
+        "transition-duration": 250,
+        "icon-size": 16,
+        "modules": [
+            {
+                "type": "screenshare",
+                "tooltip": true
+            },
+            {
+                "type": "audio-in",
+                "tooltip": true
+            }
+        ]
+    },
+
+    "pulseaudio": {
+        "format": "{volume}% {icon}",
+        "format-headset": "{volume}% \uf58f", /*   */
+        "format-muted": "\uf6a9", /*  */
+        "format-icons": [
+            "\uf026", /*  */
+            "\uf027", /*  */
+            "\uf028"  /*  */
+        ],
+        "scroll-step": 2.0,
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    },
+
+    "sway/language": {
+        "format": "{short}",
+        "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
+        "tooltip": true,
+        "tooltip-format": "Switch keyboard layouts"
     },
 
     "sway/window": {
-        "max-length": 85
+        "format": "{title}",
+        "max-length": 20,
+        "tooltip": true,
+        "all-outputs": true,
+        "icon": false,
+        "icon-size": 18,
+        "rewrite": {
+            ".* - (.*)": "$1",
+            ".* — (.*)": "$1"
+        }
     },
 
     "sway/workspaces": {
         "all-outputs": false,
         "disable-scroll": true,
-        "format": "{icon}{name}", 
+        "format": "{icon}{name}",
         "format-icons": {
-            "default": "", // Prevent showing workspace name literal.
-            "urgent": "\uf071 "
-        },
-        // "persistent_workspaces": {
-        //     "0:¯\\_(ツ)_/¯": []
-        // }
-    }, 
-
-    "power-profiles-daemon": {
-        "format": "{icon}",
-        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
-        "tooltip": true,
-        "format-icons": {
-            "default": "",
-            "performance": "",
-            "balanced": "",
-            "power-saver": ""
+            "default": "",
+            "urgent": "\uf071 " /*   */
         }
     },
 
-    "privacy": {
-        "icon-spacing": 4,
-        "icon-size": 18,
-        "transition-duration": 250,
-        "modules": [
-            {
-                "type": "screenshare",
-                "tooltip": true,
-                "tooltip-icon-size": 18,
-            },
-            {
-                "type": "audio-in",
-                "tooltip": true,
-                "tooltip-icon-size": 18,
-            },
-        ],
-    },
-
-    "pulseaudio": {
-        "format": "{volume}% {icon}{format_source}",
-        "format-muted": "\uf6a9{format_source}",
-        "format-bluetooth": "{volume}% {icon}\uf294{format_source}",
-        "format-bluetooth-muted": "\uf6a9 {icon}\uf294{format_source}",
-        "format-source": " {volume}% \uf130",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "\uf58f",
-            "hands-free": "\uf590",
-            "headset": "\uf590",
-            "phone": "\uf3ce",
-            "portable": "\uf3ce",
-            "car": "\uf1b9",
-            "default": ["\uf026", "\uf027", "\uf028 "]
-        },
-        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-        "on-click-right": "pavucontrol",
-        "scroll-step": -2
-    },
-
-    "temperature": {
-        "critical-threshold": 70,
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["\uf2cb", "\uf2c9", "\uf2c7"]
-    }, 
-
     "tray": {
+        "icon-size": 16,
+        "show-passive-items": true,
         "spacing": 10
     }
 }
