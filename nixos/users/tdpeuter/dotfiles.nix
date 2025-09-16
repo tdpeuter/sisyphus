@@ -17,7 +17,7 @@ in {
               source = ../../../stow/alacritty/.config/alacritty;
             };
             ".config/dunst" = {
-              inherit (config.sisyphus.desktop.sway) enable;
+              enable = config.sisyphus.desktop.hyprland.enable || config.sisyphus.desktop.sway.enable;
               source = ../../../stow/dunst/.config/dunst;
             };
             ".config/foot" = {

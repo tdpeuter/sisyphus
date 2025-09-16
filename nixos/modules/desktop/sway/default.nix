@@ -71,7 +71,7 @@ in {
       wayland
       xdg-utils # Open with default program
       glib      # gsettings
-      wl-clipboard
+      wl-clipboard # Copying to system clipboard in vim
       wl-mirror # Mirror an output
       wdisplays # Tool to configure displays
 
@@ -84,8 +84,10 @@ in {
       swaylock-effects
       waybar
       wlsunset
+      waycorner
 
       # TODO Turn into own module/package?
+      dmenu
       jq
       j4-dmenu-desktop
       rofi
@@ -106,43 +108,36 @@ in {
       noto-fonts-emoji
     ];
 
-    security.polkit.enable = true;
-  
+    hardware.graphics.enable = true;
+
     services = {
       atd.enable = true; # Required by sunset.sh
       dbus.enable = true;
+      displayManager.ly.enable = true;
       gnome.gnome-keyring.enable = true;
-
-      pipewire = {
-        enable = true;
-        alsa.enable = true;
-        pulse.enable = true;
-      };
-
       power-profiles-daemon.enable = true;
-
-      xserver = {
-        displayManager.session = [{
-          manage = "window";
-          name = "Sway";
-          start = ''
-            ${pkgs.sway}/bin/sway --unsupported-gpu &
-            waitPID=$!
-          '';
-        }];
-        videoDrivers = [ "nouveau" ];
-      };
+      xserver.videoDrivers = [ "nouveau" ];
+      # xserver.videoDrivers = [ "nvidia" ];
     };
     
     xdg.portal = {
       enable = true;
       wlr.enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+        gtk-session-lock
+      ];
+      xdgOpenUsePortal = true;
     };
   
-    programs.sway = {
-      enable = true;
-      wrapperFeatures.gtk = true;
+    programs = {
+      sway = {
+        enable = true;
+        package = pkgs.swayfx;
+        wrapperFeatures.gtk = true;
+      };
+
+      waybar.enable = true;
     };
 
     sisyphus.users.wantedGroups = [
