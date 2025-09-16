@@ -25,11 +25,17 @@ in {
     ];
 
     # Send a notification if the YubiKey is waiting for touch.
-    systemd.user.services.yubikey-touch-detector = {
+    systemd.services.yubikey-touch-detector = {
       enable = true;
       description = "Detects when your YubiKey is waiting for a touch";
-      path = with pkgs; [ yubikey-touch-detector ];
-      script = ''exec yubikey-touch-detector --notify'';
+      path = with pkgs; [
+        gnupg
+        yubikey-touch-detector
+      ];
+      wantedBy = [
+        "graphical-session.target"
+      ];
+      script = ''exec yubikey-touch-detector --libnotify'';
       environment.YUBIKEY_TOUCH_DETECTOR_LIBNOTIFY = "true";
     };
   };
