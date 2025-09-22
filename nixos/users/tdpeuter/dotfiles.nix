@@ -32,6 +32,11 @@ in {
               recursive = true;
               source = ../../../stow/git/.config/git;
             };
+            ".config/hypr" = {
+              inherit (config.sisyphus.desktop.hyprland) enable;
+              recursive = true;
+              source = ../../../stow/hyprland/.config/hypr;
+            };
             ".config/kitty" = {
               enable = false;
               recursive = true;
