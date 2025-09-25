@@ -78,14 +78,13 @@ in {
               source = ../../../stow/zellij/.config/zellij;
             };
             ".gnupg" = {
-              enable = false;
-              # inherit (config.programs.gnupg.agent) enable; # TODO Enable Me
+              inherit (config.programs.gnupg.agent) enable;
               source = ../../../stow/gnupg/.gnupg;
               recursive = true;
-#              onChange = ''
-#                chmod 700 /home/tdpeuter/.gnupg
-#                chmod 600 /home/tdpeuter/.gnupg/*
-#              '';
+              onChange = ''
+                chmod 700 /home/tdpeuter/.gnupg
+                # chmod 600 /home/tdpeuter/.gnupg/* # Already read-only?
+              '';
             };
             ".ssh/config" = lib.mkIf config.sisyphus.programs.ssh.enable {
               inherit (config.sisyphus.programs.ssh) enable;
@@ -104,12 +103,10 @@ in {
           }
           (lib.mkIf (config.users.users.tdpeuter.shell == pkgs.zsh) {
             ".oh-my-zsh" = {
-              enable = config.users.users.tdpeuter.shell == pkgs.zsh;
               source = "${pkgs.oh-my-zsh}/share/oh-my-zsh";
               recursive = true;
             };
             ".oh-my-zsh/themes/tdpeuter.zsh-theme" = {
-              enable = config.users.users.tdpeuter.shell == pkgs.zsh;
               source = ../../../stow/zsh/.oh-my-zsh/themes/tdpeuter.zsh-theme;
             };
             ".zshrc" = {

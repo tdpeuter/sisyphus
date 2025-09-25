@@ -23,6 +23,8 @@ in {
         waycorner
         wlsunset
         wl-clipboard # Copying to system clipboard in vim
+        wl-mirror # Mirror an output
+        wdisplays # Tool to configure displays
 
         glib
 
@@ -45,9 +47,9 @@ in {
     };
 
     services = {
+      dbus.enable = true;
       displayManager.ly.enable = true;
       gnome.gnome-keyring.enable = true;
-      power-profiles-daemon.enable = true;
       xserver.videoDrivers = [ "nvidia" ];
     };
   };
