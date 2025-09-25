@@ -30,6 +30,18 @@ in {
             "amazon@search.mozilla.org".installation_mode = "blocked";
             "google@search.mozilla.org".installation_mode = "blocked";
           };
+
+          # Anything in about:config
+          Preferences = {
+            "browser.newtabpage.activity-stream.showSponsoredCheckboxes" = {
+              Value = false;
+              Status = "locked";
+            };
+            "browser.newtabpage.pinned" = {
+              Value = "[]";
+              Status = "default";
+            };
+          };
         };
 
         # Support smart cards
