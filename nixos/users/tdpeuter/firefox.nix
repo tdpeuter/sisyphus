@@ -14,6 +14,7 @@ in {
         nativeMessagingHosts = with pkgs; [
           tridactyl-native
         ];
+        # https://mozilla.github.io/policy-templates/
         extraPolicies = {
           DisableFirefoxStudies = true;
           DisablePocket = true;
@@ -26,7 +27,8 @@ in {
 
           # https://discourse.nixos.org/t/declare-firefox-extensions-and-settings/36265
           ExtensionSettings = {
-            "amazom@search.mozilla.org".installation_mode = "blocked";
+            "amazon@search.mozilla.org".installation_mode = "blocked";
+            "google@search.mozilla.org".installation_mode = "blocked";
           };
         };
 
@@ -42,12 +44,24 @@ in {
       ];
 
       profiles.tdpeuter.search= {
-        default = "DuckDuckGo";
+        default = "ddg"; # Reference by id instead of by name
         force = true;
         engines = {
-          "Bing".metaData.hidden = true;
-          "eBay".metaData.hidden = true;
+          "bing".metaData.hidden = true;
+          "ebay".metaData.hidden = true;
 
+          "GitHub" = {
+            urls = [{
+              template = "https://github.com/search";
+              params = [
+                { name = "q"; value = "{searchTerms}"; }
+                { name = "type"; value = "repositories"; }
+              ];
+            }];
+
+            icon = "${pkgs.icosystem}/share/icons/icosystem/scalable/apps/github-mark.svg";
+            definedAliases = [ "@gh" ];
+          };
           "Nix Packages" = {
             urls = [{
               template = "https://search.nixos.org/packages";
@@ -70,18 +84,6 @@ in {
 
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAliases = [ "@no" ];
-          };
-          "GitHub" = {
-            urls = [{
-              template = "https://github.com/search";
-              params = [
-                { name = "q"; value = "{searchTerms}"; }
-                { name = "type"; value = "repositories"; }
-              ];
-            }];
-
-            icon = "${pkgs.icosystem}/share/icons/icosystem/scalable/apps/github-mark.svg";
-            definedAliases = [ "@gh" ];
           };
         };
       };

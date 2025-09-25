@@ -2,12 +2,12 @@
   description = "System configuration of my machines using flakes";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-24.11";
+    nixpkgs.url = "nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
     flake-utils.url = "github:numtide/flake-utils";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     openconnect-sso = {
@@ -71,11 +71,11 @@
         };
 
         modules = [
-          home-manager.nixosModule
-          sops-nix.nixosModules.sops
-
           ./modules
           ./users
+
+          home-manager.nixosModules.home-manager
+          sops-nix.nixosModules.sops
         ];
       };
 

@@ -9,7 +9,7 @@ final: prev: {
       sha256 = "sha256-UzpHAHpQx2MlmBNKm2turjeVmgp5zXKWm3nZbEo0mYE=";
     };
 
-    cargoHash = "sha256-oHfk68mAIcmOenW7jn71Xpt8hWVDtxyInWhVN2rH+kk=";
+    cargoHash = "sha256-oGpe+kBf6kBboyx/YfbQBt1vvjtXd1n2pOH6FNcbF8M=";
 
     buildInputs = with final; [
       cargo
