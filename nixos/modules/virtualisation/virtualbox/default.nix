@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs-unstable, ... }:
 
 let
   cfg = config.sisyphus.virtualisation.virtualbox;
@@ -11,6 +11,7 @@ in {
         enable = true;
         enableExtensionPack = true;
         enableHardening = true;
+        package = pkgs-unstable.virtualbox;
       };
       guest = {
         enable = true;
@@ -19,6 +20,12 @@ in {
         vboxsf = false; # Module not found?...
       };
     };
+
+
+    # https://www.virtualbox.org/ticket/22248#comment:1
+    # and
+    # https://github.com/NixOS/nixpkgs/pull/444438
+    boot.kernelParams = [ "kvm.enable_virt_at_load=0" ];
 
     # Define the group
     users.groups.vboxusers = {};
