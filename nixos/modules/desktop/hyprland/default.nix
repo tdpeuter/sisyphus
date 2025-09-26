@@ -21,10 +21,13 @@ in {
         swaybg
         waybar
         waycorner
+        playerctl
         wlsunset
         wl-clipboard # Copying to system clipboard in vim
         wl-mirror # Mirror an output
         wdisplays # Tool to configure displays
+
+        swaylock-effects
 
         glib
 

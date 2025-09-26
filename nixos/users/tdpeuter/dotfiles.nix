@@ -63,7 +63,7 @@ in {
               source = ../../../stow/swayidle/.config/swayidle;
             };
             ".config/swaylock" = {
-              inherit (config.sisyphus.desktop.sway) enable;
+              enable = config.sisyphus.desktop.sway.enable || config.sisyphus.desktop.hyprland.enable;
               source = ../../../stow/swaylock/.config/swaylock;
             };
             ".config/vifm" = {
