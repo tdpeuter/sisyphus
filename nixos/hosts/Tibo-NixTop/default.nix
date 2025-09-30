@@ -74,12 +74,19 @@
 
     loader = {
       # Use the systemd-boot EFI boot loader.
-      systemd-boot.enable = true;
+      systemd-boot = {
+        enable = true;
+
+        editor = false;
+        memtest86.enable = true;
+      };
       efi.canTouchEfiVariables = true;
     };
 
     # Use latest kernel.
     kernelPackages = pkgs.linuxPackages_latest;
+
+    plymouth.enable = true;
   };
 
   hardware.bluetooth = {
@@ -116,6 +123,8 @@
 
 
     power-profiles-daemon.enable = false;
+
+    smartd.enable = true;
 
     thermald.enable = true;
 
