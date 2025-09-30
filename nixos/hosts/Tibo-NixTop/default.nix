@@ -15,6 +15,7 @@
 
     hardware = {
       eid.enable = true;
+      fingerprint-scanner.enable = true;
       nvidia = {
         enable = true;
         model = "Quadro T2000";

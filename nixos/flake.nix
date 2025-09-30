@@ -46,6 +46,7 @@
         "steam" "steam-unwrapped" "steam-run"
         "vista-fonts"
         "intel-ocl"
+        "libfprint-2-tod1-broadcom"
       ];
     in
     utils.lib.mkFlake {
