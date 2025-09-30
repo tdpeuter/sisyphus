@@ -32,15 +32,19 @@ in {
           };
 
           # Anything in about:config
-          Preferences = {
-            "browser.newtabpage.activity-stream.showSponsoredCheckboxes" = {
+          Preferences = let
+            falseLocked = {
               Value = false;
-              Status = "locked";
+              Status = "falseLocked";
             };
+          in {
+            "browser.newtabpage.activity-stream.showSponsoredCheckboxes" = falseLocked;
+            "browser.newtabpage.activity-stream.showSponsoredTopSites" = falseLocked;
             "browser.newtabpage.pinned" = {
               Value = "[]";
               Status = "default";
             };
+            "services.sync.prefs.sync-seen.browser.newtabpage.activity-stream.showSponsoredTopSites" = falseLocked;
           };
         };
 
