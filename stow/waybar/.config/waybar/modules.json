@@ -90,21 +90,21 @@
         "format": "\uf09c", /*  */
         "tooltip": true,
         "tooltip-format": "Lock device",
-        "on-click": "swaylock -f"
+        "on-click": "swaylock --daemonize"
     },
 
     "custom/system-sleep": {
         "format": "\uf186", /*  */
         "tooltip": true,
         "tooltip-format": "Put device to sleep",
-        "on-click": "swaylock -f; systemctl suspend"
+        "on-click": "swaylock --daemonize; systemctl suspend"
     },
 
     "custom/system-hibernate": {
         "format": "\uf2dc", /*  */
         "tooltip": true,
         "tooltip-format": "Hibernate device",
-        "on-click": "swaylock -f; systemctl hibernate"
+        "on-click": "swaylock --daemonize; systemctl hibernate"
     },
 
     "custom/system-reboot": {

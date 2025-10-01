@@ -2,21 +2,23 @@
 # .config/swaylock/config
 # 
 
-indicator
-indicator-radius=200
+#indicator
+#indicator-radius=200
+#
+#clock
+#datestr=%A, %B %d %Y
+#
+#show-failed-attempts
+#
+#screenshots
+#effect-pixelate=10
+#effect-vignette=0.75:0 # Darken the whole screen.
+#fade-in=0.25
+#
+#grace=7 # Allow to unlock without password for duration
+#grace-no-mouse
 
-clock
-datestr=%A, %B %d %Y
-
-show-failed-attempts
-
-screenshots
-effect-pixelate=10
-effect-vignette=0.75:0 # Darken the whole screen.
-fade-in=0.25
-
-grace=7 # Allow to unlock without password for duration
-grace-no-mouse
+image=${ASSETS_DIR}/bluescreen.png
 
 # Styling
 

@@ -96,6 +96,7 @@ in {
     ]);
 
     environment.sessionVariables = {
+      ASSETS_DIR = ../../../../assets;
       SCRIPT_DIR = ../../../../scripts;
     };
 

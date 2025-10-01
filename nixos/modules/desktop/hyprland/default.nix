@@ -11,6 +11,7 @@ in {
         # Hint Electron apps to use wayland
         NIXOS_OZONE_WL = "1";
 
+        ASSETS_DIR = ../../../../assets;
         SCRIPT_DIR = ../../../../scripts;
       };
 
@@ -27,7 +28,7 @@ in {
         wl-mirror # Mirror an output
         wdisplays # Tool to configure displays
 
-        swaylock-effects
+        swaylock
 
         glib
 
