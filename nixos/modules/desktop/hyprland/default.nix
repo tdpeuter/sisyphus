@@ -50,6 +50,8 @@ in {
       waybar.enable = true;
     };
 
+    security.polkit.enable = true;
+
     services = {
       dbus.enable = true;
       displayManager.ly.enable = true;

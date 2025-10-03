@@ -35,25 +35,26 @@ in {
       shell = pkgs.zsh;
 
       packages = (with pkgs; [
-        cmdtime               # Zsh plugin
-        icosystem             # Personal icon theme
-        nextcloud-client
-        spotify-adblock
+        bitwarden-desktop
         brave                 # Internet browser
         chafa                 # Terminal image viewer
+        cmdtime               # Zsh plugin
         duf                   # Df alternative
         feishin               # Jellyfin music client
         foot
         fzf
         gh                    # GitHub CLI tool
         glow                  # Terminal Markdown renderer
+        icosystem             # Personal icon theme
         jellyfin-media-player
         libreoffice-fresh     # Office tools
         librewolf             # Internet browser
         mpv                   # Media player
+        nextcloud-client
         nsxiv                 # Lightweight image viewer
         qalculate-gtk         # Calculator
         spotify
+        spotify-adblock
         unzip
         vifm                  # File manager
         zathura               # PDF viewer
