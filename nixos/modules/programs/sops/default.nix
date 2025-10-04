@@ -14,8 +14,8 @@ in {
       # Add secrets.yml to the Nix Store.
       defaultSopsFile = ../../../secrets/secrets.yaml;
       age = {
-        # Automatically import SSH keys as age keys.
-        sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+        # Don't derive age keys from SSH keys.
+        sshKeyPaths = [ ];
         # Use an age key that is expected to already be in the filesystem.
         # You will need to place this file manually.
         keyFile = "/var/lib/sops-nix/key.txt";

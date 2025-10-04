@@ -1,16 +1,11 @@
 keys:
   - &tdpeuter age1fva6s64s884z0q2w7de024sp69ucvqu0pg9shrhhqsn3ewlpjfpsh6md7y
-  - &tdpeuter_gpg 08a9c1c8cf9159c9172aba129b11f5243089db5b
-
-  - &server_H4G0 age1d4gvqz3anf082ja6xt03hnkzazfum80um9t45m4rerl4n3va2yuqgnsg03
+  - &Tibo-NixTop age1qzutny0mqpcccqw6myyfntu6wcskruu9ghzvt6r4te7afkqwnguq05ex37
 
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
-    - pgp:
-      - *tdpeuter_gpg
-      age:
+    - age:
       - *tdpeuter
-
-      - *server_H4G0
+      - *Tibo-NixTop
 
