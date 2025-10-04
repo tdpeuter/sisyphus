@@ -36,6 +36,7 @@ in {
         "HomeLab/Gitea/ssh" = HomeLab;
         "HomeLab/Hugo/ssh" = HomeLab;
         "HomeLab/Nextcloud/ssh" = HomeLab;
+        "HomeLab/NixOS/admin/ssh" = HomeLab;
       });
   };
 }
