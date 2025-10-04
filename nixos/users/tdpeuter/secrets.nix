@@ -24,7 +24,6 @@ in {
         };
       in {
         "UGent/HPC/ssh" = UGent;
-        "UGent/Dwengo" = UGent;
 
         # Git authentication
         "Gitea/ssh" = personal;
@@ -33,8 +32,13 @@ in {
         "UGent/SubGit/ssh" = UGent;
 
         # HomeLab
-        "HomeLab/Gitea/ssh" = HomeLab;
+
+        # Physical hosts
         "HomeLab/Hugo/ssh" = HomeLab;
+        "HomeLab/Roxanne/ghost/ssh" = HomeLab;
+
+        # Virtual hosts
+        "HomeLab/Gitea/ssh" = HomeLab;
         "HomeLab/Nextcloud/ssh" = HomeLab;
         "HomeLab/NixOS/admin/ssh" = HomeLab;
       });
