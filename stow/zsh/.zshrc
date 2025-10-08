@@ -51,7 +51,7 @@ fi
 alias cp='cp -i'
 alias df='df -h'
 alias free='free -m'
-alias gs='git status'
+alias gs='git status --short'
 alias hgrep='history | grep'
 alias ll='ls -la'
 alias mkdir='mkdir -pv'
