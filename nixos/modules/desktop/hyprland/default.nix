@@ -20,7 +20,6 @@ in {
         dunst
         libnotify
         swaybg
-        waybar
         waycorner
         playerctl
         wlsunset
@@ -41,13 +40,9 @@ in {
       ];
     };
 
-    programs = {
-      hyprland = {
-        enable = true;
-        xwayland.enable = true;
-      };
-
-      waybar.enable = true;
+    programs.hyprland = {
+      enable = true;
+      xwayland.enable = true;
     };
 
     security.polkit.enable = true;
@@ -58,6 +53,8 @@ in {
       gnome.gnome-keyring.enable = true;
       xserver.videoDrivers = [ "nvidia" ];
     };
+
+    sisyphus.desktop.waybar.enable = true;
   };
 }
 

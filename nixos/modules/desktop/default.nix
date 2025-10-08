@@ -4,5 +4,7 @@
     ./hyprland
     ./plasma
     ./sway
+
+    ./waybar
   ];
 }

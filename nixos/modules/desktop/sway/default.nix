@@ -82,7 +82,6 @@ in {
       playerctl
       swaybg
       swaylock-effects
-      waybar
       wlsunset
       waycorner
 
@@ -120,7 +119,7 @@ in {
       xserver.videoDrivers = [ "nouveau" ];
       # xserver.videoDrivers = [ "nvidia" ];
     };
-    
+
     xdg.portal = {
       enable = true;
       wlr.enable = true;
@@ -131,18 +130,18 @@ in {
       xdgOpenUsePortal = true;
     };
   
-    programs = {
-      sway = {
-        enable = true;
-        package = pkgs.swayfx;
-        wrapperFeatures.gtk = true;
-      };
-
-      waybar.enable = true;
+    programs.sway = {
+      enable = true;
+      package = pkgs.swayfx;
+      wrapperFeatures.gtk = true;
     };
 
-    sisyphus.users.wantedGroups = [
-      config.users.groups.video.name # Brightnessctl
-    ];
+    sisyphus = {
+      desktop.waybar.enable = true;
+
+      users.wantedGroups = [
+        config.users.groups.video.name # Brightnessctl
+      ];
+    };
   };
 }
