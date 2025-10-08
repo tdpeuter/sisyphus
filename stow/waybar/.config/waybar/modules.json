@@ -122,10 +122,10 @@
     },
 
     "custom/toggle-light-dark": {
-        "exec": "bash ~/projects/sisyphus/scripts/toggle-light-dark.sh -g",
+        "exec": "bash ${SCRIPT_DIR}/toggle-light-dark.sh -g",
         "interval": 60,
         "return-type": "json",
-        "on-click": "bash ~/projects/sisyphus/scripts/toggle-light-dark.sh",
+        "on-click": "bash ${SCRIPT_DIR}/toggle-light-dark.sh",
         "format": "{icon}",
         "format-icons": {
             "default": "\uf185",
@@ -135,10 +135,10 @@
     },
 
     "custom/toggle-notifications": {
-        "exec": "bash ~/projects/sisyphus/scripts/toggle-notifications.sh -g",
+        "exec": "bash ${SCRIPT_DIR}/toggle-notifications.sh -g",
         "interval": 60,
         "return-type": "json",
-        "on-click": "bash ~/projects/sisyphus/scripts/toggle-notifications.sh",
+        "on-click": "bash ${SCRIPT_DIR}/toggle-notifications.sh",
         "format": "{icon}",
         "format-icons": {
             "normal": "\uf0f3", /*  */
@@ -148,10 +148,10 @@
     },
 
     "custom/toggle-tailscale": {
-        "exec": "bash ~/projects/sisyphus/scripts/toggle-tailscale.sh -g",
+        "exec": "bash ${SCRIPT_DIR}/toggle-tailscale.sh -g",
         "interval": 60,
         "return-type": "json",
-        "on-click": "bash ~/projects/sisyphus/scripts/toggle-tailscale.sh",
+        "on-click": "bash ${SCRIPT_DIR}/toggle-tailscale.sh",
         "format": "{icon}",
         "format-icons": {
             "disconnected": "\ue50b",
