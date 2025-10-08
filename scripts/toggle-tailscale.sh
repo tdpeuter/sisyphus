@@ -19,14 +19,23 @@ while getopts ":g" option; do
             if [ "${current_state}" == "${STOPPED_MSG}" ]; then
                 state='disconnected'
                 tooltip='Connect tailnet'
+
+                printf '{"alt": "%s", "tooltip": "%s", "class": "%s" }' \
+                    "${state}" "${tooltip}" "${state}"
             else
                 state='connected'
                 tooltip="${status:='Disconnect tailnet'}"
+
+                printf '{"alt": "%s", "tooltip": "<tt>%q</tt>", "class": "%s" }' \
+                    "${state}" "${tooltip}" "${state}"
             fi
 
-            printf '{"alt": "%s", "tooltip": "%q", "class": "%s" }' \
-                "${state}" "${tooltip}" "${state}"
             exit 0
+            ;;
+
+        *)
+            echo 'Invalid option'
+            exit 1
             ;;
     esac
 done

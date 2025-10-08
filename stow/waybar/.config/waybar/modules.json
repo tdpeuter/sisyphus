@@ -122,7 +122,8 @@
     },
 
     "custom/toggle-light-dark": {
-        "exec": "sleep 1 && bash ~/projects/sisyphus/scripts/toggle-light-dark.sh -g",
+        "exec": "bash ~/projects/sisyphus/scripts/toggle-light-dark.sh -g",
+        "interval": 60,
         "return-type": "json",
         "on-click": "bash ~/projects/sisyphus/scripts/toggle-light-dark.sh",
         "format": "{icon}",
@@ -134,19 +135,21 @@
     },
 
     "custom/toggle-notifications": {
-        "exec": "sleep 6 && bash ~/projects/sisyphus/scripts/toggle-notifications.sh -g",
+        "exec": "bash ~/projects/sisyphus/scripts/toggle-notifications.sh -g",
+        "interval": 60,
         "return-type": "json",
         "on-click": "bash ~/projects/sisyphus/scripts/toggle-notifications.sh",
-        "format": "NOTIS {icon}",
+        "format": "{icon}",
         "format-icons": {
-            "normal": "NRML",
-            "paused": "PAISED"
+            "normal": "\uf0f3", /*  */
+            "paused": "\uf1f6"  /*  */
         },
         "tooltip": true
     },
 
     "custom/toggle-tailscale": {
-        "exec": "sleep 2 && bash ~/projects/sisyphus/scripts/toggle-tailscale.sh -g",
+        "exec": "bash ~/projects/sisyphus/scripts/toggle-tailscale.sh -g",
+        "interval": 60,
         "return-type": "json",
         "on-click": "bash ~/projects/sisyphus/scripts/toggle-tailscale.sh",
         "format": "{icon}",
