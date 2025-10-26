@@ -59,6 +59,7 @@ in {
         vifm                  # File manager
         zathura               # PDF viewer
         zellij                # Tmux + screen alternative
+        zotero
         zsh
         zsh-autosuggestions
         zsh-syntax-highlighting

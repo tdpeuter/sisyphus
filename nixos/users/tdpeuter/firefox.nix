@@ -101,6 +101,16 @@ in {
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAliases = [ "@no" ];
           };
+          "Google Scholar" = {
+            urls = [{
+              template = "https://scholar.google.ch/scholar";
+              params = [
+                { name = "q"; value = "{searchTerms}"; }
+              ];
+            }];
+
+            definedAliases = [ "@gs" ];
+          };
         };
       };
     };
