@@ -27,6 +27,8 @@ in {
         wl-mirror # Mirror an output
         wdisplays # Tool to configure displays
 
+        hyprlandPlugins.hy3 # i3/sway layout plugin
+
         swaylock
 
         glib
