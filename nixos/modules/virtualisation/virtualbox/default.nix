@@ -6,19 +6,11 @@ in {
   options.sisyphus.virtualisation.virtualbox.enable = lib.mkEnableOption "VirtualBox";
 
   config = lib.mkIf cfg.enable {
-    virtualisation.virtualbox = {
-      host = {
-        enable = true;
-        enableExtensionPack = true;
-        enableHardening = true;
-        package = pkgs-unstable.virtualbox;
-      };
-      guest = {
-        enable = true;
-        clipboard = true;
-        seamless = true;
-        vboxsf = false; # Module not found?...
-      };
+    virtualisation.virtualbox.host = {
+      enable = true;
+      enableExtensionPack = true;
+      enableHardening = true;
+      package = pkgs-unstable.virtualbox;
     };
 
 
