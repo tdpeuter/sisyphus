@@ -36,10 +36,12 @@ in {
         # Physical hosts
         "HomeLab/Hugo/ssh" = HomeLab;
         "HomeLab/Roxanne/ghost/ssh" = HomeLab;
+        "HomeLab/HTPC/ssh" = HomeLab;
 
         # Virtual hosts
         "HomeLab/Gitea/ssh" = HomeLab;
         "HomeLab/Nextcloud/ssh" = HomeLab;
+        "HomeLab/Vaultwarden/ssh" = HomeLab;
         "HomeLab/NixOS/admin/ssh" = HomeLab;
       });
   };
