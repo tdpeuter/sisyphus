@@ -14,9 +14,26 @@ STATE_DIR="${HOME}/.local/state/sisyphus"
 STATE_FILE="${STATE_DIR}/theme"
 BG_DIR="${HOME}/Nextcloud/Afbeeldingen/wallpapers"
 
+LATITUDE='50.50N' # Belgium
+LONGITUDE='4.00E'
+
+# Mapping inputs to themes
+
+declare -A theme_name
+theme_name['light']="${THEME_LIGHT}"
+theme_name['dark']="${THEME_DARK}"
+
+declare -A theme_time
+theme_time['DAY']="${THEME_LIGHT}"
+theme_time['NIGHT']="${THEME_DARK}"
+
+# Mapping of current theme to next theme
+
 declare -A theme_next
 theme_next[${THEME_LIGHT}]="${THEME_DARK}"
 theme_next[${THEME_DARK}]="${THEME_LIGHT}"
+
+# Mapping of theme to applications
 
 declare -A gsettings_alt
 gsettings_alt[${THEME_LIGHT}]='default'
@@ -35,17 +52,14 @@ wallpaper[${THEME_DARK}]="bg-dark"
 #############
 
 # Parse options
-while getopts ":m:g" option; do
+while getopts ":m:gt" option; do
     case "${option}" in
         m)
-            if [ "${OPTARG}" == 'light' ]; then
-                theme="${THEME_LIGHT}"
-            elif [ "${OPTARG}" == 'dark' ]; then
-                theme="${THEME_DARK}"
-            else
+            if [ -z "${theme_name[${OPTARG}]}" ]; then
                 >&2 printf "Error: Invalid mode: '%s'.\nShould be either 'light' or 'dark'\n" "${option}"
                 exit 1
             fi
+            theme="${theme_name[${OPTARG}]}"
             ;;
         g)
             current_state="$(cat "${STATE_FILE}")"
@@ -58,6 +72,22 @@ while getopts ":m:g" option; do
                 "${gsettings_alt[${current_state}]}" "${next_state}" "${percentage:=0}" "${class:="none"}"
             exit 0
             ;;
+        t)
+            if ! [ "$(command -v sunwait)" ]; then
+                >&2 printf "Error: sunwait command not found. Please install sunwait or do not use the -t option.\n"
+                exit 1
+            fi
+
+            current_time="$(sunwait poll "${LATITUDE}" "${LONGITUDE}")"
+
+            if [ -z "${current_time}" ] || [ -z "${theme_time[${current_time}]}" ]; then
+                >&2 printf "Error: Invalid time returned by sunwait: '%s'.\nInspect the script for more details.\n" "${current_time}"
+                exit 1
+            fi
+
+            theme="${theme_time[${current_time}]}"
+            printf "Setting theme based on time of day: %s -> %s\n" "${current_time}" "${theme}"
+            ;;
         *)
             >&2 printf "Error: Invalid option: '%s'.\n" "${option}"
             exit 1
@@ -67,16 +97,26 @@ done
 shift $(( OPTIND - 1 ))
 
 # Check if the state file exists
-if ! [ -d "$(dirname ${STATE_FILE})" ]; then
-    mkdir -p "$(dirname ${STATE_FILE})"
+if ! [ -d "$(dirname "${STATE_FILE}")" ]; then
+    mkdir -p "$(dirname "${STATE_FILE}")"
 fi
 
-# Choose next theme
-previous_theme="$(cat ${STATE_FILE})"
-if ! [[ -z "${previous_theme}" || "${theme}" ]]; then
-    theme="${theme_next[${previous_theme}]}"
+# Determine the theme to set
+if [ -z "${theme}" ]; then
+    # Read from state file
+    if [ -f "${STATE_FILE}" ]; then
+        previous_theme="$(cat "${STATE_FILE}")"
+    fi
+
+    if [ -n "${previous_theme}" ]; then
+        theme="${theme_next[${previous_theme}]}"
+    else
+        theme="${THEME_DEFAULT}"
+    fi
 fi
-echo "${theme:=${THEME_DEFAULT}}" > "${STATE_FILE}"
+
+# Store the new theme in the state file
+echo "${theme}" > "${STATE_FILE}"
 
 ######################
 ### Set all themes ###

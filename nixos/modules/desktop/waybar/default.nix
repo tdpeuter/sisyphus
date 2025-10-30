@@ -7,9 +7,11 @@ in {
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      libnotify
+      jq               # JSON parser
+      libnotify        # Notifications
+      sunwait          # Sunrise/sunset calculator
+
       playerctl
-      jq
       j4-dmenu-desktop
     ];
 
