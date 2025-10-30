@@ -25,8 +25,7 @@ set smarttab
 set tabstop=4
 set title
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
-"" Show suggestions on another line instead of inplace
-set wildmenu
+set wildmenu "" Show suggestions on another line instead of inplace
 
 syntax enable
 

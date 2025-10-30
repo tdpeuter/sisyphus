@@ -94,6 +94,8 @@
     powerOnBoot = false;
   };
 
+  nix.settings.download-buffer-size = 500 * 1024 * 1024; # 500 MiB
+
   programs.zsh.enable = true;
 
   services = {
