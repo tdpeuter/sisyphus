@@ -6,7 +6,7 @@
   ];
 
   sisyphus = {
-    desktop.sway.enable = true;
+    desktop.hyprland.enable = true;
 
     hardware = {
       nvidia = {
@@ -35,6 +35,7 @@
     };
 
     services = {
+      tailscale.enable = true;
       pipewire.enable = true;
       printing.enable = true;
       openrgb.enable = true;
@@ -56,6 +57,8 @@
         efiSysMountPoint = "/boot/efi";
       };
     };
+
+    plymouth.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
