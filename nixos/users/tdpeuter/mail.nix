@@ -3,6 +3,9 @@
 let
   cfg = config.sisyphus.users.tdpeuter;
   user = config.users.users.tdpeuter.name;
+
+  profile = "tdpeuter";
+
   signatures = {
     default = ''
       Met vriendelijke groeten
@@ -25,95 +28,108 @@ let
   };
 in {
   config = lib.mkIf cfg.enable {
-    home-manager.users.tdpeuter = lib.mkIf config.sisyphus.programs.home-manager.enable {
-      accounts.email.accounts = {
-        Telenet = {
-          address  = "tibo.depeuter@telenet.be";
-          userName = "tibo.depeuter@telenet.be";
-          imap = {
-            host = "imap.telenet.be";
-            port = 993;
-            tls.enable = true;
+    home-manager.users."${user}" = lib.mkIf config.sisyphus.programs.home-manager.enable {
+      accounts = {
+        calendar.accounts = {
+          Nextcloud = {
+            primary = true;
+            remote = {
+              type = "caldav";
+              url = "https://cloud.depeuter.dev/remote.php/dav";
+              userName = "tdpeuter";
+            };
           };
-          smtp = {
-            host = "smtp.telenet.be";
-            port = 587;
-            tls = {
+        };
+
+        email.accounts = {
+          Telenet = {
+            address  = "tibo.depeuter@telenet.be";
+            userName = "tibo.depeuter@telenet.be";
+            imap = {
+              host = "imap.telenet.be";
+              port = 993;
+              tls.enable = true;
+            };
+            smtp = {
+              host = "smtp.telenet.be";
+              port = 587;
+              tls = {
+                enable = true;
+                useStartTls = true;
+              };
+            };
+
+            realName = config.users.users.tdpeuter.description;
+            signature = {
+              showSignature = "append";
+              text = signatures.default;
+            };
+
+            primary = true;
+            thunderbird = {
               enable = true;
-              useStartTls = true;
+              settings = id: {
+                "mail.identity.id_${id}.htmlSigText" = signatures.default;
+              };
             };
           };
+          UGent = {
+            flavor = "outlook.office365.com";
+            address = "tibo.depeuter@ugent.be";
 
-          realName = config.users.users.tdpeuter.description;
-          signature = {
-            showSignature = "append";
-            text = signatures.default;
-          };
+            realName = config.users.users.tdpeuter.description;
+            signature = {
+              showSignature = "append";
+              text = signatures.academic;
+            };
 
-          primary = true;
-          thunderbird = {
-            enable = true;
-            settings = id: {
-              "mail.identity.id_${id}.htmlSigText" = signatures.default;
+            thunderbird = {
+              enable = true;
+              settings = id: {
+                "mail.server.server_${id}.authMethod"   = 10;
+                "mail.smtpserver.smtp_${id}.authMethod" = 10;
+                "mail.identity.id_${id}.htmlSigText"    = signatures.academic;
+
+                # Allow PGP
+                "mail.identity.id_${id}.openpgp_key_id" = "9B11F5243089DB5B"; # Your 'master' key
+                "mail.identity.id_${id}.attachPgpKey"   = true;
+              };
             };
           };
-        };
-        UGent = {
-          flavor = "outlook.office365.com";
-          address = "tibo.depeuter@ugent.be";
+          Gmail = {
+            flavor = "gmail.com";
+            address = "tibo.depeuter@gmail.com";
 
-          realName = config.users.users.tdpeuter.description;
-          signature = {
-            showSignature = "append";
-            text = signatures.academic;
-          };
-
-          thunderbird = {
-            enable = true;
-            settings = id: {
-              "mail.server.server_${id}.authMethod"   = 10;
-              "mail.smtpserver.smtp_${id}.authMethod" = 10;
-              "mail.identity.id_${id}.htmlSigText"    = signatures.academic;
-
-              # Allow PGP
-              "mail.identity.id_${id}.openpgp_key_id" = "9B11F5243089DB5B"; # Your 'master' key
-              "mail.identity.id_${id}.attachPgpKey"   = true;
+            realName = config.users.users.tdpeuter.description;
+            signature = {
+              showSignature = "append";
+              text = signatures.default;
             };
-          };
-        };
-        Gmail = {
-          flavor = "gmail.com";
-          address = "tibo.depeuter@gmail.com";
-
-          realName = config.users.users.tdpeuter.description;
-          signature = {
-            showSignature = "append";
-            text = signatures.default;
-          };
-          thunderbird = {
-            enable = true;
-            settings = id: {
-              "mail.identity.id_${id}.htmlSigText" = signatures.default;
+            thunderbird = {
+              enable = true;
+              settings = id: {
+                "mail.identity.id_${id}.htmlSigText" = signatures.default;
+              };
             };
+
           };
+          MrFortem = {
+            flavor = "gmail.com";
+            address = "fortemfiducia@gmail.com";
 
-        };
-        MrFortem = {
-          flavor = "gmail.com";
-          address = "fortemfiducia@gmail.com";
+            realName = "Fortem Fiducia";
+            signature = {
+              showSignature = "append";
+              text = signatures.MrFortem;
+            };
 
-          realName = "Fortem Fiducia";
-          signature = {
-            showSignature = "append";
-            text = signatures.MrFortem;
-          };
-
-          thunderbird = {
-            enable = true;
-            settings = id: {
-              "mail.server.server_${id}.directory" = ".thunderbird/tdpeuter/ImapMail/imap.gmail.com-mrfortem";
-              "mail.server.server_${id}.directory-rel" = "[ProfD]ImapMail/imap.gmail.com-mrfortem";
-              "mail.identity.id_${id}.htmlSigText" = signatures.alias;
+            thunderbird = {
+              enable = true;
+              settings = id: {
+                "mail.server.server_${id}.directory" = ".thunderbird/tdpeuter/ImapMail/imap.gmail.com-mrfortem";
+                "mail.server.server_${id}.directory-rel" = "[ProfD]ImapMail/imap.gmail.com-mrfortem";
+                "mail.identity.id_${id}.htmlSigText" = signatures.alias;
+              };
             };
           };
         };
@@ -122,7 +138,7 @@ in {
       programs = {
         thunderbird = {
           enable = true;
-          profiles.tdpeuter = {
+          profiles."${profile}" = {
             isDefault = true;
             settings = {
               # View
@@ -135,6 +151,18 @@ in {
               "mail.openpgp.allow_external_gnupg" = true; # Enable YubiKey GPG signing
               "mail.e2ee.auto_enable" = true;             # Automatically enable encryption when possible.
             };
+          };
+        };
+      };
+    };
+
+    programs = {
+      thunderbird = {
+        enable = true;
+        policies.ExtensionSettings = {
+          "cardbook" = {
+            installation_mode = "normal_installed";
+            install_url = "https://addons.thunderbird.net/thunderbird/downloads/latest/cardbook/addon-634298-latest.xpi";
           };
         };
       };
