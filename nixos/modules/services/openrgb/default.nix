@@ -6,18 +6,24 @@ in {
   options.sisyphus.services.openrgb.enable = lib.mkEnableOption "OpenRGB";
 
   config = lib.mkIf cfg.enable {
-    services.udev.packages = with pkgs; [
-      openrgb
-    ];
-
     boot.kernelModules = [ "i2c-dev" ];
+
+    environment.systemPackages = with pkgs; [
+      openrgb-with-all-plugins
+    ];
 
     hardware.i2c.enable = true;
 
-    services.hardware.openrgb = {
-      enable = true;
-      package = pkgs.openrgb-with-all-plugins;
-      motherboard = "intel";
+    services = {
+      hardware.openrgb = {
+        enable = true;
+        package = pkgs.openrgb-with-all-plugins;
+        motherboard = "intel";
+      };
+
+      udev.packages = with pkgs; [
+        openrgb
+      ];
     };
   };
 }
