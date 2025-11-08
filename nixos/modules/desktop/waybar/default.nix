@@ -14,5 +14,7 @@ in {
     ];
 
     programs.waybar.enable = true;
+
+    services.atd.enable = true; # Command scheduler
   };
 }

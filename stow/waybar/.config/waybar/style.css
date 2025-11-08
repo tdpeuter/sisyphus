@@ -82,12 +82,13 @@ window#waybar {
 #privacy,
 #privacy-item,
 #privacy-item.screenshare,
-#privacy-item.audio-in {
+#privacy-item.audio-in,
+#privacy-item.audio-out {
     background-color: @safety;
 }
 
-#privacy-item.screenshare {
-    background-color: #000000;
+#privacy-item {
+    padding: 0;
 }
 
 #pulseaudio.muted {

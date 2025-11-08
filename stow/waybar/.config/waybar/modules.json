@@ -1,4 +1,15 @@
 {
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{percent}% {icon}",
+        "format-icons": [
+            "\uf111", /*   */
+            "\uf185"  /*   */
+        ],
+        "on-click": "brightnessctl -sq set 0",
+        "on-click-right": "wl-mirror $(hyprctl monitors -j | jq --raw-output '.[] | select(.focused) | .name')"
+    },
+
     "battery": {
         "format": "{capacity}% {icon}",
         "format-alt": "{time} {icon}",
@@ -71,6 +82,12 @@
         "tooltip": false
     },
 
+    "custom/display": {
+        "format": "\ue163", /*   */
+        "tooltip": false,
+        "on-click": "wdisplays"
+    },
+
     "custom/meta": {
         "format": "\uf17c", /*  */
         "tooltip": false,
@@ -134,6 +151,19 @@
         "tooltip": true
     },
 
+    "custom/toggle-nightlight": {
+        "exec": "bash ${SCRIPT_DIR}/toggle-nightlight.sh -g",
+        "interval": 60,
+        "return-type": "json",
+        "on-click": "bash ${SCRIPT_DIR}/toggle-nightlight.sh",
+        "format": "{icon}",
+        "format-icons": {
+            "active": "\uf186",  /*  */
+            "inactive": "\uf0eb" /*  */
+        },
+        "tooltip": true
+    },
+
     "custom/toggle-notifications": {
         "exec": "bash ${SCRIPT_DIR}/toggle-notifications.sh -g",
         "interval": 60,
@@ -163,12 +193,31 @@
     "group/control-center": {
         "orientation": "inherit",
         "modules": [
+            /* Preview */
             "custom/control-center",
+            /* Left-most */
             "group/language",
-            /* "hyprland/language", "sway/language", */
-            "custom/toggle-notifications",
+            "custom/toggle-notifications"
+            /* Right-most */
+        ],
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false,
+            "children-class": "drawer-child"
+        }
+    },
+
+    "group/display": {
+        "orientation": "inherit",
+        "modules": [
+            /* Preview */
+            "custom/display",
+            /* Most-left */
+            "idle_inhibitor",
+            "custom/toggle-nightlight",
             "custom/toggle-light-dark",
-            "bluetooth"
+            "backlight"
+            /* Most-right */
         ],
         "drawer": {
             "transition-duration": 500,
@@ -199,6 +248,7 @@
             /* Preview */
             "network",
             /* Most-left */
+            "bluetooth",
             "custom/toggle-tailscale"
             /* Most-right */
         ],
@@ -220,8 +270,7 @@
             "custom/system-hibernate",
             "custom/system-sleep",
             "custom/system-lock",
-            "power-profiles-daemon",
-            "idle_inhibitor"
+            "power-profiles-daemon"
             /* Most-right */
         ],
         "drawer": {

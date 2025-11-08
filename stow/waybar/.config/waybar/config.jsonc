@@ -51,6 +51,7 @@
             "privacy",
             "tray",
             "group/control-center",
+            "group/display",
             "group/network",
             "pulseaudio",
             "group/power",
