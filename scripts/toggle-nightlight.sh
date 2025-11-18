@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # Script to disable for an hour or immediately continue wlsunset. 'Toggle'
 
+# Queue for at, check man page for options
+ATQUEUE='T'
+
 # Get current state
 pid=$(pgrep wlsunset)
 
@@ -29,8 +32,13 @@ done
 
 # Toggle
 if [[ -z ${pid} ]] ; then 
+        # Clear queue
+        for job in $(at -l -q "${ATQUEUE}" | cut -f1); do
+                at -r "${job}"
+        done
+
         if [ "$( command -v wlsunset )" ]; then
-                notify-send 'Starting nightlight' --app-name='twm'
+                notify-send 'Starting nightlight'
                 wlsunset -l 50.50 -L 4.00 -t 3000 -T 6500 &
         else
                 notify-send 'Nightlight is not available'
@@ -39,6 +47,6 @@ if [[ -z ${pid} ]] ; then
 else
         # Currently stop wlsunset but restart in an hour. 
         kill ${pid}
-        notify-send 'Stopping sunset' 'Restarting in an hour'
-        at now +1 hours -f "${0}"
+        notify-send 'Stopping nightlight' 'Restarting in an hour'
+        at now +1 hours -f "${0}" -q "${ATQUEUE}"
 fi
