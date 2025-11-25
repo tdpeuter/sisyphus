@@ -78,9 +78,15 @@
 
   networking.hostName = "Tibo-NixDesk";
 
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "altgr-intl";
+  services = {
+    xserver.xkb = {
+      layout = "us";
+      variant = "altgr-intl";
+    };
+
+    openvpn.servers = {
+      tryHackMeVPN = { config = '' config /root/nixos/openvpn/tryHackMeVPN-tdpeuter.conf ''; };
+    };
   };
 
   system.stateVersion = "24.05";
