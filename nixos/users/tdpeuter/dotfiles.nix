@@ -37,6 +37,12 @@ in {
               recursive = true;
               source = ../../../stow/hyprland/.config/hypr;
             };
+            ".config/hypr/hy3-plugin.conf" = {
+              inherit (config.sisyphus.desktop.hyprland) enable;
+              text = ''
+                plugin = ${pkgs.hyprlandPlugins.hy3}/lib/libhy3.so
+              '';
+            };
             ".config/kitty" = {
               enable = false;
               recursive = true;
