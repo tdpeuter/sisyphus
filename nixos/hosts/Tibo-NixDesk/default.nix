@@ -20,6 +20,7 @@
     networking = {
       networkmanager.enable = true;
       openconnect-sso.enable = true;
+      openvpn.enable = true;
     };
 
     nix = {
