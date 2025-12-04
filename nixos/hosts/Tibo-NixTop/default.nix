@@ -38,6 +38,7 @@
       home-manager.enable = true;
       sops.enable = true;
       ssh.enable = true;
+      wireshark.enable = true;
     };
 
     services = {

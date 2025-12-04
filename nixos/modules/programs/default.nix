@@ -5,5 +5,6 @@
     ./sops
     ./spotify-adblock
     ./ssh
+    ./wireshark
   ];
 }
