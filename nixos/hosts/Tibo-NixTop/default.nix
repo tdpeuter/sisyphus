@@ -142,9 +142,9 @@
     libinput.enable = true;
   };
 
-  networking = {
-    hostName = "Tibo-NixTop"; # Define your hostname.
-  };
+  virtualisation.vmware.host.enable = true;
+
+  networking.hostName = "Tibo-NixTop"; # Define your hostname.
 
   # Set your time zone.
   time.timeZone = "Europe/Brussels";

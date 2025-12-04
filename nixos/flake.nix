@@ -43,6 +43,7 @@
         "vista-fonts"
         "intel-ocl"
         "libfprint-2-tod1-broadcom"
+        "vmware-workstation"
       ];
     in
     utils.lib.mkFlake {
