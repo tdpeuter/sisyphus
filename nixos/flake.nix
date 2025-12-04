@@ -2,12 +2,12 @@
   description = "System configuration of my machines using flakes";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-25.05";
+    nixpkgs.url = "nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
     flake-utils.url = "github:numtide/flake-utils";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     openconnect-sso = {
@@ -25,15 +25,11 @@
       url = "github:gytis-ivaskevicius/flake-utils-plus";
       inputs.flake-utils.follows = "flake-utils";
     };
-    zen-browser = {
-      url = "github:youwen5/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = inputs@{
     self, nixpkgs, nixpkgs-unstable,
-    flake-utils, home-manager, openconnect-sso, sops-nix, utils, zen-browser,
+    flake-utils, home-manager, openconnect-sso, sops-nix, utils,
     ... }:
     let
       system = utils.lib.system.x86_64-linux;

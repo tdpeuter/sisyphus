@@ -1,4 +1,4 @@
-{ config, inputs, lib, pkgs, pkgs-unstable, ... }:
+{ config, lib, pkgs, pkgs-unstable, ... }:
 
 let
   cfg = config.sisyphus.users.tdpeuter;
@@ -46,9 +46,10 @@ in {
         gh                    # GitHub CLI tool
         glow                  # Terminal Markdown renderer
         icosystem             # Personal icon theme
-        jellyfin-media-player
+        #jellyfin-media-player
         libreoffice-fresh     # Office tools
         librewolf             # Internet browser
+        logseq                # Note taking
         mpv                   # Media player
         nextcloud-client
         nsxiv                 # Lightweight image viewer
@@ -73,10 +74,7 @@ in {
         # TODO Move to devshells
         # ruff pylint # Python
       ]) ++ (with pkgs-unstable; [
-        logseq                # Note taking
-      ]) ++ [
-        inputs.zen-browser.packages.${pkgs.system}.default
-      ];
+      ]);
     };
 
     fonts.packages = with pkgs; [
@@ -87,9 +85,8 @@ in {
       noto-fonts             # Dependency of Zellij config
       noto-fonts-cjk-sans    # Dependency of Zellij config
       noto-fonts-cjk-serif   # Dependency of Zellij config
-      noto-fonts-emoji
       noto-fonts-color-emoji # Emoji's!
-      vistafonts             # Microsoft fonts
+      vista-fonts            # Microsoft fonts
     ];
 
     sisyphus = {

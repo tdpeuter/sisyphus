@@ -113,16 +113,16 @@
       };
     };
 
-    logind = {
+    logind.settings.Login = {
       # Handle the laptop lid switch as follows:
-      lidSwitch = "hybrid-sleep";
-      lidSwitchExternalPower = "lock";
-      lidSwitchDocked = "ignore";
+      HandleLidSwitch = "hybrid-sleep";
+      HandleLidSwitchExternalPower = "lock";
+      HandleLidSwitchDocked = "ignore";
 
       # Handle the power key
-      powerKey = "suspend";
+      HandlePowerKey = "suspend";
+      HandlePowerKeyLongPress = "poweroff";
     };
-
 
     power-profiles-daemon.enable = false;
 
@@ -161,12 +161,6 @@
     useXkbConfig = true; # use xkb.options in tty.
   };
 
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.libinput.enable = true;
-
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment = {
@@ -200,6 +194,5 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "25.05"; # Did you read the comment?
-
 }
 

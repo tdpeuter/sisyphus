@@ -41,8 +41,8 @@ in {
         extraPackages = with pkgs; [
           intel-ocl
           intel-compute-runtime
+          intel-graphics-compiler
           opencl-clhpp
-          opencl-clang
           opencl-headers
           ocl-icd
         ];
