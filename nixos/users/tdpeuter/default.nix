@@ -139,14 +139,6 @@ in {
         };
       };
 
-      services.syncthing = {
-        enable = true;
-        extraOptions = [
-          "--no-default-folder"
-        ];
-        tray.enable = true;
-      };
-
       xdg = {
         desktopEntries.spotify = {
           name = "Spotify";
