@@ -2,8 +2,6 @@
 
 let
   cfg = config.sisyphus.services.remEYEnder;
-
-  icon = ./vecteezy_eyes-line-icon-vector-isolated_13932670.jpg;
 in {
   options.sisyphus.services.remEYEnder.enable = lib.mkEnableOption "Eye reminder";
 
@@ -13,10 +11,10 @@ in {
         enable = true;
         description = "Send an eye reminder";
         serviceConfig.Type = "oneshot";
-        script = ''
-          # Display reminder for 20 seconds.
-          ${pkgs.libnotify}/bin/notify-send -t 20000 --icon=${icon} "RemEYEnder" "Look away from your screen :)"
-        '';
+        script = builtins.readFile ./remEYEnder.sh;
+        path = with pkgs; [
+          libnotify
+        ];
       };
       timers.remEYEnder = {
         enable = true;
