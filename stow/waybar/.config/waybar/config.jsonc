@@ -23,18 +23,17 @@
         ],
         "include": [
             "~/.config/waybar/modules.json"
-        ]
+        ],
+        "start_hidden": true
     },
 
     /* Toggle this bar, contains all information */
     {
         "name": "toggle",
-        "mode": "hide",
-        "ipc": true,
         "position": "top",
         "height": 26,
         /* Show this bar on top of the other one, seemingly replacing it. */
-        "margin": "-26px 0 0 0",
+        /*"margin": "-26px 0 0 0",*/
         "modules-left": [
             "custom/meta",
             "sway/window",
@@ -59,6 +58,7 @@
         ],
         "include": [
             "~/.config/waybar/modules.json"
-        ]
+        ],
+        "reload_style_on_change": true
     }
 ]

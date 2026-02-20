@@ -13,6 +13,10 @@ in {
       j4-dmenu-desktop
     ];
 
+    fonts.packages = with pkgs; [
+      font-awesome_6
+    ];
+
     programs.waybar.enable = true;
 
     services.atd.enable = true; # Command scheduler
