@@ -7,11 +7,10 @@ interval_ms="$(( "${DURATION}" * ( 10 ** "${EXP}" ) / "${STEPS}" ))"
 padded_interval_ms="$(printf "%0${EXP}d" "${interval_ms}")"
 interval_s="${padded_interval_ms:0:-${EXP}}.${padded_interval_ms:-${EXP}}"
 
-end_time="$(( "$( date '+%s' )" + "${DURATION}" + 1 ))"
+end_time="$(( "$( date '+%s' )" + "${DURATION}" ))"
 
 # notify-send args
 replace_id="${end_time}"
-expire_time="$(( "${interval_ms}" + 1 ))" # To avoid flickering
 
 counter=0
 while [[ "${end_time}" -gt "$( date '+%s' )" ]]; do
@@ -22,9 +21,16 @@ while [[ "${end_time}" -gt "$( date '+%s' )" ]]; do
         'Look away from your screen :)' 'RemEYEnder' \
         --hint="int:value:${remaining_part}" \
         --category='sysinfo' \
-        --replace-id="${replace_id}" \
-        --expire-time="${expire_time}"
+        --replace-id="${replace_id}"
 
     counter="$(( "${counter}" + 1 ))"
     sleep "${interval_s}"
 done
+
+notify-send \
+    'Look away from your screen :)' 'RemEYEnder' \
+    --hint="int:value:${remaining_part}" \
+    --category='sysinfo' \
+    --replace-id="${replace_id}" \
+    --expire-time="${interval_ms}"
+
