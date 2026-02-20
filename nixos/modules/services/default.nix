@@ -6,6 +6,5 @@
     ./pipewire
     ./printing
     ./remEYEnder
-    ./tailscale
   ];
 }

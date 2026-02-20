@@ -23,6 +23,7 @@
     networking = {
       networkmanager.enable = true;
       openconnect-sso.enable = true;
+      tailscale.enable = true;
     };
 
     nix = {
@@ -37,10 +38,7 @@
       ssh.enable = true;
     };
 
-    services = {
-      pipewire.enable = true;
-      tailscale.enable = true;
-    };
+    services.pipewire.enable = true;
 
     users.tdpeuter.enable = true;
 

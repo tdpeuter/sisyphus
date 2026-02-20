@@ -21,6 +21,7 @@
       networkmanager.enable = true;
       openconnect-sso.enable = true;
       openvpn.enable = true;
+      tailscale.enable = true;
     };
 
     nix = {
@@ -36,7 +37,6 @@
     };
 
     services = {
-      tailscale.enable = true;
       pipewire.enable = true;
       printing.enable = true;
       openrgb.enable = true;

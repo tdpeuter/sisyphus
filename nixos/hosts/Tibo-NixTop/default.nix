@@ -26,6 +26,8 @@
     networking = {
       networkmanager.enable = true;
       openconnect-sso.enable = true;
+      openvpn.enable = true;
+      tailscale.enable = true;
     };
 
     nix = {
@@ -41,10 +43,7 @@
       wireshark.enable = true;
     };
 
-    services = {
-      pipewire.enable = true;
-      tailscale.enable = true;
-    };
+    services.pipewire.enable = true;
 
     users.tdpeuter.enable = true;
 
