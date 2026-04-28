@@ -37,6 +37,7 @@
 
     programs = {
       direnv.enable = true;
+      git.enable = true;
       home-manager.enable = true;
       sops.enable = true;
       ssh.enable = true;
@@ -168,7 +169,6 @@
     localBinInPath = true;
 
     systemPackages = with pkgs; [
-      git
       vim-full # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
       w3m
       wget

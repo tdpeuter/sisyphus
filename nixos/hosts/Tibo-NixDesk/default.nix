@@ -31,6 +31,7 @@
 
     programs = {
       direnv.enable = true;
+      git.enable = true;
       home-manager.enable = true;
       sops.enable = true;
       ssh.enable = true;
@@ -63,7 +64,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    git
     vim-full
     w3m
     wget
