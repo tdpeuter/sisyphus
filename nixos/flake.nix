@@ -2,20 +2,13 @@
   description = "System configuration of my machines using flakes";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-25.11";
+    nixpkgs.url = "nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
     flake-utils.url = "github:numtide/flake-utils";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    openconnect-sso = {
-      url = "github:ThinkChaos/openconnect-sso/fix/nix-flake";
-      inputs = {
-        flake-utils.follows = "utils";
-        nixpkgs.follows = "nixpkgs";
-      };
     };
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -29,14 +22,14 @@
 
   outputs = inputs@{
     self, nixpkgs, nixpkgs-unstable,
-    flake-utils, home-manager, openconnect-sso, sops-nix, utils,
+    flake-utils, home-manager, sops-nix, utils,
     ... }:
     let
       system = utils.lib.system.x86_64-linux;
 
       unfreePackages = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
         "corefonts"
-        "nvidia-settings" "nvidia-x11" "nvidia-persistenced"
+        "nvidia-settings" "nvidia-x11" "nvidia-persistenced" "nvidia-kernel-modules"
         "Oracle_VirtualBox_Extension_Pack"
         "spotify"
         "steam" "steam-unwrapped" "steam-run"

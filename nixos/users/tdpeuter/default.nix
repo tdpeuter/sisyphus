@@ -35,7 +35,7 @@ in {
       shell = pkgs.zsh;
 
       packages = (with pkgs; [
-        bitwarden-desktop
+        #bitwarden-desktop
         brave                 # Internet browser
         chafa                 # Terminal image viewer
         cmdtime               # Zsh plugin
@@ -49,7 +49,7 @@ in {
         #jellyfin-media-player
         libreoffice-fresh     # Office tools
         librewolf             # Internet browser
-        logseq                # Note taking
+        #logseq                # Note taking
         mpv                   # Media player
         nextcloud-client
         nsxiv                 # Lightweight image viewer

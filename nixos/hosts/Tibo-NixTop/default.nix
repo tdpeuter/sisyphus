@@ -25,7 +25,7 @@
 
     networking = {
       networkmanager.enable = true;
-      openconnect-sso.enable = true;
+      #openconnect-sso.enable = true;
       openvpn.enable = true;
       tailscale.enable = true;
     };
@@ -55,23 +55,8 @@
   };
 
   boot = {
-    initrd = {
-      # Use EFI and YubiKey
-      kernelModules = [ "vfat" "nls_cp437" "nls_iso8859-1" "usbhid" ];
-
-      luks = {
-        # Enable YubiKey PBA
-        yubikeySupport = true;
-        devices."encrypted".yubikey = {
-          slot = 2;
-          twoFactor = false;
-          gracePeriod = 10;
-          keyLength = 64;
-          saltLength = 16;
-          storage.device = "/dev/nvme0n1p1";
-        };
-      };
-    };
+    # Use EFI and YubiKey
+    initrd.kernelModules = [ "vfat" "nls_cp437" "nls_iso8859-1" "usbhid" ];
 
     loader = {
       # Use the systemd-boot EFI boot loader.

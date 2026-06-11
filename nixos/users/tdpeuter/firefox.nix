@@ -54,6 +54,8 @@ in {
         ];
       };
 
+      configPath = "/home/tdpeuter/.config/mozilla/firefox";
+
       languagePacks = [
         "en-GB"
         "nl"

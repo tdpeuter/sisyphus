@@ -25,15 +25,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    boot = {
-      extraModprobeConfig = ''
-        options nvidia-drm modeset=1
-      '';
-      kernelParams = [
-        "nvidia_drm.modeset=1"
-      ];
-    };
-
     hardware = {
       graphics = {
         enable = true;
@@ -51,7 +42,9 @@ in {
       nvidia = {
         # Use the NVidia open source kernel module (or not)
         open = false;
-        package = config.boot.kernelPackages.nvidiaPackages.stable;
+        branch = "stable";
+        # To override the default package set by the branch:
+        #package = config.boot.kernelPackages.nvidiaPackages.stable;
         # Modesetting is required.
         modesetting.enable = true;
         nvidiaSettings = cfg.gui-settings;
