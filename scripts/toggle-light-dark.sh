@@ -6,8 +6,8 @@
 ### Variables ###
 #################
 
-THEME_LIGHT='tdpeuter-light'
-THEME_DARK='tdpeuter-dark'
+THEME_LIGHT='light'
+THEME_DARK='dark'
 THEME_DEFAULT="${THEME_LIGHT}"
 
 STATE_DIR="${HOME}/.local/state/sisyphus"
@@ -17,6 +17,10 @@ BG_DIR="${HOME}/Nextcloud/Afbeeldingen/wallpapers"
 declare -A theme_next
 theme_next[${THEME_LIGHT}]="${THEME_DARK}"
 theme_next[${THEME_DARK}]="${THEME_LIGHT}"
+
+declare -A personal_theme
+personal_theme[${THEME_LIGHT}]='tdpeuter-light'
+personal_theme[${THEME_DARK}]='tdpeuter-dark'
 
 declare -A gsettings_alt
 gsettings_alt[${THEME_LIGHT}]='default'
@@ -38,13 +42,13 @@ wallpaper[${THEME_DARK}]="bg-dark"
 while getopts ":m:g" option; do
     case "${option}" in
         m)
-            if [ "${OPTARG}" == 'light' ]; then
+            if [ "${OPTARG}" == "${THEME_LIGHT}" ]; then
                 theme="${THEME_LIGHT}"
-            elif [ "${OPTARG}" == 'dark' ]; then
+            elif [ "${OPTARG}" == "${THEME_DARK}" ]; then
                 theme="${THEME_DARK}"
             else
-                >&2 printf "Error: Invalid mode: '%s'.\nShould be either 'light' or 'dark'\n" "${option}"
-                exit 1
+                >&2 printf "Error: Invalid mode: '%s'.\nShould be either 'light' or 'dark', falling back to default: '%s'\n" "${option}" "${THEME_DEFAULT}"
+                theme="${THEME_DEFAULT}"
             fi
             ;;
         g)
@@ -100,8 +104,8 @@ function update_terminal_colors() {
 # Foot
 if [ "$(command -v foot)" ] ; then
     # Make color theme switch 'permanent'.
-    echo "include=~/.config/foot/themes/${theme}.ini" > ~/.config/foot/theme.ini &
-    # We will have to change the terminal colors ourselves.
+    echo "initial-color-theme=${theme}" > ~/.config/foot/theme.ini &
+    # We still have to change the terminal colors ourselves for existing sessions.
     update_terminal_colors &
 fi
 
@@ -113,7 +117,7 @@ fi
 
 # Kitty
 if [ "$(command -v kitty)" ]; then
-    kitten themes --reload-in all --config-file-name theme.conf "${theme}" &
+    kitten themes --reload-in all --config-file-name theme.conf "${personal_theme[${theme}]}" &
 fi
 
 # Sway
@@ -129,17 +133,19 @@ fi
 
 # Vifm
 if [ "$(command -v vifm)" ]; then
-    echo "colorscheme ${theme} Default-256 Default" > ~/.config/vifm/theme.conf
+    vifm_theme="${personal_theme[${theme}]}"
+    echo "colorscheme ${vifm_theme} Default-256 Default" > ~/.config/vifm/theme.conf
     # Update all running instances
-    vifm --remote -c "colorscheme ${theme}" &
+    vifm --remote -c "colorscheme ${vifm_theme}" &
 fi
 
 # Vim
 if [ "$(command -v vim)" ]; then
-    echo "colorscheme ${theme}" > ~/.vim/theme.conf
+    vim_theme="${personal_theme[${theme}]}"
+    echo "colorscheme ${vim_theme}" > ~/.vim/theme.conf
     # Update all running instances
     for server in $(vim --serverlist); do
-        vim --servername "${server}" --remote-send "<C-\><C-N>:colorscheme ${theme}<CR>"
+        vim --servername "${server}" --remote-send "<C-\><C-N>:colorscheme ${vim_theme}<CR>"
     done
 fi
 
