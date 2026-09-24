@@ -22,15 +22,15 @@ while getopts ":bvt:p:" options; do
 			;;
 		v)
             # Get volume (don't use pamixer because that is way slower)
-            value=$( pactl get-sink-volume @DEFAULT_SINK@ \
-                | grep -o '[0-9]*%' \
-                | tr -d '%' \
-                | head -n1 )
+            float=$( wpctl get-volume @DEFAULT_SINK@ \
+                | grep -Eo '[01].[0-9]{2}' )
+            # Converting to base 10 to drop leading zeroes
+            value="$(( 10#"$( tr -d '.' <<< "${float}" )" ))"
             title="Volume: ${value}%"
             category='sysinfo'
 
             # If audio disabled, set value to zero.
-            if [ "$( pactl get-sink-mute @DEFAULT_SINK@ | grep -o '\(yes\|no\)' | head -n1 )" == 'yes' ] ; then 
+            if [ ! -z "$( wpctl get-volume @DEFAULT_SINK@ | grep '[MUTED]' )" ] ; then
                 title="Volume: ${value}% (Disabled)"
                 value=0
             fi
