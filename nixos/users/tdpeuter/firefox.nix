@@ -103,6 +103,18 @@ in {
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAliases = [ "@no" ];
           };
+          "NixOS Wiki" = {
+            urls = [{
+              template = "https://wiki.nixos.org/w/index.php";
+              params = [
+                { name = "title"; value = "Special:Search"; }
+                { name = "search"; value = "{searchTerms}"; }
+              ];
+            }];
+
+            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            definedAliases = [ "@nw" ];
+          };
           "Google Scholar" = {
             urls = [{
               template = "https://scholar.google.ch/scholar";
