@@ -69,8 +69,7 @@
       efi.canTouchEfiVariables = true;
     };
 
-    # Use latest kernel.
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages; # Use stable LTS kernel
 
     plymouth.enable = true;
   };
