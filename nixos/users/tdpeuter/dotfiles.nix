@@ -37,10 +37,14 @@ in {
               recursive = true;
               source = ../../../stow/hyprland/.config/hypr;
             };
-            ".config/hypr/hy3-plugin.conf" = {
+            ".config/hypr/hy3-plugin.lua" = {
               inherit (config.sisyphus.desktop.hyprland) enable;
               text = ''
-                plugin = ${pkgs.hyprlandPlugins.hy3}/lib/libhy3.so
+                hl.on("hyprland.start", function()
+                  if not (hl.plugin and hl.plugin.hy3) then
+                    hl.exec_cmd('hyprctl plugin load ${pkgs.hyprlandPlugins.hy3}/lib/libhy3.so')
+                  end
+                end)
               '';
             };
             ".config/kitty" = {

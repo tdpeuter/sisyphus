@@ -8,8 +8,7 @@ in {
   config = lib.mkIf cfg.enable {
     environment = {
       sessionVariables = {
-        # Hint Electron apps to use wayland
-        NIXOS_OZONE_WL = "1";
+        NIXOS_OZONE_WL = "1"; # Hint Electron apps to use wayland
 
         ASSETS_DIR = ../../../../assets;
         SCRIPT_DIR = ../../../../scripts;
@@ -25,9 +24,11 @@ in {
         wlsunset
         wl-clipboard # Copying to system clipboard in vim
         wl-mirror # Mirror an output
-        wdisplays # Tool to configure displays
+        wdisplays nwg-displays
 
         hyprlandPlugins.hy3 # i3/sway layout plugin
+
+        grim slurp # Screenshots
 
         swaylock
 
