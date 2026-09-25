@@ -25,6 +25,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    boot.kernelParams = [ "nvidia_drm.fbdev=1" ];
+
     hardware = {
       graphics = {
         enable = true;
@@ -44,7 +46,7 @@ in {
         open = false;
         branch = "stable";
         # To override the default package set by the branch:
-        #package = config.boot.kernelPackages.nvidiaPackages.stable;
+        package = config.boot.kernelPackages.nvidiaPackages.latest;
         # Modesetting is required.
         modesetting.enable = true;
         nvidiaSettings = cfg.gui-settings;
@@ -52,9 +54,6 @@ in {
           enable = do-offloading;
           finegrained = do-offloading;
         };
-
-        # Avoid flickering
-        forceFullCompositionPipeline = true;
 
         prime = lib.mkMerge [
           (lib.mkIf do-offloading {

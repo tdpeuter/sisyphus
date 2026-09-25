@@ -40,10 +40,8 @@ let
       # gsettings set $gnome_schema gtk-theme 'Dracula'
 
       # https://github.com/crispyricepc/sway-nvidia/blob/2101a18698151a61266740f1297158119bf660ac/wlroots-env-nvidia.sh
-      # Hardware cursors not yet working on wlroots
-      export WLR_NO_HARDWARE_CURSORS=1
-      # Set wlroots renderer to Vulkan to avoid flickering
-      export WLR_RENDERER=vulkan
+      # Intel primary, NVIDIA secondary
+      export WLR_DRM_DEVICES=/dev/dri/card1:/dev/dri/card0
       # General wayland environment variables
       export XDG_SESSION_TYPE=wayland
       export QT_QPA_PLATFORM=wayland
@@ -52,10 +50,8 @@ let
       export MOZ_ENABLE_WAYLAND=1
       export MOZ_USE_XINPUT2=1
       # OpenGL Variables
-      export GBM_BACKEND=nvidia-drm
       export __GL_GSYNC_ALLOWED=0
       export __GL_VRR_ALLOWED=0
-      export __GLX_VENDOR_LIBRARY_NAME=nvidia
       # Xwayland compatibility
       export XWAYLAND_NO_GLAMOR=1
     '';
@@ -105,7 +101,7 @@ in {
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
-      noto-fonts-emoji
+      noto-fonts-color-emoji
     ];
 
     hardware.graphics.enable = true;
@@ -115,9 +111,8 @@ in {
       dbus.enable = true;
       displayManager.ly.enable = true;
       gnome.gnome-keyring.enable = true;
-      power-profiles-daemon.enable = true;
-      xserver.videoDrivers = [ "nouveau" ];
-      # xserver.videoDrivers = [ "nvidia" ];
+      # xserver.videoDrivers = [ "nouveau" ];
+      xserver.videoDrivers = [ "nvidia" ];
     };
 
     xdg.portal = {
