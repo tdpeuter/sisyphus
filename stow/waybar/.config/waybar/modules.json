@@ -77,6 +77,12 @@
         }
     },
 
+    "custom/battery": {
+        "exec": "bash ${SCRIPT_DIR}/battery.sh",
+        "return-type": "json",
+        "interval": 60
+    },
+
     "custom/control-center": {
         "format": "\uf085", /*   */
         "tooltip": false
@@ -263,7 +269,7 @@
         "orientation": "inherit",
         "modules": [
             /* Preview */
-            "battery",
+            /* "battery", */ "custom/battery",
             /* Most-left */
             "custom/system-shutdown",
             "custom/system-reboot",
