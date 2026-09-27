@@ -211,6 +211,9 @@ bindsym {
     $flag+Return   exec $term
     Control+$alt+t exec $term
 
+    $flag+Shift+Return   exec $term -e -- zellij a main
+    Control+$alt+Shift+t exec $term -e -- zellij a main
+
     $alt+space     exec $menu
     $alt+Tab       focus prev
     $flag+Tab      exec $window_switcher
@@ -223,6 +226,9 @@ bindsym {
     
     # File explorer
     $flag+e        exec $term -e vifm
+
+    # Task manager
+    Control+Shift+Escape exec $term -e zenith
 }
 
 bindgesture {

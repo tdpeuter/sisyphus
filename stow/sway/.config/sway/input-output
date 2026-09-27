@@ -1,6 +1,12 @@
 input type:keyboard {
     xkb_layout  "us","be"
     xkb_variant "altgr-intl","iso-alternate"
+    xkb_numlock enable
+}
+
+# Disable numblock on laptop by default
+input "1:1:AT_Translated_Set_2_keyboard" {
+    xkb_numlock disable
 }
 
 input type:touchpad {
@@ -18,3 +24,7 @@ output * {
 output "Dell Inc. DELL P2214H 29C2937M4YTL" {
     transform 270
 }
+
+# Clamshell style
+bindswitch lid:on output eDP-1 disable
+bindswitch lid:off output eDP-1 enable
