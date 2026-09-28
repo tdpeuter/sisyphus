@@ -1,7 +1,7 @@
 [user]
     name = "Tibo De Peuter"
     email = "tibo@depeuter.dev"
-    signingkey = "0x9B11F5243089DB5B"
+    signingkey = "~/.ssh/id_ed25519_sk_rk.pub"
 
 [color]
     ui = true
@@ -13,6 +13,9 @@
 [core]
     editor = "vim";
     excludesFile = "~/.config/git/ignore"
+
+[gpg]
+    format = "ssh"
 
 [help]
     autocorrect = 15
@@ -28,4 +31,5 @@
 
 [safe]
     directory = "/home/tdpeuter/university/sshfs"
+    directory = "/home/tdpeuter/Nextcloud/Documenten/Persoonlijk/Notebooks/01-Projects/*"
 
